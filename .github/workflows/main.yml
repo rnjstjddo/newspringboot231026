@@ -70,15 +70,15 @@ jobs:
               echo "-----------------------------------"
               ls
               echo "-----------------------------------"
-              echo "이동 /home/ubuntu/actions-runner/_work/springboot231026/springboot231026"
-              cd /home/ubuntu/actions-runner/_work/springboot231026/springboot231026
+              echo "이동 /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026"
+              cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
               echo "-----------------------------------"
               echo "docker-compose.yml파일과 nonginx-dogservice-deploy.sh 파일을 ubuntu에 복사시킴 기존 덮어씌운다"
               cp ./docker-compose.yml /home/ubuntu/docker-compose.yml
               cp ./nonginx-dogservice-deploy.sh /home/ubuntu/nonginx-dogservice-deploy.sh
               echo "-----------------------------------"
               echo "위치이동후 그래들 이용한 프로젝트 소스코드 빌드 테스트제외"
-              cd /home/ubuntu/actions-runner/_work/springboot231026/springboot231026
+              cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
               chmod +x ./gradlew
               ./gradlew cleanQuerydslSourceDir
               ./gradlew build -x test
@@ -94,11 +94,11 @@ jobs:
               echo "jar실행권한주기"
               chmod +x ./*.jar
               echo "-----------------------------------"          
-              echo "jar파일 /home/ubuntu/actions-runner/_work/springboot231026/springboot231026 폴더로 이동"
-              cp ./*.jar /home/ubuntu/actions-runner/_work/springboot231026/springboot231026 
+              echo "jar파일 /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026 폴더로 이동"
+              cp ./*.jar /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026 
               echo "-----------------------------------"
               echo "도커파일 위치한 곳으로 디렉토리 이동"
-              cd /home/ubuntu/actions-runner/_work/springboot231026/springboot231026
+              cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
               echo "-----------------------------------"
               docker build -f ./Dockerfile_8081 -t ${{ secrets.DOCKERHUB_USERNAME }}/dogservice:8081 .
               docker push ${{ secrets.DOCKERHUB_USERNAME }}/dogservice:8081
@@ -119,15 +119,15 @@ jobs:
               echo "-----------------------------------"
               ls
               echo "-----------------------------------"
-              echo "이동 /home/ubuntu/actions-runner/_work/springboot231026/springboot231026"
-              cd /home/ubuntu/actions-runner/_work/springboot231026/springboot231026
+              echo "이동 /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026"
+              cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
               echo "-----------------------------------"
               echo "docker-compose.yml파일과 nonginx-dogservice-deploy.sh 파일을 ubuntu에 복사시킴 기존 덮어씌운다"
               cp ./docker-compose.yml /home/ubuntu/docker-compose.yml
               cp ./nonginx-dogservice-deploy.sh /home/ubuntu/nonginx-dogservice-deploy.sh
               echo "-----------------------------------"
               echo "위치이동후 그래들 이용한 프로젝트 소스코드 빌드 테스트제외"
-              cd /home/ubuntu/actions-runner/_work/springboot231026/springboot231026
+              cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
               chmod +x ./gradlew
               ./gradlew cleanQuerydslSourceDir
               ./gradlew build -x test
@@ -143,11 +143,11 @@ jobs:
               echo "jar실행권한주기"
               chmod +x ./*.jar
               echo "-----------------------------------"          
-              echo "jar파일 /home/ubuntu/actions-runner/_work/springboot231026/springboot231026 폴더로 이동"
-              cp ./*.jar /home/ubuntu/actions-runner/_work/springboot231026/springboot231026 
+              echo "jar파일 /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026 폴더로 이동"
+              cp ./*.jar /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026 
               echo "-----------------------------------"
               echo "도커파일 위치한 곳으로 디렉토리 이동"
-              cd /home/ubuntu/actions-runner/_work/springboot231026/springboot231026
+              cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
               echo "-----------------------------------"
               docker build -f ./Dockerfile_8082 -t ${{ secrets.DOCKERHUB_USERNAME }}/dogservice:8082 .
               docker push ${{ secrets.DOCKERHUB_USERNAME }}/dogservice:8082
@@ -168,15 +168,15 @@ jobs:
               echo "-----------------------------------"
               ls
               echo "-----------------------------------"
-              echo "이동 /home/ubuntu/actions-runner/_work/springboot231026/springboot231026"
-              cd /home/ubuntu/actions-runner/_work/springboot231026/springboot231026
+              echo "이동 /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026"
+              cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
               echo "-----------------------------------"
               echo "docker-compose.yml파일과 nonginx-dogservice-deploy.sh 파일을 ubuntu에 복사시킴 기존 덮어씌운다"
               cp ./docker-compose.yml /home/ubuntu/docker-compose.yml
               cp ./nonginx-dogservice-deploy.sh /home/ubuntu/nonginx-dogservice-deploy.sh
               echo "-----------------------------------"
               echo "위치이동후 그래들 이용한 프로젝트 소스코드 빌드 테스트제외"
-              cd /home/ubuntu/actions-runner/_work/springboot231026/springboot231026
+              cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
               chmod +x ./gradlew
               ./gradlew cleanQuerydslSourceDir
               ./gradlew build -x test
@@ -192,11 +192,11 @@ jobs:
               echo "jar실행권한주기"
               chmod +x ./*.jar
               echo "-----------------------------------"          
-              echo "jar파일 /home/ubuntu/actions-runner/_work/springboot231026/springboot231026 폴더로 이동"
-              cp ./*.jar /home/ubuntu/actions-runner/_work/springboot231026/springboot231026 
+              echo "jar파일 /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026 폴더로 이동"
+              cp ./*.jar /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026 
               echo "-----------------------------------"
               echo "도커파일 위치한 곳으로 디렉토리 이동"
-              cd /home/ubuntu/actions-runner/_work/springboot231026/springboot231026
+              cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
               echo "-----------------------------------"
               docker build -f ./Dockerfile_8081 -t ${{ secrets.DOCKERHUB_USERNAME }}/dogservice:8081 .
               docker push ${{ secrets.DOCKERHUB_USERNAME }}/dogservice:8081
@@ -226,15 +226,15 @@ jobs:
                 echo "-----------------------------------"
                 ls
                 echo "-----------------------------------"
-                echo "이동 /home/ubuntu/actions-runner/_work/springboot231026/springboot231026"
-                cd /home/ubuntu/actions-runner/_work/springboot231026/springboot231026
+                echo "이동 /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026"
+                cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
                 echo "-----------------------------------"
                 echo "docker-compose.yml파일과 nonginx-dogservice-deploy.sh 파일을 ubuntu에 복사시킴 기존 덮어씌운다"
                 cp ./docker-compose.yml /home/ubuntu/docker-compose.yml
                 cp ./nonginx-dogservice-deploy.sh /home/ubuntu/nonginx-dogservice-deploy.sh
                 echo "-----------------------------------"
                 echo "위치이동후 그래들 이용한 프로젝트 소스코드 빌드 테스트제외"
-                cd /home/ubuntu/actions-runner/_work/springboot231026/springboot231026
+                cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
                 chmod +x ./gradlew
                 ./gradlew cleanQuerydslSourceDir
                 ./gradlew build -x test
@@ -250,11 +250,11 @@ jobs:
                 echo "jar실행권한주기"
                 chmod +x ./*.jar
                 echo "-----------------------------------"          
-                echo "jar파일 /home/ubuntu/actions-runner/_work/springboot231026/springboot231026 폴더로 이동"
-                cp ./*.jar /home/ubuntu/actions-runner/_work/springboot231026/springboot231026 
+                echo "jar파일 /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026 폴더로 이동"
+                cp ./*.jar /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026 
                 echo "-----------------------------------"
                 echo "도커파일 위치한 곳으로 디렉토리 이동"
-                cd /home/ubuntu/actions-runner/_work/springboot231026/springboot231026
+                cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
                 echo "-----------------------------------"
                 docker build -f ./Dockerfile_8081 -t ${{ secrets.DOCKERHUB_USERNAME }}/dogservice:8081 .
                 docker push ${{ secrets.DOCKERHUB_USERNAME }}/dogservice:8081
@@ -277,15 +277,15 @@ jobs:
                 echo "-----------------------------------"
                 ls
                 echo "-----------------------------------"
-                echo "이동 /home/ubuntu/actions-runner/_work/springboot231026/springboot231026"
-                cd /home/ubuntu/actions-runner/_work/springboot231026/springboot231026
+                echo "이동 /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026"
+                cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
                 echo "-----------------------------------"
                 echo "docker-compose.yml파일과 nonginx-dogservice-deploy.sh 파일을 ubuntu에 복사시킴 기존 덮어씌운다"
                 cp ./docker-compose.yml /home/ubuntu/docker-compose.yml
                 cp ./nonginx-dogservice-deploy.sh /home/ubuntu/nonginx-dogservice-deploy.sh
                 echo "-----------------------------------"
                 echo "위치이동후 그래들 이용한 프로젝트 소스코드 빌드 테스트제외"
-                cd /home/ubuntu/actions-runner/_work/springboot231026/springboot231026
+                cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
                 chmod +x ./gradlew
                 ./gradlew cleanQuerydslSourceDir
                 ./gradlew build -x test
@@ -301,11 +301,11 @@ jobs:
                 echo "jar실행권한주기"
                 chmod +x ./*.jar
                 echo "-----------------------------------"          
-                echo "jar파일 /home/ubuntu/actions-runner/_work/springboot231026/springboot231026 폴더로 이동"
-                cp ./*.jar /home/ubuntu/actions-runner/_work/springboot231026/springboot231026 
+                echo "jar파일 /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026 폴더로 이동"
+                cp ./*.jar /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026 
                 echo "-----------------------------------"
                 echo "도커파일 위치한 곳으로 디렉토리 이동"
-                cd /home/ubuntu/actions-runner/_work/springboot231026/springboot231026
+                cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
                 echo "-----------------------------------"
                 docker build -f ./Dockerfile_8082 -t ${{ secrets.DOCKERHUB_USERNAME }}/dogservice:8082 .
                 docker push ${{ secrets.DOCKERHUB_USERNAME }}/dogservice:8082
@@ -336,15 +336,15 @@ jobs:
        #   echo "-----------------------------------"
        #   ls
        #   echo "-----------------------------------"
-       #   echo "이동 /home/ubuntu/actions-runner/_work/springboot231026/springboot231026"
-       #   cd /home/ubuntu/actions-runner/_work/springboot231026/springboot231026
+       #   echo "이동 /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026"
+       #   cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
        #   echo "-----------------------------------"
        #   echo "docker-compose.yml파일과 nonginx-dogservice-deploy.sh 파일을 ubuntu에 복사시킴"
        #   cp ./docker-compose.yml /home/ubuntu/docker-compose.yml
        #   cp ./nonginx-dogservice-deploy.sh /home/ubuntu/nonginx-dogservice-deploy.sh
        #   echo "-----------------------------------"
        #   echo "위치이동후 그래들 이용한 프로젝트 소스코드 빌드 테스트제외"
-       #   cd /home/ubuntu/actions-runner/_work/springboot231026/springboot231026
+       #   cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
        #   chmod +x ./gradlew
        #   ./gradlew cleanQuerydslSourceDir
        #   ./gradlew build -x test
@@ -360,8 +360,8 @@ jobs:
        #   echo "jar실행권한주기"
        #   chmod +x ./*.jar
        #   echo "-----------------------------------"          
-       #   echo "jar파일 /home/ubuntu/actions-runner/_work/springboot231026/springboot231026 폴더로 이동"
-       #   cp ./*.jar /home/ubuntu/actions-runner/_work/springboot231026/springboot231026 
+       #   echo "jar파일 /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026 폴더로 이동"
+       #   cp ./*.jar /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026 
        #   echo "-----------------------------------"
           
      
