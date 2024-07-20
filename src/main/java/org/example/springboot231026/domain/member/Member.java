@@ -1,0 +1,76 @@
+package org.example.springboot231026.domain.member;
+
+
+import lombok.*;
+import org.example.springboot231026.domain.posts.BaseTimeEntity;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+@ToString
+@Table(name="members")
+public class Member extends BaseTimeEntity {
+// Member->  String email, name, password; /boolean fromSocial; /RoleType role;
+    @Id
+    @Column(length = 100, nullable = false)
+    @NotNull(message = "이메일 입력란이 비었습니다.")
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String email;
+
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    //private String mno;
+
+    @Column(nullable = false, length=50, unique = true)
+    @NotNull(message = "이름 입력란이 비었습니다.")
+    private String name;
+
+    @NotNull(message = "비밀번호 입력란이 비었습니다.")
+    @Column(length = 100,nullable = false)
+    private String password;
+
+    @Column( nullable = false)
+    private boolean fromSocial;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private RoleType role;
+
+    public RoleType changeRole(RoleType role){
+        return role;
+    }
+
+
+    //@OneToMany
+    //@OneToMany
+    //@JoinColumn(name="wishnum_list")
+    //@Builder.Default
+    //@ManyToMany
+    //@JoinTable(name="members_wish_num", joinColumns = @JoinColumn(name="members_email"),
+    //        inverseJoinColumns = @JoinColumn(name="wish_num_id"))
+    //private List<WishNum> wishNumList=new ArrayList<>();
+    //private List<WishNum> wishNumList;
+
+
+    //회원정보수정시
+    public Member updateMember(String name, String password){
+        System.out.println("domain-member클래스 Member updateMember() 진입");
+        this.name=name;
+        this.password=password;
+
+        System.out.println("domain-member클래스 Member updateMember() 진입 -> "+ this.toString());
+        return this;
+    }
+
+    public Member updateSocialMember(String name){
+        System.out.println("domain-member클래스 Member updateSocialMember() 진입");
+        this.name=name;
+
+        System.out.println("domain-member클래스 Member updateSocialMember() 진입 -> "+ this.toString());
+        return this;
+    }
+}
