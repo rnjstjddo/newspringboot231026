@@ -34,6 +34,8 @@ public class KakaoLoginService {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
 
+        System.out.println("에러로 로그확인중 HttpHeaders 만듬");
+
         //HttpBody설정
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("grant_type", "authorization_code");
@@ -44,6 +46,8 @@ public class KakaoLoginService {
 
         body.add("code", code);
 
+        System.out.println("에러로 로그확인중 HttpBody 만듬");
+
         //HttpEntity객체생성
         HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(body, httpHeaders);
 
@@ -52,13 +56,18 @@ public class KakaoLoginService {
         ResponseEntity<String> response = rest.exchange("https://kauth.kakao.com/oauth/token",
                 HttpMethod.POST, entity, String.class);
 
+        System.out.println("에러로 로그확인중 ResponseEntity객체로 받음");
+
         //응답본문정보반환
         String jsonData= response.getBody();
 
         Gson g = new Gson();
         Map<?,?> map = g.fromJson(jsonData, Map.class);
 
-        return (String) map.get("access_token");
+        String ac= (String) map.get("access_token");
+        System.out.println("에러로 로그확인중 엑섹스토큰 출력 -> "+ ac);
+
+        return ac;
 
     }
 

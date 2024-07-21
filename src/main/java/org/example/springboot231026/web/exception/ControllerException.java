@@ -14,21 +14,21 @@ public class ControllerException {
     @ExceptionHandler(UncheckedIOException.class)
     public String uncheckedIOException(UncheckedIOException e){
         System.out.println("ControllerException클래스 진입 uncheckedIOException() 메소드 /home/home 이동");
-        System.out.println(e.getStackTrace());
+        e.printStackTrace();
         return "redirect:/home/home";
     }
 
     @ExceptionHandler(NestedCheckedException.class)
     public String nestedCheckedException(NestedCheckedException e){
         System.out.println("ControllerException클래스 진입 nestedCheckedException() 메소드 /home/home 이동");
-        System.out.println(e.getStackTrace());
+        e.printStackTrace();
         return "redirect:/home/home";
     }
 
     @ExceptionHandler(Exception.class)
     public String exception(Exception e){
         System.out.println("ControllerException클래스 진입 exception() 메소드 /home/home 이동");
-        System.out.println(e.getStackTrace());
+        e.printStackTrace();
         return "redirect:/home/home";
     }
 
