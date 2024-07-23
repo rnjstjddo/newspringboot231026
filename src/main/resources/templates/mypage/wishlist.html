@@ -45,86 +45,88 @@
                         <b>찜한 분양강아지가 아직 없습니다.^^</b>
                     </div>
                 </div>
-            </div>
 
-        <div class="row gx-5">
-            <th:block th:if="${not #strings.isEmpty(dogSellReadDTOList)}">
-                <!-- Pricing card free-->
-                <div class="col-lg-6 col-xl-4 wishDiv" th:each="readDto:${dogSellReadDTOList}">
-                    <div class="card mb-5 mb-xl-0">
-                        <div class="card-body p-5">
-                            <div style="text-align:right;">
-                            <button  type="button" class="btn-close removeWishBtn" aria-label="Close"
-                            th:data-name="${memberDTO.name}" th:data-wishnum="${readDto.dno}">
-                            </button>
-                            </div>
-                            <div class="small text-uppercase fw-bold">
-                                <h2 class="fw-bolder fs-5 mb-4">
-                                <i class="bi bi-star-fill text-warning"></i>
-                                분양번호 [[${readDto.dno}]]
 
-                                </h2>
-                            </div>
+                <div class="row gx-5">
+                    <th:block th:if="${not #strings.isEmpty(dogSellReadDTOList)}">
+                        <!-- Pricing card free-->
+                        <div class="col-lg-6 col-xl-4 wishDiv" th:each="readDto:${dogSellReadDTOList}">
+                            <div class="card mb-5 mb-xl-0">
+                                <div class="card-body p-5">
+                                    <div style="text-align:right;">
+                                        <button  type="button" class="btn-close removeWishBtn" aria-label="Close"
+                                                 th:data-name="${memberDTO.name}" th:data-wishnum="${readDto.dno}">
+                                        </button>
+                                    </div>
+                                    <div class="small text-uppercase fw-bold">
+                                        <h2 class="fw-bolder fs-5 mb-4">
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            분양번호 [[${readDto.dno}]]
 
-                            <div style="width:300px;height:200px;display:text-align;display:flex;justify-content:center;">
-                                <img style="width:80%;" th:src="|/dogselldisplay?fileName=${readDto.dsiDtoList[0].getImageURL()}|" class="img-fluid rounded mb-5 mb-lg-0" >
-                            </div>
-                            <div class="mb-3">
-                            </div>
-                            <ul class="list-unstyled mb-4">
-                                <li class="mb-2">
-                                    <i class="bi bi-check text-primary">이름</i>
-                                    <strong>[[${readDto.name}]]</strong>
-                                </li>
-                                <li class="mb-2">
-                                    <i class="bi bi-check text-primary">나이</i>
-                                    <strong>[[${readDto.age}]]</strong>
-                                </li>
-                                <li class="mb-2">
-                                    <i class="bi bi-check text-primary">품종</i>
-                                    <strong>[[${readDto.type}]]</strong>
-                                </li>
-                                <li class="mb-2">
-                                    <i class="bi bi-check text-primary">암수</i>
-                                    <strong>[[${readDto.gender}]]</strong>
-                                </li>
-                                <li class="mb-2">
-                                    <i class="bi bi-check text-primary">몸무게</i>
-                                    <strong>[[${readDto.weight}]]</strong>
-                                </li>
-                                <li class="mb-2">
-                                    <i class="bi bi-check text-primary">건강</i>
-                                    <strong>[[${readDto.health}]]</strong>
-                                </li>
-                                <li class="mb-2">
-                                    <i class="bi bi-check text-primary">분양가격</i>
-                                    <strong>[[${readDto.price}]]</strong>
-                                </li>
-                                <li class="mb-2">
-                                    <i class="bi bi-check text-primary">그외정보</i>
-                                    <strong>[[${readDto.content}]]</strong>
-                                </li>
-                                <li class="mb-2">
-                                    <i class="bi bi-check text-primary">주인</i>
-                                    <strong class="writer">[[${readDto.writer}]]</strong>
-                                </li>
-                            </ul>
-                            <div class="d-grid">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
-                                    <i class="bi bi-envelope contactBtn"
-                                       th:data-writer="${readDto.writer}"></i>
+                                        </h2>
+                                    </div>
+
+                                    <div style="width:300px;height:200px;display:text-align;display:flex;justify-content:center;">
+                                        <img style="width:80%;" th:src="|/dogselldisplay?fileName=${readDto.dsiDtoList[0].getImageURL()}|" class="img-fluid rounded mb-5 mb-lg-0" >
+                                    </div>
+                                    <div class="mb-3">
+                                    </div>
+                                    <ul class="list-unstyled mb-4">
+                                        <li class="mb-2">
+                                            <i class="bi bi-check text-primary">이름</i>
+                                            <strong>[[${readDto.name}]]</strong>
+                                        </li>
+                                        <li class="mb-2">
+                                            <i class="bi bi-check text-primary">나이</i>
+                                            <strong>[[${readDto.age}]]</strong>
+                                        </li>
+                                        <li class="mb-2">
+                                            <i class="bi bi-check text-primary">품종</i>
+                                            <strong>[[${readDto.type}]]</strong>
+                                        </li>
+                                        <li class="mb-2">
+                                            <i class="bi bi-check text-primary">암수</i>
+                                            <strong>[[${readDto.gender}]]</strong>
+                                        </li>
+                                        <li class="mb-2">
+                                            <i class="bi bi-check text-primary">몸무게</i>
+                                            <strong>[[${readDto.weight}]]</strong>
+                                        </li>
+                                        <li class="mb-2">
+                                            <i class="bi bi-check text-primary">건강</i>
+                                            <strong>[[${readDto.health}]]</strong>
+                                        </li>
+                                        <li class="mb-2">
+                                            <i class="bi bi-check text-primary">분양가격</i>
+                                            <strong>[[${readDto.price}]]</strong>
+                                        </li>
+                                        <li class="mb-2">
+                                            <i class="bi bi-check text-primary">그외정보</i>
+                                            <strong>[[${readDto.content}]]</strong>
+                                        </li>
+                                        <li class="mb-2">
+                                            <i class="bi bi-check text-primary">주인</i>
+                                            <strong class="writer">[[${readDto.writer}]]</strong>
+                                        </li>
+                                    </ul>
+                                    <div class="d-grid">
+                                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+                                            <i class="bi bi-envelope contactBtn"
+                                               th:data-writer="${readDto.writer}"></i>
+                                        </div>
+                                        <a class="text-decoration-none">
+                                            <i class="bi-arrow-up"></i>
+                                            메시지를 보내려면 아이콘을 클릭해주세요!
+                                        </a>
+
+                                    </div>
                                 </div>
-                                <a class="text-decoration-none">
-                                    <i class="bi-arrow-up"></i>
-                                    메시지를 보내려면 아이콘을 클릭해주세요!
-                                </a>
-
                             </div>
                         </div>
-                    </div>
+                    </th:block>
                 </div>
-            </th:block>
-        </div>
+            </div>
+
     </section>
 
 
