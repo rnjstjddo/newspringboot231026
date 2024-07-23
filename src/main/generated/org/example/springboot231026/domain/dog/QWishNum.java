@@ -22,17 +22,9 @@ public class QWishNum extends EntityPathBase<WishNum> {
 
     public static final QWishNum wishNum = new QWishNum("wishNum");
 
-    public final org.example.springboot231026.domain.posts.QBaseTimeEntity _super = new org.example.springboot231026.domain.posts.QBaseTimeEntity(this);
-
-    //inherited
-    public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
-
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final org.example.springboot231026.domain.member.QMember member;
-
-    //inherited
-    public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
 
     public final NumberPath<Long> wishnum = createNumber("wishnum", Long.class);
 

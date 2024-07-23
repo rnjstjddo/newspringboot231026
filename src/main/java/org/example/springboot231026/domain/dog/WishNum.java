@@ -16,7 +16,8 @@ import java.util.List;
 @Builder
 //@ToString(exclude = "member")
 @ToString
-public class WishNum extends BaseTimeEntity {
+//public class WishNum extends BaseTimeEntity {
+public class WishNum {
 
     @Id
     //@Column(name="wish_num_id")
