@@ -33,6 +33,8 @@ public class InquiryService {
         Inquiry entity =irepo.toEntity(inquiryDto);
         Long id = irepo.save(entity).getInnum();
 
+        System.out.println("service-inquiry패키지 InquiryService클래스 inquiryRegister() 진입 등록한문의글번호 확인-> "+ id);
+
         return id >0 ? true: false;
     }
 

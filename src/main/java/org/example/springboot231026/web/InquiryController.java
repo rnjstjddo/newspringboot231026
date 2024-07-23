@@ -40,17 +40,26 @@ public class InquiryController {
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/inquiry/register")
-    public String inquiryRegister(InquiryDto inquiryDto) {
+    public String inquiryRegister(InquiryDto inquiryDto, RedirectAttributes rttr) {
         System.out.println("VIEW컨트롤러 InquiryController inquiryRegister() 진입 -> "+ inquiryDto.toString());
 
         boolean result = inquiryService.inquiryRegister(inquiryDto);
-        if(result){
-            System.out.println("VIEW컨트롤러 InquiryController inquiryRegister() 진입 문의 db저장 결과 -> "+ result);
 
-            return "redirect:/home/home";
-        }else{
-            System.out.println("VIEW컨트롤러 InquiryController inquiryRegister() 진입 문의 db저장 결과 -> "+ result);
+        System.out.println("VIEW컨트롤러 InquiryController inquiryRegister() 진입 문의글 등록후 boolean 값 -> "+ result);
+
+        if(result){
+
+            System.out.println("VIEW컨트롤러 InquiryController inquiryRegister() 진입 문의글 등록 성공진입");
+
+            rttr.addFlashAttribute("register","success");
             return "redirect:/inquiry/inquiry";
+
+        }else{
+            System.out.println("VIEW컨트롤러 InquiryController inquiryRegister() 진입 문의글 등록 성공진입");
+
+            rttr.addFlashAttribute("register","fail");
+            return "redirect:/inquiry/inquiry";
+
         }
     }
 }

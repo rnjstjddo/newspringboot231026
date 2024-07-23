@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -124,6 +125,25 @@ public class DogSellReplyService {
     }
 
 
+    //분양글에 대한 댓글만 가져오기
+    @Transactional
+    public List<DogSellReplyDTO> dsReplyListDno(Long dno) {
+        System.out.println("service-dogsell클래스 DogSellReplyService dsReplyListDno() 진입 - 분양글번호 -> "+ dno);
+
+        Optional<List<DogSellReply>> o =dsrr.dsReplyListDno(dno);
+        List<DogSellReplyDTO> result = new ArrayList<>();
+
+        if(o.isPresent()){
+            System.out.println("service-dogsell클래스 DogSellReplyService dsReplyListDno() 진입 분양글에 대한 댓글이 존재할경우 진입");
+
+            List<DogSellReply> list = o.get();
+
+            result = list.stream().map(e -> entityToDto(e)).collect(Collectors.toList());
+
+            System.out.println("service-dogsell클래스 DogSellReplyService dsReplyListDno() 진입 분양글에 대한 댓글 출력 -> "+result.toString());
+        }
+        return result;
+    }
 
 
         //DogSellReplyDTO -> entity

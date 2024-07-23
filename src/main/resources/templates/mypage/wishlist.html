@@ -46,6 +46,8 @@
                     </div>
                 </div>
             </div>
+
+        <div class="row gx-5">
             <th:block th:if="${not #strings.isEmpty(dogSellReadDTOList)}">
                 <!-- Pricing card free-->
                 <div class="col-lg-6 col-xl-4 wishDiv" th:each="readDto:${dogSellReadDTOList}">
@@ -122,7 +124,8 @@
                     </div>
                 </div>
             </th:block>
-        </section>
+        </div>
+    </section>
 
 
     <!-- 모달 메시지연락창 -->

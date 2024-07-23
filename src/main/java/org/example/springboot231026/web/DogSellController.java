@@ -177,7 +177,7 @@ public class DogSellController {
         model.addAttribute("readDto", readDto);
         
         //댓글도 전달
-        List<DogSellReplyDTO> rDtoList =dsrs.dsReplyList();
+        List<DogSellReplyDTO> rDtoList =dsrs.dsReplyListDno(dno);
 
         model.addAttribute("rDtoList", rDtoList);
 
@@ -266,9 +266,11 @@ public class DogSellController {
 
             if (wishNumDTOList != null && wishNumDTOList.size() != 0) {
                 System.out.println("컨트롤러DogSellController registerPost() - 로그인한 회원일경우 getName() 같이전달 - List<WishNumDTO> 존재할경우 진입 size() -> " + wishNumDTOList.size());
-                System.out.println("컨트롤러DogSellController registerPost() - 로그인한 회원일경우 getName() 같이전달 - List<WishNumDTO> 존재할경우 진입 toString() -> " + wishNumDTOList.toString());
+                //System.out.println("컨트롤러DogSellController registerPost() - 로그인한 회원일경우 getName() 같이전달 - List<WishNumDTO> 존재할경우 진입 toString() -> " + wishNumDTOList.toString());
 
                 Long countWishNum = (Long) map.get("countWishNum");
+                System.out.println("컨트롤러DogSellController registerPost() - 로그인한 회원일경우 getName() 같이전달 - List<WishNumDTO> 존재할경우 진입 찜한상품의 개수확인 -> " +countWishNum);
+
 
                 for (WishNumDTO wishNumDTO : wishNumDTOList) {
                     for (DogSellListDTO dogSellListDTO : dsListDto) { //List<DogSellListDTO> dsListDto = dss.list()
