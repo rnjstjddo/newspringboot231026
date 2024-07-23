@@ -353,16 +353,16 @@ $(".replyListBtn").on("click", function(e){
 
     var replyList = $(this).closest(".container").find(".replyList");
     var status = replyList.css("display");
-    console.log(status);
+    console.log("dogsell-read.html 댓글목록보기 클릭이벤트 진입 display 속성값 -> "+status);
+
     if(status == "none"){
-        console.log("dogsell-read.html 댓글목록보기 클릭이벤트 진입 -현재 닫혔을때");
+        //console.log("dogsell-read.html 댓글목록보기 클릭이벤트 진입 -현재 닫혔을때");
         replyList.show("fast");
         $(".replyListBtn").html("댓글목록닫기");
     }else{
-        console.log("dogsell-read.html 댓글목록보기 클릭이벤트 진입 -현재 열렸을때");
+        //console.log("dogsell-read.html 댓글목록보기 클릭이벤트 진입 -현재 열렸을때");
         replyList.hide();
         $(".replyListBtn").html("댓글목록보기");
-
     }
 });
 
@@ -413,23 +413,30 @@ $(".rDtoTr #replyListReadBtn").on("click", function(){
 //.modalReviewModifyBtn .modalReviewRemoveBtn .modalReviewModifyCloseBtn
 
     //var trTag = this.closest(".rDtoTr");
-    var target =this;
-    console.log(target);//전체
+    //var target =this;
+    //console.log(target);//전체
 
     //var drno = $(this).closest("tr").data("drno");
     var drno = $(this).data("drno");
+    console.log("dogsell-read.html 댓글목록 조회버튼 클릭이벤트 진입 댓글번호 data- 담은-> "+ drno);
     //find("data-drno");
     //var drno = $(this).closest("tr").data("text");
     var text = $(this).data("text")
+    console.log("dogsell-read.html 댓글목록 조회버튼 클릭이벤트 진입 댓글내용 data- 담은-> "+ text);
+
     //.find("data-text");
     //var drno = $(this).closest("tr").data("replyer");
     var replyer = $(this).data("replyer");
+    console.log("dogsell-read.html 댓글목록 조회버튼 클릭이벤트 진입 댓글자 data- 담은-> "+ replyer);
+
     //.find("data-replyer");
     //var drno = $(this).closest("tr").data("createddate");
     var createddate = $(this).data("createddate")
+    console.log("dogsell-read.html 댓글목록 조회버튼 클릭이벤트 진입 댓글등록일자 data- 담은-> "+ createddate);
     //.find("data-createddate");
     //var drno = $(this).closest("tr").data("modifieddate");
     var modifieddate = $(this).data("modifieddate");
+    console.log("dogsell-read.html 댓글목록 조회버튼 클릭이벤트 진입 댓글수정일자 data- 담은-> "+ createddate);
     //.find("data-modifieddate");
 
     var dataValue={drno:drno,text:text,replyer:replyer,createddate:createddate,modifieddate:modifieddate};

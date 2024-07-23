@@ -74,9 +74,19 @@ public class DogSellService {
 */
         //따로따로 불러온다.
         Optional<DogSell> entity = dsr.findById(dno);
+
+        if(entity.isPresent()){
+            System.out.println("service-dogsell클래스 DogSellService read() 진입 - 분양강아지 정보 -> "+ entity.get().toString());
+        }
+        
         List<DogSellImage> entityI = dsir.findByDno(dno);
 
+        System.out.println("service-dogsell클래스 DogSellService read() 진입 - 분양강아지 이미지정보 -> "+ entityI.toString());
+
         DogSellReadDTO result = entityToDtoDogReadSell((DogSell) entity.get(), entityI);
+
+        System.out.println("service-dogsell클래스 DogSellService read() 진입 - 분양강아지 이미지정보 -> "+ entityI.toString());
+
         return result;
 
        /* Object arrayList = dsr.getDogSellOne(dno);

@@ -106,7 +106,7 @@ public class MemberService {
 
     @Transactional
     public Member updateSocialJoin(String name, MemberDTO memberDTO){
-        System.out.println("service-member패키지 MemberService클래스 updateJoin() 진입 -> 파라미터 MemberDTO -> "+ memberDTO.toString());
+        System.out.println("service-member패키지 MemberService클래스 updateSocialJoin() 진입 -> 파라미터 MemberDTO -> "+ memberDTO.toString());
 
         Optional<Member> o = mr.findByUsername(memberDTO.getEmail(), memberDTO.isFromSocial());
         //.orElseThrow(() -> new IllegalArgumentException("존재하는 않는 회원입니다."));

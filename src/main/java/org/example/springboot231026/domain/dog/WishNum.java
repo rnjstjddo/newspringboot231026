@@ -3,6 +3,7 @@ package org.example.springboot231026.domain.dog;
 
 import lombok.*;
 import org.example.springboot231026.domain.member.Member;
+import org.example.springboot231026.domain.posts.BaseTimeEntity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import java.util.List;
 @Builder
 //@ToString(exclude = "member")
 @ToString
-public class WishNum {
+public class WishNum extends BaseTimeEntity {
 
     @Id
     //@Column(name="wish_num_id")

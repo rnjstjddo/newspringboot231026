@@ -12,12 +12,13 @@
                 <div class="h4 pb-2 mb-4 text-primary border-bottom border-primary">
                     강아지 분양목록
                 </div>
-
+                <!-- 로그인하지 않은경우 -->
                 <th:block th:if="${loginMember ==null}">
                     <a class="btn btn-outline-primary" th:href="|@{/member/login}|">로그인</a>
                     <a class="btn btn-outline-primary" th:href="|@{/member/join}|">회원가입</a>
                 </th:block>
 
+                <!-- 로그인한 경우 -->
                 <th:block th:if="${loginMember !=null}">
                     <b>[[${loginMember}]]</b>님 반갑습니다^^ &nbsp;
                     <a class="btn btn-outline-danger" th:href="|@{/dogsell/register}|">분양등록</a>
@@ -28,22 +29,43 @@
 
                 <section class="py-5">
                     <div class="container px-5 outerSearchDiv">
+
+                        <!-- 로그인했고 분양글이 존재하지만 찜한 상품 없을경우-->
                         <th:block th:if="${!#lists.isEmpty(dsListDto)} and ${loginMember} !=null and ${countWithNum} ==null">
                             <h2 class="fw-bolder fs-5 mb-4">
                                 새로올라온 분양강아지들 &nbsp;&nbsp;&nbsp;&nbsp;
                             </h2>
 
-                            <nav class="navbar navbar-dark bg-primary">
+                      <!--      <nav class="navbar navbar-dark bg-primary">
                                 <div class="container-fluid">
                                     <a class="navbar-brand" href="#">품종검색</a>
-                                    <form class="d-flex" ction="/dogsell/list/search" method="get">
-                                        <input class="form-control me-2" type="search">
-                                        <button class="btn btn-outline-success searchBtn" type="submit">찾기</button>
+                                    <form class="d-flex" action="/dogsell/list/search" method="get">
+                                        <input class="form-control me-2" type="search" aria-label="Search">
+                                        <button class="btn btn-outline-light searchBtn" type="submit">찾기</button>
                                         <button class="btn btn-outline-light resetSearch" type="reset">초기화</button>
                                     </form>
                                 </div>
+                            </nav>-->
+                            <nav class="navbar navbar-dark bg-primary">
+                                <div class="container-fluid">
+                                <form class="row g-3">
+                                    <div class="col-auto" action="/dogsell/list/search" method="get">
+                                        강아지품종검색
+                                    </div>
+                                    <div class="col-auto">
+                                        <input type="search" class="form-control">
+                                    </div>
+                                    <div class="col-auto">
+                                        <button class="btn btn-outline-light mb-3 searchBtn" type="submit">찾기</button>
+                                        <button class="btn btn-outline-light mb-3 resetSearch" type="reset">초기화</button>
+                                    </div>
+                                </form>
+                                </div>
                             </nav>
-<!--
+
+
+
+                            <!--
                             <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
                                 <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
                                     <div class="mb-4 mb-xl-0">
@@ -62,8 +84,8 @@
                                 </div>
                             </aside>-->
                         </th:block>
-
-                        <th:block th:if="${!#lists.isEmpty(dsListDto)} and ${loginMember} !=null and ${countWithNum}!=null">
+                        <!-- 로그인한 회원이면서 분양글이 존재할때 찜한 수가 존재할때-->
+                        <th:block th:if="${!#lists.isEmpty(dsListDto)} and ${loginMember} !=null and ${countWithNum} !=null">
                         <h2 class="fw-bolder fs-5 mb-4">
                             새로올라온 분양강아지들 &nbsp;&nbsp;&nbsp;&nbsp;
                             <button type="button" class="btn btn-warning">
@@ -72,16 +94,37 @@
                         </h2>
 
 
+<!--
                             <nav class="navbar navbar-dark bg-primary">
                                 <div class="container-fluid">
                                     <a class="navbar-brand" href="#">품종검색</a>
                                     <form class="d-flex" ction="/dogsell/list/search" method="get">
                                         <input class="form-control me-2" type="search">
-                                        <button class="btn btn-outline-success searchBtn" type="submit">찾기</button>
+                                        <button class="btn btn-outline-light searchBtn" type="submit">찾기</button>
                                         <button class="btn btn-outline-light resetSearch" type="reset">초기화</button>
                                     </form>
                                 </div>
-                            </nav><!--
+                            </nav>
+-->
+                            <nav class="navbar navbar-dark bg-primary">
+                                <div class="container-fluid">
+                                    <form class="row g-3">
+                                        <div class="col-auto" action="/dogsell/list/search" method="get">
+                                            강아지품종검색
+                                        </div>
+                                        <div class="col-auto">
+                                            <input type="search" class="form-control">
+                                        </div>
+                                        <div class="col-auto">
+                                            <button class="btn btn-outline-light mb-3 searchBtn" type="submit">찾기</button>
+                                            <button class="btn btn-outline-light mb-3 resetSearch" type="reset">초기화</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </nav>
+
+
+                            <!--
                             <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
                                 <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
                                     <div class="mb-4 mb-xl-0">
@@ -101,25 +144,47 @@
                             </aside>
 -->                        </th:block>
 
+                        <!-- 로그인하지 않았지만 분양글이 존재할때 -->
                         <th:block th:if="${!#lists.isEmpty(dsListDto)} and ${loginMember} ==null">
                             <h2 class="fw-bolder fs-5 mb-4">
                                 새로올라온 분양강아지들 &nbsp;&nbsp;&nbsp;&nbsp;
                             </h2>
                             <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
-                                <div class="mb-4 mb-xl-0">
+                          <!--      <div class="mb-4 mb-xl-0">
                                     <div class="fs-3 fw-bold text-white">강아지품종검색</div>
-                                </div>
+                                </div>-->
 
+<!--
                                 <nav class="navbar navbar-dark bg-primary">
                                     <div class="container-fluid">
                                         <a class="navbar-brand" href="#">품종검색</a>
                                         <form class="d-flex" ction="/dogsell/list/search" method="get">
                                             <input class="form-control me-2" type="search">
-                                            <button class="btn btn-outline-success searchBtn" type="submit">찾기</button>
+                                            <button class="btn btn-outline-light searchBtn" type="submit">찾기</button>
                                             <button class="btn btn-outline-light resetSearch" type="reset">초기화</button>
                                         </form>
                                     </div>
-                                </nav><!--
+                                </nav>
+-->
+
+                                <nav class="navbar navbar-dark bg-primary">
+                                    <div class="container-fluid">
+                                        <form class="row g-3">
+                                            <div class="col-auto" action="/dogsell/list/search" method="get">
+                                                강아지품종검색
+                                            </div>
+                                            <div class="col-auto">
+                                                <input type="search" class="form-control">
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn btn-outline-light mb-3 searchBtn" type="submit">찾기</button>
+                                                <button class="btn btn-outline-light mb-3 resetSearch" type="reset">초기화</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </nav>
+
+                                <!--
                                 <form action="/dogsell/list/search" method="get">
                                     <div class="mb-4 mb-xl-0">
                                         <div class="input-group col-auto">
@@ -371,7 +436,8 @@ $(".starBtn").on("click", function(){
     console.log("로그인한 회원인 찜한 강아지분양글번호 -> "+dno);
     //th:data-dno="${dto.dno}" th:data-name="${loginMember}"
     var aTag =$(this).closest("a");
-    console.log("현재 찜버튼 클릭후 가까이있는 <a>태그 출력 -> "+ aTag)
+    console.log("현재 찜버튼 클릭후 가까이있는 <a>태그 출력 -> ")
+    console.log(aTag);
 
     var membername=$(this).data("membername");//분양글작성자
 
