@@ -31,7 +31,7 @@
                     <div class="container px-5 outerSearchDiv">
 
                         <!-- 로그인했고 분양글이 존재하지만 찜한 상품 없을경우-->
-                        <th:block th:if="${!#lists.isEmpty(dsListDto)} && ${loginMember} !=null && ${countWithNum} ==null">
+                        <th:block th:if="${!#lists.isEmpty(dsListDto)} and ${loginMember} !=null and ${countWithNum} ==null">
                             <h2 class="fw-bolder fs-5 mb-4">
                                 새로올라온 분양강아지들 &nbsp;&nbsp;&nbsp;&nbsp;
                             </h2>
@@ -85,7 +85,7 @@
                             </aside>-->
                         </th:block>
                         <!-- 로그인한 회원이면서 분양글이 존재할때 찜한 수가 존재할때-->
-                        <th:block th:if="${!#lists.isEmpty(dsListDto)} && ${loginMember} !=null && ${countWithNum} !=null">
+                        <th:block th:if="${!#lists.isEmpty(dsListDto)} and ${loginMember} !=null and ${countWithNum} !=null">
                         <h2 class="fw-bolder fs-5 mb-4">
                             새로올라온 분양강아지들 &nbsp;&nbsp;&nbsp;&nbsp;
                             <button type="button" class="btn btn-warning">
