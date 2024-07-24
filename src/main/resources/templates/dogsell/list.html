@@ -47,6 +47,7 @@
                                     </form>
                                 </div>
                             </nav>-->
+<!--
                             <nav class="navbar navbar-dark bg-primary">
                                 <div class="container-fluid">
                                 <form class="row g-3">
@@ -64,13 +65,14 @@
                                 </div>
                             </nav>
 
+-->
 
 
                         <form action="/dogsell/list/search" method="get">
                             <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
                                 <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
                                     <div class="mb-4 mb-xl-0">
-                                        <div class="fs-3 fw-bold text-white">강아지품종검색</div>
+                                        <div class="fs-3 fw-bold text-white">강아지품종검색&nbsp;&nbsp;&nbsp;</div>
                                     </div>
                                     <div class="mb-4 mb-xl-0">
                                         <div class="input-group col-auto">
@@ -83,7 +85,7 @@
                                 </div>
                             </aside>
                         </form>
-                        <form action="/dogsell/list/search" method="get">
+                       <!-- <form action="/dogsell/list/search" method="get">
                             <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
                                 <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
                                     <div class="mb-4 mb-xl-0">
@@ -100,12 +102,12 @@
                                     </div>
                                 </div>
                             </aside>
-                        </form>
+                        </form>-->
                         </th:block>
-                    </div><!-- outerSearchDiv -->
+                    <!--</div>--><!-- outerSearchDiv -->
 
  <!-------------------------- 로그인한 회원이면서 분양글이 존재할때 찜한 수가 존재할때-->
-                    <div class="container px-5 my-5 outerSearchDiv">
+                    <!--<div class="container px-5 my-5 outerSearchDiv">-->
                         <th:block th:if="${!#lists.isEmpty(dsListDto)} and ${loginMember} !=null and ${countWithNum} !=null">
                         <h2 class="fw-bolder fs-5 mb-4">
                             새로올라온 분양강아지들 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -131,7 +133,7 @@
                                 <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
                                     <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
                                         <div class="mb-4 mb-xl-0">
-                                            <div class="fs-3 fw-bold text-white">강아지품종검색</div>
+                                            <div class="fs-3 fw-bold text-white">강아지품종검색&nbsp;&nbsp;&nbsp;</div>
                                         </div>
                                         <div class="mb-4 mb-xl-0">
                                             <div class="input-group col-auto">
@@ -144,7 +146,7 @@
                                     </div>
                                 </aside>
                             </form>
-                            <form action="/dogsell/list/search" method="get">
+<!--                            <form action="/dogsell/list/search" method="get">
                                 <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
                                     <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
                                         <div class="mb-4 mb-xl-0">
@@ -161,7 +163,7 @@
                                         </div>
                                     </div>
                                 </aside>
-                            </form>
+                            </form>-->
 
 
                             <!--
@@ -183,10 +185,10 @@
                                 </div>
                             </aside>
 -->                     </th:block>
-                    </div>
-
+                    <!--</div>
+-->
 <!------------------ 이 기점으로 로그인하면 위쪽 아니면 아래쪽이다. -------------------------------->
-                    <div class="container px-5 my-5 outerSearchDiv">
+                    <!--<div class="container px-5 my-5 outerSearchDiv">-->
                         <th:block th:if="${!#lists.isEmpty(dsListDto)} and ${loginMember} ==null">
                             <h2 class="fw-bolder fs-5 mb-4">
                                 새로올라온 분양강아지들 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -214,7 +216,7 @@
                                     <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
                                         <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
                                             <div class="mb-4 mb-xl-0">
-                                                <div class="fs-3 fw-bold text-white">강아지품종검색</div>
+                                                <div class="fs-3 fw-bold text-white">강아지품종검색&nbsp;&nbsp;&nbsp;</div>
                                             </div>
                                             <div class="mb-4 mb-xl-0">
                                                 <div class="input-group col-auto">
@@ -227,7 +229,7 @@
                                         </div>
                                     </aside>
                                 </form>
-                                <form action="/dogsell/list/search" method="get">
+                               <!-- <form action="/dogsell/list/search" method="get">
                                     <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
                                         <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
                                             <div class="mb-4 mb-xl-0">
@@ -244,7 +246,7 @@
                                             </div>
                                         </div>
                                     </aside>
-                                </form>
+                                </form>-->
 
 
                                 <!--
@@ -260,9 +262,9 @@
                                 </form>
 -->                         </div>
                         </th:block>
-                    </div><!-- outerSerachDiv-->
+                    <!--</div>--><!-- outerSerachDiv-->
 
-                    <div class="container px-5 my-5 outerSearchDiv">
+                    <!--<div class="container px-5 my-5 outerSearchDiv">-->
 
                         <th:block th:if="${#lists.isEmpty(dsListDto)}">
                             <img class="card-img-top" style="height:100px;width:auto;"
@@ -275,7 +277,7 @@
                                  src="/image/imoji/waiting.jpg" />
                             검색조건에 맞는 분양글 품종이 존재하지 않습니다.
                         </th:block>
-                    </div>
+                    <!--</div>-->
 
                     <br>
 
@@ -422,7 +424,7 @@ style="width:auto; height:auto; max-width:210px; max-height:210px; display:block
                             </th:block>
 
                         </div><!-- searchDiv -->
-
+                    </div><!-- outerSearchDiv -->
                 </section>
             </div><!-- 컨테이너 -->
         </article>

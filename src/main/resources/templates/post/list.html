@@ -158,7 +158,8 @@ $(document).ready(function(){
         e.preventDefault();
         console.log("list.html 검색+페이지이동 처리 클릭이벤트 진입");
         listForm.empty();
-        location.replace(`/`);
+        //location.replace(`/`);
+        location.reload();
     });
 
     //게시판 검색버튼 클릭시
@@ -179,7 +180,7 @@ $(document).ready(function(){
 
         if(selectvalue !="" && selectkeyword != ""){
             console.log("list.html 게시판페이지 검색버튼 클릭이벤트 진입 select값이 존재하고 검색키워드입력한 경우");
-            //$("form").submit();
+            $("form").submit();
         }
 
        });
