@@ -305,27 +305,29 @@ $("#completeBtn").on("click", function(){
     console.log("read.html 분양완료버튼 클릭 진입");
     console.log("read.html 분양완료버튼 클릭 진입 현재 분양글번호 -> "+readDno);
 
-    $.ajax({
-        url: "/dogsell/complete",
-        type:'post',
-        data:JSON.stringify(readDno),
-        contentType: "application/json;charset=utf-8",
-        dataType:'text',
-        success:function(result){
-             const completeResult = result;
-             console.log("read.html 분양완료버튼 ajax - success() 진입 결과 -> "+ completeResult);
+    if(alert("분양완료 처리를 하시겠습니까?")){
+        $.ajax({
+            url: "/dogsell/complete",
+            type:'post',
+            data:JSON.stringify(readDno),
+            contentType: "application/json;charset=utf-8",
+            dataType:'text',
+            success:function(result){
+                 const completeResult = result;
+                 console.log("read.html 분양완료버튼 ajax - success() 진입 결과 -> "+ completeResult);
 
-            if(completeResult == true){
-                location.replace(`/dogsell/read?dno=${readDno}`);
-            }else{
-                location.replace(`/dogsell/list`)
+                if(completeResult == true){
+                    location.replace(`/dogsell/read?dno=${readDno}`);
+                }else{
+                    location.replace(`/dogsell/list`)
+                }
+            },
+            fail:function(){
+                 console.log("read.html 분양완료버튼 ajax - fail() 진입 결과");
+                    location.replace(`/dogsell/read?dno=${readDno}`);
             }
-        },
-        fail:function(){
-             console.log("read.html 분양완료버튼 ajax - fail() 진입 결과");
-                location.replace(`/dogsell/read?dno=${readDno}`);
-        }
-    });//ajax
+        });//ajax
+    }//if문
 });//분양완료시
 
 

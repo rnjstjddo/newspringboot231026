@@ -88,10 +88,14 @@
                         </th:block>
 
 
+<!--
                         <th:block th:if="${pResponseDtoList} ==null and ${pageRequestDTO.type} !=null and
                         ${pageRequestDTO.keyword} !=null">
+-->
+                        <th:block th:if="${#lists.isEmpty(pResponseDtoList)} and ${pageRequestDTO.type} !=null and
+                        ${pageRequestDTO.keyword} !=null">
                             <div style="text-align:center;">
-                                <b>검색 결과가 없습니다. </b> &nbsp;&nbsp;
+                                <b>방명록의 검색 결과가 없습니다. </b> &nbsp;&nbsp;
                             </div>
                         </th:block>
                         <br>
@@ -168,8 +172,8 @@ $(document).ready(function(){
 
         listForm.empty();
         //listForm.append(`<input type='hidden' name='page' value=${page}>`);
-        //listForm.submit();
-        location.reload();
+        location.replace(`/post/list`);
+        //location.reload();
     });
 
     //방명록 검색버튼 클릭시

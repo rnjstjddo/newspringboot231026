@@ -91,10 +91,8 @@
                             <h2 class="fw-bolder fs-5 mb-4">
                                 새로올라온 분양강아지들 &nbsp;&nbsp;&nbsp;&nbsp;
                             </h2>
-
-                            <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
-
-                                <form action="/dogsell/list/search" method="get">
+                            <form action="/dogsell/list/search" method="get">
+                                <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
                                     <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
                                         <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
                                             <div class="mb-4 mb-xl-0">
@@ -110,8 +108,8 @@
                                             </div>
                                         </div>
                                     </aside>
-                                </form>
-                             </div>
+                                </div>
+                            </form>
                         </th:block>
 
                         <th:block th:if="${#lists.isEmpty(dsListDto)}">

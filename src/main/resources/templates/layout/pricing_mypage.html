@@ -39,12 +39,14 @@
                             <li class="nav-item"><a class="nav-link" href="/guestbook/list">방명록</a></li>
                             <li class="nav-item"><a class="nav-link" href="/post/list">게시판/공지사항</a></li>
                             <li class="nav-item"><a class="nav-link" href="/inquiry/inquiry">관리자문의</a></li>
+                            <div sec:authorize="isAuthenticated()">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">회원정보</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                                     <li><a class="dropdown-item" href="/member/updateJoin">회원정보확인/수정</a></li>
                                 </ul>
                             </li>
+                            </div>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">마이페이지</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">

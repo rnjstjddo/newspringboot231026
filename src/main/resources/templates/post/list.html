@@ -65,10 +65,10 @@
                     </th:block>
 
 
-                    <th:block th:if="${responseDto.dtoList} ==null and ${pageRequestDto.type} !=null and
+                    <th:block th:if="${#lists.isEmpty(responseDto.dtoList)} and ${pageRequestDto.type} !=null and
                         ${pageRequestDto.keyword} !=null">
                         <div style="text-align:center;">
-                            <b>검색 결과가 없습니다. </b> &nbsp;&nbsp;
+                            <b>게시물의 검색 결과가 없습니다. </b> &nbsp;&nbsp;
                         </div>
                     </th:block>
                     <br>
@@ -159,8 +159,8 @@ $(document).ready(function(){
         e.preventDefault();
         console.log("list.html 검색+페이지이동 처리 클릭이벤트 진입");
         listForm.empty();
-        //location.replace(`/`);
-        location.reload();
+        location.replace(`/guestbook/list`);
+        //location.reload();
     });
 
     //게시판 검색버튼 클릭시
