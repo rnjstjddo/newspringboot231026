@@ -101,8 +101,8 @@ jobs:
               echo "도커파일 위치한 곳으로 디렉토리 이동"
               cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
               echo "-----------------------------------"
-              docker build -f ./Dockerfile_8081 -t ${{ secrets.DOCKERHUB_USERNAME }}/dogservice:8081 .
-              docker push ${{ secrets.DOCKERHUB_USERNAME }}/dogservice:8081
+              docker build -f ./Dockerfile_8081 -t ${{ secrets.DOCKERHUB_USERNAME }}/dogservice . #dogservice:8081 에서 변경
+              docker push ${{ secrets.DOCKERHUB_USERNAME }}/dogservice
       
             elif [ -n $IS_BLUE_RUN ];then
               echo "-----------------------------------"
@@ -150,8 +150,8 @@ jobs:
               echo "도커파일 위치한 곳으로 디렉토리 이동"
               cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
               echo "-----------------------------------"
-              docker build -f ./Dockerfile_8082 -t ${{ secrets.DOCKERHUB_USERNAME }}/dogservice:8082 .
-              docker push ${{ secrets.DOCKERHUB_USERNAME }}/dogservice:8082
+              docker build -f ./Dockerfile_8082 -t ${{ secrets.DOCKERHUB_USERNAME }}/dogservice . #dogservice:8082에서 변경
+              docker push ${{ secrets.DOCKERHUB_USERNAME }}/dogservice
             
             elif [ -n $IS_GREEN_RUN ];then
               echo "-----------------------------------"
@@ -199,8 +199,8 @@ jobs:
               echo "도커파일 위치한 곳으로 디렉토리 이동"
               cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
               echo "-----------------------------------"
-              docker build -f ./Dockerfile_8081 -t ${{ secrets.DOCKERHUB_USERNAME }}/dogservice:8081 .
-              docker push ${{ secrets.DOCKERHUB_USERNAME }}/dogservice:8081
+              docker build -f ./Dockerfile_8081 -t ${{ secrets.DOCKERHUB_USERNAME }}/dogservice . #dogservice:8081에서 변경
+              docker push ${{ secrets.DOCKERHUB_USERNAME }}/dogservice
 
             else
               echo "-----------------------------------"
@@ -257,8 +257,8 @@ jobs:
                 echo "도커파일 위치한 곳으로 디렉토리 이동"
                 cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
                 echo "-----------------------------------"
-                docker build -f ./Dockerfile_8081 -t ${{ secrets.DOCKERHUB_USERNAME }}/dogservice:8081 .
-                docker push ${{ secrets.DOCKERHUB_USERNAME }}/dogservice:8081
+                docker build -f ./Dockerfile_8081 -t ${{ secrets.DOCKERHUB_USERNAME }}/dogservice . #dogservice:8081에서 변경
+                docker push ${{ secrets.DOCKERHUB_USERNAME }}/dogservice
               
               else
                 echo "-----------------------------------"
@@ -308,8 +308,8 @@ jobs:
                 echo "도커파일 위치한 곳으로 디렉토리 이동"
                 cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
                 echo "-----------------------------------"
-                docker build -f ./Dockerfile_8082 -t ${{ secrets.DOCKERHUB_USERNAME }}/dogservice:8082 .
-                docker push ${{ secrets.DOCKERHUB_USERNAME }}/dogservice:8082
+                docker build -f ./Dockerfile_8082 -t ${{ secrets.DOCKERHUB_USERNAME }}/dogservice . #dogservice:8082에서 변경
+                docker push ${{ secrets.DOCKERHUB_USERNAME }}/dogservice
               fi #green/blue 컨테이너 둘다 동작중일때 엔진엑스포트설정을 보고 포트지정안된 컨테이너 중지시키고 그컨테이너포트로 다시 이미지생성
               
             fi
