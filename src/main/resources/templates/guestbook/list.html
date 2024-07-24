@@ -45,7 +45,7 @@
 
                                 <div class="input-group-append"><!-- btn-search-->
                                     <button class="btn btn-outline-secondary  guestbooksearch" type="button">검색</button>
-                                    <button type="reset" class="btn btn-outline-secondary">초기화</button>
+                                    <button type="button" class="btn btn-outline-secondary" id="reset">초기화</button>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +81,8 @@
                         <br>
                         <br>
 
-                        <th:block th:if="${#lists.isEmpty(pResponseDtoList)}">
+                        <th:block th:if="${#lists.isEmpty(pResponseDtoList)} and ${pageRequestDTO.type} ==null and
+                        ${pageRequestDTO.keyword} ==null">
                             <img class="card-img-top" style="height:100px;width:auto;" src="/image/imoji/waiting.jpg" alt="" />
                             아직 등록된 방명록이 없습니다. 먼저 등록해주세요^^
                         </th:block>

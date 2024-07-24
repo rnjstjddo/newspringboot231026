@@ -50,7 +50,7 @@
 
                                 <div class="input-group-append"><!-- btn-search tn-clear-->
                                     <button class="btn btn-outline-secondary postsearch" type="button">검색</button>
-                                    <button type="reset" class="btn btn-outline-secondary">초기화</button>
+                                    <button type="button" class="btn btn-outline-secondary" id="reset">초기화</button>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +58,8 @@
 
 
                     <br>
-                    <th:block th:if="${#lists.isEmpty(responseDto.dtoList)}">
+                    <th:block th:if="${#lists.isEmpty(responseDto.dtoList)} and ${pageRequestDto.type} ==null and
+                        ${pageRequestDto.keyword} ==null">
                         <img class="card-img-top" style="height:100px;width:auto;" src="/image/imoji/waiting.jpg" alt="" />
                         아직 등록된 게시물이 없습니다. 먼저 등록해주세요^^
                     </th:block>
