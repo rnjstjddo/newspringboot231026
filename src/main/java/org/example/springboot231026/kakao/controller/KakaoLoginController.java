@@ -64,7 +64,8 @@ public class KakaoLoginController {
         System.out.println("컨트롤러 KakaoLoginController kakaoCallback() 진입 - Authentication 생성 -> "+auth);
         SecurityContextHolder.getContext().setAuthentication(auth);
 
-        return "redirect:/member/updateSocialJoin";
+        //return "redirect:/member/updateSocialJoin";
+        return "redirect:/home/home";
     }
 
 

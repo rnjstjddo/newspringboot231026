@@ -92,23 +92,21 @@
                                 새로올라온 분양강아지들 &nbsp;&nbsp;&nbsp;&nbsp;
                             </h2>
                             <form action="/dogsell/list/search" method="get">
-                                <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
-                                    <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
-                                        <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
-                                            <div class="mb-4 mb-xl-0">
-                                                <div class="fs-3 fw-bold text-white">강아지품종검색&nbsp;&nbsp;&nbsp;</div>
-                                            </div>
-                                            <div class="mb-4 mb-xl-0">
-                                                <div class="input-group col-auto">
-                                                    <input class="form-control" name="searchBreed" type="text"
-                                                           th:value="${searchBreed}" aria-describedby="button-newsletter" />
-                                                    <button class="btn btn-outline-light searchBtn" type="button">찾기</button>
-                                                    <button class="btn btn-outline-light resetSearch" type="button">초기화</button>
-                                                </div>
+                               <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
+                                    <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
+                                        <div class="mb-4 mb-xl-0">
+                                            <div class="fs-3 fw-bold text-white">강아지품종검색&nbsp;&nbsp;&nbsp;</div>
+                                        </div>
+                                        <div class="mb-4 mb-xl-0">
+                                            <div class="input-group col-auto">
+                                                <input class="form-control" name="searchBreed" type="text"
+                                                       th:value="${searchBreed}" aria-describedby="button-newsletter" />
+                                                <button class="btn btn-outline-light searchBtn" type="button">찾기</button>
+                                                <button class="btn btn-outline-light resetSearch" type="button">초기화</button>
                                             </div>
                                         </div>
-                                    </aside>
-                                </div>
+                                    </div>
+                                </aside>
                             </form>
                         </th:block>
 
@@ -129,6 +127,9 @@
 <!------------------ 이 기점으로 강아지목록 위 아래 여부 -------------------------------->
                         <!--<div class="container px-5 my-5 searchDiv">
                         이거사용해서 분양글목록이 옆으로 나열되는게 아닌 아래로 나열되었다-->
+
+
+
                         <div class="row gx-5 searchDiv">
                             <th:block th:each="ds:${dsListDto}" th:if="${#lists.isEmpty(dsListDtoWishNum) and #lists.isEmpty(dsListDtoWishNumNot)}">
                                 <div class="col-lg-4 mb-5 firstDiv">
@@ -144,7 +145,7 @@
 
                                         <div class="card-body p-4">
                                             <div class="badge bg-primary bg-gradient rounded-pill mb-2">
-                                                New
+                                                New <th:block th:if="${loginMember} !=null and ${dtoWish.membername==loginMember}">나의반려견</th:block>
                                             </div>
                                             <br>
                                             <div class="h5 card-title mb-3">
