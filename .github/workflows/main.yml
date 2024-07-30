@@ -495,7 +495,8 @@ jobs:
                    #REQUEST=$(curl -k -X GET 'http://127.0.0.1:8081')
                    #REQUEST=$(curl http://127.0.0.1:8081/)
                    #REQUEST=$(curl http://3.39.29.255:8081) 
-                   REQUEST=$(curl http://localhost:8081/)
+                   #REQUEST=$(curl http://localhost:8081/) 이거도 에러
+                   REQUEST=$(curl http://$IP_BLUE:8081/)
                    
                    echo "-------------------------------------------------------"
                    echo "새버전을 blue 컨테이너실행 후 curl 확인-> $REQUEST "
@@ -562,7 +563,8 @@ jobs:
                    #GREEN_REQUEST=$(curl -k -X GET 'http://127.0.0.1:8082/') 
                    #GREEN_REQUEST=$(curl http://127.0.0.1:8082/)
                    #GREEN_REQUEST=$(curl http://3.39.29.255:8082)
-                   GREEN_REQUEST=$(curl http://localhost:8082/)
+                   #GREEN_REQUEST=$(curl http://localhost:8082/) 이거도 에러
+                   GREEN_REQUEST=$(curl http://$IP_GREEN:8082/)
                    
                    echo "-------------------------------------------------------"
                    echo "새버전 green컨테이너실행 후8082 포트 확인 -> $GREEN_REQUEST "
@@ -640,7 +642,8 @@ jobs:
                    #BLUE_REQUEST=$(curl -k -X GET 'http://127.0.0.1:8081/') 
                    #BLUE_REQUEST=$(curl http://127.0.0.1:8081/)
                    #BLUE_REQUEST=$(curl http://3.39.29.255:8081)
-                   BLUE_REQUEST=$(curl http://localhost:8081/)
+                   #BLUE_REQUEST=$(curl http://localhost:8081/) 이거에러
+                   BLUE_REQUEST=$(curl http://$IP_BLUE:8081/)
                    
                    #3.39.29.255 -k -X GET
                    echo "-------------------------------------------------------"
