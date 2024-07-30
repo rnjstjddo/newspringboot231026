@@ -495,14 +495,15 @@ jobs:
                    #REQUEST=$(curl -k -X GET 'http://127.0.0.1:8081')
                    #REQUEST=$(curl http://127.0.0.1:8081/)
                    #REQUEST=$(curl http://3.39.29.255:8081) 
+                   REQUEST=$(curl http://localhost:8081/)
                    
                    echo "-------------------------------------------------------"
-                   #echo "새버전을 blue 컨테이너실행 후 curl 확인-> $REQUEST "
+                   echo "새버전을 blue 컨테이너실행 후 curl 확인-> $REQUEST "
 
-                   #if [ -n "$REQUEST" ]; then
+                   if [ -n "$REQUEST" ]; then
                      echo "-------------------------------------------------------"
-                     #echo "blue 컨테이너 동작확인 완료 엔진엑스 포트변경 "
-                     echo " blue컨테이너 curl 확인불가능하다 엔진엑스 8081로 포트포워딩 후 리로드시킴 "
+                     echo "blue 컨테이너 동작확인 완료 엔진엑스 포트변경 "
+                     #echo " blue컨테이너 curl 확인불가능하다 엔진엑스 8081로 포트포워딩 후 리로드시킴 "
                      sudo sed -i "s/8082/8081/g" /etc/nginx/conf.d/service-url.inc  
                      sudo service nginx reload
                    #  break;
@@ -510,7 +511,7 @@ jobs:
                    #  echo "-------------------------------------------------------"
                    #  echo "blue 컨테이너 응답없기에 현재 blue green 모두 컨테이너 실행하지 않는 상태로 둔다."
                    #  break;
-                   #fi
+                   fi
                  #done; 
              
              else
@@ -544,7 +545,7 @@ jobs:
                    sudo docker rm $(sudo docker ps -a -f status=exited -q)
                  fi
                  
-                 echo "green컨테이너 실행시킴"
+                 echo "새버전 green컨테이너 실행시킴"
                  #sudo docker-compose up -d --build green 
                  sudo docker-compose up -d green
                  sleep 5
@@ -560,22 +561,30 @@ jobs:
                    #3.39.29.255 -k -X GET
                    #GREEN_REQUEST=$(curl -k -X GET 'http://127.0.0.1:8082/') 
                    #GREEN_REQUEST=$(curl http://127.0.0.1:8082/)
-                   #GREEN_REQUEST=$(curl http://3.39.29.255:8082) 
+                   #GREEN_REQUEST=$(curl http://3.39.29.255:8082)
+                   GREEN_REQUEST=$(curl http://localhost:8082/)
+                   
                    echo "-------------------------------------------------------"
-                   #echo "새버전 green컨테이너실행 후8082 포트 확인 -> $GREEN_REQUEST "
-
-                   echo "새버전 green컨테이너실행 후8082 포트 확인 curl 안되기에 바로 기존 blue 컨테이너 종료 "
-                   sudo docker-compose stop blue
-                   #sleep 3
-                   IS_EXITED=$(sudo docker ps -a -f status=exited -q)
-                   echo "-------------------------------------------------------"
-                   echo "IS_EXITED 값확인 -> $IS_EXITED "
-                 
-                   if [ -n "$IS_EXITED" ]; then
+                   echo "새버전 green컨테이너실행 후8082 포트 확인 -> $GREEN_REQUEST "
+                   #echo "새버전 green컨테이너실행 후8082 포트 확인 curl 안되기에 바로 기존 blue 컨테이너 종료 "
+                   
+                   if [ -n "$GREEN_REQUEST" ]; then
                      echo "-------------------------------------------------------"
-                     echo "exited 된 컨테이너 확인 -> $IS_EXITED 종료시킴 "
-                     sudo docker rm $(sudo docker ps -a -f status=exited -q)
+                     echo "새버전 컨테이너 curl 확인되었기에 기존 blue 버전 컨테이너는 stop시킨다."
+                     sudo docker-compose stop blue
                    fi
+                   
+                   #sleep 3
+                   #echo "종료된 컨테이너 삭제처리위해 찾는다 컨테이너 ID추출한다."
+                   #IS_EXITED=$(sudo docker ps -a -f status=exited -q)
+                   #echo "-------------------------------------------------------"
+                   #echo "IS_EXITED 값확인 -> $IS_EXITED "
+                 
+                   #if [ -n "$IS_EXITED" ]; then
+                   #  echo "-------------------------------------------------------"
+                   #  echo "exited 된 컨테이너 확인 -> $IS_EXITED 종료시킴 "
+                   #  sudo docker rm $(sudo docker ps -a -f status=exited -q)
+                   #fi
                    
                    echo "-------------------------------------------------------"
                    echo "엔진엑스 포트포워딩 8082로 수정하고 리로딩시킴 "
@@ -631,23 +640,28 @@ jobs:
                    #BLUE_REQUEST=$(curl -k -X GET 'http://127.0.0.1:8081/') 
                    #BLUE_REQUEST=$(curl http://127.0.0.1:8081/)
                    #BLUE_REQUEST=$(curl http://3.39.29.255:8081)
+                   BLUE_REQUEST=$(curl http://localhost:8081/)
+                   
                    #3.39.29.255 -k -X GET
                    echo "-------------------------------------------------------"
-                   #echo "새버전 blue컨테이너실행 후8081 포트 확인 -> $BLUE_REQUEST "
-                   #echo "새버전 blue 컨테이너 동작확인 완료 green컨테이너 중지"
-                   
-                   echo "새버전 blue컨테이너실행 후8081 포트 확인 curl 안되기에 바로 기존 green 컨테이너 종료 "
-                   sudo docker-compose stop green
-                   #sleep 3
-                   IS_EXITED=$(sudo docker ps -a -f status=exited -q)
-                   echo "-------------------------------------------------------"
-                   echo "IS_EXITED 값확인 -> $IS_EXITED "
-                 
-                   if [ -n "$IS_EXITED" ]; then
+                   echo "새버전 blue컨테이너실행 후8081 포트 확인 -> $BLUE_REQUEST "
+                   if [ -n "$BLUE_REQUEST" ]; then
                      echo "-------------------------------------------------------"
-                     echo "exited 된 컨테이너 확인 -> $IS_EXITED 종료시킴 "
-                     sudo docker rm $(sudo docker ps -a -f status=exited -q)
+                     echo "새버전 blue 컨테이너 동작확인 완료되었기에 기존 green컨테이너 중지시킨다."
+                   
+                     #echo "새버전 blue컨테이너실행 후8081 포트 확인 curl 안되기에 바로 기존 green 컨테이너 종료 "
+                     sudo docker-compose stop green
                    fi
+                   #sleep 3
+                   #IS_EXITED=$(sudo docker ps -a -f status=exited -q)
+                   #echo "-------------------------------------------------------"
+                   #echo "IS_EXITED 값확인 -> $IS_EXITED "
+                 
+                   #if [ -n "$IS_EXITED" ]; then
+                   #  echo "-------------------------------------------------------"
+                   #  echo "exited 된 컨테이너 확인 -> $IS_EXITED 종료시킴 "
+                   #  sudo docker rm $(sudo docker ps -a -f status=exited -q)
+                   #fi
                    
                    echo "-------------------------------------------------------"
                    echo "엔진엑스 포트포워딩 8081로 수정하고 리로딩시킴 "
