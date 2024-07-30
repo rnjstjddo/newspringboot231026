@@ -490,13 +490,13 @@ jobs:
                    IP_BLUE=$(sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' blue)
                    echo "-------------------------------------------------------"
                    echo "새버전 blue 컨테이너 IP얻기 ->  $IP_BLUE"
-                   #REQUEST=$(curl http://0.0.0.0:8082)
+                   REQUEST=$(curl http://0.0.0.0:8081/)
                    #3.39.29.255 -k -X GET
                    #REQUEST=$(curl -k -X GET 'http://127.0.0.1:8081')
                    #REQUEST=$(curl http://127.0.0.1:8081/)
                    #REQUEST=$(curl http://3.39.29.255:8081) 
                    #REQUEST=$(curl http://localhost:8081/) 이거도 에러
-                   REQUEST=$(curl http://$IP_BLUE:8081/)
+                   #REQUEST=$(curl http://$IP_BLUE:8081/) 연결거부뜨네
                    
                    echo "-------------------------------------------------------"
                    echo "새버전을 blue 컨테이너실행 후 curl 확인-> $REQUEST "
@@ -558,13 +558,13 @@ jobs:
                    IP_GREEN=$(sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' green)
                    echo "-------------------------------------------------------"
                    echo "새버전 green 컨테이너 IP얻기 ->  $IP_GREEN"
-                   #GREEN_REQUEST=$(curl http://0.0.0.0:8082)
+                   GREEN_REQUEST=$(curl http://0.0.0.0:8082/)
                    #3.39.29.255 -k -X GET
                    #GREEN_REQUEST=$(curl -k -X GET 'http://127.0.0.1:8082/') 
                    #GREEN_REQUEST=$(curl http://127.0.0.1:8082/)
                    #GREEN_REQUEST=$(curl http://3.39.29.255:8082)
                    #GREEN_REQUEST=$(curl http://localhost:8082/) 이거도 에러
-                   GREEN_REQUEST=$(curl http://$IP_GREEN:8082/)
+                   #GREEN_REQUEST=$(curl http://$IP_GREEN:8082/) 연결거부뜨네
                    
                    echo "-------------------------------------------------------"
                    echo "새버전 green컨테이너실행 후8082 포트 확인 -> $GREEN_REQUEST "
@@ -638,12 +638,12 @@ jobs:
                    IP_BLUE=$(sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' blue)
                    echo "-------------------------------------------------------"
                    echo "새버전 blue 컨테이너 IP얻기 ->  $IP_BLUE"
-                   #BLUE_REQUEST=$(curl http://0.0.0.0:8081)
+                   BLUE_REQUEST=$(curl http://0.0.0.0:8081/)
                    #BLUE_REQUEST=$(curl -k -X GET 'http://127.0.0.1:8081/') 
                    #BLUE_REQUEST=$(curl http://127.0.0.1:8081/)
                    #BLUE_REQUEST=$(curl http://3.39.29.255:8081)
                    #BLUE_REQUEST=$(curl http://localhost:8081/) 이거에러
-                   BLUE_REQUEST=$(curl http://$IP_BLUE:8081/)
+                   #BLUE_REQUEST=$(curl http://$IP_BLUE:8081/) 연결거부
                    
                    #3.39.29.255 -k -X GET
                    echo "-------------------------------------------------------"
