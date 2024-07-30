@@ -317,9 +317,8 @@ $("#completeBtn").on("click", function(){
                  console.log("read.html 분양완료버튼 ajax - success() 진입 결과 -> "+ completeResult);
 
                 if(completeResult == true){
-                    location.replace(`/dogsell/read?dno=${readDno}`);
-                }else{
                     location.replace(`/dogsell/list`)
+                    alert(loginMember+" 님! " +readDno+" 번 강아지의 분양완료가 처리되었습니다!")
                 }
             },
             fail:function(){

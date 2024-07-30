@@ -110,13 +110,13 @@
                             </form>
                         </th:block>
 
-                        <th:block th:if="${#lists.isEmpty(dsListDto)}">
+                        <th:block th:if="${#lists.isEmpty(dsListDto)} and ${searchBreed} == null">
                             <img class="card-img-top" style="height:100px;width:auto;"
                                  src="/image/imoji/waiting.jpg" />
                             아직 등록된 분양글이 없습니다. 먼저 등록해주세요^^
                         </th:block>
 
-                        <th:block th:if="${#lists.isEmpty(dsListDto)} and ${searchBreed} !=null">
+                        <th:block th:if="${#lists.isEmpty(dsListDto)} and ${searchBreed} != null">
                             <img class="card-img-top" style="height:100px;width:auto;"
                                  src="/image/imoji/waiting.jpg" />
                             검색조건에 맞는 분양글 품종이 존재하지 않습니다.
