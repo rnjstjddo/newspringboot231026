@@ -15,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+
 
 @Controller
 public class MemberController {
@@ -45,9 +47,18 @@ public class MemberController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/member/updateSocialJoin")
     public String updateSocialJoin(@ModelAttribute("pageRequestDto") PageRequestDTO requestDTO, Model model,
-                           @AuthenticationPrincipal MemberDTO memberDTO){
+                                   @AuthenticationPrincipal MemberDTO memberDTO, HttpServletRequest request){
         System.out.println("컨트롤러클래스 MemberController updateSocialJoin() 진입");
         model.addAttribute("memberDTO", memberDTO);
+
+        if(memberDTO.getCreatedDate()!=memberDTO.getModifiedDate() &&memberDTO.getName()!=memberDTO.getEmail()){
+            System.out.println("컨트롤러클래스 MemberController updateSocialJoin() 진입 닉네임을 수정한 적이 있는 소셜로그인회원이기에 홈으로 바로 홈으로 이동한다.");
+            String referer = request.getHeader("Referer");
+            System.out.println("컨트롤러클래스 MemberController updateSocialJoin() 진입 referer -> "+ referer);
+            //referer.indexOf("/");
+
+            return "home/home";
+        }
 
         return "member/updateSocialJoin";
     }
