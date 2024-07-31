@@ -112,8 +112,8 @@ public class MypageController {
             System.out.println("컨트롤러 MypageController wishnumlist() 진입 -> " + memberDTO.toString());
 
         }
-        //Map<String, Object> map = wns.wishNumListGet(memberDTO.getName());
-        Map<String, Object> map = wns.wishNumListGet(memberDTO.getEmail());
+        Map<String, Object> map = wns.wishNumListGet(memberDTO.getName());
+        //Map<String, Object> map = wns.wishNumListGet(memberDTO.getEmail());
 
         if(!MapUtils.isEmpty(map)) {
             System.out.println("컨트롤러 MypageController wishnumlist() 진입 -Map<String,Object> 존재할경우 진입");

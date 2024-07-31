@@ -66,6 +66,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .userDetailsService(ms).tokenValiditySeconds(60*60*24*30);//30일지정
 
         http.oauth2Login().defaultSuccessUrl("/member/updateSocialJoin").userInfoEndpoint().userService(os);
+
         //http.oauth2Login().userInfoEndpoint().userService(os);
 
 
