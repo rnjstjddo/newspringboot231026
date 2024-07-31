@@ -508,6 +508,7 @@ jobs:
                      #echo " blue컨테이너 curl 확인불가능하다 엔진엑스 8081로 포트포워딩 후 리로드시킴 "
                      sudo sed -i "s/8082/8081/g" /etc/nginx/conf.d/service-url.inc  
                      sudo service nginx reload
+                     
                    #  break;
                    #else
                    #  echo "-------------------------------------------------------"
@@ -594,6 +595,7 @@ jobs:
                    echo "엔진엑스 포트포워딩 8082로 수정하고 리로딩시킴 "
                    sudo sed -i "s/8081/8082/g" /etc/nginx/conf.d/service-url.inc  
                    sudo service nginx reload 
+                   sudo docker-compose stop blue
                    
                    #if [ -n "$GREEN_REQUEST" ]; then 
                    #  echo "-------------------------------------------------------"
@@ -673,7 +675,8 @@ jobs:
                    echo "엔진엑스 포트포워딩 8081로 수정하고 리로딩시킴 "
                    sudo sed -i "s/8082/8081/g" /etc/nginx/conf.d/service-url.inc  
                    sudo service nginx reload 
-
+                   sudo docker-compose stop green
+                   
                    #if [ -n "$BLUE_REQUEST" ]; then 
                      #echo "-------------------------------------------------------"
                      #echo "새버전 blue 컨테이너 동작확인 완료 green컨테이너 중지"
