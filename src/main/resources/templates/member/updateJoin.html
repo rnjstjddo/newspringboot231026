@@ -29,7 +29,7 @@
                     <div class="col-12">
                         <label class="form-label">닉네임</label>
                         <input type="text" class="form-control" name="name" id="name"
-                               placeholder="닉네임을 입력해주세요" th:value="${memberDTO.name}" required>
+                               placeholder="닉네임을 입력해주세요" th:value="${memberDTO.name}" readonly>
                     </div>
                     <br>
                     <br>
@@ -80,7 +80,7 @@
                     <div style="display:inline-block;text-align:right;">
                         <button type="reset" class="btn btn-outline-secondary">초기화</button>
                         <button type="button" class="btn btn-outline-warning" id="updateJoinBtn">위 내용으로 회원정보수정</button>
-                        <button type="button" class="btn btn-outline-danger withdraw">회원탈퇴</button>
+                        <!--<button type="button" class="btn btn-outline-danger withdraw">회원탈퇴</button>-->
                     </div>
                 </form>
             </div>

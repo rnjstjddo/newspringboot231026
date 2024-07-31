@@ -294,6 +294,7 @@ var imageDataArray=[];
 var readForm =$("form");
 
 var loginMember =[[${loginMember}]];
+//var loginMemberEmail =[[${loginMemberEmail}]];
 var replyer = $(".rDtoTr").data("replyer");
 
 var readDno = [[${readDto.dno}]]
@@ -451,7 +452,7 @@ $(".rDtoTr #replyListReadBtn").on("click", function(){
     $("#modalReviewModifyReplyer").val(replyer);
     $("#modalReviewModifyText").val(text);
 
-    console.log("로그인사용자 -> "+loginMember+", replyer->"+ replyer);
+    console.log("로그인사용자의 name -> "+loginMember+", replyer->"+ replyer);
 
     if(loginMember === replyer){
         $(".reviewModalModifyTitle").html("분양댓글조회&수정");

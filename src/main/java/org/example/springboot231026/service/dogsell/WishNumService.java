@@ -38,14 +38,18 @@ public class WishNumService {
     private DogSellService dss;
 
 
-    //@Transactional
+    @Transactional
     public Map<String, Object> wishNumInsert(Long wishNum, String name, MemberDTO memberDTO){
+    //public Map<String, Object> wishNumInsert(Long wishNum, String email, MemberDTO memberDTO){
+
         System.out.println("service-dogsell클래스 WishNumService wishNumInsert() 진입");
 
         //반환타입생성
         Map<String, Object> map = new HashMap<>();
 
         Optional<Member> mentity = mr.findByName(name);
+        //Optional<Member> mentity = mr.findByEmail(email);
+
 
         //존재하는 번호인지 먼저확인
         Optional<WishNum> own =wnr.getWishNum(mentity.get(), wishNum);
@@ -80,12 +84,17 @@ public class WishNumService {
 
     //위시목록전달
     public Map<String, Object> wishNumListGet(String name) {
+    //public Map<String, Object> wishNumListGet(String email) {
+
         System.out.println("service-dogsell클래스 WishNumService wishNumListGet() 진입 파라미터 name -> "+ name);
+        //System.out.println("service-dogsell클래스 WishNumService wishNumListGet() 진입 파라미터 email -> "+ email);
 
         //반환타입
         Map<String, Object> map =new HashMap<>();
 
         Optional<Member> o = mr.findByName(name);
+        //Optional<Member> o = mr.findByEmail(email);
+
         Optional<List<WishNum>> wishNumO= wnr.findByWishNum(o.get());
         List<WishNumDTO> wishNumDTOList = new ArrayList<>();
 

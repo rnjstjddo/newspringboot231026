@@ -284,8 +284,10 @@ style="width:auto; height:auto; max-width:210px; max-height:210px; display:block
 var listForm = $("form");
 
 var loginMember =[[${loginMember}]];
+//var loginMemberEmail =[[${loginMemberEmail}]];
 
-console.log("dogsell-list 회원명 -> "+loginMember);
+//console.log("dogsell/list.html 회원닉네임 -> "+loginMember +" dogsell/list.html 회원이메일 -> "+loginMemberEmail);
+console.log("dogsell/list.html 회원닉네임 -> "+loginMember);
 
 function formatTime(str){
    console.log("list.html formatTime() 함수 진입 - 강아지 품종검색 클릭이벤트 진입 후 ajax success() -> "+str);
@@ -353,7 +355,7 @@ $(".starBtn").on("click", function(){
 
     var dno=$(this).data("dno");
     console.log("로그인한 회원인 찜한 강아지분양글번호 -> "+dno);
-    //th:data-dno="${dto.dno}" th:data-name="${loginMember}"
+
     var aTag =$(this).closest("a");
     console.log("현재 찜버튼 클릭후 가까이있는 <a>태그 출력 -> ")
     console.log(aTag);

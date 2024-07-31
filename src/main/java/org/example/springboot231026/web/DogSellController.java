@@ -42,8 +42,10 @@ public class DogSellController {
 
         try {
             if (memberDTO != null) {
-                System.out.println("컨트롤러DogSellController registerPost() - 로그인한 회원일경우 getName() 같이전달 ");
+                System.out.println("컨트롤러DogSellController list() ");
+                //model.addAttribute("loginMember", memberDTO.getName());
                 model.addAttribute("loginMember", memberDTO.getName());
+                //model.addAttribute("loginMemberEmail", memberDTO.getEmail());
             }
 
             List<DogSellListDTO> dsListDto = dss.list();
@@ -57,6 +59,8 @@ public class DogSellController {
             List<Boolean> completeList= dsListDto.stream().map(dto -> dto.getComplete()).collect(Collectors.toList());
 
             Map<String, Object> map = wns.wishNumListGet(memberDTO.getName());
+            //Map<String, Object> map = wns.wishNumListGet(memberDTO.getEmail());
+
 
             List<WishNumDTO> wishNumDTOList = (List<WishNumDTO>) map.get("wishNumDTOList");
             //System.out.println("컨트롤러DogSellController list() 진입 List<WishNumDTO> getWishNum()-> "
@@ -69,8 +73,8 @@ public class DogSellController {
                 List<DogSellListDTO> dsListDtoWishNumNot = new ArrayList<>();
 
                 if (wishNumDTOList != null && wishNumDTOList.size() != 0) {
-                    System.out.println("컨트롤러DogSellController registerPost() - 로그인한 회원일경우 getName() 같이전달 - List<WishNumDTO> 존재할경우 진입 size() -> " + wishNumDTOList.size());
-                    System.out.println("컨트롤러DogSellController registerPost() - 로그인한 회원일경우 getName() 같이전달 - List<WishNumDTO> 존재할경우 진입 toString() -> " + wishNumDTOList.toString());
+                    System.out.println("컨트롤러DogSellController list() - List<WishNumDTO> 존재할경우 진입 size() -> " + wishNumDTOList.size());
+                    System.out.println("컨트롤러DogSellController list() - List<WishNumDTO> 존재할경우 진입 toString() -> " + wishNumDTOList.toString());
 
                     Long countWishNum = (Long) map.get("countWishNum");
 
@@ -89,12 +93,12 @@ public class DogSellController {
                                 return first.getDno().equals(second.getWishNum());
                             })).collect(Collectors.toList());
 
-                    System.out.println("컨트롤러DogSellController registerPost() - 로그인한 회원일경우 getName() 같이전달 " +
+                    System.out.println("컨트롤러DogSellController list()  " +
                             "- List<WishNumDTO> 존재할경우 진입 - 위시리스트에 담긴상품 List<WishNumDTO> getDno()-> "
                             + dsListDtoWishNum.stream().map(ds -> ds.getDno()).collect(Collectors.toList())
                             .toString());
 
-                    System.out.println("컨트롤러DogSellController registerPost() - 로그인한 회원일경우 getName() 같이전달 " +
+                    System.out.println("컨트롤러DogSellController list() " +
                             "- List<WishNumDTO> 존재할경우 진입 - 위시리스트에 담기지 않은 상품 List<WishNumDTO> getDno() -> "
                             + dsListDtoWishNumNot.stream().map(ds -> ds.getDno()).collect(Collectors.toList())
                             .toString());
@@ -109,7 +113,7 @@ public class DogSellController {
                 }//if문 위시번호 존재할경우 List<WishNumDTO>
 
         }catch (Exception e){
-            System.out.println("컨트롤러DogSellController registerPost() - catch() 진입");
+            System.out.println("컨트롤러DogSellController list() - catch() 진입");
             e.printStackTrace();
         }
 
@@ -122,9 +126,9 @@ public class DogSellController {
         System.out.println("컨트롤러DogSellController register() 진입");
         try {
             if (memberDTO != null) {
-                System.out.println("컨트롤러DogSellController registerPost() - 로그인한 회원일경우 getName() 같이전달 ");
+                System.out.println("컨트롤러DogSellController registerPost()  ");
                 model.addAttribute("loginMember", memberDTO.getName());
-
+                //model.addAttribute("loginMemberEmail", memberDTO.getEmail());
             }
         }catch (Exception e){
             System.out.println("컨트롤러DogSellController registerPost() - catch() 진입");
@@ -161,6 +165,8 @@ public class DogSellController {
     public String removePost(Long dno,RedirectAttributes rttrs, @AuthenticationPrincipal MemberDTO memberDTO){
         System.out.println("컨트롤러DogSellController removePost() 진입 파라미터 게시글번호 -> "+dno);
         dss.remove(dno, memberDTO.getName());
+        //dss.remove(dno, memberDTO.getEmail());
+
         rttrs.addFlashAttribute("removeSuccess", dno);
         //return "redirect:/dogsell/list/"+dno;
         return "redirect:/dogsell/list?dno="+dno;
@@ -183,9 +189,9 @@ public class DogSellController {
 
         try {
             if (memberDTO != null) {
-                System.out.println("VIEW컨트롤러 index()진입 - 로그인한 회원일경우 getName() 같이전달 ");
+                //System.out.println("VIEW컨트롤러 index()진입  ");
                 model.addAttribute("loginMember", memberDTO.getName());
-
+                //model.addAttribute("loginMemberEmail", memberDTO.getEmail());
             }
         }catch (Exception e){
             System.out.println("VIEW컨트롤러 index()진입 - catch() 진입");
@@ -206,8 +212,9 @@ public class DogSellController {
 
         try {
             if (memberDTO != null) {
-                System.out.println("컨트롤러DogSellController modify() 진입 - 로그인한 회원일경우 getName() 같이전달 ");
+                System.out.println("컨트롤러DogSellController modify() 진입 ");
                 model.addAttribute("loginMember", memberDTO.getName());
+                //model.addAttribute("loginMemberEmail", memberDTO.getEmail());
 
             }
         }catch (Exception e){
@@ -235,17 +242,18 @@ public class DogSellController {
     @GetMapping("/list/search") //dogsell/list/search
     public String searchBreed(@AuthenticationPrincipal MemberDTO memberDTO, Model model,
                             @ModelAttribute("searchBreed") String searchBreed){
-        System.out.println("컨트롤러DogSellController list() get방식 진입 품종검색 -> "+ searchBreed);
+        System.out.println("컨트롤러DogSellController searchBreed() get방식 진입 품종검색 -> "+ searchBreed);
 
         try {
             if (memberDTO != null) {
-                System.out.println("컨트롤러DogSellController registerPost() - 로그인한 회원일경우 getName() 같이전달 ");
+                System.out.println("컨트롤러DogSellController registerPost() ");
                 model.addAttribute("loginMember", memberDTO.getName());
+                //model.addAttribute("loginMemberEmail", memberDTO.getEmail());
             }
             List<DogSellListDTO> dsListDto = dss.searchBreed(searchBreed);
             if(dsListDto !=null) {
 
-                System.out.println("컨트롤러DogSellController list() 진입 List<DogSellListDTO> getDno()-> "
+                System.out.println("컨트롤러DogSellController searchBreed() 진입 List<DogSellListDTO> getDno()-> "
                         + dsListDto.stream().map(ds -> ds.getDno()).collect(Collectors.toList()).toString());
                 model.addAttribute("dsListDto", dsListDto);
             }
@@ -253,6 +261,7 @@ public class DogSellController {
             List<Boolean> completeList= dsListDto.stream().map(dto -> dto.getComplete()).collect(Collectors.toList());
 
             Map<String, Object> map = wns.wishNumListGet(memberDTO.getName());
+            //Map<String, Object> map = wns.wishNumListGet(memberDTO.getEmail());
 
             List<WishNumDTO> wishNumDTOList = (List<WishNumDTO>) map.get("wishNumDTOList");
             //System.out.println("컨트롤러DogSellController list() 진입 List<WishNumDTO> getWishNum()-> "
@@ -265,11 +274,10 @@ public class DogSellController {
             List<DogSellListDTO> dsListDtoWishNumNot = new ArrayList<>();
 
             if (wishNumDTOList != null && wishNumDTOList.size() != 0) {
-                System.out.println("컨트롤러DogSellController registerPost() - 로그인한 회원일경우 getName() 같이전달 - List<WishNumDTO> 존재할경우 진입 size() -> " + wishNumDTOList.size());
-                //System.out.println("컨트롤러DogSellController registerPost() - 로그인한 회원일경우 getName() 같이전달 - List<WishNumDTO> 존재할경우 진입 toString() -> " + wishNumDTOList.toString());
+                System.out.println("컨트롤러DogSellController searchBreed() - List<WishNumDTO> 존재할경우 진입 size() -> " + wishNumDTOList.size());
 
                 Long countWishNum = (Long) map.get("countWishNum");
-                System.out.println("컨트롤러DogSellController registerPost() - 로그인한 회원일경우 getName() 같이전달 - List<WishNumDTO> 존재할경우 진입 찜한상품의 개수확인 -> " +countWishNum);
+                System.out.println("컨트롤러DogSellController searchBreed() - List<WishNumDTO> 존재할경우 진입 찜한상품의 개수확인 -> " +countWishNum);
 
 
                 for (WishNumDTO wishNumDTO : wishNumDTOList) {
@@ -287,12 +295,12 @@ public class DogSellController {
                             return first.getDno().equals(second.getWishNum());
                         })).collect(Collectors.toList());
 
-                System.out.println("컨트롤러DogSellController registerPost() - 로그인한 회원일경우 getName() 같이전달 " +
+                System.out.println("컨트롤러DogSellController searchBreed() " +
                         "- List<WishNumDTO> 존재할경우 진입 - 위시리스트에 담긴상품 List<WishNumDTO> getDno()-> "
                         + dsListDtoWishNum.stream().map(ds -> ds.getDno()).collect(Collectors.toList())
                         .toString());
 
-                System.out.println("컨트롤러DogSellController registerPost() - 로그인한 회원일경우 getName() 같이전달 " +
+                System.out.println("컨트롤러DogSellController searchBreed() " +
                         "- List<WishNumDTO> 존재할경우 진입 - 위시리스트에 담기지 않은 상품 List<WishNumDTO> getDno() -> "
                         + dsListDtoWishNumNot.stream().map(ds -> ds.getDno()).collect(Collectors.toList())
                         .toString());

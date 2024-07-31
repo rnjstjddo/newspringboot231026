@@ -28,7 +28,7 @@ public class WishNumApiController {
             System.out.println("컨트롤러 WishNumController wishNumInsert() 진입 MemberDTO -> "+ memberDTO);
         }
 
-        Map<String, Object> map = wns.wishNumInsert (wishNum, memberDTO.getName(), memberDTO);
+        Map<String, Object> map = wns.wishNumInsert(wishNum, memberDTO.getName(), memberDTO);
         Long count =(Long) map.get("count");
 
         if ((Boolean) map.get("overlap") !=null && (Boolean) map.get("overlap") ==true) {

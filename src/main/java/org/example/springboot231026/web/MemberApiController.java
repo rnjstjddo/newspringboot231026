@@ -48,7 +48,8 @@ public class MemberApiController {
     public String updateSocialJoin(@RequestBody JoinDTO joinDTO, @AuthenticationPrincipal MemberDTO memberDTO){
     //public String updateSocialJoin(@RequestParam("name") String name, @AuthenticationPrincipal MemberDTO memberDTO){
 
-            System.out.println("컨트롤러클래스 MemberApiController updateSocialJoin() 진입 파라미터 JoinDTO -> "+ joinDTO.getName());//joinDTO.getName(
+        System.out.println("컨트롤러클래스 MemberApiController updateSocialJoin() 진입 파라미터 JoinDTO -> "+ joinDTO.getName());//joinDTO.getName(
+        String originName= memberDTO.getName();
 
         Member checkName = ms.nameCheck(joinDTO.getName());
 
@@ -58,14 +59,14 @@ public class MemberApiController {
             return "exist";
         }
         //DB는 변경
-        Member entity = ms.updateSocialJoin(joinDTO.getName(), memberDTO);
+        Member entity = ms.updateSocialJoin(joinDTO.getName(), memberDTO); //트랜잭션적용
 
         //memberDTO.setMember(joinDTO); //세션갱신자동
-        System.out.println("컨트롤러클래스 MemberApiController updateSocialJoin() 진입 파라미터 Member -> "+ entity.toString());
-        System.out.println("컨트롤러클래스 MemberApiController updateSocialJoin() 진입 파라미터 MemberDTO -> "+ memberDTO.toString());
-
+        System.out.println("컨트롤러클래스 MemberApiController updateSocialJoin() 진입 파라미터 서비스클래스에서 트랜잭션 적용후 "+
+                        "Member의 name 변경확인  -> "+ entity.getName()+" 기존 name -> "+ originName);
         //세션변경
         memberDTO.setMember(entity);
+        System.out.println("컨트롤러클래스 MemberApiController updateSocialJoin() 진입 MemberDTO변경후 name확인 -> "+ memberDTO.getName());
 
         return entity.getName();//변경된 이름전달
     }

@@ -21,7 +21,8 @@
                 <a class="btn btn-outline-success" th:href="@{/home/home}">홈화면</a>
                 <br>
                 <br>
-                <b>[[${memberDTO.name}]]님 반갑습니다^^ 현재 사이트에서 이용할 닉네임을 새롭게 정해주세요!</b>
+                <b style="color:#be0000;">[[${memberDTO.name}]]님 반갑습니다^^ 현재 사이트에서 이용할 닉네임을 새롭게 정해주세요!
+                닉네임은 현재 페이지에서 한번 정하면 수정이 불가능합니다!!!</b>
 
                 <br>
                 <br>
@@ -32,10 +33,11 @@
                         <input type="text" class="form-control" name="name" id="name"
                                placeholder="닉네임을 입력해주세요" th:value="${memberDTO.name}" required>
                     </div>
-                    <br>
-                    <br>
+
 
                     <th:block th:if="${memberDTO.fromSocial == false}">
+                    <br>
+                    <br>
                     <div class="col-12">
                         <label class="form-label">비밀번호</label>
                         <input type="password" class="form-control" name="password" autocomplete="off"

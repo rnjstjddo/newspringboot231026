@@ -135,7 +135,11 @@ public class DogSellService {
     //삭제
     @Transactional
     public void remove(Long dno, String name) {
+    //public void remove(Long dno, String email) {
+
         System.out.println("service-dogsell클래스 DogSellService remove() 진입 강아지분양번호 -> "+dno+", 회원 name -> "+ name);
+        //System.out.println("service-dogsell클래스 DogSellService remove() 진입 강아지분양번호 -> "+dno+", 회원 email -> "+ email);
+
         Optional<DogSell> o=dsr.findById(dno);
         List<DogSellImage> oi = dsir.findByDno(dno);
 

@@ -189,6 +189,9 @@ var memberObject ={
             if(response ==="exist"){
                 alert("동일한 닉네임을 가진 회원이 존재합니다. 다른 닉네임을 선택해주세요!");
                 return;
+            }else{
+                alert(response +" 로 닉네임이 변경되었습니다!");
+
             }
             //location="/member/login";
             location.replace(`/home/home`);

@@ -26,6 +26,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
@@ -105,13 +106,15 @@ public class MemberService {
     }
 
     @Transactional
+    //@Commit
     public Member updateSocialJoin(String name, MemberDTO memberDTO){
-        System.out.println("service-member패키지 MemberService클래스 updateSocialJoin() 진입 -> 파라미터 MemberDTO -> "+ memberDTO.toString());
+        System.out.println("service-member패키지 MemberService클래스 updateSocialJoin() 진입 ");
 
         Optional<Member> o = mr.findByUsername(memberDTO.getEmail(), memberDTO.isFromSocial());
         //.orElseThrow(() -> new IllegalArgumentException("존재하는 않는 회원입니다."));
         Member m = o.get();
         m.updateSocialMember(name);
+        mr.save(m);
 
         return m;
     }
