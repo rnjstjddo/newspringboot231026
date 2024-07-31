@@ -44,10 +44,12 @@ public class MemberController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/member/updateSocialJoin")
-    public void updateSocialJoin(@ModelAttribute("pageRequestDto") PageRequestDTO requestDTO, Model model,
+    public String updateSocialJoin(@ModelAttribute("pageRequestDto") PageRequestDTO requestDTO, Model model,
                            @AuthenticationPrincipal MemberDTO memberDTO){
         System.out.println("컨트롤러클래스 MemberController updateSocialJoin() 진입");
         model.addAttribute("memberDTO", memberDTO);
+
+        return "member/updateSocialJoin";
     }
 
 }

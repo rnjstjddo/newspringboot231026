@@ -188,6 +188,7 @@ public class MemberService {
     }
 
 
+
     @Transactional
     public void deleteMember(String name, Member member){
         System.out.println("service-member패키지 MemberService클래스 deleteMember() 진입 회원탈퇴 메소드 진입 "+
