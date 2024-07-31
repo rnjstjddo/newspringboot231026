@@ -57,7 +57,7 @@ public class MemberController {
             System.out.println("컨트롤러클래스 MemberController updateSocialJoin() 진입 referer -> "+ referer);
             //referer.indexOf("/");
 
-            return "home/home";
+            return "redirect:/home/home";
         }
 
         return "member/updateSocialJoin";
