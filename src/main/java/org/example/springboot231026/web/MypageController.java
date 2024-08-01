@@ -4,11 +4,13 @@ package org.example.springboot231026.web;
 import org.example.springboot231026.dto.dogsell.DogSellReadDTO;
 import org.example.springboot231026.dto.dogsell.cart.WishNumDTO;
 import org.example.springboot231026.dto.guestbook.GuestbookDTO;
+import org.example.springboot231026.dto.inquiry.InquiryDto;
 import org.example.springboot231026.dto.member.MemberDTO;
 import org.example.springboot231026.dto.message.MessageDTO;
 import org.example.springboot231026.dto.post.PostsResponseDto;
 import org.example.springboot231026.service.dogsell.WishNumService;
 import org.example.springboot231026.service.guestbook.GuestbookService;
+import org.example.springboot231026.service.inquiry.InquiryService;
 import org.example.springboot231026.service.message.MessageService;
 import org.example.springboot231026.service.posts.PostsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,9 @@ public class MypageController {
 
     @Autowired
     private PostsService ps;
+
+    @Autowired
+    private InquiryService is;
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/message")
@@ -138,6 +143,25 @@ public class MypageController {
 
         }
 
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/inquiry")
+    public void inquiry(Model model, @AuthenticationPrincipal MemberDTO memberDTO) {
+        System.out.println("컨트롤러 MypageController inquiry() 진입");
+
+        List<InquiryDto> inquiryDTOlist = is.getListforMember(memberDTO.getName());
+
+
+        if(memberDTO !=null){
+            System.out.println("컨트롤러 MypageController inquiry() 진입- MemberDTO 존재할때 진입");
+            model.addAttribute("memberDTO",memberDTO);
+        }
+
+        if(inquiryDTOlist !=null && inquiryDTOlist.size() > 0){
+            System.out.println("컨트롤러 MypageController inquiry() 진입- List<InquiryDto> 존재할때 진입");
+            model.addAttribute("iDTOlist",inquiryDTOlist);
+        }
     }
 
 

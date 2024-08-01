@@ -9,6 +9,8 @@ import org.springframework.data.repository.query.Param;
 import javax.persistence.criteria.CriteriaBuilder;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 public interface InquiryRepository extends JpaRepository<Inquiry, Long>, InquirySearch {
 
@@ -20,6 +22,9 @@ public interface InquiryRepository extends JpaRepository<Inquiry, Long>, Inquiry
     @Query("select count(g) from Inquiry g where g.modifiedDate >= :before and g.modifiedDate < :after")
     Long getCountLocalDate(@Param("before") LocalDateTime before, @Param("after") LocalDateTime after);
 
+    //회원이 작성한 문의글 가져오기
+    @Query("select i from Inquiry i where i.writer= :writer")
+    Optional<List<Inquiry>> getListforMember(@Param("writer") String writer);
 
 
     //dto-> entity

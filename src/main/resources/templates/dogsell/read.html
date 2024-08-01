@@ -306,11 +306,13 @@ $("#completeBtn").on("click", function(){
     console.log("read.html 분양완료버튼 클릭 진입");
     console.log("read.html 분양완료버튼 클릭 진입 현재 분양글번호 -> "+readDno);
 
+    var completeData = {readDno: readDno}
+
     if(alert("분양완료 처리를 하시겠습니까?")){
         $.ajax({
             url: "/dogsell/complete",
             type:'post',
-            data:JSON.stringify(readDno),
+            data:JSON.stringify(completeData),
             contentType: "application/json;charset=utf-8",
             dataType:'text',
             success:function(result){

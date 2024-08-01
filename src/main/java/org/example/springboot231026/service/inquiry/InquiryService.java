@@ -14,10 +14,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -38,8 +40,24 @@ public class InquiryService {
         return id >0 ? true: false;
     }
 
-    
-    //관리자 페이지 전체문의글 가져오기
+    //회원의 문의글 가져오기
+    public List<InquiryDto> getListforMember(String writer) {
+        System.out.println("service-inquiry패키지 InquiryService클래스 getListforMember() 진입");
+        Optional<List<Inquiry>> o =irepo.getListforMember(writer);
+
+        List<InquiryDto> resultList = null;
+
+        if(o.isPresent()){
+            System.out.println("service-inquiry패키지 InquiryService클래스 getListforMember() 진입 작성한 게시글이 존재한경우 진입");
+
+            List<Inquiry> list =o.get();
+            resultList = list.stream().map(i-> irepo.toDto(i)).collect(Collectors.toList());
+        }
+        return resultList;
+    }
+
+
+        //관리자 페이지 전체문의글 가져오기
     public List<InquiryDto> findAll(){
         System.out.println("service-inquiry패키지 InquiryService클래스 findAll() 진입");
 

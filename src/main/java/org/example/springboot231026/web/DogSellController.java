@@ -228,10 +228,13 @@ public class DogSellController {
     //분양완료
     @ResponseBody
     @PostMapping("/complete")
-    public boolean complete(@RequestBody Long completeDno){
-        System.out.println("컨트롤러DogSellController complete() 진입 분양완료한 분양글번호 -> "+ completeDno);
+    public boolean complete(@RequestBody Map<String,Long> completeMap){
+        System.out.println("컨트롤러DogSellController complete() 진입 ");
 
-        if(dss.complete(completeDno)){
+        Long compateData = completeMap.get("readDno");
+        System.out.println("컨트롤러DogSellController complete() 진입 분양완료하려는 분양글번호 Map으로 얻기 -> "+ compateData);
+
+        if(dss.complete(compateData)){
             return true;
         }
         return false;
