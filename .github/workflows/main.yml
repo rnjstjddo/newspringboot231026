@@ -63,7 +63,7 @@ jobs:
               echo "-----------------------------------"
               echo "파일생성 ./application-real-db.properties"
               echo -e "${{ secrets.APPLICATION_REAL_DB }}" > ./application-real-db.properties
-              echo "파일생성 ./application-real-db.properties"
+              echo "파일생성 ./application-oauth.properties"
               echo -e "${{ secrets.APPLICATION_OAUTH }}" > ./application-oauth.properties
               echo "-----------------------------------"
               echo "방금만든 파일 존재하는지 확인"
