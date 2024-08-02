@@ -299,6 +299,7 @@ var replyer = $(".rDtoTr").data("replyer");
 
 var readDno = [[${readDto.dno}]]
 
+<!--
 
 //____________________________________________________________________________________________________
 //분양완료글
@@ -315,7 +316,7 @@ $("#completeBtn").on("click", function(){
             data:JSON.stringify(completeData),
             contentType: "application/json;charset=utf-8",
             dataType:'text',
-        <!--
+        &lt;!&ndash;
         })
         .done(function(result){
             const completeResult = result;
@@ -330,7 +331,7 @@ $("#completeBtn").on("click", function(){
             console.log("read.html 분양완료버튼 ajax - fail() 진입 결과");
             location.replace(`/dogsell/read?dno=${readDno}`);
         });//ajax
-        -->
+        &ndash;&gt;
 
             success:function(result){
                  const completeResult = result;
@@ -349,6 +350,7 @@ $("#completeBtn").on("click", function(){
     }//끝 if문
 });//분양완료시
 
+-->
 
 //____________________________________________________________________________________________________
 //분양글 댓글등록
@@ -559,6 +561,7 @@ $(".modalReviewModifyCloseBtn").on("click", function(){
   $(".reviewModalModifyDiv").hide();
 });//끝 on() 수정모달창 닫기버튼 이벤트
 
+<!--
 
 
 //____________________________________________________________________________________________________
@@ -604,6 +607,8 @@ if(imageTrue){
 
         $(".uploadResult ul").append(str);
 }//if문 imageTrue 경우 이미지보여주기
+-->
+<!--
 
 //________________________________________
 //분양글 수정하기
@@ -638,6 +643,7 @@ $("#removeBtn").on("click", function(e){
         readForm.submit();
     }//if문 삭제하기버튼내부
 });//on() 삭제하기버튼 이벤트처리
+-->
 
 
 });//$(document).ready()

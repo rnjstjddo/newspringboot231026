@@ -19,8 +19,7 @@
                         <h2 class="fw-bolder mb-3"></h2>
                         <div class="accordion mb-5" id="accordionExample">
 
-                            <th:block th:if="${#lists.isEmpty(pDtoList)}" >
-
+                            <th:block th:if="${#lists.isEmpty(iDTOlist)}" >
                                 <br>
                                 <img class="card-img-top" style="height:100px;width:auto;" src="/image/imoji/waiting.jpg" alt="" />
                                 <b>아직 작성하신 문의글이 없습니다.^^</b>
@@ -31,15 +30,12 @@
                                 <h3 class="accordion-header" id="headingOne">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                      data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        <th:block th:switch="${iDto.complete}">
-                                            <span th:case="true">답변여부: 완료</span>
-                                            <span th:case="false">답변여부: 미완료</span>
-                                        </th:block>
-<!--
-                                        답변여부 [[${iDto.complete}]] |
--->
                                         <span class="fst-italic">
-                                            &nbsp;&nbsp;작성일자 [[${#temporals.format(iDto.createdDate, 'yyyy-MM-dd')}]]
+                                            &nbsp;&nbsp;작성일자 [[${#temporals.format(iDto.createdDate, 'yyyy-MM-dd')}]] | &nbsp;&nbsp; [[${iDto.complete}]]
+                                             <th:block th:switch="${iDto.complete}">
+                                                <span th:case="true">답변여부: 완료</span>
+                                                <span th:case="false">답변여부: 미완료</span>
+                                            </th:block>
                                         </span>
                                     </button>
                                 </h3>
