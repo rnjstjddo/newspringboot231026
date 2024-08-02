@@ -14,6 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @ToString
+@DynamicInsert
 public class Inquiry extends BaseTimeEntity {
 
     @Id
@@ -33,7 +34,6 @@ public class Inquiry extends BaseTimeEntity {
     private String email;
 
     @Column(name="complete",nullable = false)
-    @ColumnDefault("false")
     @Builder.Default
     private Boolean complete = false;
 }

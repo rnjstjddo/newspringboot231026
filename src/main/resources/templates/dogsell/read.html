@@ -336,6 +336,7 @@ $("#completeBtn").on("click", function(){
 });//분양완료시
 
 -->
+<!--
 
 //____________________________________________________________________________________________________
 //분양글 댓글등록
@@ -351,8 +352,10 @@ $(".modalReviewCloseBtn").on("click", function(e){
     console.log("dogsell-read.html 모달창 댓글등록 닫기이벤트 진입");
     $(".reviewModalRegisterDiv").hide();
 });//끝 on()
+-->
 
 var dno =[[${readDto.dno}]];
+<!--
 
 //댓글목록보기 클릭이벤트
 $(".replyListBtn").on("click", function(e){
@@ -373,7 +376,9 @@ $(".replyListBtn").on("click", function(e){
         $(".replyListBtn").html("댓글목록보기");
     }
 });//끝 on() 댓글목록보기 이벤트
+-->
 
+<!--
 
 //모달창 댓글등록 클릭이벤트
 $(".modalReviewRegisterBtn").on("click", function(e){
@@ -405,8 +410,10 @@ $(".modalReviewRegisterBtn").on("click", function(e){
         }
     });//끝 $.ajax
 });//on() 모달창 댓글등록 이벤트진입
+-->
 
 
+<!--
 //댓글목록 조회버튼 이벤트 처리
 $(".rDtoTr #replyListReadBtn").on("click", function(){
 
@@ -452,10 +459,12 @@ $(".rDtoTr #replyListReadBtn").on("click", function(){
     }
     $(".reviewModalModifyDiv").show();
 });//댓글목록 조회버튼
+-->
 
 
 
 
+<!--
 //댓글목록에서 삭제버튼클릭
 $(".rDtoTr #replyListModifyBtn").on("click", function(e){
     e.preventDefault();
@@ -483,6 +492,10 @@ $(".rDtoTr #replyListModifyBtn").on("click", function(e){
         });//끝$.ajax
     }//끝if
 });//on() 목록에서 삭제버튼 클릭
+
+-->
+
+<!--
 
 //수정모달창 저장하기버튼 클릭이벤트
 $(".modalReviewModifyBtn").on("click", function(){
@@ -545,6 +558,7 @@ $(".modalReviewRemoveBtn").on("click", function(){
 $(".modalReviewModifyCloseBtn").on("click", function(){
   $(".reviewModalModifyDiv").hide();
 });//끝 on() 수정모달창 닫기버튼 이벤트
+-->
 
 <!--
 
