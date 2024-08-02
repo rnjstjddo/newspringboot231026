@@ -104,7 +104,7 @@ jobs:
               docker build -f ./Dockerfile_8081 -t ${{ secrets.DOCKERHUB_USERNAME }}/dogservice . #dogservice:8081 에서 변경
               docker push ${{ secrets.DOCKERHUB_USERNAME }}/dogservice
       
-            elif [ -n $IS_BLUE_RUN ];then
+            elif [ -z $IS_GREEN_RUN ];then
               echo "-----------------------------------"
               echo "blue 컨테이너 동작중이기에 green 8082포트로 이미지 생성한다."
               echo "-----------------------------------"
@@ -153,7 +153,7 @@ jobs:
               docker build -f ./Dockerfile_8082 -t ${{ secrets.DOCKERHUB_USERNAME }}/dogservice . #dogservice:8082에서 변경
               docker push ${{ secrets.DOCKERHUB_USERNAME }}/dogservice
             
-            elif [ -n $IS_GREEN_RUN ];then
+            elif [ -z $IS_BLUE_RUN ];then
               echo "-----------------------------------"
               echo "green 컨테이너 동작중이기에 blue 8081포트로 이미지 생성한다."
               echo "-----------------------------------"
