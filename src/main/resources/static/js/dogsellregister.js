@@ -236,7 +236,7 @@ var registerjs = {
                 var healthVal = $('#health').val();
                 var priceVal = $('#price').val();//유효성
                 var contentVal = $('#content').val();
-
+                var fileVal = $('#file').val();
 
 /*
                 if (titleVal == '' || blank_pattern.test(titleVal) == true ) {
@@ -356,6 +356,13 @@ var registerjs = {
                     });
                 }
 
+                //강아지 첨부파일 없을경우
+                if (fileVal == '') {
+                  alert('분양할 강아지 사진을 첨부해주세요!');
+                    setTimeout(function(){
+                        $("#file").focus();
+                    });
+                }
 
 
             if( genderverify && ageverify && weightverify &&priceverify){

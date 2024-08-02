@@ -306,15 +306,30 @@ $("#completeBtn").on("click", function(){
     console.log("read.html 분양완료버튼 클릭 진입");
     console.log("read.html 분양완료버튼 클릭 진입 현재 분양글번호 -> "+readDno);
 
-    var completeData = {readDno: readDno}
+    var completeData = {"readDno": readDno}
 
     if(alert("분양완료 처리를 하시겠습니까?")){
         $.ajax({
-            url: "/dogsell/complete",
+            url: '/dogsell/complete',
             type:'post',
             data:JSON.stringify(completeData),
             contentType: "application/json;charset=utf-8",
-            dataType:'text',
+            dataType:'json',
+        })
+        .done(function(result){
+            const completeResult = result;
+            console.log("read.html 분양완료버튼 ajax - success() 진입 결과 -> "+ completeResult);
+
+            if(completeResult == true){
+                location.replace(`/dogsell/list`)
+                alert(loginMember+" 님! " +readDno+" 번 강아지의 분양완료가 처리되었습니다!")
+            }
+        })
+        .fail(function(error){
+            console.log("read.html 분양완료버튼 ajax - fail() 진입 결과");
+            location.replace(`/dogsell/read?dno=${readDno}`);
+        });//ajax
+<!--
             success:function(result){
                  const completeResult = result;
                  console.log("read.html 분양완료버튼 ajax - success() 진입 결과 -> "+ completeResult);
@@ -329,6 +344,7 @@ $("#completeBtn").on("click", function(){
                     location.replace(`/dogsell/read?dno=${readDno}`);
             }
         });//ajax
+-->
     }//if문
 });//분양완료시
 
