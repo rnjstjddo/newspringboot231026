@@ -44,11 +44,12 @@ public interface InquiryRepository extends JpaRepository<Inquiry, Long>, Inquiry
 
     //entity -> dto
     default InquiryDto toDto(Inquiry entity){
-        //System.out.println("repository-inquiry패키지 entity -> dto 변환 진입");
+        System.out.println("repository-inquiry패키지 entity -> dto 변환 진입");
         InquiryDto inquiryDto = new InquiryDto(
                 entity.getInnum(),entity.getWriter(), entity.getContent(), entity.getPhone(),
                 entity.getEmail(),entity.getComplete(), entity.getCreatedDate(), entity.getModifiedDate()
         );
+        System.out.println("repository-inquiry패키지 entity -> dto 변환 진입 InquiryDto toString() -> " +inquiryDto.toString());
         return inquiryDto;
     }
 
