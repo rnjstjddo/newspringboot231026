@@ -4,8 +4,6 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.JPQLQuery;
 import org.example.springboot231026.domain.inquiry.Inquiry;
 import org.example.springboot231026.domain.inquiry.QInquiry;
-import org.example.springboot231026.domain.posts.PostReply;
-import org.example.springboot231026.domain.posts.QPostReply;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
