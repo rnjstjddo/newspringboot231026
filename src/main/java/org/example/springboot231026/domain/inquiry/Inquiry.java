@@ -3,6 +3,8 @@ package org.example.springboot231026.domain.inquiry;
 
 import lombok.*;
 import org.example.springboot231026.domain.posts.BaseTimeEntity;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 
@@ -31,6 +33,7 @@ public class Inquiry extends BaseTimeEntity {
     private String email;
 
     @Column(name="complete",nullable = false)
+    @ColumnDefault("false")
     @Builder.Default
     private Boolean complete = false;
 }

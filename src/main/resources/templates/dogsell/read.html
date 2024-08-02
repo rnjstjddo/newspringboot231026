@@ -92,13 +92,6 @@
                         <input class="form-control" type="text"  name="modifiedDate" th:value="${#temporals.format(readDto.modifiedDate, 'yyyy-MM-dd HH:mm:ss')}" readonly/>
                     </div>
                     <br>
-                   <!--
-                   <div class="mb-3">
-                        첨부파일
-                        <input class="form-control file" type="file"  name="fList" placeholder="첨부파일을 선택해주세요"  multiple/>
-                    </div>
-                    -->
-                    <br>
 
                     <th:block th:if="${readDto.dsiDtoList ==null}">
 
@@ -292,6 +285,7 @@ var replyer = $(".rDtoTr").data("replyer");
 
 var readDno = [[${readDto.dno}]]
 
+
 <!--
 
 //____________________________________________________________________________________________________
@@ -324,7 +318,6 @@ $("#completeBtn").on("click", function(){
             location.replace(`/dogsell/read?dno=${readDno}`);
         });//ajax
 
-<!--
             success:function(result){
                  const completeResult = result;
                  console.log("read.html 분양완료버튼 ajax - success() 진입 결과 -> "+ completeResult);
@@ -600,6 +593,9 @@ if(imageTrue){
         $(".uploadResult ul").append(str);
 }//if문 imageTrue 경우 이미지보여주기
 -->
+
+
+
 <!--
 
 //________________________________________
