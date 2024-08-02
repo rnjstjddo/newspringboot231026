@@ -306,7 +306,7 @@ $("#completeBtn").on("click", function(){
     console.log("read.html 분양완료버튼 클릭 진입");
     console.log("read.html 분양완료버튼 클릭 진입 현재 분양글번호 -> "+readDno);
 
-    var completeData = {"readDno": readDno}
+    var completeData = {readDno: readDno}
 
     if(alert("분양완료 처리를 하시겠습니까?")){
         $.ajax({
@@ -314,7 +314,8 @@ $("#completeBtn").on("click", function(){
             type:'post',
             data:JSON.stringify(completeData),
             contentType: "application/json;charset=utf-8",
-            dataType:'json',
+            dataType:'text',
+        <!--
         })
         .done(function(result){
             const completeResult = result;
@@ -329,7 +330,8 @@ $("#completeBtn").on("click", function(){
             console.log("read.html 분양완료버튼 ajax - fail() 진입 결과");
             location.replace(`/dogsell/read?dno=${readDno}`);
         });//ajax
-<!--
+        -->
+
             success:function(result){
                  const completeResult = result;
                  console.log("read.html 분양완료버튼 ajax - success() 진입 결과 -> "+ completeResult);
@@ -343,9 +345,8 @@ $("#completeBtn").on("click", function(){
                  console.log("read.html 분양완료버튼 ajax - fail() 진입 결과");
                     location.replace(`/dogsell/read?dno=${readDno}`);
             }
-        });//ajax
--->
-    }//if문
+        });//끝 ajax
+    }//끝 if문
 });//분양완료시
 
 
@@ -362,7 +363,7 @@ $(".modalReviewCloseBtn").on("click", function(e){
     e.preventDefault();
     console.log("dogsell-read.html 모달창 댓글등록 닫기이벤트 진입");
     $(".reviewModalRegisterDiv").hide();
-});
+});//끝 on()
 
 var dno =[[${readDto.dno}]];
 
@@ -384,7 +385,7 @@ $(".replyListBtn").on("click", function(e){
         replyList.hide();
         $(".replyListBtn").html("댓글목록보기");
     }
-});
+});//끝 on() 댓글목록보기 이벤트
 
 
 //모달창 댓글등록 클릭이벤트
@@ -414,17 +415,12 @@ $(".modalReviewRegisterBtn").on("click", function(e){
             alert(result +"번 분양댓글이 등록되었습니다.");
             $(".reviewModalRegisterDiv").hide();
             location.replace(`/dogsell/read?dno=${dno}`);
-            //replyList.show("fast");
-            //$(".replyListBtn").html("댓글목록닫기");
-
-           //location.replace(`/dogsell/reply/list`);
         }
-    });//$.ajax
-});//모달창 댓글등록 이벤트진입
+    });//끝 $.ajax
+});//on() 모달창 댓글등록 이벤트진입
 
 
 //댓글목록 조회버튼 이벤트 처리
-//$("#replyListReadBtn").on("click", function(){
 $(".rDtoTr #replyListReadBtn").on("click", function(){
 
     console.log("dogsell-read.html 댓글목록 조회버튼 클릭이벤트 진입");
@@ -432,32 +428,19 @@ $(".rDtoTr #replyListReadBtn").on("click", function(){
 //#modalReviewCreatedDate #modalReviewModifyReplyer #modalReviewModifyText
 //.modalReviewModifyBtn .modalReviewRemoveBtn .modalReviewModifyCloseBtn
 
-    //var trTag = this.closest(".rDtoTr");
-    //var target =this;
-    //console.log(target);//전체
 
-    //var drno = $(this).closest("tr").data("drno");
     var drno = $(this).data("drno");
     console.log("dogsell-read.html 댓글목록 조회버튼 클릭이벤트 진입 댓글번호 data- 담은-> "+ drno);
-    //find("data-drno");
-    //var drno = $(this).closest("tr").data("text");
     var text = $(this).data("text")
     console.log("dogsell-read.html 댓글목록 조회버튼 클릭이벤트 진입 댓글내용 data- 담은-> "+ text);
 
-    //.find("data-text");
-    //var drno = $(this).closest("tr").data("replyer");
     var replyer = $(this).data("replyer");
     console.log("dogsell-read.html 댓글목록 조회버튼 클릭이벤트 진입 댓글자 data- 담은-> "+ replyer);
 
-    //.find("data-replyer");
-    //var drno = $(this).closest("tr").data("createddate");
     var createddate = $(this).data("createddate")
     console.log("dogsell-read.html 댓글목록 조회버튼 클릭이벤트 진입 댓글등록일자 data- 담은-> "+ createddate);
-    //.find("data-createddate");
-    //var drno = $(this).closest("tr").data("modifieddate");
     var modifieddate = $(this).data("modifieddate");
     console.log("dogsell-read.html 댓글목록 조회버튼 클릭이벤트 진입 댓글수정일자 data- 담은-> "+ createddate);
-    //.find("data-modifieddate");
 
     var dataValue={drno:drno,text:text,replyer:replyer,createddate:createddate,modifieddate:modifieddate};
 
@@ -484,7 +467,6 @@ $(".rDtoTr #replyListReadBtn").on("click", function(){
 });//댓글목록 조회버튼
 
 
-//var drno =  $(".rDtoTr").data("drno").val();
 
 
 //댓글목록에서 삭제버튼클릭
@@ -510,10 +492,10 @@ $(".rDtoTr #replyListModifyBtn").on("click", function(e){
                 alert(result+"번 분양댓글이 삭제되었습니다.");
                 location.replace(`/dogsell/read?dno=${dno}`);
 
-            }//success
-        });//$.post
-    }//if
-});//목록에서 삭제버튼 클릭
+            }//끝success
+        });//끝$.ajax
+    }//끝if
+});//on() 목록에서 삭제버튼 클릭
 
 //수정모달창 저장하기버튼 클릭이벤트
 $(".modalReviewModifyBtn").on("click", function(){
@@ -541,8 +523,8 @@ $(".modalReviewModifyBtn").on("click", function(){
             $(".reviewModalModifyDiv").hide();
             location.replace(`/dogsell/read?dno=${dno}`);
         }
-    });//$.ajax
-});//모달수정창 저장하기버튼 클릭이벤트
+    });//끝 $.ajax
+});//on() 모달수정창 저장하기버튼 클릭이벤트
 
 
 //#replyListModifyBtn .modalReviewModifyBtn .modalReviewRemoveBtn .modalReviewModifyCloseBtn
@@ -555,6 +537,7 @@ $(".modalReviewRemoveBtn").on("click", function(){
     console.log("dogsell-read.html 모달 수정창 삭제하기 버튼이벤트 진입 -삭제할 댓글번호 -> "+ drnoValue);
 
     var data ={drno:drnoValue};
+
     $.ajax({
         url:'/dogsell/reply/remove',
         type:'post',
@@ -568,23 +551,23 @@ $(".modalReviewRemoveBtn").on("click", function(){
             $(".reviewModalModifyDiv").hide();
             location.replace(`/dogsell/read?dno=${dno}`);
         }//success
-    });//$.ajax
-});//수정모달창 삭제하기버튼 클릭
+    });//끝 $.ajax
+});//끝 on() 수정모달창 삭제하기버튼 클릭
 
 //수정모달창 닫기버튼 이벤트
 $(".modalReviewModifyCloseBtn").on("click", function(){
   $(".reviewModalModifyDiv").hide();
-});//수정모달창 닫기버튼 이벤트
+});//끝 on() 수정모달창 닫기버튼 이벤트
 
 
 
 //____________________________________________________________________________________________________
 //분양글처리
 console.log("read.html 진입 imageTrue -> "+imageTrue +", imageFalse -> "+imageFalse);
+
 if(imageFalse){
     console.log("dogsell-read.html 첨부파일 이미지가 존재하지 않을때 진입 -> "+ imageFalse);
-
-}
+}//if문 imageFalse경우
 
 
 if(imageTrue){
@@ -620,49 +603,41 @@ if(imageTrue){
         });//$.each
 
         $(".uploadResult ul").append(str);
-}//imageTrue경우 이미지보여주기
+}//if문 imageTrue 경우 이미지보여주기
 
 //________________________________________
-//수정하기
+//분양글 수정하기
 $("#modifyBtn").on("click", function(e){
     console.log("dogsell-read.html 조회페이지 수정하러가기 이벤트진입");
     e.preventDefault();
 
     if(confirm("해당 강아지분양정보를 수정하시겠습니까?")){
+        var dno =$("#dno").val();
+        readForm.append(`<input type='hidden' name="dno" value="${dno}">`);
 
-    var dno =$("#dno").val();
-//    var titleTag =$("input[name='title']");
-//    var contentTag = $("#content");
+        readForm.attr("action","/dogsell/modify");
+        readForm.attr("method","get");
+        readForm.submit();
+    }//if문 수정하기 버튼이벤트처리
 
-//    readForm.empty();
-    readForm.append(`<input type='hidden' name="dno" value="${dno}">`);
-//    readForm.append(titleTag);
-//    readForm.append(contentTag);
+});//on() 수정하러가기 버튼이벤트처리
 
-    readForm.attr("action","/dogsell/modify");
-    readForm.attr("method","get");
-    readForm.submit();
-    }//if문
-
-});//수정하러가기버튼 이벤트처리
-
-//삭제하기버튼처리
+//분양글 삭제하기버튼처리
 $("#removeBtn").on("click", function(e){
     console.log("dogsell-read.html 조회페이지 삭제하기 버튼이벤트 진입 - form처리 ");
     e.preventDefault();
 
     if(confirm("해당 강아지분양정보를 삭제하시겠습니까? 삭제하실경우 모든 댓글내용이 삭제되니 유의하세요!")){
-    var dnoTag = $("#dno");
-    console.log(dnoTag);
-    readForm.empty();
+        var dnoTag = $("#dno");
+        console.log(dnoTag);
+        readForm.empty();
 
-    readForm.append(dnoTag);
-    readForm.attr("action","/dogsell/remove");
-    readForm.attr("method","post");
-    readForm.submit();
-
-}
-});//삭제하기버튼 이벤트처리
+        readForm.append(dnoTag);
+        readForm.attr("action","/dogsell/remove");
+        readForm.attr("method","post");
+        readForm.submit();
+    }//if문 삭제하기버튼내부
+});//on() 삭제하기버튼 이벤트처리
 
 
 });//$(document).ready()

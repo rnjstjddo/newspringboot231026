@@ -67,39 +67,22 @@ public class DogSellService {
     //1개조회
     public DogSellReadDTO read(Long dno){
         System.out.println("service-dogsell클래스 DogSellService read() 진입 - 파라미터 등록번호 -> "+ dno);
-/*
-        Object [] result = dsr.getDogSellOne(dno);
 
-        return entityToDtoDogReadSell((DogSell)result[0], (DogSellImage) result[1]);
-*/
         //따로따로 불러온다.
         Optional<DogSell> entity = dsr.findById(dno);
 
-        if(entity.isPresent()){
-            System.out.println("service-dogsell클래스 DogSellService read() 진입 - 분양강아지 정보 -> "+ entity.get().toString());
-        }
+        DogSellReadDTO result = null;
         
-        List<DogSellImage> entityI = dsir.findByDno(dno);
+        //찜강아지 존재할경우
+        if(entity.isPresent()) {
+            System.out.println("service-dogsell클래스 DogSellService read() 진입 - 분양강아지 정보 -> " + entity.get().toString());
 
-        System.out.println("service-dogsell클래스 DogSellService read() 진입 - 분양강아지 이미지정보 -> "+ entityI.toString());
+            List<DogSellImage> entityI = dsir.findByDno(dno);
+            System.out.println("service-dogsell클래스 DogSellService read() 진입 - 분양강아지 이미지정보 -> " + entityI.toString());
+            result = entityToDtoDogReadSell((DogSell) entity.get(), entityI);
 
-        DogSellReadDTO result = entityToDtoDogReadSell((DogSell) entity.get(), entityI);
-
-        System.out.println("service-dogsell클래스 DogSellService read() 진입 - 분양강아지 이미지정보 -> "+ entityI.toString());
-
+        }
         return result;
-
-       /* Object arrayList = dsr.getDogSellOne(dno);
-
-        DogSellReadDTO readDTO =null;
-
-        Object [] array = (Object []) arrayList;
-            System.out.println(((DogSell) array[0]).toString());
-            System.out.println(((List<DogSellImage>) array[1]).toString());
-
-            DogSellReadDTO result = entityToDtoDogReadSell((DogSell) array[0], (DogSellImage) array[1]);
-            readDTO =result;
-            return result;*/
     }
 
 
