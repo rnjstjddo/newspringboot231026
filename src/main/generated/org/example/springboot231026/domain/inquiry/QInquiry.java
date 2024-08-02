@@ -21,7 +21,7 @@ public class QInquiry extends EntityPathBase<Inquiry> {
 
     public final org.example.springboot231026.domain.posts.QBaseTimeEntity _super = new org.example.springboot231026.domain.posts.QBaseTimeEntity(this);
 
-    public final BooleanPath complete = createBoolean("complete");
+    public final StringPath complete = createString("complete");
 
     public final StringPath content = createString("content");
 

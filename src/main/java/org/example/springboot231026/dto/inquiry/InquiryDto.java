@@ -16,8 +16,8 @@ import java.time.LocalDateTime;
 public class InquiryDto {
 
     private Long innum;
-    private String writer, content,phone,email;
-    private Boolean complete;
+    private String writer, content,phone,email,complete;
+    //private Boolean complete;
 
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDateTime createdDate, modifiedDate;
