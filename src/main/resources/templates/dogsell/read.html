@@ -294,7 +294,7 @@ $("#completeBtn").on("click", function(){
 
     var completeData = {readDno: readDno}
 
-    if(alert("분양완료 처리를 하시겠습니까?")){
+    if(confirm("분양완료 처리를 하시겠습니까?")){
         $.ajax({
             url: '/dogsell/complete',
             type:'post',
