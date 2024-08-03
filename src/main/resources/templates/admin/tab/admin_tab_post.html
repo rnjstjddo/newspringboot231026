@@ -84,17 +84,17 @@
                         <nav  aria-label="Page navigation example">
                             <div>
                                 <ul class="pagination">
-                                    <li class="page-item" th:if="${responseDto.prev}">
+                                    <li class="page-item pagination_button " th:if="${responseDto.prev}">
                                         <a  class="page-link" aria-label="Previous" th:data-num="${responseDto.start-1}" ><span aria-hidden="true">&laquo;</span></a>
                                     </li>
 
                                     <th:block th:each="i:${#numbers.sequence(responseDto.start, responseDto.end)}" th:if="${responseDto.page}">
-                                        <li class="page-item" th:classappend="${responseDto.page == i } ? active : ''" >
+                                        <li class="page-item pagination_button " th:classappend="${responseDto.page == i } ? active : ''" >
                                             <a class="page-link" th:data-num="${i}">[[${i}]]</a>
                                         </li>
                                     </th:block>
 
-                                    <li class="page-item" th:if="${responseDto.next}">
+                                    <li class="page-item pagination_button " th:if="${responseDto.next}">
                                         <a  class="page-link" aria-label="Next" th:data-num="${responseDto.end+1}"><span aria-hidden="true">&raquo;</span></a>
                                     </li>
                                 </ul>

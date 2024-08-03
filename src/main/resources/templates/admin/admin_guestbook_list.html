@@ -56,7 +56,10 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fs-5 " th:classappend="${tabtitle} =='member' ? active : ''"
-                           aria-current="page" th:href="|@{/admin/member/list?yearmonth={localDate}(localDate=${localDate})}&tabtitle=member|">회원정보</a>
+                           aria-current="page" th:href="|@{/admin/member/list?yearmonth={localDate}(localDate=${localDate})}&tabtitle=member|">
+                            회원정보
+                            <span class="badge text-bg-warning">[[${count.memberCount}]]</span>
+                        </a>
                     </li>
                 </ul>
                 <br>
@@ -126,16 +129,16 @@
                                 <nav  aria-label="Page navigation example">
                                     <div>
                                         <ul class="pagination">
-                                            <li class="page-item" th:if="${pResponseDto.prev}">
+                                            <li class="page-item pagination_button " th:if="${pResponseDto.prev}">
                                                 <a  class="page-link" aria-label="Previous" th:data-num="${pResponseDto.start-1}"><span aria-hidden="true">&laquo;</span></a>
                                             </li>
 
                                             <th:block th:each="i:${#numbers.sequence(pResponseDto.start, pResponseDto.end)}" th:if="${pResponseDto.page}">
-                                                <li class="page-item" th:classappend="${pResponseDto.page == i } ? active : ''" >
+                                                <li class="page-item pagination_button " th:classappend="${pResponseDto.page == i } ? active : ''" >
                                                     <a class="page-link" th:data-num="${i}">[[${i}]]</a>
                                                 </li>
                                             </th:block>
-                                            <li class="page-item" th:if="${pResponseDto.next}">
+                                            <li class="page-item pagination_button " th:if="${pResponseDto.next}">
                                                 <a  class="page-link" aria-label="Next" th:data-num="${pResponseDto.end+1}"><span aria-hidden="true">&raquo;</span></a>
                                             </li>
                                         </ul>

@@ -16,6 +16,7 @@
                     업데이트일자 [[${localDate}]]
                 </a>
                 <br><br>
+<!--
 
                 <ul class="nav nav-pills">
                     <li class="nav-item">
@@ -43,7 +44,53 @@
                            aria-current="page" th:href="|@{/admin/member/list?yearmonth={localDate}(localDate=${localDate})}&tabtitle=member|">회원정보</a>
                     </li>
                 </ul>
+-->
 
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link fs-5 " th:classappend="${tabtitle} =='guestbook' ? active : ''"
+                           aria-current="page" th:href="|@{/admin/guestbook/list?yearmonth={localDate}(localDate=${localDate})}&tabtitle=guestbook|">
+                            방명록
+                            <span class="badge text-bg-warning">[[${count.guestcount}]]</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5 " th:classappend="${tabtitle} =='guestbookreply' ? active : ''"
+                           aria-current="page" th:href="|@{/admin/guestbookreply/list?yearmonth={localDate}(localDate=${localDate})}&tabtitle=guestbookreply|">
+                            방명록댓글
+                            <span class="badge text-bg-warning">[[${count.guestreplycount}]]</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5 " th:classappend="${tabtitle} =='posts' ? active : ''"
+                           aria-current="page" th:href="|@{/admin/post/list?yearmonth={localDate}(localDate=${localDate})}&tabtitle=posts|">
+                            게시글
+                            <span class="badge text-bg-warning">[[${count.postcount}]]</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5 " th:classappend="${tabtitle} =='postreply' ? active : ''"
+                           aria-current="page" th:href="|@{/admin/postreply/list?yearmonth={localDate}(localDate=${localDate})}&tabtitle=postreply|">
+                            게시글댓글
+                            <span class="badge text-bg-warning">[[${count.postreplycount}]]</span>
+
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5 " th:classappend="${tabtitle} =='inquiry' ? active : ''"
+                           aria-current="page" th:href="|@{/admin/inquiry/list?yearmonth={localDate}(localDate=${localDate})}&tabtitle=inquiry|">
+                            문의글
+                            <span class="badge text-bg-warning">[[${count.inquirycount}]]</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5 " th:classappend="${tabtitle} =='member' ? active : ''"
+                           aria-current="page" th:href="|@{/admin/member/list?yearmonth={localDate}(localDate=${localDate})}&tabtitle=member|">
+                            회원정보
+                            <span class="badge text-bg-warning">[[${count.memberCount}]]</span>
+                        </a>
+                    </li>
+                </ul>
                 <br><br>
                 <div>
                     <a class="btn btn-outline-secondary" type="button" href="/admin/tab/member">회원 전체목록페이지로 이동</a>
