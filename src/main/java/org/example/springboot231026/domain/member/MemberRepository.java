@@ -21,7 +21,7 @@ public interface MemberRepository extends JpaRepository<Member, String>, MemberS
     Optional<Member> findByName(String name);
 
     //특정날짜 회원등록수 추출
-    @Query("select count(m) from Member m where m.createdDate >= :before and g.createdDate < :after")
+    @Query("select count(m) from Member m where m.createdDate >= :before and m.createdDate < :after")
     Long getCountLocalDate(@Param("before") LocalDateTime before, @Param("after") LocalDateTime after);
 
 
