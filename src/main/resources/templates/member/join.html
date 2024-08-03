@@ -30,6 +30,7 @@
                         <label class="form-label">아이디</label>
                         <input type="text" class="form-control" name="username" id="name"
                                placeholder="아이디를 입력해주세요" required>
+                        <button type="button" id="namecheck" class="btn btn-outline-success">아이디중복확인</button>
                     </div>
                     <br>
                     <br>
@@ -49,13 +50,7 @@
 
                     <br>
                     <br>
-<!--
 
-                    <div class="col-12">
-                        <label class="form-label">자동로그인</label>
-                        <input type="checkbox" name="remember-me" id="remember-me">
-                    </div>
--->
 
                     <div style="display:inline-block;text-align:right;">
                         <button type="button" class="btn btn-outline-warning" id="joinBtn">회원가입</button>
@@ -68,6 +63,44 @@
 
     </th:block>
 <script th:inline="javascript">
+
+$(document).ready(function(){
+
+    //아이디중복확인 on이벤트진입
+    $(#namecheck).on("click", function(){
+        console.log("member-join.html 회원가입 중 아이디중복확인 진입");
+
+        var data = $("#name").val();
+        console.log("member-join.html 회원가입 중 아이디중복확인 진입 입력받은 아이디값 -> "+ data);
+
+        $.ajax({
+            url:'/'
+            method:'post';
+            dataType:
+            contentType:
+            success: function(result){
+                if(result== "true"){
+                    console.log("member-join.html 회원가입 중 아이디중복확인 결과 -> 사용가능")
+                    alert("아이디 사용가능합니다!")
+                    $("#name").attr("readonly",true);
+                }
+                if(result == "false"){
+                    console.log("member-join.html 회원가입 중 아이디중복확인 결과 -> 중복됨")
+                    alert("아이디가 중복됩니다. 다른 아이디로 변경해주세요!");
+                    $("#name").focus();
+
+                }
+            },
+
+            fail: function(){
+                console.log("member-join.html 회원가입 중 아이디중복확인 중 에러발생 현재페이지 replace() ")
+                location.replace(`/member/join`)
+            }
+        });//끝 $.ajax
+    });//끝 on클릭이벤트진입 아이디중복확인
+
+});//끝 제이쿼리
+
 </script>
 </th:block>
 

@@ -32,6 +32,14 @@ public class MemberApiController {
         return name;
     }
 
+    @PostMapping("/member/join/check")
+    public String joinMemberCheck(@RequestBody JoinDTO dto){
+        System.out.println("컨트롤러클래스 MemberApiController joinMemberCheck() 진입 파라미터 JoinDTO.getName() 아이디중복확인 -> "+ dto.getName());
+        String result = ms.checkName(dto);
+
+        return result;
+    }
+
     @PutMapping("/member/updateJoin")
     public String updateJoin(@RequestBody JoinDTO joinDTO, @AuthenticationPrincipal MemberDTO memberDTO){
         System.out.println("컨트롤러클래스 MemberApiController updateJoin() 진입 파라미터 JoinDTO -> "+ joinDTO.toString());
@@ -47,7 +55,6 @@ public class MemberApiController {
 
     @PutMapping("/member/updateSocialJoin")
     public String updateSocialJoin(@RequestBody JoinDTO joinDTO, @AuthenticationPrincipal MemberDTO memberDTO){
-    //public String updateSocialJoin(@RequestParam("name") String name, @AuthenticationPrincipal MemberDTO memberDTO){
 
         System.out.println("컨트롤러클래스 MemberApiController updateSocialJoin() 진입 파라미터 JoinDTO -> "+ joinDTO.getName());//joinDTO.getName(
         String originName= memberDTO.getName();

@@ -70,7 +70,7 @@ public class MemberService {
 
     @Transactional
     public String memberJoin(JoinDTO dto){
-        System.out.println("service-member패키지 MemberService클래스 memberJoin() 진입" );
+        System.out.println("service-member패키지 MemberService클래스 memberJoin() 진입 - 일반회원가입 경우" );
 
         if(dto.getName().equals("admin")){
 
@@ -92,6 +92,21 @@ public class MemberService {
             return m.getName();
         }
     }
+
+    //아이디체크
+    public String checkName(JoinDTO joinDTO){
+        System.out.println("service-member패키지 MemberService클래스 checkName() 진입 - 일반회원가입시 아이디중복확인");
+
+        Optional<Member> o = mr.findByName(joinDTO.getName());
+
+        if(o.isPresent()){
+            System.out.println("service-member패키지 MemberService클래스 checkName() 진입 아이디 중복되는 경우 진입");
+            return "false";
+        }
+        System.out.println("service-member패키지 MemberService클래스 checkName() 진입 아이디 중복되지 않아서 true 전달");
+        return "true";
+    }
+
 
     @Transactional
     public Member updateJoin(JoinDTO joinDTO, MemberDTO memberDTO){

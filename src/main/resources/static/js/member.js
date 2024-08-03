@@ -51,7 +51,15 @@ var memberObject ={
     },//init
 
     join : function(){
-        console.log("member.js 객체 memberObject의 join 함수진입");
+        console.log("member.js 객체 memberObject의 join 함수진입 - 회원가입에서 가입버튼 클릭한경우 진입");
+
+        var readonlyCheck =$("name").attr("readonly");
+
+        if(!readonlyCheck){
+            console.log("member.js 객체 memberObject의 join 함수진입 아이디중복확인 체크가 안된경우 진입 ");
+            alert("아이디 중복확인을 해주세요!")
+            $("#name").focus();
+        }
 
         var member ={
             name: $("#name").val(),
@@ -100,40 +108,11 @@ var memberObject ={
             console.log("member.js 객체 memberObject의 updateJoin 함수진입 - 비밀번호를 수정하지 않은경우 진입");
             alert("회원정보를 수정하지 않으셨습니다. 메인페이지로 이동합니다!")
             location.replace("/home/home");
-            /*var updatemember ={
-                //name: $("#name").val().trim(),
-                //password: $("#passwordorigin").val().trim()
-                name: $.trim($("#name").val()),
-                password: $.trim($("#passwordorigin").val())
-            }
-
-            console.log(updatemember)
-
-            $.ajax({
-                type:'put',
-                url:'/member/updateJoin',
-                dataType:'text',
-                data:JSON.stringify(updatemember),
-                contentType:'application/json;charset=utf-8'
-            })
-            .done(function(response){
-                console.log("member.js 객체 memberObject의 updateJoin 함수진입 - $.ajax -done() 진입"+
-                " 비밀번호 수정하지 않은 경우");
-                console.log(response);
-                //location="/member/login";
-                location.replace("/member/login");
-            })
-            .fail(function(error){
-                console.log("member.js 객체 memberObject의 updateJoin 함수진입 - $.ajax -fail() 진입"+
-                " 비밀번호 수정하지 않은 경우");
-                console.log(error);
-            });
-*/
         }
 
 
         //if(  passwordcheck == password || (passwordcheck.trim() != "" && password.trim() !="") ){
-        if(  passwordcheck == password || ( $.trim(passwordcheck) != "" && $.trim(password) !="") ){
+        if(  ($.trim(passwordcheck) != "" && $.trim(password) !="") && passwordcheck == password ){
 
             console.log("member.js 객체 memberObject의 updateJoin 함수진입 비밀번호를 수정한 경우 진입");
 

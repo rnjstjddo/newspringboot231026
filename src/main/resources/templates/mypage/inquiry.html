@@ -31,8 +31,8 @@
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                      data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                         <span class="fst-italic">
-                                            &nbsp;&nbsp;작성일자 [[${#temporals.format(iDto.createdDate, 'yyyy-MM-dd')}]] | &nbsp;&nbsp; [[${iDto.complete}]]
-                                             <th:block th:switch="${iDto.complete}">
+                                            &nbsp;&nbsp;작성일자 [[${#temporals.format(iDto.createdDate, 'yyyy-MM-dd')}]] | &nbsp;&nbsp;
+                                             <th:block th:switch="${#strings.toString(iDto.complete)}">
                                                 <span th:case="true">답변여부: 완료</span>
                                                 <span th:case="false">답변여부: 미완료</span>
                                             </th:block>
