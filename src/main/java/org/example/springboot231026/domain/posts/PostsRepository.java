@@ -38,7 +38,7 @@ public interface PostsRepository extends JpaRepository<Posts, Long> , PostsSearc
     //@Query("select count(p) from Posts p where r.modifiedDate like localDate%")
     //Long getCountLocalDate(@Param("localDate")LocalDate localDate);
 
-    @Query("select count(g) from Posts g where g.modifiedDate >= :before and g.modifiedDate < :after")
+    @Query("select count(g) from Posts g where g.createdDate >= :before and g.createdDate < :after")
     Long getCountLocalDate(@Param("before") LocalDateTime before, @Param("after") LocalDateTime after);
 
 

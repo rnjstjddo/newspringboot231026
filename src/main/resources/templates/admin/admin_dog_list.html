@@ -64,7 +64,20 @@
                                             class="card-img-top"/>
                                     </div>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><span class="fw-bolder">특징</span>&nbsp;[[${dogSell.content}]]</li>
+                                        <li class="list-group-item"><span class="fw-bolder">분양결과</span>&nbsp;
+                                            <th:block th:switch="${dogSell.complete}">
+                                                <th:block th:case="0">분양중</th:block>
+                                                <th:block th:case="1">분양완료</th:block>
+                                                <th:block th:case="true">분양완료</th:block>
+                                                <th:block th:case="false">분양중</th:block>
+                                            </th:block>
+                                            <!--[[${dogSell.complete}]]-->
+                                        </li>
+                                        <li class="list-group-item contentAll" data-dno="${dogSell.dno}" data-content="${dogSell.content}" ><span class="fw-bolder">특징</span>&nbsp;
+                                            <span style="display:block; overflow:hidden; text-overflow:ellipsis; width:280px; height:100px;">
+                                            [[${dogSell.content}]]
+                                            </span>
+                                        </li>
                                         <li class="list-group-item"><sapn class="fw-bolder">분양번호</sapn>&nbsp;[[${dogSell.dno}]]</li>
                                         <li class="list-group-item"><sapn class="fw-bolder">작성자</sapn>&nbsp;[[${dogSell.membername}]]</li>
                                         <li class="list-group-item"><sapn class="fw-bolder">나이</sapn>&nbsp;[[${dogSell.age}]]세</li>
@@ -84,6 +97,28 @@
                 </section>
             </div><!-- 컨테이너 -->
         </article>
+
+
+        <!-- 특징내용 전체보여주기 모달창 -->
+        <div class="modal contentAllModalDiv" tabindex="-1"  >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title contentAllModalDivHeader"></h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3" id="contentAllModalDivBody">
+                            <p>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-warning btn-sm contentAllModalDivBtn" >닫기</button>
+                    </div>
+                </div>
+            </div>
+        </div><!-- 특징내용 전체보여주기 모달창 -->
+
     </th:block>
 </th:block>
 <script th:inline="javascript">
@@ -214,6 +249,24 @@ var removeSuccess =[[${removeSuccess}]];
 if(removeSuccess !=null){
     alert(removeSuccess+"번 강아지분양글이 삭제되었습니다.");
 }
+
+//관리자페이지 분양글에서 특징글 전체 보이게 모달창으로 보이게할때
+$(".contentAll").on("click", function(){
+//contentAllModalDiv contentAllModalDivHeader contentAllModalDivBody contentAllModalDivBtn
+    console.log("관리자페이지 admin_dog_list.html 강아지분양글전체 중 특징내용 모달창으로 보여주기 클릭이벤트 진입");
+    var dnoVal =$(this).data("dno");
+    val contentVal =$(this).data("content");
+
+    $(".contentAllModalDivHeader").html(dnoVal+"번 분양강아지 특징");
+    $(".contentAllModalDivBody").html(contentVal)
+    $(".contentAllModalDiv").show();
+});//끝 on()클릭이벤트진입
+
+//특징모달창 닫기이벤트진입
+$(".contentAllModalDivBtn").on("click",function(){
+    console.log("관리자페이지 admin_dog_list.html 강아지분양글전체 중 특징내용 모달창 닫기 클릭이벤트 진입");
+    $(".contentAllModalDiv").hide();
+});//끝 on() 모달창닫기이벤트
 
 </script>
 

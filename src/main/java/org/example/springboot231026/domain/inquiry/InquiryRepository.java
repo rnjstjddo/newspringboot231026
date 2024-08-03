@@ -15,7 +15,7 @@ import java.util.Optional;
 public interface InquiryRepository extends JpaRepository<Inquiry, Long>, InquirySearch {
 
 
-    @Query("select count(g) from Inquiry g where g.modifiedDate >= :before and g.modifiedDate < :after")
+    @Query("select count(g) from Inquiry g where g.createdDate >= :before and g.createdDate < :after")
     Long getCountLocalDate(@Param("before") LocalDateTime before, @Param("after") LocalDateTime after);
 
     //회원이 작성한 문의글 가져오기

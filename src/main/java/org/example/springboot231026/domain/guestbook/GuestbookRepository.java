@@ -26,7 +26,7 @@ public interface GuestbookRepository extends JpaRepository<Guestbook, Long>, Que
     //List<Long> getGuestbookReplyCountByWriter(@Param("writer") String writer);
 
     //관리자 페이지에서 날짜를 통해
-    @Query("select g from Guestbook g where g.modifiedDate >= :before and g.modifiedDate < :after")
+    @Query("select g from Guestbook g where g.createdDate >= :before and g.createdDate < :after")
     List<Guestbook> findByModifiedDate(@Param("before") LocalDateTime before,@Param("after") LocalDateTime after);
 
     //관리자페이지 특정날짜조회
@@ -37,7 +37,7 @@ public interface GuestbookRepository extends JpaRepository<Guestbook, Long>, Que
     //@Query("select count(g) from Guestbook g where g.modifiedDate like localDate%")
     //Long getCountLocalDate(@Param("localDate") LocalDate localDate);
 
-    @Query("select count(g) from Guestbook g where g.modifiedDate >= :before and g.modifiedDate < :after")
+    @Query("select count(g) from Guestbook g where g.createdDate >= :before and g.createdDate < :after")
     Long getCountLocalDate(@Param("before") LocalDateTime before,@Param("after") LocalDateTime after);
 
 

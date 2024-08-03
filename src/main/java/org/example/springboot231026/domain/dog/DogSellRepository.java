@@ -47,7 +47,7 @@ public interface DogSellRepository extends JpaRepository<DogSell,Long> {
 
     //관리자페이지에서 날짜별 분류
     @Query("select d, di from DogSell d left join DogSellImage di on di.dogsell = d "+
-            " group by d order by d.modifiedDate ")
+            " group by d order by d.createdDate ")
     //@Query("select d, di from DogSell d left join DogSellImage di on di.dogsell = d group by d")
     List<Object []> getDogSellByModifiedDate();
 

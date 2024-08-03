@@ -29,7 +29,7 @@ public interface GuestbookReplyRepository extends JpaRepository<GuestbookReply,L
    // @Query("select count(r) from GuestbookReply r where r.modifiedDate like localDate%")
     //Long getCountLocalDate(@Param("localDate") LocalDate localDate);
 
-    @Query("select count(g) from GuestbookReply g where g.modifiedDate >= :before and g.modifiedDate < :after")
+    @Query("select count(g) from GuestbookReply g where g.createdDate >= :before and g.createdDate < :after")
     Long getCountLocalDate(@Param("before") LocalDateTime before, @Param("after") LocalDateTime after);
 
 

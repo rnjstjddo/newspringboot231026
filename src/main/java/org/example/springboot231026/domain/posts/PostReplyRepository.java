@@ -33,7 +33,7 @@ public interface PostReplyRepository extends JpaRepository<PostReply, Long>, Pos
     //@Query("select count(p) from PostReply p where r.modifiedDate like localDate%")
     //Long getCountLocalDate(@Param("localDate") LocalDate localDate);
 
-    @Query("select count(g) from PostReply g where g.modifiedDate >= :before and g.modifiedDate < :after")
+    @Query("select count(g) from PostReply g where g.createdDate >= :before and g.createdDate < :after")
     Long getCountLocalDate(@Param("before") LocalDateTime before, @Param("after") LocalDateTime after);
 
 

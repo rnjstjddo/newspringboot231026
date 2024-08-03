@@ -78,16 +78,16 @@ var memberObject ={
                 success: function(result){
                     console.log("member-join.html 회원가입 중 아이디중복확인 결과 -> "+result);
 
-                    if(result === "true"){
+                    if(result == true){
                         console.log("member-join.html 회원가입 중 아이디중복확인 결과 -> 사용가능")
                         alert("아이디 사용가능합니다!")
                         $("#name").attr("readonly",true);
                     }
-                    if(result === "false"){
+                    if(result == false){
                         console.log("member-join.html 회원가입 중 아이디중복확인 결과 -> 중복됨")
                         alert("아이디가 중복됩니다. 다른 아이디로 변경해주세요!");
                         $("#name").focus();
-
+                        return;
                     }
                 },
 
