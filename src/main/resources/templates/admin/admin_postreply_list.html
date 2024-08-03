@@ -61,7 +61,7 @@
                             <a class="nav-link fs-5 " th:classappend="${tabtitle} =='member' ? active : ''"
                                aria-current="page" th:href="|@{/admin/member/list?yearmonth={localDate}(localDate=${localDate})}&tabtitle=member|">
                                 회원정보
-                                <span class="badge text-bg-warning">[[${count.memberCount}]]</span>
+                                <span class="badge text-bg-warning">[[${count.membercount}]]</span>
                             </a>
                         </li>
                     </ul>

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Repository
@@ -18,6 +19,11 @@ public interface MemberRepository extends JpaRepository<Member, String>, MemberS
     Optional<Member> findByEmail(String email);
 
     Optional<Member> findByName(String name);
+
+    //특정날짜 회원등록수 추출
+    @Query("select count(m) from Member m where m.createdDate >= :before and g.createdDate < :after")
+    Long getCountLocalDate(@Param("before") LocalDateTime before, @Param("after") LocalDateTime after);
+
 
 
 }

@@ -219,7 +219,7 @@ public class AdminController {
                 //게시판개수
                 Long postCount = (Long) postsListResponseDtoList.stream()
                         .filter(r -> r.getModifiedDate().toLocalDate().isEqual(localDate)).count();
-                System.out.println("게시판갯수 guestCount ->  " + postCount);
+                System.out.println("게시판갯수 postCount ->  " + postCount);
 
                 postsDateCount.put(localDate, postCount);
 
@@ -693,6 +693,9 @@ public class AdminController {
         count.setGuestcount(gs.getCountLocalDate(localDate));
         //방명록댓글
         count.setGuestreplycount(grs.getCountLocalDate(localDate));
+
+        //회원
+        count.setMembercount(ms.getCountLocalDate(localDate));
 
         System.out.println("관리자컨트롤러 returnCount() 진입 Count 객체반환 -> "+ count.toString());
 

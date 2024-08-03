@@ -30,6 +30,7 @@ import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -326,5 +327,15 @@ public class MemberService {
                 .build();
 
     }
+
+    //특정날짜회원등록수
+    public Long getCountLocalDate(LocalDate localDate){
+        System.out.println("service-member패키지 MemberService클래스 getCountLocalDate() 진입");
+
+        Long count = mr.getCountLocalDate(localDate.atTime(LocalTime.MIN), localDate.atTime(LocalTime.MAX));
+        System.out.println("service-member패키지 MemberService클래스 getCountLocalDate() 진입 localDate 등록한 회원수 -> "+ count);
+        return count;
+    }
+
 
 }

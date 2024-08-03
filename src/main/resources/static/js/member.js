@@ -66,7 +66,7 @@ var memberObject ={
 
             var nameVal = $("#name").val();
             var data ={name:nameVal};
-            console.log("member-join.html 회원가입 중 아이디중복확인 진입 입력받은 아이디값 -> "+ data);
+            console.log("member-join.html 회원가입 중 아이디중복확인 진입 입력받은 아이디값 -> "+ nameVal);
 
             $.ajax({
                 url:'/member/join/check',
@@ -74,13 +74,16 @@ var memberObject ={
                 dataType: 'json',
                 data:JSON.stringify(data),
                 contentType:'application/json;charset=utf-8',
+
                 success: function(result){
-                    if(result== "true"){
+                    console.log("member-join.html 회원가입 중 아이디중복확인 결과 -> "+result);
+
+                    if(result === "true"){
                         console.log("member-join.html 회원가입 중 아이디중복확인 결과 -> 사용가능")
                         alert("아이디 사용가능합니다!")
                         $("#name").attr("readonly",true);
                     }
-                    if(result == "false"){
+                    if(result === "false"){
                         console.log("member-join.html 회원가입 중 아이디중복확인 결과 -> 중복됨")
                         alert("아이디가 중복됩니다. 다른 아이디로 변경해주세요!");
                         $("#name").focus();
