@@ -39,6 +39,13 @@
                         <input type="password" class="form-control" name="password" autocomplete="off"
                                id="password" placeholder="비밀번호를 입력해주세요" required>
                     </div>
+
+                    <div class="col-12">
+                        <label class="form-label">비밀번호 재확인</label>
+                        <input type="password" class="form-control" autocomplete="off"
+                               id="password2" placeholder="비밀번호를 다시 입력해주세요" required>
+                    </div>
+
                     <br>
                     <br>
                     <div class="col-12">
@@ -75,10 +82,11 @@ $(document).ready(function(){
         console.log("member-join.html 회원가입 중 아이디중복확인 진입 입력받은 아이디값 -> "+ data);
 
         $.ajax({
-            url:'/'
-            method:'post';
-            dataType:
-            contentType:
+            url:'/member/join/check',
+            method:'post',
+            dataType: 'json',
+            data:JSON.stringify(data),
+            contentType:'application/json;charset=utf-8',
             success: function(result){
                 if(result== "true"){
                     console.log("member-join.html 회원가입 중 아이디중복확인 결과 -> 사용가능")

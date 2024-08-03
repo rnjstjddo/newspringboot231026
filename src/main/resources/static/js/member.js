@@ -54,6 +54,19 @@ var memberObject ={
         console.log("member.js 객체 memberObject의 join 함수진입 - 회원가입에서 가입버튼 클릭한경우 진입");
 
         var readonlyCheck =$("name").attr("readonly");
+        var passwordval =$("#password").val();
+        var password2val =$("#password2").val();
+
+        //var emailval =$("#email").val();
+
+
+        if(passwordval != password2val){
+            console.log("member.js 객체 memberObject의 join 함수진입 비밀번호가 일치하지 않는경우 진입 ");
+            alert("비밀번호가 일치하지 않습니다. 다시 한번 확인해주세요!")
+            $("#passwordval").focus();
+        }
+
+
 
         if(!readonlyCheck){
             console.log("member.js 객체 memberObject의 join 함수진입 아이디중복확인 체크가 안된경우 진입 ");
