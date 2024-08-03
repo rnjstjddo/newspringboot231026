@@ -95,7 +95,7 @@ public class MemberService {
 
     @Transactional
     public Member updateJoin(JoinDTO joinDTO, MemberDTO memberDTO){
-        System.out.println("service-member패키지 MemberService클래스 updateJoin() 진입");
+        System.out.println("service-member패키지 MemberService클래스 updateJoin() 진입 - 일반회원이 비밀번호 변경한 경우 진입");
 
         Optional<Member> o = mr.findByUsername(memberDTO.getEmail(), memberDTO.isFromSocial());
                 //.orElseThrow(() -> new IllegalArgumentException("존재하는 않는 회원입니다."));

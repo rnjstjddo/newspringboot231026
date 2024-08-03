@@ -113,9 +113,8 @@ public class MemberDTO extends User implements OAuth2User {
 
     public MemberDTO setMember(Member entity){
         System.out.println("dto-member클래스 MemberDTO setMember() 진입 회원정보 수정후 세션갱신");
-        this.name=entity.getName();
-
-        System.out.println("dto-member클래스 MemberDTO setMember() 진입 회원정보 수정후 세션갱신 -> "+this.toString());
+        //this.name=entity.getName(); 닉네임은 일반회원은 바꾸지 않음
+        this.password=entity.getPassword();
         return this;
     }
 

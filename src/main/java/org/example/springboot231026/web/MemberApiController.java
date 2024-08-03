@@ -37,11 +37,12 @@ public class MemberApiController {
         System.out.println("컨트롤러클래스 MemberApiController updateJoin() 진입 파라미터 JoinDTO -> "+ joinDTO.toString());
         Member entity = ms.updateJoin(joinDTO, memberDTO);
 
-        //memberDTO.setMember(joinDTO); //세션갱신자동
-        System.out.println("컨트롤러클래스 MemberApiController updateJoin() 진입 파라미터 Member -> "+ entity.toString());
-        System.out.println("컨트롤러클래스 MemberApiController updateJoin() 진입 파라미터 MemberDTO -> "+ memberDTO.toString());
+        MemberDTO updateMemberDTO =memberDTO.setMember(entity); //세션갱신
+        System.out.println("컨트롤러클래스 MemberApiController updateJoin() 진입 파라미터 Member 엔티티수정 트랜잭션후 출력 -> "+ entity.getPassword());
+        System.out.println("컨트롤러클래스 MemberApiController updateJoin() 진입 파라미터 MemberDTO 세션 비밀번호수정 전 -> "+ memberDTO.getPassword());
+        System.out.println("컨트롤러클래스 MemberApiController updateJoin() 진입 파라미터 MemberDTO 세션 비밀번호수정 후 -> "+ updateMemberDTO.getPassword());
 
-        return entity.getName();//변경된 이름전달
+        return entity.getName();
     }
 
     @PutMapping("/member/updateSocialJoin")

@@ -43,24 +43,13 @@ public class Member extends BaseTimeEntity {
     public RoleType changeRole(RoleType role){
         return role;
     }
-
-
-    //@OneToMany
-    //@OneToMany
-    //@JoinColumn(name="wishnum_list")
-    //@Builder.Default
-    //@ManyToMany
-    //@JoinTable(name="members_wish_num", joinColumns = @JoinColumn(name="members_email"),
-    //        inverseJoinColumns = @JoinColumn(name="wish_num_id"))
-    //private List<WishNum> wishNumList=new ArrayList<>();
-    //private List<WishNum> wishNumList;
-
+    
 
     //회원정보수정시
     public Member updateMember(String name, String password){
         System.out.println("domain-member클래스 Member updateMember() 진입");
         this.name=name;
-        this.password=password;
+        this.password=password;//암호된 값으로 넣음
 
         System.out.println("domain-member클래스 Member updateMember() 진입 -> "+ this.toString());
         return this;

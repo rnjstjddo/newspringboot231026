@@ -95,11 +95,12 @@ var memberObject ={
         }
 
          //if(  passwordcheck == password && (passwordcheck.trim() == "" && password.trim() =="") ){
-         if(  passwordcheck == password && ($.trim(passwordcheck) == "" && $.trim(password) =="") ){
+         if( ($.trim(passwordcheck) == "" && $.trim(password) =="") && passwordcheck == password ){
 
-            console.log("member.js 객체 memberObject의 updateJoin 함수진입 비밀번호를 수정하지 않은경우 진입");
-
-            var updatemember ={
+            console.log("member.js 객체 memberObject의 updateJoin 함수진입 - 비밀번호를 수정하지 않은경우 진입");
+            alert("회원정보를 수정하지 않으셨습니다. 메인페이지로 이동합니다!")
+            location.replace("/home/home");
+            /*var updatemember ={
                 //name: $("#name").val().trim(),
                 //password: $("#passwordorigin").val().trim()
                 name: $.trim($("#name").val()),
@@ -127,7 +128,7 @@ var memberObject ={
                 " 비밀번호 수정하지 않은 경우");
                 console.log(error);
             });
-
+*/
         }
 
 
@@ -140,29 +141,29 @@ var memberObject ={
                 //name: $("#name").val().trim(),
                 //password: $("#password").val().trim()
                  name: $.trim($("#name").val()),
-                 password: $.trim($("#passwordorigin").val())
+                 password: $.trim($("#passwordcheck").val()) //여기서 name과 password는 JoinDTO로
+                 //컨트롤러의 핸들러메소드에서 @RequestBody있는 객체에 들어가는값이되기에 같은 변수명이어야한다.
             }
-            console.log(updatemember)
+            if(confirm("해당 비밀번호로 수정하시겠습니까?")){
 
-            $.ajax({
-                type:'put',
-                url:'/member/updateJoin',
-                dataType:'text',
-                data:JSON.stringify(updatemember),
-                contentType:'application/json;charset=utf-8'
-            })
-            .done(function(response){
-                console.log("member.js 객체 memberObject의 updateJoin 함수진입 - $.ajax -done() 진입"+
-                " 비밀번호 수정한 경우 ");
-                console.log(response);
-                //location="/member/login";
-                location.replace("/member/login");
-            })
-            .fail(function(error){
-                console.log("member.js 객체 memberObject의 updateJoin 함수진입 - $.ajax -fail() 진입"+
-                " 비밀번호 수정한 경우 ");
-                console.log(error);
-            });
+                $.ajax({
+                    type:'put',
+                    url:'/member/updateJoin',
+                    dataType:'text',
+                    data:JSON.stringify(updatemember),
+                    contentType:'application/json;charset=utf-8'
+                })
+                .done(function(response){
+                    console.log("member.js 객체 memberObject의 updateJoin 함수진입 - $.ajax -done() 진입"+
+                    " 비밀번호 수정");
+                    location.replace("/member/login");
+                })
+                .fail(function(error){
+                    console.log("member.js 객체 memberObject의 updateJoin 함수진입 - $.ajax -fail() 진입"+
+                    " 비밀번호 수정");
+                    console.log(error);
+                });
+            }//끝 if문 confirm()
         }
     },//updateJoin
 
