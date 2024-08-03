@@ -64,7 +64,8 @@ var memberObject ={
         $("#namecheck").on("click", function(){
             console.log("member-join.html 회원가입 중 아이디중복확인 진입");
 
-            var data = $("#name").val();
+            var nameVal = $("#name").val();
+            var data ={name:nameVal};
             console.log("member-join.html 회원가입 중 아이디중복확인 진입 입력받은 아이디값 -> "+ data);
 
             $.ajax({

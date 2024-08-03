@@ -335,7 +335,7 @@ public class AdminController {
 
         }//if문 회원List존재할때
 
-        return "redirect:/admin/admin_home";
+        return "admin/admin_home";
     }
 
 
