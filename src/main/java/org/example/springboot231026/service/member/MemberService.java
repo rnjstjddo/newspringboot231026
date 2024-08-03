@@ -279,8 +279,41 @@ public class MemberService {
 
         //날짜까지 추가
         Page<Member> page = mr.searchMemberAllModifiedDate(types, keyword, p,localDate);
+        //Page<Member> page = mr.searchMemberAllCreatedDate(types, keyword, p,localDate);
 
         System.out.println("여기까지오나");
+
+        //entity->dto
+        List<MemberDTO> list = page.getContent().stream()
+                .map(entity ->new MemberDTO(entity.getName(), entity.getPassword(),
+                        MemberDTO.setAuthorities(entity.getRole().name()),
+                        entity.isFromSocial(),entity.getName(), entity.getEmail(), entity.getRole(),
+                        entity.getCreatedDate(),entity.getModifiedDate()) )
+                .collect(Collectors.toList());
+
+        return PageResponseDTO.<MemberDTO>withAll()
+                .requestDTO(requestDTO)
+                .dtoList(list)
+                .total((int)page.getTotalElements())
+                .build();
+
+    }
+
+
+    @Transactional
+    public PageResponseDTO<MemberDTO> getListAdminCreatedDate(PageRequestDTO requestDTO, LocalDate localDate) {
+        System.out.println("service-member패키지 MemberService클래스 getListAdminCreatedDate() 진입 ");
+
+        String [] types = requestDTO.getTypes();
+        String keyword = requestDTO.getKeyword();
+
+        //Pageable p = requestDTO.getPageable("createdDate");
+
+        Pageable p = PageRequest.of(requestDTO.getPage()-1, requestDTO.getSize());
+
+        //날짜까지 추가
+        //Page<Member> page = mr.searchMemberAllModifiedDate(types, keyword, p,localDate);
+        Page<Member> page = mr.searchMemberAllCreatedDate(types, keyword, p,localDate);
 
         //entity->dto
         List<MemberDTO> list = page.getContent().stream()

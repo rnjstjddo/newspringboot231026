@@ -17,9 +17,12 @@ public interface PostsSearch {
     //관리자페이지 게시글 날자까지추가
     Page<Posts> searchAllModifiedDate(String [] types, String keyword, Pageable pageable, LocalDate localDate);
 
+    Page<Posts> searchAllCreatedDate(String [] types, String keyword, Pageable pageable, LocalDate localDate);
+
 
     //관리자페이지 게시글댓글 동적검색+페이지 댓글날자까지추가
     Page<PostReply> searchReplyAllModifiedDate(String [] types, String keyword, Pageable pageable, LocalDate localDate);
+    Page<PostReply> searchReplyAllCreatedDate(String [] types, String keyword, Pageable pageable, LocalDate localDate);
 
 
     //관리자페이지 탭 게시글댓글 동적검색+페이지

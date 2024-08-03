@@ -413,7 +413,9 @@ public class AdminController {
             LocalDate localDate = LocalDate.parse(yearmonth);
             model.addAttribute("localDate", yearmonth);
 
-            GuestPageResultDTO pResponseDto = gs.getListAdminModifiedDate(pageRequestDTO, localDate);
+            //GuestPageResultDTO pResponseDto = gs.getListAdminModifiedDate(pageRequestDTO, localDate);
+            GuestPageResultDTO pResponseDto = gs.getListAdminCreatedDate(pageRequestDTO, localDate);
+
             if (pResponseDto.getDtoList().size() > 0 && pResponseDto.getEnd() != 0) {
                 System.out.println("관리자컨트롤러 /admin/guestbook/list 진입 " +
                         " GuestPageResultDTO getSize() -> " + pResponseDto.getPage() + ", getTotalPage() -> " + pResponseDto.getTotalPage());
@@ -509,7 +511,8 @@ public class AdminController {
             LocalDate localDate = LocalDate.parse(yearmonth);
             model.addAttribute("localDate", yearmonth);
 
-            PageResponseDTO pResponseDto = ps.getListAdminModifiedDate(pageRequestDTO, localDate);
+            //PageResponseDTO pResponseDto = ps.getListAdminModifiedDate(pageRequestDTO, localDate);
+            PageResponseDTO pResponseDto = ps.getListAdminCreatedDate(pageRequestDTO, localDate);
 
             if (pResponseDto.getDtoList().size() > 0 && pResponseDto.getEnd() != 0) {
                 System.out.println("관리자컨트롤러 /admin/post/list 진입 " +
@@ -558,7 +561,9 @@ public class AdminController {
             LocalDate localDate = LocalDate.parse(yearmonth);
             model.addAttribute("localDate", yearmonth);
 
-            PageResponseDTO pResponseDto = prs.getListAdminModifiedDate(pageRequestDTO, localDate);
+            //PageResponseDTO pResponseDto = prs.getListAdminModifiedDate(pageRequestDTO, localDate);
+
+            PageResponseDTO pResponseDto = prs.getListAdminCreatedDate(pageRequestDTO, localDate);
 
             if (pResponseDto.getDtoList().size() > 0 && pResponseDto.getEnd() != 0) {
                 System.out.println("관리자컨트롤러 /admin/postreply/list 진입 " +
@@ -607,7 +612,9 @@ public class AdminController {
             LocalDate localDate = LocalDate.parse(yearmonth);
             model.addAttribute("localDate", yearmonth);
 
-            PageResponseDTO pResponseDto = is.getListAdminModifiedDate(pageRequestDTO, localDate);
+            //PageResponseDTO pResponseDto = is.getListAdminModifiedDate(pageRequestDTO, localDate);
+            PageResponseDTO pResponseDto = is.getListAdminCreatedDate(pageRequestDTO, localDate);
+
 
             if (pResponseDto.getDtoList().size() > 0 && pResponseDto.getEnd() != 0) {
                 System.out.println("관리자컨트롤러 /admin/inquiry/list 진입 " +
@@ -658,7 +665,9 @@ public class AdminController {
             LocalDate localDate = LocalDate.parse(yearmonth);
             model.addAttribute("localDate", yearmonth);
 
-            PageResponseDTO pResponseDto = ms.getListAdminModifiedDate(pageRequestDTO, localDate);
+            //PageResponseDTO pResponseDto = ms.getListAdminModifiedDate(pageRequestDTO, localDate);
+            PageResponseDTO pResponseDto = ms.getListAdminCreatedDate(pageRequestDTO, localDate);
+
 
             if (pResponseDto.getDtoList().size() > 0 && pResponseDto.getEnd() != 0) {
                 System.out.println("관리자컨트롤러 /admin/member/list 진입 " +

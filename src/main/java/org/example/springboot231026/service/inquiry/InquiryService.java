@@ -100,6 +100,35 @@ public class InquiryService {
     }
 
 
+    @Transactional
+    public PageResponseDTO<InquiryDto> getListAdminCreatedDate(PageRequestDTO requestDTO, LocalDate localDate){
+        System.out.println("service-inquiry패키지 InquiryService클래스 getListAdminCreatedDate() 진입");
+
+        String [] types = requestDTO.getTypes();
+        String keyword = requestDTO.getKeyword();
+        Pageable p = requestDTO.getPageable("innum");
+
+        //날짜까지 추가
+        //Page<Inquiry> page = irepo.searchInquiryAllModifiedDate(types, keyword, p,localDate);
+        Page<Inquiry> page = irepo.searchInquiryAllCreatedDate(types, keyword, p,localDate);
+
+        System.out.println("service-posts패키지 PostsService클래스 public Page<PostsListResponseDto> getListAdminCreatedDate() 진입 파라미터 Posts엔티티출력 -> "+ page.getContent());
+
+        //entity->dto
+        List<InquiryDto> list = page.getContent().stream()
+                .map(entity -> new InquiryDto(entity.getInnum(), entity.getWriter(),entity.getContent(),
+                        entity.getPhone(),entity.getEmail(), entity.getComplete(), entity.getCreatedDate(),
+                        entity.getModifiedDate()))
+                .collect(Collectors.toList());
+
+        return PageResponseDTO.<InquiryDto>withAll()
+                .requestDTO(requestDTO)
+                .dtoList(list)
+                .total((int)page.getTotalElements())
+                .build();
+    }
+
+
     //동적검색+페이지처리
     @Transactional
     public PageResponseDTO<InquiryDto> getListAdmin(PageRequestDTO requestDTO){

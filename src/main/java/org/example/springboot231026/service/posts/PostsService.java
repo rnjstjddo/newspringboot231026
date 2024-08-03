@@ -194,6 +194,34 @@ public class PostsService {
                 .build();
     }
 
+    //동적검색+특정날짜추가
+    @Transactional
+    public PageResponseDTO<PostsListResponseDto> getListAdminCreatedDate(PageRequestDTO requestDTO,LocalDate localDate){
+        System.out.println("service-posts패키지 PostsService클래스 getListAdminCreatedDate() 진입 ");
+
+
+        String [] types = requestDTO.getTypes();
+        String keyword = requestDTO.getKeyword();
+        Pageable p = requestDTO.getPageable("id");
+
+        //날짜까지 추가
+        Page<Posts> page = pr.searchAllCreatedDate(types, keyword, p,localDate);
+
+        System.out.println("service-posts패키지 PostsService클래스 public Page<PostsListResponseDto> getListAdminCreatedDate() 진입 파라미터 Posts엔티티출력 -> "+ page.getContent());
+
+        //entity->dto
+        List<PostsListResponseDto> list = page.getContent().stream()
+                .map(entity -> mm.map(entity, PostsListResponseDto.class))
+                .collect(Collectors.toList());
+
+        return PageResponseDTO.<PostsListResponseDto>withAll()
+                .requestDTO(requestDTO)
+                .dtoList(list)
+                .total((int)page.getTotalElements())
+                .build();
+    }
+
+
     //특정날짜게시글수
     public Long getCountLocalDate(LocalDate localDate){
         System.out.println("service-posts패키지 PostsService클래스 getCountLocalDate() 진입");

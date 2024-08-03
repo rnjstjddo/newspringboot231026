@@ -106,6 +106,45 @@ public class PostsSearchImpl extends QuerydslRepositorySupport implements PostsS
         
     }
 
+    @Override
+    public Page<Posts> searchAllCreatedDate(String[] types, String keyword, Pageable pageable, LocalDate localDate) {
+        System.out.println("domain-posts-search패키지 PostsSearchImpl클래스 오버라이딩 searchAllCreatedDate() 진입");
+
+        QPosts qp = QPosts.posts;
+        JPQLQuery<Posts> jpp = from(qp);
+
+        //LocalDate 값이 존재할때 조건에 추가했다.
+        if( (types!= null && types.length >0 ) && keyword !=null&& localDate !=null){
+
+            BooleanBuilder bb = new BooleanBuilder();
+            for(String type: types){
+
+                switch(type){
+                    case"t":
+                        bb.or(qp.title.contains(keyword));
+                        break;
+                    case"c":
+                        bb.or(qp.content.contains(keyword));
+                        break;
+                    case"w":
+                        bb.or(qp.author.contains(keyword));
+                        break;
+                }
+            }//for
+            jpp.where(bb);
+        }//if
+        //날짜를 where조건에 추가
+        jpp.where(qp.id.gt(0L).and(qp.createdDate.between(localDate.atTime(LocalTime.MIN), localDate.atTime(LocalTime.MAX))));
+
+        //페이징처리
+        this.getQuerydsl().applyPagination(pageable, jpp);
+
+        List<Posts> list= jpp.fetch();
+        long count = jpp.fetchCount();
+
+        return new PageImpl<>(list, pageable, count);
+
+    }
 
     //관리자페이지에서 날짜조건에 맞는 게시글 페이징처리와 동적검색 모두처리
     @Override
@@ -139,6 +178,50 @@ public class PostsSearchImpl extends QuerydslRepositorySupport implements PostsS
         jpp.where(qp.prno.gt(0L)
                 .and(qp.modifiedDate.between(localDate.atTime(LocalTime.MIN), localDate.atTime(LocalTime.MAX)))
                 );
+
+        //페이징처리
+        this.getQuerydsl().applyPagination(pageable, jpp);
+
+        System.out.println("JPQLQuery<PostReply> -> "+ jpp);
+        List<PostReply> list= jpp.fetch();
+        long count = jpp.fetchCount();
+
+        return new PageImpl<>(list, pageable, count);
+
+    }
+
+
+    @Override
+    public Page<PostReply> searchReplyAllCreatedDate(String[] types, String keyword, Pageable pageable, LocalDate localDate) {
+        System.out.println("domain-posts-search패키지 PostsSearchImpl클래스 오버라이딩 searchReplyAllCreatedDate() 진입");
+
+        QPostReply qp = QPostReply.postReply;
+        JPQLQuery<PostReply> jpp = from(qp);
+
+        //LocalDate 값이 존재할때 조건에 추가했다.
+        if( (types!= null && types.length >0 ) && keyword !=null&& localDate !=null){
+
+            BooleanBuilder bb = new BooleanBuilder();
+            for(String type: types){
+
+                switch(type){
+                    case"n":
+                        bb.or(qp.pno.stringValue().contains(keyword));
+                        break;
+                    case"c":
+                        bb.or(qp.comment.contains(keyword));
+                        break;
+                    case"w":
+                        bb.or(qp.member.name.contains(keyword));
+                        break;
+                }
+            }//for
+            jpp.where(bb);
+        }//if
+        //날짜를 where조건에 추가
+        jpp.where(qp.prno.gt(0L)
+                .and(qp.createdDate.between(localDate.atTime(LocalTime.MIN), localDate.atTime(LocalTime.MAX)))
+        );
 
         //페이징처리
         this.getQuerydsl().applyPagination(pageable, jpp);

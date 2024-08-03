@@ -299,6 +299,41 @@ public class GuestbookService {
     }
 
 
+    private BooleanBuilder getSearchAdminCreatedDate(GuestPageRequestDTO pageRequestDTO, LocalDate localDate){
+        System.out.println("service-guestbook패키지 GuestbookService클래스 getSearchAdminCreatedDate() 진입 ");
+
+        String type = pageRequestDTO.getType();
+        String keyword = pageRequestDTO.getKeyword();
+
+        BooleanBuilder bb = new BooleanBuilder();
+
+        QGuestbook qg = QGuestbook.guestbook;
+
+        BooleanExpression be = qg.gno.gt(0L)
+                .and(qg.createdDate.between(localDate.atTime(LocalTime.MIN),localDate.atTime(LocalTime.MAX)));
+        bb.and(be);
+
+        if(type ==null || type.trim().length()==0){
+            System.out.println("service-guestbook패키지 GuestbookService클래스 getSearchAdminCreatedDate() 진입 - 검색조건이 없는 경우 진입");
+            return bb;
+        }
+
+        BooleanBuilder searchbb = new BooleanBuilder();
+        if(type.contains("t")){
+            searchbb.or(qg.title.contains(keyword));
+        }
+
+        if(type.contains("c")){
+            searchbb.or(qg.content.contains(keyword));
+        }
+        if(type.contains("w")){
+            searchbb.or(qg.writer.contains(keyword));
+        }
+
+        bb.and(searchbb);
+        return bb;
+    }
+
 
     //동적검색 + 특정날짜만 조회 수정날짜 기준
     public GuestPageResultDTO<GuestbookDTO, Guestbook> getListAdminModifiedDate(GuestPageRequestDTO requestDTO, LocalDate localDate){
@@ -315,6 +350,24 @@ public class GuestbookService {
 
         return new GuestPageResultDTO<>(result, fn);
     }
+
+    public GuestPageResultDTO<GuestbookDTO, Guestbook> getListAdminCreatedDate(GuestPageRequestDTO requestDTO, LocalDate localDate){
+        System.out.println("service-guestbook패키지 GuestbookService클래스 getListAdminCreatedDate() 진입 - 파라미터GuestPageRequestDTO -> "+ requestDTO);
+
+        Pageable p = requestDTO.getPageable(Sort.by("gno").descending());
+
+        //BooleanBuilder bb = getSearchAdminModifiedDate(requestDTO,localDate);
+        BooleanBuilder bb = getSearchAdminCreatedDate(requestDTO,localDate);
+
+        //검색조건결과인 BooleanBuilder를 파라미터로 추가한다.
+        //Page<Guestbook> result = gr.findAll(bb, p);
+        Page<Guestbook> result = gr.findAll(bb, p);
+
+        Function<Guestbook, GuestbookDTO> fn =(entity -> entityToDto(entity));
+
+        return new GuestPageResultDTO<>(result, fn);
+    }
+
 
     //전체 페이징처리
     public GuestPageResultDTO<GuestbookDTO, Guestbook> getListAdmin(GuestPageRequestDTO requestDTO){

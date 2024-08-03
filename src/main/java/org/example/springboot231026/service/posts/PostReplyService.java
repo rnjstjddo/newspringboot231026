@@ -184,6 +184,36 @@ public class PostReplyService {
     }
 
 
+    //관리자 페이지 게시글댓글특정날짜 + 동적검색 + 페이지처리
+    @Transactional
+    public PageResponseDTO<PostReplyDTO> getListAdminCreatedDate(PageRequestDTO requestDTO, LocalDate localDate){
+        System.out.println("service-posts패키지 PostReplyService클래스 getListAdminCreatedDate() 진입");
+
+        String [] types = requestDTO.getTypes();
+        String keyword = requestDTO.getKeyword();
+        Pageable p = requestDTO.getPageable("id");
+
+        //날짜까지 추가
+        //Page<PostReply> page = psi.searchReplyAllModifiedDate(types, keyword, p,localDate);
+        Page<PostReply> page = psi.searchReplyAllCreatedDate(types, keyword, p,localDate);
+
+        System.out.println("service-posts패키지 PostsService클래스 public Page<PostsListResponseDto> getListAdminCreatedDate() 진입 파라미터 Posts엔티티출력 -> "+ page.getContent());
+
+        //entity->dto
+        List<PostReplyDTO> list = page.getContent().stream()
+                //에러발생.map(entity -> mm.map(entity, PostReplyDTO.class))
+                .map(entity -> {return new PostReplyDTO(entity.getPrno(), entity.getPno(), entity.getComment(),
+                        entity.getMember().getName(), entity.getModifiedDate(), entity.getCreatedDate());})
+                .collect(Collectors.toList());
+
+        return PageResponseDTO.<PostReplyDTO>withAll()
+                .requestDTO(requestDTO)
+                .dtoList(list)
+                .total((int)page.getTotalElements())
+                .build();
+    }
+
+
     //특정날짜게시글수
     public Long getCountLocalDate(LocalDate localDate){
         System.out.println("service-posts패키지 PostReplyService클래스 getCountLocalDate() 진입");

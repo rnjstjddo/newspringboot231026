@@ -53,7 +53,8 @@ var memberObject ={
     join : function(){
         console.log("member.js 객체 memberObject의 join 함수진입 - 회원가입에서 가입버튼 클릭한경우 진입");
 
-        var readonlyCheck =$("name").attr("readonly");
+        var readonlyCheck =$("#name").attr("readonly");
+        console.log("id가 name의 readonly속성값 확인 -> "+readonlyCheck)
         var passwordval =$("#password").val();
         var password2val =$("#password2").val();
 
@@ -82,6 +83,7 @@ var memberObject ={
                         console.log("member-join.html 회원가입 중 아이디중복확인 결과 -> 사용가능")
                         alert("아이디 사용가능합니다!")
                         $("#name").attr("readonly",true);
+                        return;
                     }
                     if(result == false){
                         console.log("member-join.html 회원가입 중 아이디중복확인 결과 -> 중복됨")
@@ -131,11 +133,14 @@ var memberObject ={
             console.log("member.js 객체 memberObject의 join 함수진입 - $.ajax -done() 진입");
             console.log(response);
             //location="/member/login";
+            alert("회원가입이 완료되었습니다. 로그인을 진행해주세요!")
             location.replace("/member/login");
         })
         .fail(function(error){
             console.log("member.js 객체 memberObject의 join 함수진입 - $.ajax -fail() 진입");
             console.log(error);
+            alert("회원가입에 실패했습니다. 다시 회원가입을 해주세요!")
+            location.replace("/member/join");
         });
     },//join
 

@@ -13,6 +13,8 @@ public interface InquirySearch {
     //관리자페이지 게시글 댓글날자까지추가
     Page<Inquiry> searchInquiryAllModifiedDate(String [] types, String keyword, Pageable pageable, LocalDate localDate);
 
+    Page<Inquiry> searchInquiryAllCreatedDate(String [] types, String keyword, Pageable pageable, LocalDate localDate);
+
     Page<Inquiry> searchInquiryAll(String [] types, String keyword, Pageable pageable);
 
 
