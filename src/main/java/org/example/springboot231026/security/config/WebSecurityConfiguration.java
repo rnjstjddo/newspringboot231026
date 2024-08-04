@@ -49,6 +49,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private OAuth2UserService os;
 
+    @Autowired
+    private CustomAuthFailureHandler customAuthFailureHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -60,7 +62,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         //http.httpBasic().and().authorizeRequests().antMatchers("/**").permitAll();
 
         http.authorizeRequests().anyRequest().authenticated();
-        http.formLogin().loginPage("/member/login").defaultSuccessUrl("/post/list").failureHandler(customAuthFailureHandler());
+        http.formLogin().loginPage("/member/login").defaultSuccessUrl("/post/list")
+                //.failureHandler(customAuthFailureHandler());
+                .failureHandler(customAuthFailureHandler);
         http.csrf().disable();
         http.logout().logoutUrl("/member/logout").logoutSuccessUrl("/post/list");
         http.exceptionHandling().accessDeniedHandler(accessDeniedHandler());
@@ -110,10 +114,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 */
 
     //
+/*
     @Bean
     public SimpleUrlAuthenticationFailureHandler customAuthFailureHandler() {
         return new CustomAuthFailureHandler();
     }
+*/
 
 
     //실패핸들러추가

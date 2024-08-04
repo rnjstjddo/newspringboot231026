@@ -72,10 +72,10 @@ public class AdminController {
         }
 
         if (yearmonth != null) {
-            yearmonth = LocalDate.now().toString();
             System.out.println("관리자컨트롤러 /admin/home/home 진입 쿼리스트링 yearmonth 있을때 진입 -> "+ yearmonth);
         }else{
-            System.out.println("관리자컨트롤러 /admin/home/home 진입 쿼리스트링 yearmonth 없을때 진입");
+            yearmonth = LocalDate.now().toString();
+            System.out.println("관리자컨트롤러 /admin/home/home 진입 쿼리스트링 yearmonth 없을때 진입 오늘날짜로 넣는다-> "+ yearmonth);
         }
 //방명록-----------------------------------------
 
@@ -267,7 +267,9 @@ public class AdminController {
 //문의글 ___________________________________________________________________________________
 
         List<InquiryDto> inquiryDtoList = is.findAll();
+
         if (inquiryDtoList.size() > 0 && inquiryDtoList != null) {
+            System.out.println("문의글 개수 -> " + inquiryDtoList.size());
 
             if (yearmonth != null) {
                 LocalDate afterYearMonth = LocalDate.parse(yearmonth).with(TemporalAdjusters.firstDayOfMonth());
@@ -311,7 +313,9 @@ public class AdminController {
 //회원___________________________________________________________________________________
 
         List<MemberDTO> memberDTOList = ms.findAll();
+
         if (memberDTOList.size() > 0 && memberDTOList != null) {
+            System.out.println("회원 개수 -> " + memberDTOList.size());
 
             if (yearmonth != null) {
                 LocalDate afterYearMonth = LocalDate.parse(yearmonth).with(TemporalAdjusters.firstDayOfMonth());
@@ -350,6 +354,8 @@ public class AdminController {
         List<DogSellListDTO> dogSellListDto = dogSellService.list();
 
         if (dogSellListDto.size() > 0 && dogSellListDto != null) {
+
+            System.out.println("분양글 개수 -> " + dogSellListDto.size());
 
             if (yearmonth != null) {
                 LocalDate afterYearMonth = LocalDate.parse(yearmonth).with(TemporalAdjusters.firstDayOfMonth());
