@@ -67,6 +67,8 @@ var postReplyDateCount =[[${postReplyDateCount}]]
 var inquiryDateCount =[[${inquiryDateCount}]]
 //회원수
 var memberDateCount = [[${memberDateCount}]]
+//분양글수
+var dogsellDateCount = [[${dogsellDateCount}]]
 
 
 let date = new Date();
@@ -175,9 +177,9 @@ $(document).ready(function(){
              guestDateMap.set(resultDate,v);
          });//$.map
 
-         console.log("관리자페이지 달력 방명록 ->"+guestReplyCountMap);
-         console.log("관리자페이지 달력 방명록 ->"+guestReplyDateArray);
-         console.log("관리자페이지 달력 방명록 ->"+guestReplyDateMap);
+         console.log("관리자페이지 달력 방명록 ->"+guestCountMap);
+         console.log("관리자페이지 달력 방명록 ->"+guestDateArray);
+         console.log("관리자페이지 달력 방명록 ->"+guestDateMap);
 
 //방명록댓글----------------------
          var guestReplyCountMap = new Map();
