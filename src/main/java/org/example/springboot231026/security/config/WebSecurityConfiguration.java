@@ -2,6 +2,7 @@ package org.example.springboot231026.security.config;
 
 import org.example.springboot231026.kakao.service.KakaoLoginService;
 import org.example.springboot231026.security.handler.Custom403Handler;
+import org.example.springboot231026.security.handler.CustomAuthFailureHandler;
 import org.example.springboot231026.security.service.MemberUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -46,6 +47,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private OAuth2UserService os;
 
+    //시큐리티 로그인 실패디 핸들러
+    private CustomAuthFailureHandler customAuthFailureHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -57,7 +60,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         //http.httpBasic().and().authorizeRequests().antMatchers("/**").permitAll();
 
         http.authorizeRequests().anyRequest().authenticated();
-        http.formLogin().loginPage("/member/login").defaultSuccessUrl("/post/list");
+        http.formLogin().loginPage("/member/login").defaultSuccessUrl("/post/list").failureHandler(customAuthFailureHandler);
         http.csrf().disable();
         http.logout().logoutUrl("/member/logout").logoutSuccessUrl("/post/list");
         http.exceptionHandling().accessDeniedHandler(accessDeniedHandler());

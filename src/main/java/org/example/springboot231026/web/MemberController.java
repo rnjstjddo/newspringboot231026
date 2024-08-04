@@ -26,11 +26,14 @@ public class MemberController {
 
     @GetMapping("/member/login")
     public void login(@ModelAttribute("pageRequestDto") PageRequestDTO requestDTO, Model model,
-                      @RequestParam(required = false) String error, RedirectAttributes rttrs){
+                      @RequestParam(required = false) String error,
+                      @RequestParam(required = false) String exception,
+                      RedirectAttributes rttrs){
         System.out.println("컨트롤러클래스 MemberController login() 진입");
-        if(error.length() ==0) {
+        if(error == "true") {
             System.out.println("컨트롤러클래스 MemberController login() 진입 로그인시 에러존재할때 진입");
-            rttrs.addFlashAttribute("error", error);
+            rttrs.addFlashAttribute("exception", exception);
+            //rttrs.addFlashAttribute("error", error);
         }
     }
 
