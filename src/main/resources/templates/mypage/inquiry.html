@@ -38,6 +38,7 @@
                                              <th:block th:switch="${#strings.contains(iDto.complete,'false')}">
                                                 <span th:case="false">답변여부: 미완료</span>
                                             </th:block>
+                                            [[${iDto.complete}]]
                                         </span>
                                     </button>
                                 </h3>

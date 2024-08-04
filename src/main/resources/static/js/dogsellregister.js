@@ -41,7 +41,7 @@ var registerjs = {
 
                 $.each(multipartFiles, function(index, obj){
                     if(!checkExtension(obj.name, obj.size)){
-                        console.log("register.html 첨부파일 change() 이벤트 진입 - 파일정규표현식 부적합할때");
+                        console.log("register.html 첨부파일 change() 이벤트 진입 - 파일정규표현식 부적합할때 진입");
                         $("#file").val("");
                         return false;
                     }
@@ -51,7 +51,7 @@ var registerjs = {
                 });//each
 
                 if(!appended){
-                    console.log("register.html 첨부파일 change() 이벤트 진입 - 파일정규표현식 부적합할때 $.each 함수 나와서 return 던진다.");
+                    console.log("register.html 첨부파일 change() 이벤트 진입 - 파일정규표현식 부적합할때 진입 $.each 함수 나와서 return 던진다.");
                     return;
                 }// each내부여서 밖으로 나와서 change()이벤트함수 내에서 처리
 
@@ -213,10 +213,11 @@ var registerjs = {
                         console.log(imageDataArray);
                         target.remove();
 
-                        var filecheck =$(".uploadResult ").find("li");
+                        var filecheck =$(".uploadResult ").find("li").size();
                         console.log("dogsellregister.js 글등록에서 업로드한 파일삭제시 모두 삭제할경우 파일선택에서 이름도 초기화시키키 먼저 li태그 존재하는지 확인");
                         console.log(filecheck);
-                        if(filecheck == ""){
+                        if(filecheck == 0){
+                            console.log("첨부파일이 한개도 없기에 초기화시킨다.")
                             $("#file").val("");
                             return;
                         }
