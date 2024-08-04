@@ -4,6 +4,7 @@ import org.example.springboot231026.kakao.service.KakaoLoginService;
 import org.example.springboot231026.security.handler.Custom403Handler;
 import org.example.springboot231026.security.handler.CustomAuthFailureHandler;
 import org.example.springboot231026.security.service.MemberUserDetailsService;
+import org.hibernate.loader.collection.OneToManyJoinWalker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +20,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
@@ -47,26 +49,24 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private OAuth2UserService os;
 
-    //시큐리티 로그인 실패디 핸들러
-    private CustomAuthFailureHandler customAuthFailureHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         System.out.println("security-config클래스 WebSecurityConfiguration 오버라이딩 configure() 진입 파라미터 HttpSecurity ");
 
-        http.httpBasic().and().authorizeRequests().antMatchers("/auth/**","/oauth/**","/js/**","/image/**","/css/**","/",
-                "/member/**", "/guestbook/**","/uploadEx","/display","/removeFile","/uploadAjax","/dogsell/list",
-                "/dogselldisplay","/dogsellremoveFile","/dogselluploadAjax","/main","/main/","/post/list","/home/**","/profile").permitAll();
+        http.httpBasic().and().authorizeRequests().antMatchers("/auth/**", "/oauth/**", "/js/**", "/image/**", "/css/**", "/",
+                "/member/**", "/guestbook/**", "/uploadEx", "/display", "/removeFile", "/uploadAjax", "/dogsell/list",
+                "/dogselldisplay", "/dogsellremoveFile", "/dogselluploadAjax", "/main", "/main/", "/post/list", "/home/**", "/profile").permitAll();
         //http.httpBasic().and().authorizeRequests().antMatchers("/**").permitAll();
 
         http.authorizeRequests().anyRequest().authenticated();
-        http.formLogin().loginPage("/member/login").defaultSuccessUrl("/post/list").failureHandler(customAuthFailureHandler);
+        http.formLogin().loginPage("/member/login").defaultSuccessUrl("/post/list").failureHandler(customAuthFailureHandler());
         http.csrf().disable();
         http.logout().logoutUrl("/member/logout").logoutSuccessUrl("/post/list");
         http.exceptionHandling().accessDeniedHandler(accessDeniedHandler());
         //자동로그인설정
         http.rememberMe().key("12345678").tokenRepository(persistentTokenRepository())
-                .userDetailsService(ms).tokenValiditySeconds(60*60*24*30);//30일지정
+                .userDetailsService(ms).tokenValiditySeconds(60 * 60 * 24 * 30);//30일지정
 
         http.oauth2Login().defaultSuccessUrl("/member/updateSocialJoin").userInfoEndpoint().userService(os);
 
@@ -77,7 +77,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     //자동로그인쿠키저장소
     @Bean
-    public PersistentTokenRepository persistentTokenRepository(){
+    public PersistentTokenRepository persistentTokenRepository() {
         System.out.println("security-config클래스 WebSecurityConfiguration @Bean PersistentTokenRepository 생성");
         JdbcTokenRepositoryImpl repo = new JdbcTokenRepositoryImpl();
         repo.setDataSource(ds);
@@ -86,7 +86,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     //인증서버로부터 받은 사용자정보를 이용해서 Member엔티티객체 생성후 Manager를 사용해서 인증요청시 인자로 전달후 Authentication 생성
     @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception{
+    public AuthenticationManager authenticationManagerBean() throws Exception {
         System.out.println("security-config클래스 WebSecurityConfiguration @Bean AuthenticationManager 생성");
         return super.authenticationManagerBean();
 
@@ -108,6 +108,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
        return new BCryptPasswordEncoder();
     }
 */
+
+    //
+    @Bean
+    public SimpleUrlAuthenticationFailureHandler customAuthFailureHandler() {
+        return new CustomAuthFailureHandler();
+    }
 
 
     //실패핸들러추가

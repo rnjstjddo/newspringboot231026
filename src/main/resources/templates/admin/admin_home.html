@@ -470,8 +470,8 @@ $(document).ready(function(){
                      }//if종료 회원
                  }//for죵료 회원 member
 
-                //같은 날짜에 방명록도 존재하고 방명록댓글도 게시판도 게시판댓글도 문의글도 회원도 방명록도 존재할때
-                 dogsell: for(let m=0; m<memberDateArray.length; m++){
+                //같은 날짜에 방명록도 존재하고 방명록댓글도 게시판도 게시판댓글도 문의글도 회원도 분양글도 존재할때
+                 dogsell: for(let m=0; m<dogsellDateArray.length; m++){
                     //dogsellDateCount  / dogsellCountMap dogsellDateArray dogsellDateMap resultdogsell
                      if(dogsellDateArray[m]==i){
                           var resultdogsell = getLocalDateTime(dogsellDateMap, dogsellDateArray[m])

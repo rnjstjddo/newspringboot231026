@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@Component
+
 public class CustomAuthFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
     @Override
@@ -34,7 +34,7 @@ public class CustomAuthFailureHandler extends SimpleUrlAuthenticationFailureHand
        }else{
             errorMessage = "알 수 없는 이유로 로그인에 실패하였습니다 관리자에게 문의하세요.";
         }
-        setDefaultFailureUrl("/auth/login?error=true&exception="+errorMessage);
+        setDefaultFailureUrl("/member/login?error=true&exception="+errorMessage);
     }
 
 
