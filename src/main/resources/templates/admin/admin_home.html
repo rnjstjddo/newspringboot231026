@@ -476,7 +476,7 @@ $(document).ready(function(){
                      if(dogsellDateArray[m]==i){
                           var resultdogsell = getLocalDateTime(dogsellDateMap, dogsellDateArray[m])
                           console.log(i+"일과 일치하는 분양글 배열의 값 -> "+resultdogsell+", 배열의 인덱스 "+m)
-                          htmlDummy += `<a style="color:#FF7F50;" href="/admin/dogsell/list?yearmonth=${resultdogsell}&tabtitle=dogsell">등록한분양글수${dogsellCountMap.get(i)}</a><br>`;
+                          htmlDummy += `<a style="color:#DA70D6" href="/admin/dogsell/list?yearmonth=${resultdogsell}&tabtitle=dogsell">분양글수${dogsellCountMap.get(i)}</a><br>`;
 
                           continue day;
                          //마지막 for문에서만 day로 이동하게 해야한다.
