@@ -38,9 +38,11 @@ var registerjs = {
                 var multipartFiles= fileTag[0].files;
 
                 var appended= false;
+
                 $.each(multipartFiles, function(index, obj){
                     if(!checkExtension(obj.name, obj.size)){
                         console.log("register.html 첨부파일 change() 이벤트 진입 - 파일정규표현식 부적합할때");
+                        $("#file").val("");
                         return false;
                     }
 
@@ -64,10 +66,12 @@ var registerjs = {
                     success:function(result){
                         console.log("register.html 첨부파일 change() 이벤트 진입 - $.ajax success() 진입");
                         console.log(result);
+                        console.log("첨부파일 업로드가 완료되었습니다. 분양글 등록버튼을 클릭하시면 글등록가능합니다!")
                         showResult(result);//서버에서 받은 이미정보로 이미지 화면에 보여주기
                     },
                     error: function(jqXHR, testStatus, errorThrown){
                         console.log("register.html 첨부파일 change() 이벤트 진입 - $.ajax error() 진입");
+                        alert("첨부파일이 업로드되지 않았습니다. 다른 파일을 선택해주세요!")
                         console.log(testStatus);
                     }
 
@@ -208,6 +212,14 @@ var registerjs = {
 
                         console.log(imageDataArray);
                         target.remove();
+
+                        var filecheck =$(".uploadResult ").find("li");
+                        console.log("dogsellregister.js 글등록에서 업로드한 파일삭제시 모두 삭제할경우 파일선택에서 이름도 초기화시키키 먼저 li태그 존재하는지 확인");
+                        console.log(filecheck);
+                        if(filecheck == ""){
+                            $("#file").val("");
+                            return;
+                        }
                     }
 
                 });//ajax

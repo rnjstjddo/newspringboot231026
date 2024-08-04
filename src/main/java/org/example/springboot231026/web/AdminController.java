@@ -71,26 +71,30 @@ public class AdminController {
             model.addAttribute("tabtitle", "guestbook");
         }
 
-        if (yearmonth == null) {
+        if (yearmonth != null) {
             yearmonth = LocalDate.now().toString();
-            System.out.println("관리자컨트롤러 /admin/home/home 진입 쿼리스트링 yearmonth 없을때 -> " + yearmonth);
+            System.out.println("관리자컨트롤러 /admin/home/home 진입 쿼리스트링 yearmonth 있을때 진입 -> "+ yearmonth);
+        }else{
+            System.out.println("관리자컨트롤러 /admin/home/home 진입 쿼리스트링 yearmonth 없을때 진입");
         }
+//방명록-----------------------------------------
 
-        //페이지처리 없는 방명록개수
+        //방명록 목록전체
         List<GuestbookDTO> guestbookDTOList = gs.findByAll();
 
-        //페이지처리 없는 방명록댓글수
+        //방명록댓글 목록전체
         List<GuestbookReplyDTO> guestbookReplyDTOList = grs.findAll();
 
         if ((guestbookDTOList != null && guestbookDTOList.size() > 0) ||
                 (guestbookReplyDTOList != null && guestbookReplyDTOList.size() > 0)) {
+            System.out.println("관리자컨트롤러 /admin/home/home 진입 방명록 목록과 방명록댓글 목록 모두 존재할경우 진입");
             System.out.println("방명록개수 -> " + guestbookDTOList.size());
             System.out.println("방명록댓글개수 -> " + guestbookReplyDTOList.size());
 
-            //방명록날짜만 중복안되게 들고오기
+            //방명록 날짜필드 중복안되게 들고오기
             List<LocalDateTime> guestbookDateList = new ArrayList<>();
 
-            //방명록댓글 날짜만 중복안되게 들고오기
+            //방명록댓글 날짜필드 중복안되게 들고오기
             List<LocalDateTime> guestbookReplyDateList = new ArrayList<>();
 
             if (yearmonth != null) {
@@ -98,42 +102,47 @@ public class AdminController {
                 //달의 첫일자로 맞춘다
                 model.addAttribute("yearmonth", afterYearMonth);
 
-                LocalDate plusAfterYearMonth = afterYearMonth.plusMonths(1);
-                System.out.println("VIEW컨트롤러 /home/home 원본받은 날짜 -> " + yearmonth + ", 시작날짜로 변경 -> " + afterYearMonth + ", 한달더한 날짜 -> " + plusAfterYearMonth);//받은 날짜 -> 2024-04-01, 한달더한 날짜 -> 2024-05-01
+                LocalDate plusAfterYearMonth = afterYearMonth.withDayOfMonth(afterYearMonth.lengthOfMonth()); //afterYearMonth.plusMonths(1);
+
+                System.out.println("관리자컨트롤러 /admin/home/home 진입 원본받은 날짜 -> " + yearmonth + ", 해당 월의 첫일 -> " + afterYearMonth + ", 해당 월의 마지막일 -> " + plusAfterYearMonth);
                 //방명록날짜만 중복안되게 들고오기
                 guestbookDateList = guestbookDTOList.stream()
-                        .filter(r -> r.getModifiedDate().toLocalDate().isAfter(afterYearMonth))
-                        .filter(r -> r.getModifiedDate().toLocalDate().isBefore(plusAfterYearMonth))
-                        .map(GuestbookDTO::getModifiedDate)
+                        //.filter(r -> r.getModifiedDate().toLocalDate().isAfter(afterYearMonth))
+                        //.filter(r -> r.getModifiedDate().toLocalDate().isBefore(plusAfterYearMonth))
+                        //.map(GuestbookDTO::getModifiedDate)
+                        //.distinct().collect(Collectors.toList());
+                        .filter(r -> r.getCreatedDate().toLocalDate().isAfter(afterYearMonth))
+                        .filter(r -> r.getCreatedDate().toLocalDate().isBefore(plusAfterYearMonth))
+                        .map(GuestbookDTO::getCreatedDate)
                         .distinct().collect(Collectors.toList());
 
                 //방명록댓글 날짜만 중복안되게 들고오기
                 guestbookReplyDateList = guestbookReplyDTOList.stream()
-                        .filter(r -> r.getModifiedDate().toLocalDate().isAfter(afterYearMonth))
-                        .filter(r -> r.getModifiedDate().toLocalDate().isBefore(plusAfterYearMonth))
-                        .map(GuestbookReplyDTO::getModifiedDate)
+                        //.filter(r -> r.getModifiedDate().toLocalDate().isAfter(afterYearMonth))
+                        //.filter(r -> r.getModifiedDate().toLocalDate().isBefore(plusAfterYearMonth))
+                        //.map(GuestbookReplyDTO::getModifiedDate)
+                        //.distinct().collect(Collectors.toList());
+                        .filter(r -> r.getCreatedDate().toLocalDate().isAfter(afterYearMonth))
+                        .filter(r -> r.getCreatedDate().toLocalDate().isBefore(plusAfterYearMonth))
+                        .map(GuestbookReplyDTO::getCreatedDate)
                         .distinct().collect(Collectors.toList());
             }
 
-            //최종결과인 방명록날짜와 글수 Map만듬
+            //최종결과인 방명록 날짜와 글수 Map만듬
             Map<LocalDate, Long> guestbookDateCount = new HashMap<>();
-
 
             //최종결과인 방명록댓글 날짜와 글수 Map만듬
             Map<LocalDate, Long> guestbookReplyDateCount = new HashMap<>();
-
 
             //방명록 날짜별 등록개수
             for (LocalDateTime guestbookDate : guestbookDateList) {
 
                 LocalDate localDate = guestbookDate.toLocalDate();
 
-                //System.out.println("방명록 LocalDateTime ->  " + guestbookDate+", LocalDate -> "+ localDate);
                 //방명록
                 Long guestCount = (Long) guestbookDTOList.stream()
-                        .filter(r -> r.getModifiedDate().toLocalDate().isEqual(localDate)).count();
-                //System.out.println("방명록갯수 guestCount ->  " + guestCount);
-
+                        //.filter(r -> r.getModifiedDate().toLocalDate().isEqual(localDate)).count();
+                        .filter(r -> r.getCreatedDate().toLocalDate().isEqual(localDate)).count();
                 guestbookDateCount.put(localDate, guestCount);
 
 
@@ -144,65 +153,69 @@ public class AdminController {
 
                 LocalDate localDate = guestbookDate.toLocalDate();
 
-                //System.out.println("방명록댓글 LocalDateTime ->  " + guestbookDate+", LocalDate -> "+ localDate);
-
                 //방명록댓글
                 Long guestReplyCount = (Long) guestbookReplyDTOList.stream()
-                        .filter(r -> r.getModifiedDate().toLocalDate().isEqual(localDate)).count();
-                //System.out.println("방명록댓글갯수 guestReplyCount ->  " + guestReplyCount);
+                        //.filter(r -> r.getModifiedDate().toLocalDate().isEqual(localDate)).count();
+                        .filter(r -> r.getCreatedDate().toLocalDate().isEqual(localDate)).count();
 
                 guestbookReplyDateCount.put(localDate, guestReplyCount);
             }
 
             //방명록갯수 날짜별
             model.addAttribute("guestbookDateCount", guestbookDateCount);
-            //guestbookDateCount.forEach((k, v) -> System.out.println("방명록 키 -> " +k +", 값 -> "+ v) );
 
             //방명록댓글갯수 날짜별
             model.addAttribute("guestbookReplyDateCount", guestbookReplyDateCount);
-            //guestbookReplyDateCount.forEach((k, v) -> System.out.println("방명록댓글 키 -> " +k +", 값 -> "+ v) );
         }
 
-        //게시판 ___________________________________________________________________________________
+//게시판 ___________________________________________________________________________________
 
-        //페이지처리 없는 게시판
+        //게시판
         List<PostsListResponseDto> postsListResponseDtoList = ps.findAll();
-        //페이지처리 없는 게시판댓글
+        //게시판댓글
         List<PostReplyDTO> postReplyDTOList = prs.findAll();
-
 
         if ((postsListResponseDtoList != null && postsListResponseDtoList.size() > 0) ||
                 (postReplyDTOList != null && postReplyDTOList.size() > 0)) {
-            System.out.println("게시판개수 -> " + guestbookDTOList.size());
-            System.out.println("게시판댓글개수 -> " + guestbookReplyDTOList.size());
+            System.out.println("게시판 개수 -> " + guestbookDTOList.size());
+            System.out.println("게시판 댓글개수 -> " + guestbookReplyDTOList.size());
 
-            //게시판날짜만 중복안되게 들고오기
+            //게시판 날짜필드만 중복안되게 들고오기
             List<LocalDateTime> postsDateList = new ArrayList<>();
 
-            //게시판댓글날짜만 중복안되게 들고오기
+            //게시판댓글 날짜필드만 중복안되게 들고오기
             List<LocalDateTime> postReplyDateList = new ArrayList<>();
 
             if (yearmonth != null) {
                 LocalDate afterYearMonth = LocalDate.parse(yearmonth).with(TemporalAdjusters.firstDayOfMonth());
                 ; //달의 첫일자로 맞춘다
 
-                LocalDate plusAfterYearMonth = afterYearMonth.plusMonths(1);
-                System.out.println("VIEW컨트롤러 /home/home 원본받은 날짜 -> " + yearmonth + ", 시작날짜로 변경 -> " + afterYearMonth + ", 한달더한 날짜 -> " + plusAfterYearMonth);//받은 날짜 -> 2024-04-01, 한달더한 날짜 -> 2024-05-01
+                LocalDate plusAfterYearMonth = afterYearMonth.withDayOfMonth(afterYearMonth.lengthOfMonth());  //afterYearMonth.plusMonths(1);
+                //System.out.println("관리자컨트롤러 /admin/home/home 진입 원본받은 날짜 -> " + yearmonth + ", 해당 월의 첫일 -> " + afterYearMonth + ", 해당 월의 마지막일 -> " + plusAfterYearMonth);//받은 날짜 -> 2024-04-01, 한달더한 날짜 -> 2024-05-01
+
                 //게시판날짜만 중복안되게 들고오기
                 postsDateList = postsListResponseDtoList.stream()
-                        .filter(r -> r.getModifiedDate().toLocalDate().isAfter(afterYearMonth))
-                        .filter(r -> r.getModifiedDate().toLocalDate().isBefore(plusAfterYearMonth))
-                        .map(PostsListResponseDto::getModifiedDate)
+                        //.filter(r -> r.getModifiedDate().toLocalDate().isAfter(afterYearMonth))
+                        //.filter(r -> r.getModifiedDate().toLocalDate().isBefore(plusAfterYearMonth))
+                        //.map(PostsListResponseDto::getModifiedDate)
+                        //.distinct().collect(Collectors.toList());
+                        .filter(r -> r.getCreatedDate().toLocalDate().isAfter(afterYearMonth))
+                        .filter(r -> r.getCreatedDate().toLocalDate().isBefore(plusAfterYearMonth))
+                        .map(PostsListResponseDto::getCreatedDate)
                         .distinct().collect(Collectors.toList());
 
                 //게시판댓글 날짜만 중복안되게 들고오기
                 postReplyDateList = postReplyDTOList.stream()
-                        .filter(r -> r.getModifiedDate().toLocalDate().isAfter(afterYearMonth))
-                        .filter(r -> r.getModifiedDate().toLocalDate().isBefore(plusAfterYearMonth))
-                        .map(PostReplyDTO::getModifiedDate)
+                        //.filter(r -> r.getModifiedDate().toLocalDate().isAfter(afterYearMonth))
+                        //.filter(r -> r.getModifiedDate().toLocalDate().isBefore(plusAfterYearMonth))
+                        //.map(PostReplyDTO::getModifiedDate)
+                        //.distinct().collect(Collectors.toList());
+                        .filter(r -> r.getCreatedDate().toLocalDate().isAfter(afterYearMonth))
+                        .filter(r -> r.getCreatedDate().toLocalDate().isBefore(plusAfterYearMonth))
+                        .map(PostReplyDTO::getCreatedDate)
                         .distinct().collect(Collectors.toList());
-            }//if 전달되어온 yearmonth존재할때
 
+            }//if 전달되어온 yearmonth존재할때
 
             //최종결과인 게시판날짜와 글수 Map만듬
             Map<LocalDate, Long> postsDateCount = new HashMap<>();
@@ -215,29 +228,27 @@ public class AdminController {
 
                 LocalDate localDate = postsDate.toLocalDate();
 
-                System.out.println("게시판 LocalDateTime ->  " + postsDate + ", LocalDate -> " + localDate);
                 //게시판개수
                 Long postCount = (Long) postsListResponseDtoList.stream()
-                        .filter(r -> r.getModifiedDate().toLocalDate().isEqual(localDate)).count();
-                System.out.println("게시판갯수 postCount ->  " + postCount);
+                        //.filter(r -> r.getModifiedDate().toLocalDate().isEqual(localDate)).count();
+                        .filter(r -> r.getCreatedDate().toLocalDate().isEqual(localDate)).count();
 
+                //System.out.println("게시판갯수 postCount ->  " + postCount);
                 postsDateCount.put(localDate, postCount);
 
             }//for문
-
-            //postsListResponseDtoList postReplyDTOList postsDateList  postReplyDateList postDateCount postReplyDateCount
 
             //게시판댓글 날짜별 등록개수
             for (LocalDateTime postReplyDate : postReplyDateList) {
 
                 LocalDate localDate = postReplyDate.toLocalDate();
 
-                System.out.println("게시판댓글 LocalDateTime ->  " + postReplyDate + ", LocalDate -> " + localDate);
-
                 //게시판댓글수
                 Long postReplyCount = (Long) postReplyDTOList.stream()
-                        .filter(r -> r.getModifiedDate().toLocalDate().isEqual(localDate)).count();
-                System.out.println("게시판댓글수 postReplyCount ->  " + postReplyCount);
+                        //.filter(r -> r.getModifiedDate().toLocalDate().isEqual(localDate)).count();
+                        .filter(r -> r.getCreatedDate().toLocalDate().isEqual(localDate)).count();
+
+                //System.out.println("게시판댓글수 postReplyCount ->  " + postReplyCount);
 
                 postReplyDateCount.put(localDate, postReplyCount);
 
@@ -253,24 +264,26 @@ public class AdminController {
 
         }//전체 게시판목록이 있을때
 
-        //문의글 ___________________________________________________________________________________
+//문의글 ___________________________________________________________________________________
 
         List<InquiryDto> inquiryDtoList = is.findAll();
         if (inquiryDtoList.size() > 0 && inquiryDtoList != null) {
 
             if (yearmonth != null) {
                 LocalDate afterYearMonth = LocalDate.parse(yearmonth).with(TemporalAdjusters.firstDayOfMonth());
-                //달의 첫일자로 맞춘다
-                LocalDate plusAfterYearMonth = afterYearMonth.plusMonths(1);
-                //달의 끝일자로 맞춘다.
+                LocalDate plusAfterYearMonth = afterYearMonth.withDayOfMonth(afterYearMonth.lengthOfMonth()); //afterYearMonth.plusMonths(1);
 
-                //System.out.println("VIEW컨트롤러 /home/home 원본받은 날짜 -> " + yearmonth + ", 시작날짜로 변경 -> " + afterYearMonth + ", 한달더한 날짜 -> " + plusAfterYearMonth);//받은 날짜 -> 2024-04-01, 한달더한 날짜 -> 2024-05-01
-                //방명록날짜만 중복안되게 들고오기
+                //방명록 날짜필드만 중복안되게 들고오기
                 List<LocalDateTime> inquiryDateList = inquiryDtoList.stream()
-                        .filter(r -> r.getModifiedDate().toLocalDate().isAfter(afterYearMonth))
-                        .filter(r -> r.getModifiedDate().toLocalDate().isBefore(plusAfterYearMonth))
-                        .map(InquiryDto::getModifiedDate)
+                        //.filter(r -> r.getModifiedDate().toLocalDate().isAfter(afterYearMonth))
+                        //.filter(r -> r.getModifiedDate().toLocalDate().isBefore(plusAfterYearMonth))
+                        //.map(InquiryDto::getModifiedDate)
+                        //.distinct().peek(System.out::println).collect(Collectors.toList());
+                        .filter(r -> r.getCreatedDate().toLocalDate().isAfter(afterYearMonth))
+                        .filter(r -> r.getCreatedDate().toLocalDate().isBefore(plusAfterYearMonth))
+                        .map(InquiryDto::getCreatedDate)
                         .distinct().peek(System.out::println).collect(Collectors.toList());
+
 
                 //Model객체
                 Map<LocalDate, Long> inquiryDateCount = new HashMap<>();
@@ -279,12 +292,12 @@ public class AdminController {
 
                     LocalDate localDate = inquiryDate.toLocalDate();
 
-                    //System.out.println("문의글 LocalDateTime ->  " + inquiryDate + ", LocalDate -> " + localDate);
-
                     //일자별 문의글수
                     Long inquiryCount = (Long) inquiryDtoList.stream()
-                            .filter(r -> r.getModifiedDate().toLocalDate().isEqual(localDate)).count();
-                    System.out.println("문의글수 inquiryCount ->  " + inquiryCount);
+                            //.filter(r -> r.getModifiedDate().toLocalDate().isEqual(localDate)).count();
+                            .filter(r -> r.getCreatedDate().toLocalDate().isEqual(localDate)).count();
+
+                    //System.out.println("문의글수 inquiryCount ->  " + inquiryCount);
 
                     inquiryDateCount.put(localDate, inquiryCount);
 
@@ -295,24 +308,21 @@ public class AdminController {
             }//if종료 yearmonth 존재할때
         }//전체문의글이 존재할때
 
-        //회원___________________________________________________________________________________
+//회원___________________________________________________________________________________
 
         List<MemberDTO> memberDTOList = ms.findAll();
         if (memberDTOList.size() > 0 && memberDTOList != null) {
 
             if (yearmonth != null) {
                 LocalDate afterYearMonth = LocalDate.parse(yearmonth).with(TemporalAdjusters.firstDayOfMonth());
-                //달의 첫일자로 맞춘다
-                LocalDate plusAfterYearMonth = afterYearMonth.plusMonths(1);
-                //달의 끝일자로 맞춘다.
+                LocalDate plusAfterYearMonth = afterYearMonth.withDayOfMonth(afterYearMonth.lengthOfMonth()); //afterYearMonth.plusMonths(1);
 
-                System.out.println("VIEW컨트롤러 /home/home 원본받은 날짜 -> " + yearmonth + ", 시작날짜로 변경 -> " + afterYearMonth + ", 한달더한 날짜 -> " + plusAfterYearMonth);//받은 날짜 -> 2024-04-01, 한달더한 날짜 -> 2024-05-01
+                //System.out.println("VIEW컨트롤러 /home/home 원본받은 날짜 -> " + yearmonth + ", 해당 월의 첫일-> " + afterYearMonth + ",해당 월의 마지막일 -> " + plusAfterYearMonth);//받은 날짜 -> 2024-04-01, 한달더한 날짜 -> 2024-05-01
 
                 //날짜별List만들기
                 List<LocalDateTime> memberDateList = memberDTOList.stream().filter(i -> i.getCreatedDate().toLocalDate().isAfter(afterYearMonth))
                         .filter(i -> i.getCreatedDate().toLocalDate().isBefore(plusAfterYearMonth))
                         .map(MemberDTO::getCreatedDate).distinct().peek(System.out::println).collect(Collectors.toList());
-
 
                 //Model객체
                 Map<LocalDate, Long> memberDateCount = new HashMap<>();
@@ -323,7 +333,7 @@ public class AdminController {
                     //해당일자에 가입한 회원수
                     Long memberCount = (Long) memberDTOList.stream()
                             .filter(r -> r.getCreatedDate().toLocalDate().isEqual(localDate)).count();
-                    System.out.println("회원수 memberCount ->  " + memberCount);
+                    //System.out.println("회원수 memberCount ->  " + memberCount);
 
                     memberDateCount.put(localDate, memberCount);
 
@@ -334,6 +344,44 @@ public class AdminController {
             }//if yearmonth null 아닐경우
 
         }//if문 회원List존재할때
+
+//분양글-------------------------------------------------
+
+        List<DogSellListDTO> dogSellListDto = dogSellService.list();
+
+        if (dogSellListDto.size() > 0 && dogSellListDto != null) {
+
+            if (yearmonth != null) {
+                LocalDate afterYearMonth = LocalDate.parse(yearmonth).with(TemporalAdjusters.firstDayOfMonth());
+                LocalDate plusAfterYearMonth = afterYearMonth.withDayOfMonth(afterYearMonth.lengthOfMonth()); //afterYearMonth.plusMonths(1);
+
+                //System.out.println("VIEW컨트롤러 /home/home 원본받은 날짜 -> " + yearmonth + ", 해당 월의 첫일-> " + afterYearMonth + ",해당 월의 마지막일 -> " + plusAfterYearMonth);//받은 날짜 -> 2024-04-01, 한달더한 날짜 -> 2024-05-01
+
+                //날짜별List만들기
+                List<LocalDateTime> dogsellDateList = dogSellListDto.stream().filter(i -> i.getCreatedDate().toLocalDate().isAfter(afterYearMonth))
+                        .filter(i -> i.getCreatedDate().toLocalDate().isBefore(plusAfterYearMonth))
+                        .map(DogSellListDTO::getCreatedDate).distinct().peek(System.out::println).collect(Collectors.toList());
+
+                //Model객체
+                Map<LocalDate, Long> dogsellDateCount = new HashMap<>();
+
+                for (LocalDateTime dogsellDate : dogsellDateList) {
+
+                    LocalDate localDate = dogsellDate.toLocalDate();
+                    //해당일자에 등록한 분양글수
+                    Long dogsellCount = (Long) dogSellListDto.stream()
+                            .filter(r -> r.getCreatedDate().toLocalDate().isEqual(localDate)).count();
+
+                    dogsellDateCount.put(localDate, dogsellCount);
+
+                }//for종료 분양글 날짜별
+                model.addAttribute("dogsellDateCount", dogsellDateCount);
+                dogsellDateCount.forEach((k, v) -> System.out.println("분양글 Map담긴 키 -> " + k + ", 값 -> " + v));
+
+            }//if yearmonth null 아닐경우
+
+        }//if문 분양글List존재할때
+
 
         return "admin/admin_home";
     }

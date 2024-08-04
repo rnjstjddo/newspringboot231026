@@ -25,9 +25,13 @@ public class MemberController {
     private MemberService ms;
 
     @GetMapping("/member/login")
-    public void login(@ModelAttribute("pageRequestDto") PageRequestDTO requestDTO, Model model){
+    public void login(@ModelAttribute("pageRequestDto") PageRequestDTO requestDTO, Model model,
+                      @RequestParam(required = false) String error){
         System.out.println("컨트롤러클래스 MemberController login() 진입");
-
+        if(error!=null) {
+            System.out.println("컨트롤러클래스 MemberController login() 진입 로그인시 에러존재할때 진입");
+            model.addAttribute("error", error);
+        }
     }
 
     @GetMapping("/member/join")

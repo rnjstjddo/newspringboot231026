@@ -148,7 +148,7 @@ $(document).ready(function(){
 
          let htmlDummy = '';
 
-         //방명록
+//방명록------------------------------------------------
          var guestCountMap = new Map();
          var guestDateArray = [];
          var guestDateMap = new Map();
@@ -175,10 +175,11 @@ $(document).ready(function(){
              guestDateMap.set(resultDate,v);
          });//$.map
 
-         //console.log(guestCountMap);
-         //console.log(guestCountMap.keys());
+         console.log("관리자페이지 달력 방명록 ->"+guestReplyCountMap);
+         console.log("관리자페이지 달력 방명록 ->"+guestReplyDateArray);
+         console.log("관리자페이지 달력 방명록 ->"+guestReplyDateMap);
 
-         //방명록댓글
+//방명록댓글----------------------
          var guestReplyCountMap = new Map();
          var guestReplyDateArray = [];
          var guestReplyDateMap = new Map();
@@ -198,11 +199,15 @@ $(document).ready(function(){
              guestReplyDateArray.push(replyResultDate);
              guestReplyDateMap.set(replyResultDate,v);
          });//$.map
+         console.log("관리자페이지 달력 방명록댓글 ->"+guestReplyCountMap);
+         console.log("관리자페이지 달력 방명록댓글 ->"+guestReplyDateArray);
+         console.log("관리자페이지 달력 방명록댓글 ->"+guestReplyDateMap);
 
-        //------------------------------방명록 끝 ----------------------------------------
+
+//------------------------------방명록& 방명록댓글 끝 ----------------------------------------
 
 
-         //게시판
+//게시판-----------------------------
         //postsDateCount  postReplyDateCount
         //postsCountMap postsDateArray postDateMap
         //postsBool postReplyBool
@@ -232,11 +237,11 @@ $(document).ready(function(){
              postDateMap.set(resultDate,v);
          });//$.map
 
-         //console.log(postsCountMap);
-         //console.log(postsDateArray);
-         //console.log(postDateMap);
+         console.log("관리자페이지 달력 게시판 ->"+postsCountMap);
+         console.log("관리자페이지 달력 게시판 ->"+postsDateArray);
+         console.log("관리자페이지 달력 게시판 ->"+postDateMap);
 
-         //게시판댓글
+//게시판댓글-------------------------------------------
          var postReplyCountMap = new Map();
          var postReplyDateArray = [];
          var postReplyDateMap = new Map();
@@ -257,13 +262,13 @@ $(document).ready(function(){
              postReplyDateMap.set(replyResultDate,v);
          });//$.map
 
-         //console.log(postReplyCountMap);
-         //console.log(postReplyDateArray);
-         //console.log(postReplyDateMap);
+         console.log("관리자페이지 달력 게시판댓글 ->"+postReplyCountMap);
+         console.log("관리자페이지 달력 게시판댓글 ->"+postReplyDateArray);
+         console.log("관리자페이지 달력 게시판댓글 ->"+postReplyDateMap);
 
-        //------------------------------게시판 끝 ----------------------------------------
+//------------------------------게시판& 게시판댓글 끝 ----------------------------------------
 
-         //문의글
+//문의글---------------------
          let inquiryBool =false;
 
          var inquiryCountMap = new Map();
@@ -289,14 +294,13 @@ $(document).ready(function(){
          });//$.map
 
 
-         //console.log(postReplyCountMap);
-         //console.log(postReplyDateArray);
-         //console.log(postReplyDateMap);
+         console.log("관리자페이지 달력 문의글 ->"+inquiryCountMap);
+         console.log("관리자페이지 달력 문의글 ->"+inquiryDateArray);
+         console.log("관리자페이지 달력 문의글 ->"+inquiryDateMap);
 
+//------------------------------문의글 끝 ----------------------------------------
 
-        //------------------------------문의글 끝 ----------------------------------------
-
-         //회원
+//회원---------------------------------
          let memberBool =false;
 
          var memberCountMap = new Map();
@@ -322,15 +326,46 @@ $(document).ready(function(){
          });//$.map
 
 
-         console.log(memberCountMap);
-         console.log(memberDateArray);
-         console.log(memberDateMap);
+         console.log("관리자페이지 달력 회원 ->"+memberCountMap);
+         console.log("관리자페이지 달력 회원 ->"+memberDateArray);
+         console.log("관리자페이지 달력 회원 ->"+memberDateMap);
+
+//------------------------------회원 끝 ----------------------------------------
 
 
+//분양글 ---------------------------------
+         let dogsellBool =false;
 
-        //------------------------------회원 끝 ----------------------------------------
+         var dogsellCountMap = new Map();
+         var dogsellDateArray = [];
+         var dogsellDateMap = new Map();
 
-         //------------------------------달력만들기 아래부터 ----------------------------------------
+         $.map(dogsellDateCount, function(k, v){
+             console.log("분양글 $.map 진입 "+k+", "+v)
+             let dogsellResultDate = new Date(v).getDate();
+             let sliceDate =v.substr(0,7)
+
+             if(calfirst == sliceDate){ //달력첫날과 일치할경우
+                 console.log(calfirst == v)//true
+                 dogsellBool = true;
+             }
+
+            //dogsellDateCount dogsellCountMap dogsellDateArray dogsellDateMap
+
+             //console.log("admin_home.html 분양글 날짜중 일 -> "+ dogsellResultDate)
+             dogsellCountMap.set(dogsellResultDate, k);//날짜와 개수 Map형식
+             dogsellDateArray.push(dogsellResultDate);//날짜만 배열형식
+             dogsellDateMap.set(dogsellResultDate, v);//날짜와 일 Map형식
+         });//$.map
+
+
+         console.log("관리자페이지 달력 분양글 -> "+dogsellCountMap);
+         console.log("관리자페이지 달력 분양글 -> "dogsellDateArray);
+         console.log("관리자페이지 달력 분양글 -> "dogsellDateMap);
+
+//------------------------------분양글 끝 ----------------------------------------
+
+//------------------------------달력만들기 아래부터 ----------------------------------------
 
 
          for (let i = 0; i < firstDay; i++) {
@@ -412,7 +447,7 @@ $(document).ready(function(){
                      if(inquiryDateArray[iq]==i){
                           var resultinquiry = getLocalDateTime(inquiryDateMap, inquiryDateArray[iq])
                           console.log(i+"일과 일치하는 문의글 배열의 값 -> "+resultinquiry+", 배열의 인덱스 "+iq)
-                          htmlDummy += `<a style="color:#fd7e14;" href="/admin/inquiry/list?yearmonth=${resultinquiry}&tabtitle=inquiry">문의글수${inquiryCountMap.get(i)}</a><br>`;
+                          htmlDummy += `<a style="color:#8B4513;" href="/admin/inquiry/list?yearmonth=${resultinquiry}&tabtitle=inquiry">문의글수${inquiryCountMap.get(i)}</a><br>`;
                      }else{
                          continue inquiry;
                      } //if종료 문의글
@@ -426,13 +461,27 @@ $(document).ready(function(){
                           console.log(i+"일과 일치하는 회원 배열의 값 -> "+resultmember+", 배열의 인덱스 "+m)
                           htmlDummy += `<a style="color:#dc3545;" href="/admin/member/list?yearmonth=${resultmember}&tabtitle=member">가입회원수${memberCountMap.get(i)}</a><br>`;
 
-                          continue day;
+                          //continue day;
                          //마지막 for문에서만 day로 이동하게 해야한다.
                      }else{
                          continue member;
                      }//if종료 회원
                  }//for죵료 회원 member
 
+                //같은 날짜에 방명록도 존재하고 방명록댓글도 게시판도 게시판댓글도 문의글도 회원도 방명록도 존재할때
+                 dogsell: for(let m=0; m<memberDateArray.length; m++){
+                    //dogsellDateCount  / dogsellCountMap dogsellDateArray dogsellDateMap resultdogsell
+                     if(dogsellDateArray[m]==i){
+                          var resultdogsell = getLocalDateTime(dogsellDateMap, dogsellDateArray[m])
+                          console.log(i+"일과 일치하는 분양글 배열의 값 -> "+resultdogsell+", 배열의 인덱스 "+m)
+                          htmlDummy += `<a style="color:#FF7F50;" href="/admin/dogsell/list?yearmonth=${resultdogsell}&tabtitle=dogsell">등록한분양글수${dogsellCountMap.get(i)}</a><br>`;
+
+                          continue day;
+                         //마지막 for문에서만 day로 이동하게 해야한다.
+                     }else{
+                         continue dogsell;
+                     }//if종료 분양글
+                 }//for죵료 분양글 dogsell
 
 
              }//for종료 바깥쪽 day
