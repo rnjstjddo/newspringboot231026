@@ -33,7 +33,7 @@ public class MemberController {
         if(error == "true") {
             System.out.println("컨트롤러클래스 MemberController login() 진입 로그인시 에러존재할때 진입");
             rttrs.addFlashAttribute("exception", exception);
-            //rttrs.addFlashAttribute("error", error);
+            rttrs.addFlashAttribute("error", error);
         }
     }
 
