@@ -28,11 +28,12 @@ public class MemberController {
     public void login(@ModelAttribute("pageRequestDto") PageRequestDTO requestDTO, Model model,
                       @RequestParam(required = false) String error,
                       @RequestParam(required = false) String exception,
-                      RedirectAttributes rttrs){
+                      RedirectAttributes rttrs) {
         System.out.println("컨트롤러클래스 MemberController login() 진입");
-        System.out.println(error);
-        System.out.println(exception);
-        if(error == "true") {
+        //System.out.println(error);
+        //System.out.println(exception);
+        //if(error == "true") {
+        if (error.equals("true")){
             System.out.println("컨트롤러클래스 MemberController login() 진입 로그인시 에러존재할때 진입");
 
             rttrs.addFlashAttribute("exception", exception);
