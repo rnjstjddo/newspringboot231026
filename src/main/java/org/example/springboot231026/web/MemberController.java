@@ -32,6 +32,8 @@ public class MemberController {
         System.out.println("컨트롤러클래스 MemberController login() 진입");
         if(error == "true") {
             System.out.println("컨트롤러클래스 MemberController login() 진입 로그인시 에러존재할때 진입");
+            System.out.println(error);
+            System.out.println(exception);
             rttrs.addFlashAttribute("exception", exception);
             rttrs.addFlashAttribute("error", error);
         }

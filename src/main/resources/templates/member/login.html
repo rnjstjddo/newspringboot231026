@@ -76,8 +76,6 @@
 
 
 <script th:inline="javascript">
-
-$(document).ready(function(){
 console.log("login.html파일 진입");
 
 var exception =[[${exception}]]
@@ -86,6 +84,9 @@ var error =[[${error}]]
 if(error == error ){
     alert(exception);
 }
+
+$(document).ready(function(){
+
 
 });
 

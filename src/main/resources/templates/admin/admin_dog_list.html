@@ -71,9 +71,9 @@
                                             </th:block>
                                             <!--[[${dogSell.complete}]]-->
                                         </li>
-                                        <li class="list-group-item" data-dno="${dogSell.dno}" data-content="${dogSell.content}" ><span class="fw-bolder">특징</span>&nbsp;
+                                        <li class="list-group-item"><span class="fw-bolder">특징</span>&nbsp;
                                             <span style="display:block; overflow:hidden; text-overflow:ellipsis; width:250px; height:100px;">
-                                                [[${dogSell.content}]] <button type="button" class="btn btn-outline-success btn-sm contentAll">전체보기</button>
+                                                <button type="button" data-dno="${dogSell.dno}" data-content="${dogSell.content}" class="btn btn-outline-success btn-sm contentAll">전체보기</button> [[${dogSell.content}]]
                                             </span>
                                         </li>
                                         <li class="list-group-item"><sapn class="fw-bolder">분양번호</sapn>&nbsp;[[${dogSell.dno}]]</li>
@@ -252,11 +252,9 @@ if(removeSuccess !=null){
 $(".contentAll").on("click", function(){
 //contentAllModalDiv contentAllModalDivHeader contentAllModalDivBody contentAllModalDivBtn
     console.log("관리자페이지 admin_dog_list.html 강아지분양글전체 중 특징내용 모달창으로 보여주기 클릭이벤트 진입");
-    var li =$(this).closest("li");
-    console.log(li);
 
-    var dnoVal =$(this).closest("li").data("dno");
-    var contentVal =$(this).closest("li").data("content");
+    var dnoVal =$(this).data("dno");
+    var contentVal =$(this).data("content");
 
     $(".contentAllModalDivHeader").html(dnoVal+"번 분양강아지 특징");
     $(".contentAllModalDivBody").html(contentVal)
