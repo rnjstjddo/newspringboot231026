@@ -64,6 +64,11 @@ public class MemberController {
         System.out.println("컨트롤러클래스 MemberController updateSocialJoin() 진입");
         model.addAttribute("memberDTO", memberDTO);
 
+        System.out.println(memberDTO.getCreatedDate());
+        System.out.println(memberDTO.getModifiedDate());
+        System.out.println(memberDTO.getName());
+        System.out.println(memberDTO.getEmail());
+
         if(memberDTO.getCreatedDate()!=memberDTO.getModifiedDate() &&memberDTO.getName()!=memberDTO.getEmail()){
             System.out.println("컨트롤러클래스 MemberController updateSocialJoin() 진입 닉네임을 수정한 적이 있는 소셜로그인회원이기에 홈으로 바로 홈으로 이동한다.");
             String referer = request.getHeader("Referer");

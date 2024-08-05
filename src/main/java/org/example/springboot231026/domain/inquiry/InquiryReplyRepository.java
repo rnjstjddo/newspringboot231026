@@ -10,7 +10,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-public interface InquiryReplyRepository extends JpaRepository<Inquiry, Long>, InquirySearch {
+public interface InquiryReplyRepository extends JpaRepository<InquiryReply, Long> {
 
+
+    @Query("select ir from InquiryReply ir where ir.inquiry.innum =:innum")
+    Optional<InquiryReply> getInquiryReply(@Param("innum") Long innum);
 
 }

@@ -60,6 +60,22 @@ var memberObject ={
 
         //var emailval =$("#email").val();
 
+        var emailVal= $("#eamil").val();
+
+        if(emailVal=="" || emailVal== null){
+            console.log("member.js 회원가입에서 email칸이 비어있는 경우 진입");
+            alert("이메일을 입력해주세요!");
+            $("#email").focus();
+            return;
+        }
+
+        const pattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
+
+        if(pattern.test(emailVal) === false) {
+            alert("이메일 형식이 맞지 않습니다. 다시 확인해주세요!");
+            $("#email").focus();
+            return;
+        }
 
         //아이디중복확인 on이벤트진입
         $("#namecheck").on("click", function(){

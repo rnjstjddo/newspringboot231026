@@ -167,8 +167,6 @@ public class InquiryService {
     }
 
 
-
-
 //        System.out.println("service-inquiry패키지 InquiryService클래스 inquiryRegister() 진입");
 
 

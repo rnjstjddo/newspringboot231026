@@ -327,13 +327,6 @@ public class AdminPostController {
         return "admin/admin_member_list";
     }
 
-
-
-
-
-
-
-
     //일자에 맞는 개수반환 현재 회원은 오류로 제외시킴
     public Count returnCount(LocalDate localDate) {
         System.out.println("관리자컨트롤러 returnCount() 진입 Count 객체반환");
