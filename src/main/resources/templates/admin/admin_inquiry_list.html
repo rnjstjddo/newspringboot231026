@@ -125,22 +125,16 @@
                         <td>
                             <th:block th:if="${#strings.equals(dto.complete,true)}">
                                 완료
-                            </th:block>
-                            <th:block th:if="${#strings.equals(dto.complete,false)}">
-                                미완료
-                            </th:block>
-                        </td>
-                        <td>
-                            <th:block th:if="${#strings.equals(dto.complete,true)}">
-                                <button type="button" class="btn btn-outline-success btn-sm inquiryReplyModal"
-                                        th:data-innum="${dto.innum}" th:data-content="${dto.content}" th:data-writer="${dto.writer}"
-                                        th:data-createdDate="${dto.createdDate}">답변작성
-                                </button>
-                            </th:block>
-                            <th:block th:if="${#strings.equals(dto.complete,false)}">
                                 <button type="button" class="btn btn-outline-success btn-sm inquiryReplyShowModal"
                                         th:data-innum="${dto.innum}" th:data-content="${dto.content}" th:data-writer="${dto.writer}"
                                         th:data-createdDate="${dto.createdDate}">답변보기
+                                </button>
+                            </th:block>
+                            <th:block th:if="${#strings.equals(dto.complete,false)}">
+                                미완료
+                                <button type="button" class="btn btn-outline-success btn-sm inquiryReplyModal"
+                                        th:data-innum="${dto.innum}" th:data-content="${dto.content}" th:data-writer="${dto.writer}"
+                                        th:data-createdDate="${dto.createdDate}">답변작성
                                 </button>
                             </th:block>
                         </td>
