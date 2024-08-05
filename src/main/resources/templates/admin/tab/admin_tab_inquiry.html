@@ -143,7 +143,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="mb-3" >
-                            <input type="text" name="inquiryReplyModalDivBody">
+                            <textarea id="inquiryReplyModalDivBody"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -170,7 +170,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="mb-3" >
-                            <input type="text" name="inquiryReplyModalShowDivBody">
+                            <textarea id="inquiryReplyModalShowDivBody"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -219,7 +219,7 @@ $(document).ready(function(){
     //답변작성완료 버튼 클릭시
     $(".inquiryReplyModalDivSendBtn").on("click", function(){
         console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글작성 완료 이벤트버튼 클릭 진입");
-        var replyVal = $("input[name='inquiryReplyModalDivBody']").val();
+        var replyVal = $("#inquiryReplyModalDivBody").val();
         var innumVal =$(this).data("innum");
         //InquiryReplyDto Long inrenum / String content / Long innum / InquiryDto inquiryDto / LocalDateTime createdDate, modifiedDate;
 

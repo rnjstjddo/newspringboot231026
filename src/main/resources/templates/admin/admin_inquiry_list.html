@@ -200,7 +200,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="mb-3" >
-                            <input type="text" name="inquiryReplyModalDivBody">
+                            <textarea id="inquiryReplyModalDivBody"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -227,7 +227,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="mb-3" >
-                            <input type="text" name="inquiryReplyModalShowDivBody">
+                            <textarea id="inquiryReplyModalShowDivBody"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -248,6 +248,16 @@ var guestreplycount = [[${count.guestreplycount}]]
 var postcount = [[${count.postcount}]]
 var postreplycount = [[${count.postreplycount}]]
 var inquirycount = [[${count.inquirycount}]]
+
+function dateFormat(date){
+console.log("admin_inquiry_list.html 날짜처리 진입 파라미터 ->"+date);
+    var date =new Date(date);
+
+    return date.getFullYear()+
+    '/'+(date.getMonth()+1)+'/'+date.getDate()+' '+ date.getHours()+':'+date.getMinutes();
+}
+
+
 
 
 $(document).ready(function(){
@@ -301,6 +311,9 @@ $(document).ready(function(){
         var contentVal =$(this).data("content");
         var writerVal =$(this).data("writer");
         var createdDateVal =$(this).data("createdDate");
+        console.log("날짜확인 -> "+ createdDateVal);
+        //날짜변환
+        createdDateVal= dateFormat(createdDateVal);
 
         $(".inquiryReplyModalDivHeader").html(innumVal+"번 문의글 | 문의일자 "+createdDateVal);
         $(".inquiryReplyModalDivBodyOriginal").html(contentVal)
@@ -310,7 +323,7 @@ $(document).ready(function(){
     //답변작성완료 버튼 클릭시
     $(".inquiryReplyModalDivSendBtn").on("click", function(){
         console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글작성 완료 이벤트버튼 클릭 진입");
-        var replyVal = $("input[name='inquiryReplyModalDivBody']").val();
+        var replyVal = $("#inquiryReplyModalDivBody").val();
         var innumVal =$(this).data("innum");
         //InquiryReplyDto Long inrenum / String content / Long innum / InquiryDto inquiryDto / LocalDateTime createdDate, modifiedDate;
 
@@ -360,6 +373,10 @@ $(document).ready(function(){
         var contentVal =$(this).data("content");
         var writerVal =$(this).data("writer");
         var createdDateVal =$(this).data("createdDate");
+        console.log("날짜확인 -> "+ createdDateVal);
+
+        //날짜변환
+        createdDateVal= dateFormat(createdDateVal);
 
         $.ajax({
             url:'/admin/inquiry/innumVal',
