@@ -31,7 +31,7 @@ public class AdminApiController {
     }
 
 
-    @PostMapping("/admin/inquiry/${innum}")
+    @PostMapping("/admin/inquiry/{innum}")
     public InquiryReplyDto inquiryReplyGet(@PathVariable Long innum){
         System.out.println("API컨트롤러 AdminApiController inquiryReplyGet() 진입 문의글 번호 -> "+innum);
         InquiryReplyDto inquiryReplyDto = irs.getInquiryReply(innum);
