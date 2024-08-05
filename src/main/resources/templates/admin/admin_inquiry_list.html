@@ -112,6 +112,7 @@
                         <th scope="col" width="200px">전화</th>
                         <th scope="col" width="200px">이메일</th>
                         <th scope="col" width="100px">답변여부</th>
+
                     </tr>
 
                     <tr th:each="dto:${responseDtoList}">
@@ -120,7 +121,29 @@
                         <td>[[${dto.writer}]]</td>
                         <td>[[${dto.phone}]]</td>
                         <td>[[${dto.email}]]</td>
-                        <td>[[${dto.complete}]]</td>
+                        <!--<td>[[${dto.complete}]]</td>-->
+                        <td>
+                            <th:block th:if="${#strings.equals(dto.complete,true)}">
+                                완료
+                            </th:block>
+                            <th:block th:if="${#strings.equals(dto.complete,false)}">
+                                미완료
+                            </th:block>
+                        </td>
+                        <td>
+                            <th:block th:if="${#strings.equals(dto.complete,true)}">
+                                <button type="button" class="btn btn-outline-success btn-sm inquiryReplyModal"
+                                        th:data-innum="${dto.innum}" th:data-content="${dto.content}" th:data-writer="${dto.writer}"
+                                        th:data-createdDate="${dto.createdDate}">답변작성
+                                </button>
+                            </th:block>
+                            <th:block th:if="${#strings.equals(dto.complete,false)}">
+                                <button type="button" class="btn btn-outline-success btn-sm inquiryReplyShowModal"
+                                        th:data-innum="${dto.innum}" th:data-content="${dto.content}" th:data-writer="${dto.writer}"
+                                        th:data-createdDate="${dto.createdDate}">답변보기
+                                </button>
+                            </th:block>
+                        </td>
                     </tr>
                 </table>
 
@@ -165,6 +188,61 @@
 
             </form>
         </article>
+
+
+
+        <!--답변글 작성 모달창열기 -->
+        <div class="modal inquiryReplyModalDiv" tabindex="-1"  >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title inquiryReplyModalDivHeader"></h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3" >
+                            <p class="inquiryReplyModalDivBodyOriginal">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3" >
+                            <input type="text" name="inquiryReplyModalDivBody">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger btn-sm inquiryReplyModalDivSendBtn">답변작성완료</button>
+                        <button type="button" class="btn btn-outline-warning btn-sm inquiryReplyModalDivBtn">닫기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--답변보기 모달창열기 -->
+        <div class="modal inquiryReplyModalShowDiv" tabindex="-1"  >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title inquiryReplyModalShowDivHeader"></h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3" >
+                            <p class="inquiryReplyModalShowDivBodyOriginal">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3" >
+                            <input type="text" name="inquiryReplyModalShowDivBody">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-warning btn-sm inquiryReplyModalShowDivBtn">닫기</button>
+                    </div>
+                </div>
+            </div>
+        </div><!-- 답변보기 -->
+
 
 <script th:inline="javascript">
 
@@ -218,6 +296,114 @@ $(document).ready(function(){
 
         $("form").submit();
     });
+
+
+    //관리자페이지 전체문의글에서 답변시 모달창으로 작성
+    $(".inquiryReplyModal").on("click", function(){
+    //inquiryReplyModalDiv inquiryReplyModalDivHeader inquiryReplyModalDivBody inquiryReplyModalDivBtn
+        console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글작성 클릭이벤트 진입");
+        //innum content writer createdDate
+        var innumVal =$(this).data("innum");
+        var contentVal =$(this).data("content");
+        var writerVal =$(this).data("writer");
+        var createdDateVal =$(this).data("createdDate");
+
+        $(".inquiryReplyModalDivHeader").html(innumVal+"번 문의글 | 문의일자 "+createdDateVal);
+        $(".inquiryReplyModalDivBodyOriginal").html(contentVal)
+        $(".inquiryReplyModalDiv").show();
+    });//끝 on()클릭이벤트진입
+
+    //답변작성완료 버튼 클릭시
+    $(".inquiryReplyModalDivSendBtn").on("click", function(){
+        console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글작성 완료 이벤트버튼 클릭 진입");
+        var replyVal = $("input[name='inquiryReplyModalDivBody']").val();
+        var innumVal =$(this).data("innum");
+        //InquiryReplyDto Long inrenum / String content / Long innum / InquiryDto inquiryDto / LocalDateTime createdDate, modifiedDate;
+
+        var data ={innum: innumVal, content: replyVal}
+
+        $.ajax({
+            url:'/admin/inquiry/register',
+            method:'post',
+            data:JSON.stringify(data),
+            contentType: "application/json;charset=utf-8",
+            dataType:'text',
+            success: function(result){
+                if(result == "true"){
+                    console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글작성 성공 진입 -> "+result);
+                    alert("문의글에 대한 답변이 전달되었습니다!")
+                    location.replace(`/admin/tab/inquiry`);
+                }else{
+                    console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글작성 실패 진입 -> "+result);
+                    alert("문의글에 대한 답변이 전달되지 않았습니다. 다시 한번 확인해주세요!")
+                    location.replace(`/admin/tab/inquiry`)
+                }
+            },
+
+            fail : function(){
+                console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글작성 실패 진입")
+                alert("문의글에 대한 답변이 전달되지 않았습니다. 다시 한번 확인해주세요!")
+                location.replace(`/admin/tab/inquiry`)
+            }
+        });//끝 $.ajax
+
+    });//끝 on()클릭 이벤트직입 답변글작성완료
+
+    //답변글작성 모달창 닫기이벤트진입
+    $(".inquiryReplyModalDivBtn").on("click",function(){
+        console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글작성 모달창 닫기 이벤트 진입");
+        $(".inquiryReplyModalDiv").hide();
+    });//끝 on() 답변글작성 모달창닫기이벤트
+
+
+    //답변보기 모달창열기
+    $(".inquiryReplyShowModal").on("click", function(){
+    //inquiryReplyModalShowDiv inquiryReplyModalShowDivHeader inquiryReplyModalShowDivBody inquiryReplyModalShowDivBtn
+        console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글보기 클릭이벤트 진입");
+        //innum content writer createdDate
+
+        var innumVal =$(this).data("innum");
+        var contentVal =$(this).data("content");
+        var writerVal =$(this).data("writer");
+        var createdDateVal =$(this).data("createdDate");
+
+        $.ajax({
+            url:'/admin/inquiry/innumVal',
+            method:'post',
+            contentType: "application/json;charset=utf-8",
+            dataType:'text',
+            success: function(result){
+                if(result !=null){
+                    console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글보기 성공 진입 -> ");
+                    console.log(result);
+
+                    $(".inquiryReplyModalShowDivHeader").html(innumVal+"번 문의글 | 문의일자 "+createdDateVal);
+                    $(".inquiryReplyModalShowDivBodyOriginal").html(contentVal);
+                    $(".inquiryReplyModalShowDivBody").html(result.content);
+                    $(".inquiryReplyModalDiv").show();
+
+                }else{
+                    console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글보기 실패 진입 ");
+                    alert("문의글에 대한 답변이 확인되지 않습니다.")
+                    location.replace(`/admin/tab/inquiry`)
+                }
+            },
+
+            fail : function(){
+                console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글보기 실패 진입")
+                alert("문의글에 대한 답변이 확인되지 않습니다.")
+                location.replace(`/admin/tab/inquiry`)
+            }
+        });//끝 $.ajax
+
+
+    });//답변보기 모달창열기
+
+    //답변보기 모달창 닫기이벤트진입
+    $(".inquiryReplyModalShowDivBtn").on("click",function(){
+        console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글보기 모달창 닫기 이벤트 진입");
+        $(".inquiryReplyModalShowDiv").hide();
+    });//끝 on() 답변보기 모달창닫기이벤트
 
 
 });

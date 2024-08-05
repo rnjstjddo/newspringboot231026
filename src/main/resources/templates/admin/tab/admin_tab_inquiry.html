@@ -61,21 +61,21 @@
                         <td>[[${dto.email}]]</td>
                         <td>[[${#temporals.format(dto.createdDate,'yyyy-MM-dd')}]]</td>
                         <td>
-                            <th:block th:if="${#strings.equals(Dto.complete,true)}">
+                            <th:block th:if="${#strings.equals(dto.complete,true)}">
                                 답변여부: 완료
                             </th:block>
-                            <th:block th:if="${#strings.equals(Dto.complete,false)}">
+                            <th:block th:if="${#strings.equals(dto.complete,false)}">
                                 답변여부: 미완료
                             </th:block>
                         </td>
                         <td>
-                            <th:block th:if="${#strings.equals(Dto.complete,true)}">
+                            <th:block th:if="${#strings.equals(dto.complete,true)}">
                                 <button type="button" class="btn btn-outline-success btn-sm inquiryReplyModal"
                                     th:data-innum="${dto.innum}" th:data-content="${dto.content}" th:data-writer="${dto.writer}"
                                     th:data-createdDate="${dto.createdDate}">답변작성
                                 </button>
                             </th:block>
-                            <th:block th:if="${#strings.equals(Dto.complete,false)}">
+                            <th:block th:if="${#strings.equals(dto.complete,false)}">
                                 <button type="button" class="btn btn-outline-success btn-sm inquiryReplyShowModal"
                                         th:data-innum="${dto.innum}" th:data-content="${dto.content}" th:data-writer="${dto.writer}"
                                         th:data-createdDate="${dto.createdDate}">답변보기
