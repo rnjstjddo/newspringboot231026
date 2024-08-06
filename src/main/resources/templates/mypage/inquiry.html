@@ -25,6 +25,7 @@
                                 <b>아직 작성하신 문의글이 없습니다.^^</b>
                             </th:block>
 
+                            <!-- 문의글이 존재할떄-->
                             <th:block th:if="${!#lists.isEmpty(iDTOlist)}" th:each="iDto:${iDTOlist}">
                                 <!-- 문의 답변글이 존재하지않을때-->
                                 <th:block th:if="${#lists.isEmpty(irDTOlist)}">
@@ -57,7 +58,7 @@
                                     </div>
                                 </div>
                                 </th:block>
-                            </th:block>
+
 
                             <!-- 문의 답변글이 존재할때-->
                             <th:block th:if="${!#lists.isEmpty(irDTOList)}" th:each="irDto:${irDTOList}">
@@ -109,7 +110,8 @@
                                     </div>
                                 </div>
                                 </th:block>
-                            </th:block>
+                            </th:block> <!-- 문의글에 대한 답변이 존재할경우 -->
+                            </th:block><!-- 문의글이 존재할경우-->
                         </div>
                     </div>
                 </div>
