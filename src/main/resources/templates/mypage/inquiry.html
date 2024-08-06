@@ -27,6 +27,7 @@
 
                             <!-- 문의글이 존재할떄-->
                             <th:block th:if="${!#lists.isEmpty(iDTOlist)}" th:each="iDto:${iDTOlist}">
+
                                 <!-- 문의 답변글이 존재하지않을때-->
                                 <th:block th:if="${#lists.isEmpty(irDTOlist)}">
                                     <div class="accordion-item">
@@ -61,7 +62,7 @@
 
 
                             <!-- 문의 답변글이 존재할때-->
-                            <th:block th:if="${!#lists.isEmpty(irDTOList)}" th:each="irDto:${irDTOList}">
+                            <th:block th:if="${!#lists.isEmpty(irDTOList) && iDto.innum == irDto.innum}" th:each="irDto:${irDTOList}">
                                 <div class="accordion-item">
                                     <h3 class="accordion-header" ><!--id="headingOne"-->
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
@@ -91,7 +92,9 @@
                                     </div>
                                 </div>
 
+<!--
                                 <th:block th:if="${iDto.innum == irDto.innum}">
+-->
                                 <div class="accordion-item">
                                     <h3 class="accordion-header" ><!--id="headingOne"-->
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
@@ -109,7 +112,9 @@
                                         </div>
                                     </div>
                                 </div>
+<!--
                                 </th:block>
+-->
                             </th:block> <!-- 문의글에 대한 답변이 존재할경우 -->
                             </th:block><!-- 문의글이 존재할경우-->
                         </div>
