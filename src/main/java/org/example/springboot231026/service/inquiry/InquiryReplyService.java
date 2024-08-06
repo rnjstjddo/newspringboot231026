@@ -54,14 +54,23 @@ public class InquiryReplyService {
         System.out.println("service-inquiry패키지 InquiryReplyService getInquiryReply() 진입");
 
         Optional<InquiryReply> o = irerepo.getInquiryReply(innum);
+        Optional<Inquiry> i = irepo.findById(innum);
+
+        InquiryDto inquiryDto = mm.map(i, InquiryDto.class);
 
         if(o.isPresent()){
             System.out.println("service-inquiry패키지 InquiryReplyService getInquiryReply() 진입 "+
                     " 해당 문의글에 대한 답변이 존재할 경우 진입");
 
             InquiryReply inquiryReply =o.get();
+            System.out.println("service-inquiry패키지 InquiryReplyService getInquiryReply() 진입 "+
+                    " 해당 문의글에 대한 답변이 존재할 경우 진입 InquiryReply FETCH전략 EAGER Inquiry엔티티도 들고오는지확인 -> " +
+                    inquiryReply.toString());
 
-            return mm.map(inquiryReply, InquiryReplyDto.class);
+            return new InquiryReplyDto(inquiryReply.getInrenum(),
+                    inquiryReply.getContent(), inquiryDto, innum, inquiryReply.getCreatedDate(),
+                    inquiryReply.getModifiedDate());
+            //return mm.map(inquiryReply, InquiryReplyDto.class);
         };
         return null;
     }

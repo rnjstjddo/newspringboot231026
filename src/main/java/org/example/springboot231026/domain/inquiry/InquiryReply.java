@@ -22,7 +22,7 @@ public class InquiryReply extends BaseTimeEntity {
     @Column(name = "content",nullable = false)
     private String content;
 
-    @OneToOne
+    @OneToOne(fetch=FetchType.EAGER)
     private Inquiry inquiry;
 
 

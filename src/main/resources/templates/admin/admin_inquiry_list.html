@@ -125,7 +125,7 @@
                         <td>
                             <th:block th:if="${#strings.equals(dto.complete,true)}">
                                 완료
-                                <button type="button" class="btn btn-outline-success btn-sm inquiryReplyShowModal"
+                                <button type="button" class="btn btn-outline-danger btn-sm inquiryReplyShowModal"
                                         th:data-innum="${dto.innum}" th:data-content="${dto.content}" th:data-writer="${dto.writer}"
                                         th:data-createddate="${dto.createdDate}">답변보기
                                 </button>
@@ -256,7 +256,7 @@ console.log("admin_inquiry_list.html 날짜처리 진입 파라미터 ->"+date);
     var date =new Date(date);
 
     return date.getFullYear()+
-    '/'+(date.getMonth()+1)+'/'+date.getDate()+' '+ date.getHours()+':'+date.getMinutes();
+    '-'+(date.getMonth()+1)+'-'+date.getDate()+' '+ date.getHours()+':'+date.getMinutes();
 }
 
 
