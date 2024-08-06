@@ -226,6 +226,7 @@ $(document).ready(function(){
         //InquiryReplyDto Long inrenum / String content / Long innum / InquiryDto inquiryDto / LocalDateTime createdDate, modifiedDate;
 
         var data ={innum: innumVal, content: replyVal}
+        console.log(data);
 
         $.ajax({
             url:'/admin/inquiry/register',

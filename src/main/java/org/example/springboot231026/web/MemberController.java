@@ -38,8 +38,8 @@ public class MemberController {
 
             rttrs.addFlashAttribute("exception", exception);
             rttrs.addFlashAttribute("error", error);
-            model.addAttribute("exception", exception);
-            model.addAttribute("error", error);
+            //model.addAttribute("exception", exception);
+            //model.addAttribute("error", error);
         }
     }
 

@@ -34,12 +34,10 @@ public class InquiryReplyService {
 
         Optional<Inquiry> o = irepo.findById(inquiryReplyDto.getInnum());
 
-        InquiryReply inquriyReply = null;
-
         if (o.isPresent()) {
             inquiryReplyDto.setInquiryDto(mm.map(o.get(), InquiryDto.class));
 
-            inquriyReply = mm.map(inquiryReplyDto, InquiryReply.class);
+            InquiryReply inquriyReply = mm.map(inquiryReplyDto, InquiryReply.class);
             if (irerepo.save(inquriyReply).getInrenum() > 0) {
                 System.out.println("service-inquiry패키지 InquiryReplyService registerInquiryReply() 진입 답변등록 성공진입");
 
