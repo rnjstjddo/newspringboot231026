@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.thymeleaf.util.MapUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -169,7 +170,7 @@ public class MypageController {
             List<Long> innumList = inquiryDTOlist.stream().map(InquiryDto::getInnum)
                     .collect(Collectors.toList());
             //문의답변글
-            List<InquiryReplyDto> inquiryReplyDTOlist = null;
+            List<InquiryReplyDto> inquiryReplyDTOlist = new ArrayList<>();
             
             for(Long innum : innumList) {
                 InquiryReplyDto inquiryReplyDto = irs.getInquiryReply(innum);
@@ -179,7 +180,7 @@ public class MypageController {
                 }
             }
             //문의답변글 Model담기
-            if(inquiryReplyDTOlist !=null) {
+            if(inquiryReplyDTOlist.size() > 0) {
                 System.out.println("컨트롤러 MypageController inquiry() 진입- List<InquiryDto> 존재할때 진입 " +
                         " List<InquiryReplyDto> 존재할때 진입 ");
 
