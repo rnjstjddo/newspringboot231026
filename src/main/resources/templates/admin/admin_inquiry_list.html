@@ -319,8 +319,10 @@ $(document).ready(function(){
 
         $(".inquiryReplyModalDivHeader").html(innumVal+"번 문의글 | 문의일자 "+createdDateVal);
         $(".inquiryReplyModalDivBodyOriginal").html(contentVal)
+        $(".inquiryReplyModalDivSendBtn").attr("data-innum",innumVal);
         $(".inquiryReplyModalDiv").show();
     });//끝 on()클릭이벤트진입
+
 
     //답변작성완료 버튼 클릭시
     $(".inquiryReplyModalDivSendBtn").on("click", function(){

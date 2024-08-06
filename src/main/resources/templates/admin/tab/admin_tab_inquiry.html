@@ -148,7 +148,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-danger btn-sm inquiryReplyModalDivSendBtn">답변작성완료</button>
+                        <button type="button" class="btn btn-outline-danger btn-sm inquiryReplyModalDivSendBtn" >답변작성완료</button>
                         <button type="button" class="btn btn-outline-warning btn-sm inquiryReplyModalDivBtn">닫기</button>
                     </div>
                 </div>
@@ -215,6 +215,7 @@ $(document).ready(function(){
 
         $(".inquiryReplyModalDivHeader").html(innumVal+"번 문의글 | 문의일자 "+createdDateVal);
         $(".inquiryReplyModalDivBodyOriginal").html(contentVal)
+        $(".inquiryReplyModalDivSendBtn").attr("data-innum",innumVal);
         $(".inquiryReplyModalDiv").show();
     });//끝 on()클릭이벤트진입
 
