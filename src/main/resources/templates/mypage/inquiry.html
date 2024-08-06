@@ -27,7 +27,7 @@
 
                             <th:block th:if="${!#lists.isEmpty(iDTOlist)}" th:each="iDto:${iDTOlist}">
                             <div class="accordion-item">
-                                <h3 class="accordion-header" id="headingOne">
+                                <h3 class="accordion-header"> <!--id="headingOne"-->
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                      data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                         <span class="fst-italic">
@@ -46,7 +46,7 @@
                                         </span>
                                     </button>
                                 </h3>
-                                <div class="accordion-collapse collapse show" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-collapse collapse show"  data-bs-parent="#accordionExample"><!--id="collapseOne"  aria-labelledby="headingOne"-->
                                     <div class="accordion-body">
                                         <strong></strong>
                                         내용 [[${iDto.content}]]
@@ -54,6 +54,58 @@
                                     </div>
                                 </div>
                             </div>
+                            </th:block>
+
+                            <!-- 문의 답변글이 존재할때-->
+                            <th:block th:if="${!#lists.isEmpty(irDTOList)}" th:each="iDto:${iDTOList}">
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" ><!--id="headingOne"-->
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <span class="fst-italic">
+                                            &nbsp;작성일자 [[${#temporals.format(iDto.createdDate, 'yyyy-MM-dd')}]] | &nbsp;&nbsp;
+                                             <th:block th:if="${#strings.equals(iDto.complete,true)}">
+                                                답변여부: 완료
+                                                 <!--<button  class="btn btn-outline-danger btn-sm inquiryReplyModalDivShowBtn"
+                                                          th:data-innum="${iDto.innum}" th:data-content="${iDto.content}" th:data-writer="${iDto.writer}"
+                                                          th:data-createdDate="${iDto.createdDate}">
+                                                 답변보기
+                                                 </button>-->
+                                             </th:block>
+                                             <th:block th:if="${#strings.equals(iDto.complete,false)}">
+                                                 답변여부: 미완료
+                                             </th:block>
+                                        </span>
+                                        </button>
+                                    </h3>
+                                    <div class="accordion-collapse collapse show"  data-bs-parent="#accordionExample"><!--id="collapseOne" aria-labelledby="headingOne"-->
+                                        <div class="accordion-body">
+                                            <strong></strong>
+                                            문의내용 [[${iDto.content}]]
+                                            <code></code>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <th:block th:if="${irDTOList.inrenum== iDTOList.innum}" th:each="irDto:${irDTOList}">
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" ><!--id="headingOne"-->
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <span class="fst-italic">
+                                            &nbsp;답변내용 | 작성일자 [[${#temporals.format(irDto.createdDate, 'yyyy-MM-dd')}]] | &nbsp;&nbsp;
+                                        </span>
+                                        </button>
+                                    </h3>
+                                    <div class="accordion-collapse collapse show"  data-bs-parent="#accordionExample"><!--id="collapseOne" aria-labelledby="headingOne"-->
+                                        <div class="accordion-body">
+                                            <strong></strong>
+                                            답변내용 [[${irDto.content}]]
+                                            <code></code>
+                                        </div>
+                                    </div>
+                                </div>
+                                </th:block>
                             </th:block>
                         </div>
                     </div>

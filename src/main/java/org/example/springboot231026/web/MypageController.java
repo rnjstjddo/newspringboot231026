@@ -5,11 +5,13 @@ import org.example.springboot231026.dto.dogsell.DogSellReadDTO;
 import org.example.springboot231026.dto.dogsell.cart.WishNumDTO;
 import org.example.springboot231026.dto.guestbook.GuestbookDTO;
 import org.example.springboot231026.dto.inquiry.InquiryDto;
+import org.example.springboot231026.dto.inquiry.InquiryReplyDto;
 import org.example.springboot231026.dto.member.MemberDTO;
 import org.example.springboot231026.dto.message.MessageDTO;
 import org.example.springboot231026.dto.post.PostsResponseDto;
 import org.example.springboot231026.service.dogsell.WishNumService;
 import org.example.springboot231026.service.guestbook.GuestbookService;
+import org.example.springboot231026.service.inquiry.InquiryReplyService;
 import org.example.springboot231026.service.inquiry.InquiryService;
 import org.example.springboot231026.service.message.MessageService;
 import org.example.springboot231026.service.posts.PostsService;
@@ -25,6 +27,7 @@ import org.thymeleaf.util.MapUtils;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/mypage")
@@ -44,6 +47,9 @@ public class MypageController {
 
     @Autowired
     private InquiryService is;
+
+    @Autowired
+    private InquiryReplyService irs;
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/message")
@@ -152,7 +158,6 @@ public class MypageController {
 
         List<InquiryDto> inquiryDTOlist = is.getListforMember(memberDTO.getName());
 
-
         if(memberDTO !=null){
             System.out.println("컨트롤러 MypageController inquiry() 진입- MemberDTO 존재할때 진입");
             model.addAttribute("memberDTO",memberDTO);
@@ -160,6 +165,27 @@ public class MypageController {
 
         if(inquiryDTOlist !=null && inquiryDTOlist.size() > 0){
             System.out.println("컨트롤러 MypageController inquiry() 진입- List<InquiryDto> 존재할때 진입");
+
+            List<Long> innumList = inquiryDTOlist.stream().map(InquiryDto::getInnum)
+                    .collect(Collectors.toList());
+            //문의답변글
+            List<InquiryReplyDto> inquiryReplyDTOlist = null;
+            
+            for(Long innum : innumList) {
+                InquiryReplyDto inquiryReplyDto = irs.getInquiryReply(innum);
+
+                if(inquiryReplyDto !=null) {
+                    inquiryReplyDTOlist.add(inquiryReplyDto);
+                }
+            }
+            //문의답변글 Model담기
+            if(inquiryReplyDTOlist !=null) {
+                System.out.println("컨트롤러 MypageController inquiry() 진입- List<InquiryDto> 존재할때 진입 " +
+                        " List<InquiryReplyDto> 존재할때 진입 ");
+
+                model.addAttribute("irDTOList", inquiryReplyDTOlist);
+            }
+
             model.addAttribute("iDTOlist",inquiryDTOlist);
         }
     }

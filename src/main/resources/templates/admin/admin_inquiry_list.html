@@ -128,7 +128,6 @@
                                 <button type="button" class="btn btn-outline-success btn-sm inquiryReplyShowModal"
                                         th:data-innum="${dto.innum}" th:data-content="${dto.content}" th:data-writer="${dto.writer}"
                                         th:data-createddate="${dto.createdDate}">답변보기
-                                    [[${#temporals.format(dto.createdDate,'yyyy-MM-dd')}]]
                                 </button>
                             </th:block>
                             <th:block th:if="${#strings.equals(dto.complete,false)}">
@@ -136,7 +135,6 @@
                                 <button type="button" class="btn btn-outline-success btn-sm inquiryReplyModal"
                                         th:data-innum="${dto.innum}" th:data-content="${dto.content}" th:data-writer="${dto.writer}"
                                         th:data-createddate="${dto.createdDate}">답변작성
-                                    [[${#temporals.format(dto.createdDate,'yyyy-MM-dd')}]]
                                 </button>
                             </th:block>
                         </td>
@@ -202,8 +200,8 @@
                     </div>
                     <div class="modal-body">
                         <div class="mb-3" >
-                            <textarea style="width:100%;height:6.25em;border:none;resize:none;"
-                                      id="inquiryReplyModalDivBody"></textarea>
+                            답변작성<textarea style="width:100%;height:6.25em;border:none;resize:none;"
+                                      id="inquiryReplyModalDivBody" placeholder="답변내용을 작성해주세요"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -230,7 +228,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="mb-3" >
-                            <textarea style="width:100%;height:6.25em;border:none;resize:none;"
+                            답변내용<textarea style="width:100%;height:6.25em;border:none;resize:none;"
                                       id="inquiryReplyModalShowDivBody"></textarea>
                         </div>
                     </div>
