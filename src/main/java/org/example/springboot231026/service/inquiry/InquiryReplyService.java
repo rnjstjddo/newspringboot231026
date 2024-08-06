@@ -40,7 +40,7 @@ public class InquiryReplyService {
             InquiryReply inquriyReply = mm.map(inquiryReplyDto, InquiryReply.class);
             if (irerepo.save(inquriyReply).getInrenum() > 0) {
                 System.out.println("service-inquiry패키지 InquiryReplyService registerInquiryReply() 진입 답변등록 성공진입");
-
+                o.get().changeComplete("true");
                 return true;
             } else {
                 return false;
