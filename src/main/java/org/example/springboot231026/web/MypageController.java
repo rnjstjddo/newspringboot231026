@@ -183,11 +183,37 @@ public class MypageController {
             if(inquiryReplyDTOlist.size() > 0) {
                 System.out.println("컨트롤러 MypageController inquiry() 진입- List<InquiryDto> 존재할때 진입 " +
                         " List<InquiryReplyDto> 존재할때 진입 ");
-
                 model.addAttribute("irDTOList", inquiryReplyDTOlist);
-            }
 
-            model.addAttribute("iDTOList",inquiryDTOlist);//답변글없을경우
+                //문의글DTO와 답변글DTO중복되는 경우 문의글DTO에서 제외시키키
+                List<InquiryDto> newInquiryDTOList = new ArrayList<>();
+                List<Long> replyLong = inquiryReplyDTOlist.stream().map(InquiryReplyDto::getInnum)
+                        .collect(Collectors.toList());
+
+                List<Long> newLong = null;
+
+                for(Long inquiry : innumList){
+                    for(Long reply : replyLong){
+                        if(inquiry==reply){
+                            newLong.add(inquiry);
+                        }
+                    }
+                }
+
+                if(newLong.size() >0) {
+                    System.out.println("컨트롤러 MypageController inquiry() 진입- List<InquiryDto> 존재할때 진입 " +
+                            " List<InquiryReplyDto> 존재할때 진입 문의글과 답글 중복값이 존재하는경우 진입 -> "+ newLong.toString());
+
+                    for(Long duple : newLong) {
+                        newInquiryDTOList.stream().filter(i -> i.getInnum() ==duple).collect(Collectors.toList());
+                    }
+                }
+                //문의글DTO와 답변글DTO중복되는 경우 문의글DTO에서 제외시키키
+                inquiryDTOlist=newInquiryDTOList;
+            }
+            //답변글과 중복된다면 위의 코드에서 List에서 제외시키고 담았다
+            model.addAttribute("iDTOList",inquiryDTOlist);
+
         }
     }
 
