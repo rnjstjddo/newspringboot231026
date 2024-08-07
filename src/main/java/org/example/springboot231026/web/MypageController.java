@@ -189,7 +189,7 @@ public class MypageController {
 
             }
 
-            inquiryDTOlist.stream().filter(i -> i.getComplete() !="false").collect(Collectors.toList());
+            inquiryDTOlist.stream().filter(i -> i.getComplete() =="false").collect(Collectors.toList());
 
             //답변글과 중복된다면 위의 코드에서 List에서 제외시키고 담았다
             model.addAttribute("iDTOList",inquiryDTOlist);
