@@ -19,7 +19,7 @@
                         <h2 class="fw-bolder mb-3"></h2>
                         <div class="accordion mb-5" id="accordionExample">
 
-                            <th:block th:if="${#lists.isEmpty(iDTOlist)}" >
+                            <th:block th:if="${#lists.isEmpty(iDTOList)}" >
                                 <br>
                                 <img class="card-img-top" style="height:100px;width:auto;" src="/image/imoji/waiting.jpg" alt="" />
                                 <b>아직 작성하신 문의글이 없습니다.^^</b>
@@ -28,8 +28,8 @@
 
 <!-- 문의 답변글이 존재하지않을때-->
 
-                            <th:block th:if="${#lists.isEmpty(irDTOlist)}">
-                                <th:block th:each="iDto:${iDTOlist}">
+                            <th:block th:if="${#lists.isEmpty(irDTOList)}">
+                                <th:block th:each="iDto:${iDTOList}">
                                 <div class="card">
                                     <div class="card-header">
                                         문의&nbsp;&nbsp; |&nbsp;&nbsp; 작성일자 빔 [[${#temporals.format(iDto.createdDate, 'yyyy-MM-dd')}]] | &nbsp;&nbsp;

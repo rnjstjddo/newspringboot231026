@@ -187,7 +187,7 @@ public class MypageController {
                 model.addAttribute("irDTOList", inquiryReplyDTOlist);
             }
 
-            model.addAttribute("iDTOlist",inquiryDTOlist);
+            model.addAttribute("iDTOList",inquiryDTOlist);
         }
     }
 
