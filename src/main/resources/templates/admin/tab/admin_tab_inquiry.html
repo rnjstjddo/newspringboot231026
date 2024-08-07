@@ -33,7 +33,7 @@
                                     th:value="${pageRequestDTO.keyword}">
 
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary btn-search" type="submit">검색</button>
+                                <button class="btn btn-outline-secondary btn-search searchBtn" type="submit">검색</button>
                                 <button type="reset" class="btn btn-outline-secondary" id="reset">초기화</button>
                             </div>
                         </div>
@@ -182,6 +182,9 @@
             </div>
         </div><!-- 답변보기 -->
 
+    </th:block>
+</th:block>
+
 <script th:inline="javascript">
 
 function dateFormat(date){
@@ -328,9 +331,30 @@ $(document).ready(function(){
         $(".inquiryReplyModalShowDiv").hide();
     });//끝 on() 답변보기 모달창닫기이벤트
 
+
+//검색버튼클릭시
+    $(".searchBtn").on("click", function(e){
+        e.preventDefault();
+        console.log("admin_tab_inquiry.html 검색버튼 클릭이벤트 진입");
+        var selectvalue = $("select[name=type]").val();
+        console.log("admin_tab_inquiry.html 검색버튼 클릭이벤트 진입 먼저 select값 확인 -> "+selectvalue);
+
+        var selectkeyword = $("input[name=keyword]").val();
+        console.log("admin_tab_inquiry.html 검색버튼 클릭이벤트 진입 먼저 keyword값 확인 -> "+selectkeyword);
+
+        if(selectvalue =="" || selectkeyword == ""){
+            console.log("admin_tab_inquiry.html  검색버튼 클릭이벤트 진입 select값이 없거나 검색키워드입력하지 않은경우");
+            alert("검색조건을 선택하시고 검색어를 입력해주세요");
+            return;
+        }
+
+        if(selectvalue !="" && selectkeyword != ""){
+            console.log("admin_tab_inquiry.html 검색버튼 클릭이벤트 진입 select값이 존재하고 검색키워드입력한 경우");
+            $("form").submit();
+        }
+
+    });
 });//제이쿼리
 </script>
-</th:block>
-</th:block>
 
 </html>

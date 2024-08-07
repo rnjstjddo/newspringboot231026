@@ -125,10 +125,10 @@ var listForm = $("form");
 
 var loginMember =[[${loginMember}]];
 
-console.log("dogsell-list 회원명 -> "+loginMember);
+console.log("admin_dog_list 회원명 -> "+loginMember);
 
 function formatTime(str){
-   console.log("list.html formatTime() 함수 진입 - 강아지 품종검색 클릭이벤트 진입 후 ajax success() -> "+str);
+   console.log("admin_dog_list.html formatTime() 함수 진입 - 강아지 품종검색 클릭이벤트 진입 후 ajax success() -> "+str);
     var date = new Date(str);
 
     return date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
@@ -145,7 +145,7 @@ $.each(starBtnList, function(i, o){
     var complete = $(this).data("complete");
 
     if(complete){
-        console.log("post-list.html 즉시실행함수 진입 - 분양완료한 게시물번호를 목록에서 찾을때 진입 해당 게시물 번호 -> "+ datadno);
+        console.log("admin_dog_list.html 즉시실행함수 진입 - 분양완료한 게시물번호를 목록에서 찾을때 진입 해당 게시물 번호 -> "+ datadno);
 
         $(this).closest(".col-lg-4").css("filter","opacity(50%)").css("position","relative").css("z-index","0");
         $(this).closest(".col-lg-4").find(".card-footer").html(`<h3 class="text-muted fst-italic">분양완료</h3>`)
@@ -157,17 +157,17 @@ $.each(starBtnList, function(i, o){
 
 
 $(".searchBtn").on("click", function(){
-    console.log("list.html 강아지 품종검색 클릭이벤트 진입 검색한 강아지품종 ->")
+    console.log("admin_dog_list.html 강아지 품종검색 클릭이벤트 진입 검색한 강아지품종 ->")
 
     const searchBreed = $("input[name='searchBreed']").val();
     console.log(searchBreed)
     const regex = new RegExp("^[가-힣a-zA-Z]+$");
     if(!regex.test(searchBreed)){
-        console.log("list.html 강아지품종검색 한글 영문 이외의 문자 유효성체크 오류발생")
+        console.log("admin_dog_list.html 강아지품종검색 한글 영문 이외의 문자 유효성체크 오류발생")
         alert("한글과 영문만 입력가능합니다.")
         $("input[name='searchBreed']").val("").focus();
     }else{
-        console.log("list.html 강아지품종검색 한글 영문 이외의 문자 유효성체크 확인후 submit() 처리")
+        console.log("admin_dog_list.html 강아지품종검색 한글 영문 이외의 문자 유효성체크 확인후 submit() 처리")
         $("form").submit();
     }
 });
@@ -175,18 +175,18 @@ $(".searchBtn").on("click", function(){
 
 //중복 위시리스트 담는상품의 경우
 $(".starfill").on("click", function(){
-    console.log("dogsell-list .starfill 클릭이벤트 진입");
+    console.log("admin_dog_list.html .starfill 클릭이벤트 진입");
     alert(loginMember+"회원님! 위시리스트에 이미 담은 상품입니다.\n상품삭제는 마이페이지 -> 위시리스트에서 가능합니다!");
 });
 
 //처음 위시리스트담는상품의경우
 $(".starBtn").on("click", function(){
-    console.log("dogsell-list .starBtn 클릭이벤트 진입");
+    console.log("admin_dog_list.html .starBtn 클릭이벤트 진입");
 
     var name=$(this).data("name"); //로그인멤버
 
     if(name ==null){
-        console.log("dogsell-list .starBtn 클릭이벤트 진입 제일먼저 로그인한 회원인지확인 로그인하지 않으면 alert창 띄우기 ");
+        console.log("admin_dog_list.html .starBtn 클릭이벤트 진입 제일먼저 로그인한 회원인지확인 로그인하지 않으면 alert창 띄우기 ");
         alert("로그인하신 회원만 찜설정이 가능합니다!")
         return;
     }
@@ -198,7 +198,7 @@ $(".starBtn").on("click", function(){
 
     var membername=$(this).data("membername");//분양글작성자
 
-    console.log("dogsell-list .starBtn 클릭이벤트 진입 name -> "+name +", membername -> "+membername);
+    console.log("admin_dog_list.html .starBtn 클릭이벤트 진입 name -> "+name +", membername -> "+membername);
 
     if(name ===membername){
         alert("본인의 강아지는 찜할수가 없습니다.");
@@ -212,10 +212,10 @@ $(".starBtn").on("click", function(){
         contentType:"application/json;charset=utf-8",
 
         success: function(result){
-            console.log("dogsell-list .starBtn 클릭이벤트 진입 $.ajax success() 진입 - 결과 -> "+ result);
+            console.log("admin_dog_list.html .starBtn 클릭이벤트 진입 $.ajax success() 진입 - 결과 -> "+ result);
 
             if(!result){
-                console.log("dogsell-list .starBtn 클릭이벤트 진입 $.ajax success() 진입 - 이미 담은 상품의 경우");
+                console.log("admin_dog_list.html .starBtn 클릭이벤트 진입 $.ajax success() 진입 - 이미 담은 상품의 경우");
 
                 alert(loginMember+"회원님! 이미 담은 상품입니다.");
             }
