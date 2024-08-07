@@ -25,7 +25,7 @@ public class MemberController {
     private MemberService ms;
 
     @GetMapping("/member/login")
-    public void login(@ModelAttribute("pageRequestDto") PageRequestDTO requestDTO, Model model,
+    public String login(@ModelAttribute("pageRequestDto") PageRequestDTO requestDTO, Model model,
                       @RequestParam(required = false) String error,
                       @RequestParam(required = false) String exception,
                       RedirectAttributes rttrs) {
@@ -40,7 +40,9 @@ public class MemberController {
             rttrs.addFlashAttribute("error", error);
             //model.addAttribute("exception", exception);
             //model.addAttribute("error", error);
+            return "redirect:/member/login";
         }
+        return "member/login";
     }
 
     @GetMapping("/member/join")

@@ -100,7 +100,7 @@ var memberObject ={
 
         //var emailval =$("#email").val();
 
-        var emailVal= $("#eamil").val();
+        var emailVal= $("#email").val();
 
         if(emailVal=="" || emailVal== null){
             console.log("member.js 회원가입에서 email칸이 비어있는 경우 진입");
