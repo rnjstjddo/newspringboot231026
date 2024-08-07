@@ -187,7 +187,7 @@ public class MypageController {
                 model.addAttribute("irDTOList", inquiryReplyDTOlist);
             }
 
-            model.addAttribute("iDTOList",inquiryDTOlist);
+            model.addAttribute("iDTOList",inquiryDTOlist);//답변글없을경우
         }
     }
 

@@ -28,7 +28,7 @@
 
 <!-- 문의 답변글이 존재하지않을때-->
 
-                            <th:block th:if="${#lists.isEmpty(irDTOList)}">
+                            <th:block th:if="${!#lists.isEmpty(iDTOList)}">
                                 <th:block th:each="iDto:${iDTOList}">
                                 <div class="card">
                                     <div class="card-header">
@@ -51,7 +51,7 @@
                                 </th:block>
                             </th:block>
 <!-- 문의 답변글이 존재할때-->
-                            <th:block th:unless="${#lists.isEmpty(irDTOList)}" th:each="irDto:${irDTOList}">
+                            <th:block th:if="${!#lists.isEmpty(irDTOList)}" th:each="irDto:${irDTOList}">
                                 <div class="card">
                                     <div class="card-header">
                                         &nbsp;문의&nbsp;&nbsp; |&nbsp;&nbsp; 작성일자 [[${#temporals.format(irDto.inquiryDto.createdDate, 'yyyy-MM-dd')}]] | &nbsp;&nbsp;
