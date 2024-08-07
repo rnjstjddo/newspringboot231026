@@ -185,12 +185,20 @@ public class MypageController {
                         " List<InquiryReplyDto> 존재할때 진입 ");
                 model.addAttribute("irDTOList", inquiryReplyDTOlist);
 
-
-
             }
+
+            inquiryDTOlist.stream().map(i->
+                {System.out.println("문의글 중복 filter처리전 "+i.getInnum());
+                return "";}
+            );
 
             inquiryDTOlist.stream().filter(i -> i.getComplete() =="false").collect(Collectors.toList());
 
+
+            inquiryDTOlist.stream().map(i->
+                    {System.out.println("문의글 중복 filter처리후 "+i.getInnum());
+                        return "";}
+            );
             //답변글과 중복된다면 위의 코드에서 List에서 제외시키고 담았다
             model.addAttribute("iDTOList",inquiryDTOlist);
 
