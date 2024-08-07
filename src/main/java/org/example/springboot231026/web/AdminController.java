@@ -730,6 +730,13 @@ public class AdminController {
                 model.addAttribute("responseDtoList", pResponseDto.getDtoList());
                 model.addAttribute("pResponseDto", pResponseDto);
             }
+
+            if(count.getMembercount() ==null) {
+                count = this.returnCount(localDate);
+                model.addAttribute("count", count);
+                System.out.println("Count출력 -> "+ count.toString());
+
+            }
         }//if존재시
         else {
             System.out.println("관리자컨트롤러 /admin/member/list 진입 쿼리스트링으로 yearmonth 존재하지 않을때 진입");
