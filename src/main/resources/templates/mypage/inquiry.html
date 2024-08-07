@@ -28,27 +28,28 @@
 
 <!-- 문의 답변글이 존재하지않을때-->
 
-                            <th:block th:if="${#lists.isEmpty(irDTOlist)}" th:each="iDto:${iDTOlist}">
-                            <div class="card">
-                                <div class="card-header">
-                                    문의&nbsp;&nbsp; |&nbsp;&nbsp; 작성일자 빔 [[${#temporals.format(iDto.createdDate, 'yyyy-MM-dd')}]] | &nbsp;&nbsp;
-                                    <th:block th:if="${#strings.equals(iDto.complete,true)}">
-                                        답변여부: 완료
-                                    </th:block>
-                                    <th:block th:if="${#strings.equals(iDto.complete,false)}">
-                                        답변여부: 미완료
-                                    </th:block>
+                            <th:block th:if="${#lists.isEmpty(irDTOlist)}">
+                                <th:block th:each="iDto:${iDTOlist}">
+                                <div class="card">
+                                    <div class="card-header">
+                                        문의&nbsp;&nbsp; |&nbsp;&nbsp; 작성일자 빔 [[${#temporals.format(iDto.createdDate, 'yyyy-MM-dd')}]] | &nbsp;&nbsp;
+                                        <th:block th:if="${#strings.equals(iDto.complete,true)}">
+                                            답변여부: 완료
+                                        </th:block>
+                                        <th:block th:if="${#strings.equals(iDto.complete,false)}">
+                                            답변여부: 미완료
+                                        </th:block>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">문의내용</p>
+                                        <h5 class="card-title">[[${iDto.content}]]</h5>
+                                        <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+                                    </div>
                                 </div>
-                                <div class="card-body">
-                                    <p class="card-text">문의내용</p>
-                                    <h5 class="card-title">[[${iDto.content}]]</h5>
-                                    <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
-                                </div>
-                            </div>
-                            <br>
-                            <br>
+                                <br>
+                                <br>
+                                </th:block>
                             </th:block>
-
 <!-- 문의 답변글이 존재할때-->
                             <th:block th:unless="${#lists.isEmpty(irDTOList)}" th:each="irDto:${irDTOList}">
                                 <div class="card">
