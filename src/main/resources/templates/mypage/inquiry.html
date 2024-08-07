@@ -27,11 +27,11 @@
 
 
 <!-- 문의 답변글이 존재하지않을때-->
-                            <th:block th:if="${!#lists.isEmpty(iDTOlist)}">
+                        <th:block th:unless="${#lists.isEmpty(iDTOlist)}">
                             <th:block th:if="${#lists.isEmpty(irDTOlist)}" th:each="iDto:${iDTOlist}">
                             <div class="card">
                                 <div class="card-header">
-                                    작성일자 [[${#temporals.format(iDto.createdDate, 'yyyy-MM-dd')}]] | &nbsp;&nbsp;
+                                    문의&nbsp;&nbsp; |&nbsp;&nbsp; 작성일자 [[${#temporals.format(iDto.createdDate, 'yyyy-MM-dd')}]] | &nbsp;&nbsp;
                                     <th:block th:if="${#strings.equals(iDto.complete,true)}">
                                         답변여부: 완료
                                     </th:block>
@@ -53,7 +53,7 @@
                             <th:block th:unless="${#lists.isEmpty(irDTOList)}" th:each="irDto:${irDTOList}">
                                 <div class="card">
                                     <div class="card-header">
-                                        &nbsp;작성일자 [[${#temporals.format(irDto.inquiryDto.createdDate, 'yyyy-MM-dd')}]] | &nbsp;&nbsp;
+                                        &nbsp;문의&nbsp;&nbsp; |&nbsp;&nbsp; 작성일자 [[${#temporals.format(irDto.inquiryDto.createdDate, 'yyyy-MM-dd')}]] | &nbsp;&nbsp;
                                         <th:block th:if="${#strings.equals(irDto.inquiryDto.complete,true)}">
                                             답변여부: 완료
                                         </th:block>
@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="card">
                                     <div class="card-header">
-                                        &nbsp;답변 | 작성일자 [[${#temporals.format(irDto.createdDate, 'yyyy-MM-dd')}]] | &nbsp;&nbsp;
+                                        &nbsp;답변&nbsp;&nbsp; | &nbsp;&nbsp; 작성일자 [[${#temporals.format(irDto.createdDate, 'yyyy-MM-dd')}]] | &nbsp;&nbsp;
                                     </div>
                                     <div class="card-body">
                                         <p class="card-text">답변내용</p>
