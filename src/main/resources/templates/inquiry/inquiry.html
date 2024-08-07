@@ -134,6 +134,8 @@ $("#inquiryBtn").on("click", function(){
     var phone =$("input[name='phone']").val();
     var email =$("input[name='email']").val();
 
+    console.log(phone);
+
     console.log("inquiry.html 관리자에게 문의하기 전달클릭 이벤트 진입 -> "+ writer+content+phone+email);
 
     //핸드폰 유효성체크
@@ -150,7 +152,11 @@ $("#inquiryBtn").on("click", function(){
             if(confirm("아래 내용으로 관리자에게 문의하시겠습니까?")){
                 $("form").attr("method","post").attr("action","/inquiry/register").submit();
             }
-        }//if-else
+        }//끝if
+    }else{
+        if(confirm("아래 내용으로 관리자에게 문의하시겠습니까?")){
+            $("form").attr("method","post").attr("action","/inquiry/register").submit();
+        }
     }
 });
 
