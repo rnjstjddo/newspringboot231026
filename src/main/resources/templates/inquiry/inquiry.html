@@ -80,27 +80,6 @@ var registerresult = [[${register}]];
 var name = [[${loginMember.name}]];
 console.log("inquiry.html 관리자에게 문의하기 결과확인 -> "+registerresult);
 
-if(registerresult==="success"){
-    alert(name+ " 님의 문의가 등록되었습니다!")
-}
-//else{
-//    alert(name+ " 님의 문의가 등록되지 않았습니다. 다시 한번 확인해주세요!")
-//}
-
-
-(function(){
-    console.log("inquiry.html 관리자에게 문의하기 모달창 즉시실행함수로 열기");
-    $(".inquiryModal").show();
-})();
-
-
-//모달창닫기
-$(".inquiryModalCloseBtn").on("click", function(){
-    console.log("inquiry.html 관리자에게 문의하기 모달창 닫기버튼 클릭이벤트 진입");
-    $(".inquiryModal").hide();
-});
-
-
 function phoneCheck(target){
     console.log("inquiry.html 폰번호 정규식표현 검사 진입");
     console.log(target);
@@ -122,43 +101,66 @@ function phoneCheck(target){
     }
 }//핸드폰입력 onchange이벤트
 
-//문의하기 전달
-$("#inquiryBtn").on("click", function(){
-    console.log("inquiry.html 관리자에게 문의하기 전달클릭 이벤트 진입");
-// writer content phone email complete
 
-    var writer =$("input[name='writer']").val();
-    var content =$(".content").val();
-    var phone =$("input[name='phone']").val();
-    var email =$("input[name='email']").val();
-
-    console.log(phone);
+(function(){
+    console.log("inquiry.html 관리자에게 문의하기 모달창 즉시실행함수로 열기");
+    $(".inquiryModal").show();
+})();//즉시실행함수
 
 
-    if(phone.length!=0){
-        console.log("inquiry.html 관리자에게 문의하기 핸드폰번호 입력했을 경우 유효성체크 진입");
+$(document).ready(function(){
+    if(registerresult==="success"){
+        alert(name+ " 님의 문의가 등록되었습니다!")
+    }
+    //else{
+    //    alert(name+ " 님의 문의가 등록되지 않았습니다. 다시 한번 확인해주세요!")
+    //}
 
-        phone = phone.replace(/ /gi, '');
-        var regExp = /^(01[016789]{1})?[0-9]{3,4}?[0-9]{4}$/;
 
-        if(!regExp.test(phone)){
-            alert("핸드폰번호의 공백과 '-' 기호를 제외한 숫자만 입력해주세요!")
-            return;
+    //모달창닫기
+    $(".inquiryModalCloseBtn").on("click", function(){
+        console.log("inquiry.html 관리자에게 문의하기 모달창 닫기버튼 클릭이벤트 진입");
+        $(".inquiryModal").hide();
+    });
+
+    //문의하기 전달
+    $("#inquiryBtn").on("click", function(){
+        console.log("inquiry.html 관리자에게 문의하기 전달클릭 이벤트 진입");
+        // writer content phone email complete
+
+        var writer =$("input[name='writer']").val();
+        var content =$(".content").val();
+        var phone =$("input[name='phone']").val();
+        var email =$("input[name='email']").val();
+
+        console.log(phone);
+
+
+        if(phone.length != 0){
+            console.log("inquiry.html 관리자에게 문의하기 핸드폰번호 입력했을 경우 유효성체크 진입");
+
+            phone = phone.replace(/ /gi, '');
+            var regExp = /^(01[016789]{1})?[0-9]{3,4}?[0-9]{4}$/;
+
+            if(!regExp.test(phone)){
+                alert("핸드폰번호의 공백과 '-' 기호를 제외한 숫자만 입력해주세요!")
+                return;
+            }else{
+                if(confirm("아래 내용으로 관리자에게 문의하시겠습니까?")){
+                    $("form").attr("method","post").attr("action","/inquiry/register").submit();
+                }
+            }//끝if정규식
         }else{
+            console.log("inquiry.html 관리자에게 문의하기 핸드폰번호 입력하지 않았을 경우 바로 문의글 등록시키기");
+
             if(confirm("아래 내용으로 관리자에게 문의하시겠습니까?")){
                 $("form").attr("method","post").attr("action","/inquiry/register").submit();
-            }
-        }//끝if정규식
-    }else{
-        console.log("inquiry.html 관리자에게 문의하기 핸드폰번호 입력하지 않았을 경우 바로 문의글 등록시키기");
+            }//if문
 
-        if(confirm("아래 내용으로 관리자에게 문의하시겠습니까?")){
-            $("form").attr("method","post").attr("action","/inquiry/register").submit();
-        }//if문
-    }//끝if핸드폰입력여부
-});//끝on이벤트버튼 문의하기
+        }//끝if핸드폰입력여부
+    });//끝on이벤트버튼 문의하기
 
-});
+});//끝 제이쿼리
 
 
 </script>
