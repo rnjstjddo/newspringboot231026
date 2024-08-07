@@ -120,7 +120,7 @@ function phoneCheck(target){
         alert("핸드폰번호의 공백과 '-' 기호를 제외한 숫자만 입력해주세요!")
         target.focus();
     }
-}
+}//핸드폰입력 onchange이벤트
 
 //문의하기 전달
 $("#inquiryBtn").on("click", function(){
@@ -135,7 +135,7 @@ $("#inquiryBtn").on("click", function(){
     console.log(phone);
 
 
-    if(phone.length==0){
+    if(phone.length!=0){
         console.log("inquiry.html 관리자에게 문의하기 핸드폰번호 입력했을 경우 유효성체크 진입");
 
         phone = phone.replace(/ /gi, '');
@@ -154,7 +154,8 @@ $("#inquiryBtn").on("click", function(){
 
         if(confirm("아래 내용으로 관리자에게 문의하시겠습니까?")){
             $("form").attr("method","post").attr("action","/inquiry/register").submit();
-    }//if문
+        }//if문
+    }//끝if핸드폰입력여부
 });//끝on이벤트버튼 문의하기
 
 });
