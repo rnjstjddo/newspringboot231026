@@ -79,39 +79,6 @@
                                     <br>
                                     <br>
                             </th:block>
-
-                            <!--<th:block th:if="${!#lists.isEmpty(irDTOList) and !#lists.isEmpty(iDTOList)}" th:each="irDto:${irDTOList}">
-                                <th:block th:if="${iDto.innum == irDto.innum}" th:each="iDto:${iDTOList}">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            &nbsp;작성일자 [[${#temporals.format(iDto.createdDate, 'yyyy-MM-dd')}]] | &nbsp;&nbsp;
-                                            <th:block th:if="${#strings.equals(iDto.complete,true)}">
-                                                답변여부: 완료
-                                            </th:block>
-                                            <th:block th:if="${#strings.equals(iDto.complete,false)}">
-                                                답변여부: 미완료
-                                            </th:block>
-                                        </div>
-                                        <div class="card-body">
-                                            <p class="card-text">문의내용</p>
-                                            <h5 class="card-title"> [[${iDto.content}]]</h5>
-                                            &lt;!&ndash;<a href="#" class="btn btn-primary"></a>&ndash;&gt;
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header">
-                                            &nbsp;답변 | 작성일자 [[${#temporals.format(irDto.createdDate, 'yyyy-MM-dd')}]] | &nbsp;&nbsp;
-                                        </div>
-                                        <div class="card-body">
-                                            <p class="card-text">답변내용</p>
-                                            <h5 class="card-title">[[${irDto.content}]]</h5>
-                                            &lt;!&ndash;<a href="#" class="btn btn-primary"></a>&ndash;&gt;
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <br>
-                                </th:block>
-                            </th:block>-->
                         </div>
                     </div><!--col -->
                 </div><!-- row -->
