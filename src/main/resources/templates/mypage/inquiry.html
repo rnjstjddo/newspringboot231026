@@ -19,7 +19,7 @@
                         <h2 class="fw-bolder mb-3"></h2>
                         <div class="accordion mb-5" id="accordionExample">
 
-                            <th:block th:if="${#lists.isEmpty(iDTOList)}" >
+                            <th:block th:if="${#lists.isEmpty(iDTOList) and #lists.isEmpty(irDTOList)}" >
                                 <br>
                                 <img class="card-img-top" style="height:100px;width:auto;" src="/image/imoji/waiting.jpg" alt="" />
                                 <b>아직 작성하신 문의글이 없습니다.^^</b>

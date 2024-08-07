@@ -191,7 +191,8 @@ public class MypageController {
                 System.out.println("문의글 중복 filter처리전 "+i.getInnum())
             );
 
-            inquiryDTOlist = inquiryDTOlist.stream().filter(i -> i.getComplete() =="false").collect(Collectors.toList());
+            inquiryDTOlist = inquiryDTOlist.stream().filter(i -> i.getComplete().equals("false"))
+                    .collect(Collectors.toList());
 
 
             inquiryDTOlist.stream().forEach(i->
