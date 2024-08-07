@@ -14,6 +14,46 @@ var memberObject ={
         console.log("member.js 객체 memberObject의 init 함수진입");
         var _this =this; //객체를 의미한다.
 
+        //아이디중복확인 on이벤트진입
+        $("#namecheck").on("click", function(){
+            console.log("member-join.html 회원가입 중 아이디중복확인 진입");
+
+            var nameVal = $("#name").val();
+            var data ={name:nameVal};
+            console.log("member-join.html 회원가입 중 아이디중복확인 진입 입력받은 아이디값 -> "+ nameVal);
+
+            $.ajax({
+                url:'/member/join/check',
+                method:'post',
+                dataType: 'json',
+                data:JSON.stringify(data),
+                contentType:'application/json;charset=utf-8',
+
+                success: function(result){
+                    console.log("member-join.html 회원가입 중 아이디중복확인 결과 -> "+result);
+
+                    if(result == true){
+                        console.log("member-join.html 회원가입 중 아이디중복확인 결과 -> 사용가능")
+                        alert("아이디 사용가능합니다!")
+                        $("#name").attr("readonly",true);
+                        return;
+                    }
+                    if(result == false){
+                        console.log("member-join.html 회원가입 중 아이디중복확인 결과 -> 중복됨")
+                        alert("아이디가 중복됩니다. 다른 아이디로 변경해주세요!");
+                        $("#name").focus();
+                        return;
+                    }
+                },
+
+                fail: function(){
+                    console.log("member-join.html 회원가입 중 아이디중복확인 중 에러발생 현재페이지 replace() ")
+                    location.replace(`/member/join`)
+                }
+            });//끝 $.ajax
+        });//끝 on클릭이벤트진입 아이디중복확인
+
+
         $("#joinBtn").on("click", ()=>{
             console.log("member.js 의 init 함수진입 -회원가입버튼 클릭이벤트진입");
             _this.join();
