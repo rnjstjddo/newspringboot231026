@@ -27,7 +27,7 @@
 
 
 <!-- 문의 답변글이 존재하지않을때-->
-                        <th:block th:unless="${#lists.isEmpty(iDTOlist)}">
+
                             <th:block th:if="${#lists.isEmpty(irDTOlist)}" th:each="iDto:${iDTOlist}">
                             <div class="card">
                                 <div class="card-header">
@@ -80,7 +80,6 @@
                                 <br>
                                 <br>
                             </th:block>
-                        </th:block>
                         </div>
                     </div><!--col -->
                 </div><!-- row -->
