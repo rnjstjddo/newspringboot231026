@@ -32,7 +32,7 @@
                                 <th:block th:each="iDto:${iDTOList}">
                                 <div class="card">
                                     <div class="card-header">
-                                        문의&nbsp;&nbsp; |&nbsp;&nbsp; 작성일자 빔 [[${#temporals.format(iDto.createdDate, 'yyyy-MM-dd')}]] | &nbsp;&nbsp;
+                                        문의&nbsp;&nbsp; |&nbsp;&nbsp; 작성일자 [[${#temporals.format(iDto.createdDate, 'yyyy-MM-dd')}]] | &nbsp;&nbsp;
                                         <th:block th:if="${#strings.equals(iDto.complete,true)}">
                                             답변여부: 완료
                                         </th:block>

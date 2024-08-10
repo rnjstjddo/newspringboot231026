@@ -1,7 +1,6 @@
 package org.example.springboot231026.domain.dog;
 
 import lombok.*;
-import org.example.springboot231026.manytomany.domain.Dog;
 
 import javax.persistence.*;
 

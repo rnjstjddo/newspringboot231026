@@ -23,6 +23,8 @@ public class InquiryReply extends BaseTimeEntity {
     private String content;
 
     @OneToOne(fetch=FetchType.EAGER)
+    //@JoinColumn(name="inquiry_innum", unique = true)
+    @JoinColumn(name="inquiry_innum", referencedColumnName = "innum")
     private Inquiry inquiry;
 
 
