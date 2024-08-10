@@ -205,7 +205,7 @@ jobs:
             else
               echo "-----------------------------------"
               echo "blue/green 컨테이너 모두 동작중이다 service-url.inc파일의 포트확인"
-              IS_PORT=$(awk '${ print $3}' /etc/nginx/conf.d/service-url.inc | grep 8081)
+              IS_PORT=$(awk '{print $3}' /etc/nginx/conf.d/service-url.inc | grep 8081)
               echo "-----------------------------------"
               echo "IS_PORT 값 -> $IS_PORT" 
   
