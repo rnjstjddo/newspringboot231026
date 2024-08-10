@@ -211,60 +211,8 @@ jobs:
   
               if [ -n $IS_PORT ]; then
                 echo "-----------------------------------"
-                echo "현재 엑진엑스 8082포트이다. 따라서 포트설정되지 않은 blue 컨테이너는 중지시킨다."
-                sudo docker-compose stop blue
-                echo "blue 컨테이너 8081포트로 이미지 생성한다."
-                echo "-----------------------------------"
-                echo "폴더이동 ./src/main/resources"
-                cd ./src/main/resources
-                echo "-----------------------------------"
-                echo "파일생성 ./application-real-db.properties"
-                echo -e "${{ secrets.APPLICATION_REAL_DB }}" > ./application-real-db.properties
-                echo "파일생성 ./application-real-db.properties"
-                echo -e "${{ secrets.APPLICATION_OAUTH }}" > ./application-oauth.properties
-                echo "-----------------------------------"
-                echo "방금만든 파일 존재하는지 확인"
-                echo "-----------------------------------"
-                ls
-                echo "-----------------------------------"
-                echo "이동 /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026"
-                cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
-                echo "-----------------------------------"
-                echo "docker-compose.yml파일과 nonginx-dogservice-deploy.sh 파일을 ubuntu에 복사시킴 기존 덮어씌운다"
-                cp ./docker-compose.yml /home/ubuntu/docker-compose.yml
-                cp ./nonginx-dogservice-deploy.sh /home/ubuntu/nonginx-dogservice-deploy.sh
-                echo "-----------------------------------"
-                echo "위치이동후 그래들 이용한 프로젝트 소스코드 빌드 테스트제외"
-                cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
-                chmod +x ./gradlew
-                ./gradlew cleanQuerydslSourceDir
-                ./gradlew build -x test
-                echo "-----------------------------------"
-                echo "build폴더 존재하는지 확인"
-                echo "-----------------------------------"
-                ls
-                echo "-----------------------------------"
-                echo "jar파일확인"
-                cd ./build/libs/
-                ls
-                echo "-----------------------------------"
-                echo "jar실행권한주기"
-                chmod +x ./*.jar
-                echo "-----------------------------------"          
-                echo "jar파일 /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026 폴더로 이동"
-                cp ./*.jar /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026 
-                echo "-----------------------------------"
-                echo "도커파일 위치한 곳으로 디렉토리 이동"
-                cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
-                echo "-----------------------------------"
-                docker build -f ./Dockerfile_8081 -t ${{ secrets.DOCKERHUB_USERNAME }}/dogservice . #dogservice:8081에서 변경
-                docker push ${{ secrets.DOCKERHUB_USERNAME }}/dogservice
-              
-              else
-                echo "-----------------------------------"
-                echo "현재 엑진엑스 8081포트이다. 따라서 포트설정되지 않은 green 컨테이너는 중지시킨다."
-                sudo docker-compose stop green              
-                echo "green 8082포트로 이미지 생성한다."
+                echo "현재 엑진엑스 8081포트이다. 따라서 포트설정되지 않은 green 8082 컨테이너가 동작하고 있기에 미리 중지시킨다."
+                sudo docker-compose stop green
                 echo "-----------------------------------"
                 echo "폴더이동 ./src/main/resources"
                 cd ./src/main/resources
@@ -309,6 +257,56 @@ jobs:
                 cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
                 echo "-----------------------------------"
                 docker build -f ./Dockerfile_8082 -t ${{ secrets.DOCKERHUB_USERNAME }}/dogservice . #dogservice:8082에서 변경
+                docker push ${{ secrets.DOCKERHUB_USERNAME }}/dogservice
+              
+              else
+                echo "-----------------------------------"
+                echo "현재 엑진엑스 8082포트이다. 따라서 포트설정되지 않은 blue 8081 컨테이너가 동작하고 있기에 미리 중지시킨다."
+                sudo docker-compose stop blue              
+                echo "-----------------------------------"
+                echo "폴더이동 ./src/main/resources"
+                cd ./src/main/resources
+                echo "-----------------------------------"
+                echo "파일생성 ./application-real-db.properties"
+                echo -e "${{ secrets.APPLICATION_REAL_DB }}" > ./application-real-db.properties
+                echo "파일생성 ./application-real-db.properties"
+                echo -e "${{ secrets.APPLICATION_OAUTH }}" > ./application-oauth.properties
+                echo "-----------------------------------"
+                echo "방금만든 파일 존재하는지 확인"
+                echo "-----------------------------------"
+                ls
+                echo "-----------------------------------"
+                echo "이동 /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026"
+                cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
+                echo "-----------------------------------"
+                echo "docker-compose.yml파일과 nonginx-dogservice-deploy.sh 파일을 ubuntu에 복사시킴 기존 덮어씌운다"
+                cp ./docker-compose.yml /home/ubuntu/docker-compose.yml
+                cp ./nonginx-dogservice-deploy.sh /home/ubuntu/nonginx-dogservice-deploy.sh
+                echo "-----------------------------------"
+                echo "위치이동후 그래들 이용한 프로젝트 소스코드 빌드 테스트제외"
+                cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
+                chmod +x ./gradlew
+                ./gradlew cleanQuerydslSourceDir
+                ./gradlew build -x test
+                echo "-----------------------------------"
+                echo "build폴더 존재하는지 확인"
+                echo "-----------------------------------"
+                ls
+                echo "-----------------------------------"
+                echo "jar파일확인"
+                cd ./build/libs/
+                ls
+                echo "-----------------------------------"
+                echo "jar실행권한주기"
+                chmod +x ./*.jar
+                echo "-----------------------------------"          
+                echo "jar파일 /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026 폴더로 이동"
+                cp ./*.jar /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026 
+                echo "-----------------------------------"
+                echo "도커파일 위치한 곳으로 디렉토리 이동"
+                cd /home/ubuntu/actions-runner/_work/newspringboot231026/newspringboot231026
+                echo "-----------------------------------"
+                docker build -f ./Dockerfile_8081 -t ${{ secrets.DOCKERHUB_USERNAME }}/dogservice . #dogservice:8081에서 변경
                 docker push ${{ secrets.DOCKERHUB_USERNAME }}/dogservice
               fi #green/blue 컨테이너 둘다 동작중일때 엔진엑스포트설정을 보고 포트지정안된 컨테이너 중지시키고 그컨테이너포트로 다시 이미지생성
               
