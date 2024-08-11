@@ -27,5 +27,4 @@ public class InquiryReply extends BaseTimeEntity {
     @JoinColumn(name="inquiry_innum", referencedColumnName = "innum")
     private Inquiry inquiry;
 
-
 }
