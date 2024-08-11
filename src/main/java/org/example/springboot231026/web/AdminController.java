@@ -586,11 +586,12 @@ public class AdminController {
             }
 
             if(count.getPostcount() ==null) {
+                System.out.println("관리자컨트롤러 /admin/post/list 진입 게시글 갯수가 null 인경우 진입 ");
                 count = this.returnCount(localDate);
                 model.addAttribute("count", count);
-                System.out.println("Count출력 -> "+ count.toString());
-
+                System.out.println("관리자컨트롤러 /admin/post/list 진입 Count출력 -> "+ count.toString());
             }
+
         }//yearmonth존재할경우
         else {
             System.out.println("관리자컨트롤러 /admin/post/list 진입 쿼리스트링으로 yearmonth 존재하지 않을때 진입");
@@ -757,7 +758,7 @@ public class AdminController {
 
     //일자에 맞는 개수반환 현재 회원은 오류로 제외시킴
     public Count returnCount(LocalDate localDate) {
-        System.out.println("관리자컨트롤러 returnCount() 진입 Count 객체반환");
+        System.out.println("관리자컨트롤러 returnCount() 진입 Count 객체반환 파라미터로 받은 날짜 -> "+localDate);
 
         //반환타입
         Count count = new Count();
@@ -776,8 +777,9 @@ public class AdminController {
         //회원
         count.setMembercount(ms.getCountLocalDate(localDate));
 
-        System.out.println("관리자컨트롤러 returnCount() 진입 Count 객체반환 -> "+ count.toString());
-
+        if(count !=null) {
+            System.out.println("관리자컨트롤러 returnCount() 진입 Count -> " + count.toString());
+        }
         return count;
     }
 

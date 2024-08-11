@@ -223,7 +223,7 @@ public class PostsService {
 
     //특정날짜게시글수
     public Long getCountLocalDate(LocalDate localDate){
-        System.out.println("service-posts패키지 PostsService클래스 getCountLocalDate() 진입");
+        System.out.println("service-posts패키지 PostsService클래스 getCountLocalDate() 진입 시작시간 -> "+localDate.atTime(LocalTime.MIN)+"종료시간 -> "+localDate.atTime(LocalTime.MAX));
 
         Long count = pr.getCountLocalDate(localDate.atTime(LocalTime.MIN), localDate.atTime(LocalTime.MAX));
         System.out.println("service-posts패키지 PostsService클래스 getCountLocalDate() 진입 localDate 게시글수 -> "+ count);
