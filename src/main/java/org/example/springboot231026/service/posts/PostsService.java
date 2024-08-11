@@ -199,7 +199,6 @@ public class PostsService {
     public PageResponseDTO<PostsListResponseDto> getListAdminCreatedDate(PageRequestDTO requestDTO,LocalDate localDate){
         System.out.println("service-posts패키지 PostsService클래스 getListAdminCreatedDate() 진입 ");
 
-
         String [] types = requestDTO.getTypes();
         String keyword = requestDTO.getKeyword();
         Pageable p = requestDTO.getPageable("id");

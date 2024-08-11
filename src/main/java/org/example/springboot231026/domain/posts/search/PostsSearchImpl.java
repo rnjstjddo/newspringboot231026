@@ -108,7 +108,7 @@ public class PostsSearchImpl extends QuerydslRepositorySupport implements PostsS
 
     @Override
     public Page<Posts> searchAllCreatedDate(String[] types, String keyword, Pageable pageable, LocalDate localDate) {
-        System.out.println("domain-posts-search패키지 PostsSearchImpl클래스 오버라이딩 searchAllCreatedDate() 진입");
+        System.out.println("domain-posts-search패키지 PostsSearchImpl클래스 오버라이딩 searchAllCreatedDate() 진입 " + localDate);
 
         QPosts qp = QPosts.posts;
         JPQLQuery<Posts> jpp = from(qp);
