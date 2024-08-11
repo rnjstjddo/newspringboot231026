@@ -123,7 +123,7 @@ $(document).ready(function(){
     //답변보기 모달창열기
     $(".inquiryReplyShowModal").on("click", function(){
     //inquiryReplyModalShowDiv inquiryReplyModalShowDivHeader inquiryReplyModalShowDivBody inquiryReplyModalShowDivBtn
-        console.log("inquiry.html 문의글 전체목록에서 답글보기 클릭이벤트 진입");
+        //-console.log("inquiry.html 문의글 전체목록에서 답글보기 클릭이벤트 진입");
         //innum content writer createdDate
 
         var innumVal =$(this).data("innum");
@@ -138,8 +138,8 @@ $(document).ready(function(){
             dataType:'text',
             success: function(result){
                 if(result !=null){
-                    console.log("inquiry.html 문의글 답글보기 성공 진입 -> ");
-                    console.log(result);
+                    //-console.log("inquiry.html 문의글 답글보기 성공 진입 -> ");
+                    //-console.log(result);
 
                     $(".inquiryReplyModalShowDivHeader").html(innumVal+"번 문의글 | 문의일자 "+createdDateVal);
                     $(".inquiryReplyModalShowDivBodyOriginal").html(contentVal);
@@ -147,14 +147,14 @@ $(document).ready(function(){
                     $(".inquiryReplyModalDiv").show();
 
                 }else{
-                    console.log("inquiry.html 문의글 답글보기 실패 진입 ");
+                    //-console.log("inquiry.html 문의글 답글보기 실패 진입 ");
                     alert("문의글에 대한 답변이 확인되지 않습니다.")
                     location.replace(`/admin/tab/inquiry`)
                 }
             },
 
             fail : function(){
-                console.log("inquiry.html 문의글 답글보기 실패 진입")
+                //-console.log("inquiry.html 문의글 답글보기 실패 진입")
                 alert("문의글에 대한 답변이 확인되지 않습니다.")
                 location.replace(`/admin/tab/inquiry`)
             }
@@ -165,7 +165,7 @@ $(document).ready(function(){
 
     //답변보기 모달창 닫기이벤트진입
     $(".inquiryReplyModalShowDivBtn").on("click",function(){
-        console.log("inquiry.html 문의글 답글보기 모달창 닫기 이벤트 진입");
+        //-console.log("inquiry.html 문의글 답글보기 모달창 닫기 이벤트 진입");
         $(".inquiryReplyModalShowDiv").hide();
     });//끝 on() 답변보기 모달창닫기이벤트
 

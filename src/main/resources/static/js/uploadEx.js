@@ -2,7 +2,7 @@
 $(document).ready(function(){
 
     $("input[type='file']").on("change",function(){
-        console.log("uploadEx.html 진입 change()이벤트 진입");
+        //-console.log("uploadEx.html 진입 change()이벤트 진입");
 
         var formData = new FormData();
 
@@ -21,23 +21,23 @@ $(document).ready(function(){
             contentType:false,
             processData:false,
             success: function(result){
-                console.log("uploadEx.html 진입 change 진입 -success() 진입");
+                //-console.log("uploadEx.html 진입 change 진입 -success() 진입");
                 //서버로 받은 결과로 화면처리
                 showUploadImages(result);
             },
             error: function(jqXHR, textStatus, errorThrown){
-                console.log("uploadEx.html 진입 change 진입 -error() 진입");
-                console.log(jqXHR);
-                console.log(textStatus);
-                console.log(errorThrown);
+                //-console.log("uploadEx.html 진입 change 진입 -error() 진입");
+                //-console.log(jqXHR);
+                //-console.log(textStatus);
+                //-console.log(errorThrown);
             }//error
         });//ajax
     });//클릭이벤트함수
 
 
     function showUploadImages(arr){
-        console.log("uploadEx.html 진입 - showUploadImages() 함수 진입");
-        console.log(arr);
+        //-console.log("uploadEx.html 진입 - showUploadImages() 함수 진입");
+        //-console.log(arr);
         var uploadResultDiv = $(".uploadResult");
 
         $.each(arr, function(index, obj){
@@ -50,15 +50,15 @@ $(document).ready(function(){
 
     //이미지 삭제시 이벤트위임함수사용
     $(".uploadResult").on("click", ".imageRemoveBtn", function(e){
-        console.log("uploadEx.html 진입 - 업로드 이미지 삭제버튼 클릭진입(이벤트 위임함수적용)");
+        //-console.log("uploadEx.html 진입 - 업로드 이미지 삭제버튼 클릭진입(이벤트 위임함수적용)");
 
         var target = $(this)
         var name =target.data("name");
-        console.log(name);
+        //-console.log(name);
 
         $.post("/removeFile", {fileName:name},function(result){
 
-            console.log("uploadEx.html 진입 - 업로드 이미지 삭제버튼 클릭진입(이벤트 위임함수적용) - $.post 처리후 받은 데이터 -> "+ result);
+            //-console.log("uploadEx.html 진입 - 업로드 이미지 삭제버튼 클릭진입(이벤트 위임함수적용) - $.post 처리후 받은 데이터 -> "+ result);
 
             if(result === true){
                 target.closest("div").remove();

@@ -272,8 +272,8 @@ var imageTrue =[[${readDto.dsiDtoList != null}]];
 var imageFalse = [[${readDto.dsiDtoList == null}]];
 
 var dsiDtoList =[[${readDto.dsiDtoList}]];
-console.log("read.html 분양글에 이미지 존재할경우 !=null->"+ imageTrue);
-console.log("read.html 분양글에 이미지 존재할경우 readDto.dsiDtoList->"+ dsiDtoList);
+//-console.log("read.html 분양글에 이미지 존재할경우 !=null->"+ imageTrue);
+//-console.log("read.html 분양글에 이미지 존재할경우 readDto.dsiDtoList->"+ dsiDtoList);
 
 var imageDataArray=[];
 
@@ -289,8 +289,8 @@ var readDno = [[${readDto.dno}]]
 //____________________________________________________________________________________________________
 //분양완료글
 $("#completeBtn").on("click", function(){
-    console.log("read.html 분양완료버튼 클릭 진입");
-    console.log("read.html 분양완료버튼 클릭 진입 현재 분양글번호 -> "+readDno);
+    //-console.log("read.html 분양완료버튼 클릭 진입");
+    //-console.log("read.html 분양완료버튼 클릭 진입 현재 분양글번호 -> "+readDno);
 
     var completeData = {readDno: readDno}
 
@@ -304,7 +304,7 @@ $("#completeBtn").on("click", function(){
 
             success: function(result){
                  const completeResult = result;
-                 console.log("read.html 분양완료버튼 ajax - success() 진입 결과 -> "+ completeResult);
+                 //-console.log("read.html 분양완료버튼 ajax - success() 진입 결과 -> "+ completeResult);
 
                 if(completeResult == "true"){
                     location.replace(`/dogsell/list`)
@@ -312,7 +312,7 @@ $("#completeBtn").on("click", function(){
                 }
             },
             fail: function(){
-                 console.log("read.html 분양완료버튼 ajax - fail() 진입 결과");
+                 //-console.log("read.html 분양완료버튼 ajax - fail() 진입 결과");
                     location.replace(`/dogsell/read?dno=${readDno}`);
             }
         });//끝 ajax
@@ -323,14 +323,14 @@ $("#completeBtn").on("click", function(){
 //분양글 댓글등록
 $(".replyRegisterBtn").on("click", function(e){
     e.preventDefault();
-    console.log("dogsell-read.html 댓글등록버튼 클릭이벤트 진입");
+    //-console.log("dogsell-read.html 댓글등록버튼 클릭이벤트 진입");
     $(".reviewModalRegisterDiv").show();
 });
 
 //분양글 댓글창 닫기
 $(".modalReviewCloseBtn").on("click", function(e){
     e.preventDefault();
-    console.log("dogsell-read.html 모달창 댓글등록 닫기이벤트 진입");
+    //-console.log("dogsell-read.html 모달창 댓글등록 닫기이벤트 진입");
     $(".reviewModalRegisterDiv").hide();
 });//끝 on()
 
@@ -340,11 +340,11 @@ var dno =[[${readDto.dno}]];
 //댓글목록보기 클릭이벤트
 $(".replyListBtn").on("click", function(e){
     //e.preventDefault();
-    console.log("dogsell-read.html 댓글목록보기 클릭이벤트 진입");
+    //-console.log("dogsell-read.html 댓글목록보기 클릭이벤트 진입");
 
     var replyList = $(this).closest(".container").find(".replyList");
     var status = replyList.css("display");
-    console.log("dogsell-read.html 댓글목록보기 클릭이벤트 진입 display 속성값 -> "+status);
+    //-console.log("dogsell-read.html 댓글목록보기 클릭이벤트 진입 display 속성값 -> "+status);
 
     if(status == "none"){
         //console.log("dogsell-read.html 댓글목록보기 클릭이벤트 진입 -현재 닫혔을때");
@@ -361,17 +361,17 @@ $(".replyListBtn").on("click", function(e){
 //모달창 댓글등록 클릭이벤트
 $(".modalReviewRegisterBtn").on("click", function(e){
     e.preventDefault();
-    console.log("dogsell-read.html 모달창 댓글등록 클릭이벤트 진입");
+    //-console.log("dogsell-read.html 모달창 댓글등록 클릭이벤트 진입");
 // .reviewModalRegisterDiv #modalReviewReplyer #modalReviewText
 
     var dnoValue= $(this).data("dno");
     var replyList=  $(this).closest("container").find(".replyList");
     var modalReviewReplyer =$("#modalReviewReplyer").val();
     var modalReviewText =$("#modalReviewText").val();
-    console.log("dogsell-read.html 모달창 댓글등록 클릭이벤트 진입 - 댓글등록하는 게시글번호 -> "+ dnoValue);
+    //-console.log("dogsell-read.html 모달창 댓글등록 클릭이벤트 진입 - 댓글등록하는 게시글번호 -> "+ dnoValue);
     var data ={replyer:modalReviewReplyer, text:modalReviewText}
 
-    console.log("dogsell-read.html 모달창 댓글등록 클릭이벤트 진입 - $.ajax로 보낼 데이터 출력 -> "+ data);
+    //-console.log("dogsell-read.html 모달창 댓글등록 클릭이벤트 진입 - $.ajax로 보낼 데이터 출력 -> "+ data);
 
     $.ajax({
         url:"/dogsell/reply/register/"+dnoValue,
@@ -381,7 +381,7 @@ $(".modalReviewRegisterBtn").on("click", function(e){
         dataType:'text',
 
         success: function(result){
-            console.log("dogsell-read.html 모달창 댓글등록 클릭이벤트 진입 - $.ajax success() 진입");
+            //-console.log("dogsell-read.html 모달창 댓글등록 클릭이벤트 진입 - $.ajax success() 진입");
             alert(result +"번 분양댓글이 등록되었습니다.");
             $(".reviewModalRegisterDiv").hide();
             location.replace(`/dogsell/read?dno=${dno}`);
@@ -392,29 +392,29 @@ $(".modalReviewRegisterBtn").on("click", function(e){
 //댓글목록 조회버튼 이벤트 처리
 $(".rDtoTr #replyListReadBtn").on("click", function(){
 
-    console.log("dogsell-read.html 댓글목록 조회버튼 클릭이벤트 진입");
+    //-console.log("dogsell-read.html 댓글목록 조회버튼 클릭이벤트 진입");
 //#replyListModifyBtn .reviewModalModifyDiv #modalModifyDrno  #modalReviewModifiedDate
 //#modalReviewCreatedDate #modalReviewModifyReplyer #modalReviewModifyText
 //.modalReviewModifyBtn .modalReviewRemoveBtn .modalReviewModifyCloseBtn
 
 
     var drno = $(this).data("drno");
-    console.log("dogsell-read.html 댓글목록 조회버튼 클릭이벤트 진입 댓글번호 data- 담은-> "+ drno);
+    //-console.log("dogsell-read.html 댓글목록 조회버튼 클릭이벤트 진입 댓글번호 data- 담은-> "+ drno);
     var text = $(this).data("text")
-    console.log("dogsell-read.html 댓글목록 조회버튼 클릭이벤트 진입 댓글내용 data- 담은-> "+ text);
+    //-console.log("dogsell-read.html 댓글목록 조회버튼 클릭이벤트 진입 댓글내용 data- 담은-> "+ text);
 
     var replyer = $(this).data("replyer");
-    console.log("dogsell-read.html 댓글목록 조회버튼 클릭이벤트 진입 댓글자 data- 담은-> "+ replyer);
+    //-console.log("dogsell-read.html 댓글목록 조회버튼 클릭이벤트 진입 댓글자 data- 담은-> "+ replyer);
 
     var createddate = $(this).data("createddate")
-    console.log("dogsell-read.html 댓글목록 조회버튼 클릭이벤트 진입 댓글등록일자 data- 담은-> "+ createddate);
+    //-console.log("dogsell-read.html 댓글목록 조회버튼 클릭이벤트 진입 댓글등록일자 data- 담은-> "+ createddate);
     var modifieddate = $(this).data("modifieddate");
-    console.log("dogsell-read.html 댓글목록 조회버튼 클릭이벤트 진입 댓글수정일자 data- 담은-> "+ createddate);
+    //-console.log("dogsell-read.html 댓글목록 조회버튼 클릭이벤트 진입 댓글수정일자 data- 담은-> "+ createddate);
 
     var dataValue={drno:drno,text:text,replyer:replyer,createddate:createddate,modifieddate:modifieddate};
 
-    console.log("dogsell-read.html  댓글목록 조회버튼 클릭이벤트 진입 - <tr> 태그의 data- 속성 값 -> ");
-    console.log(dataValue);
+    //-console.log("dogsell-read.html  댓글목록 조회버튼 클릭이벤트 진입 - <tr> 태그의 data- 속성 값 -> ");
+    //-console.log(dataValue);
 
     $("#modalModifyDrno").val(drno);
     $("#modalReviewModifiedDate").val(modifieddate);
@@ -422,7 +422,7 @@ $(".rDtoTr #replyListReadBtn").on("click", function(){
     $("#modalReviewModifyReplyer").val(replyer);
     $("#modalReviewModifyText").val(text);
 
-    console.log("로그인사용자의 name -> "+loginMember+", replyer->"+ replyer);
+    //-console.log("로그인사용자의 name -> "+loginMember+", replyer->"+ replyer);
 
     if(loginMember === replyer){
         $(".reviewModalModifyTitle").html("분양댓글조회&수정");
@@ -438,14 +438,14 @@ $(".rDtoTr #replyListReadBtn").on("click", function(){
 //댓글목록에서 삭제버튼클릭
 $(".rDtoTr #replyListModifyBtn").on("click", function(e){
     e.preventDefault();
-    console.log("dogsell-read.html 댓글목록 삭제버튼 클릭");
+    //-console.log("dogsell-read.html 댓글목록 삭제버튼 클릭");
     var replyList=  $(this).closest("container").find(".replyList");
 
     var drnoValue =$(this).data("drno");
-    console.log("dogsell-read.html 댓글목록 삭제버튼 클릭 - 삭제할 분양댓글번호 -> "+ drnoValue);
+    //-console.log("dogsell-read.html 댓글목록 삭제버튼 클릭 - 삭제할 분양댓글번호 -> "+ drnoValue);
 
     if(confirm(drnoValue+"번 분양댓글 삭제하시겠습니까?")){
-        console.log("dogsell-read.html 댓글목록 삭제버튼 클릭 - confirm -> True 진입");
+        //-console.log("dogsell-read.html 댓글목록 삭제버튼 클릭 - confirm -> True 진입");
         $.ajax({
             url:'/dogsell/reply/remove',
             type:'post',
@@ -454,7 +454,7 @@ $(".rDtoTr #replyListModifyBtn").on("click", function(e){
             contentType:"application/json; charset=utf-8",
 
             success: function(result){
-                console.log("dogsell-read.html 댓글목록 삭제버튼 클릭 - 콜백함수 실행");
+                //-console.log("dogsell-read.html 댓글목록 삭제버튼 클릭 - 콜백함수 실행");
                 alert(result+"번 분양댓글이 삭제되었습니다.");
                 location.replace(`/dogsell/read?dno=${dno}`);
 
@@ -466,7 +466,7 @@ $(".rDtoTr #replyListModifyBtn").on("click", function(e){
 
 //수정모달창 저장하기버튼 클릭이벤트
 $(".modalReviewModifyBtn").on("click", function(){
-    console.log("dogsell-read.html 모달 수정창 저장하기 버튼이벤트 진입");
+    //-console.log("dogsell-read.html 모달 수정창 저장하기 버튼이벤트 진입");
     var dnoValue =$(this).data("dno");
     var drnoValue = $("#modalModifyDrno").val();
     //$("#modalReviewModifyReplyer").val(replyer);
@@ -474,8 +474,8 @@ $(".modalReviewModifyBtn").on("click", function(){
     var replyList=  $(this).closest("container").find(".replyList");
 
     var dataModify = {drno:drnoValue, text:textValue}; // dno값이 딱히 필요가없다.
-    console.log("dogsell-read.html 모달 수정창 저장하기 버튼이벤트 진입 - $.ajax보낼 데이터 출력 -> " );
-    console.log(dataModify);
+    //-console.log("dogsell-read.html 모달 수정창 저장하기 버튼이벤트 진입 - $.ajax보낼 데이터 출력 -> " );
+    //-console.log(dataModify);
 
     $.ajax({
         url:'/dogsell/reply/modify/'+dnoValue,
@@ -485,7 +485,7 @@ $(".modalReviewModifyBtn").on("click", function(){
         dataType:'text',
 
         success: function(result){
-            console.log("dogsell-read.html 모달 수정창 저장하기 버튼이벤트 진입 - $.ajax success() 진입");
+            //-console.log("dogsell-read.html 모달 수정창 저장하기 버튼이벤트 진입 - $.ajax success() 진입");
             alert(result+"번 게시글이 수정되었습니다.");
             $(".reviewModalModifyDiv").hide();
             location.replace(`/dogsell/read?dno=${dno}`);
@@ -497,11 +497,11 @@ $(".modalReviewModifyBtn").on("click", function(){
 //#replyListModifyBtn .modalReviewModifyBtn .modalReviewRemoveBtn .modalReviewModifyCloseBtn
 //수정모달창 삭제하기 버튼 이벤트
 $(".modalReviewRemoveBtn").on("click", function(){
-    console.log("dogsell-read.html 모달 수정창 삭제하기 버튼이벤트 진입");
+    //-console.log("dogsell-read.html 모달 수정창 삭제하기 버튼이벤트 진입");
     var replyList=  $(this).closest("container").find(".replyList");
 
     var drnoValue = $("#modalModifyDrno").val();
-    console.log("dogsell-read.html 모달 수정창 삭제하기 버튼이벤트 진입 -삭제할 댓글번호 -> "+ drnoValue);
+    //-console.log("dogsell-read.html 모달 수정창 삭제하기 버튼이벤트 진입 -삭제할 댓글번호 -> "+ drnoValue);
 
     var data ={drno:drnoValue};
 
@@ -513,7 +513,7 @@ $(".modalReviewRemoveBtn").on("click", function(){
         contentType:"application/json; charset=utf-8",
 
         success: function(result){
-            console.log("dogsell-read.html 모달 수정창 삭제하기 버튼이벤트 진입 - $.ajax success() 진입");
+            //-console.log("dogsell-read.html 모달 수정창 삭제하기 버튼이벤트 진입 - $.ajax success() 진입");
             alert(result+"번 게시글이 삭제되었습니다.");
             $(".reviewModalModifyDiv").hide();
             location.replace(`/dogsell/read?dno=${dno}`);
@@ -529,20 +529,20 @@ $(".modalReviewModifyCloseBtn").on("click", function(){
 
 //____________________________________________________________________________________________________
 //분양글처리
-console.log("read.html 진입 imageTrue -> "+imageTrue +", imageFalse -> "+imageFalse);
+//-console.log("read.html 진입 imageTrue -> "+imageTrue +", imageFalse -> "+imageFalse);
 
 if(imageFalse){
-    console.log("dogsell-read.html 첨부파일 이미지가 존재하지 않을때 진입 -> "+ imageFalse);
+    //-console.log("dogsell-read.html 첨부파일 이미지가 존재하지 않을때 진입 -> "+ imageFalse);
 }//if문 imageFalse경우
 
 
 if(imageTrue){
-    console.log("dogsell-read.html 첨부파일 이미지가 존재할떄 진입 -> "+imageTrue);
+    //-console.log("dogsell-read.html 첨부파일 이미지가 존재할떄 진입 -> "+imageTrue);
     var str="";
 
     //Long inum; String uuid,imgName,path; getImageURL() getThumbnailURL()
     $.each(dsiDtoList, function(index, arr){
-        console.log("dogsell-read.html 첨부파일 이미지가 존재할떄 진입 $.each 진입 ");
+        //-console.log("dogsell-read.html 첨부파일 이미지가 존재할떄 진입 $.each 진입 ");
 
         str+=`<li data-name="${arr.imgName}" data-path="${arr.path}" data-uuid="${arr.uuid}"
                      style='list-style-type:none;margin:10px'>
@@ -550,22 +550,22 @@ if(imageTrue){
                 <img src="/dogselldisplay?fileName=${arr.thumbnailURL}" style="height:200px;width:auto;">
                 </a>
                 </li>`
-                console.log(arr);
+                //-console.log(arr);
 
             var imgNameLi = arr.imgName;
             var pathLi = arr.path;
             var uuidLi = arr.uuid;
 
-            console.log("dogsell-read.html 일반컨트롤러에서 타임리프로 데이터받을때 $.each arr.imgName -> "+ imgNameLi);
-            console.log("dogsell-read.html 일반컨트롤러에서 타임리프로 데이터받을때 $.each arr.path -> "+ pathLi);
-            console.log("dogsell-read.html 일반컨트롤러에서 타임리프로 데이터받을때 $.each arr.uuid -> "+ uuidLi);
+            //-console.log("dogsell-read.html 일반컨트롤러에서 타임리프로 데이터받을때 $.each arr.imgName -> "+ imgNameLi);
+            //-console.log("dogsell-read.html 일반컨트롤러에서 타임리프로 데이터받을때 $.each arr.path -> "+ pathLi);
+            //-console.log("dogsell-read.html 일반컨트롤러에서 타임리프로 데이터받을때 $.each arr.uuid -> "+ uuidLi);
 
             imageDataArray.push({imgName:imgNameLi,path:pathLi,uuid:uuidLi});
-            console.log("dogsell-read.html 일반컨트롤러에서 타임리프로 데이터받을때 imageDataArray 배열 출력");
+            //-console.log("dogsell-read.html 일반컨트롤러에서 타임리프로 데이터받을때 imageDataArray 배열 출력");
 
-            console.log(imageDataArray);
+            //-console.log(imageDataArray);
 
-            console.log("dogsell-read.html 일반컨트롤러에서 타임리프로 데이터받을때 생성한 html출력 -> "+ str);
+            //-console.log("dogsell-read.html 일반컨트롤러에서 타임리프로 데이터받을때 생성한 html출력 -> "+ str);
         });//$.each
 
         $(".uploadResult ul").append(str);
@@ -575,7 +575,7 @@ if(imageTrue){
 //________________________________________
 //분양글 수정하기
 $("#modifyBtn").on("click", function(e){
-    console.log("dogsell-read.html 조회페이지 수정하러가기 이벤트진입");
+    //-console.log("dogsell-read.html 조회페이지 수정하러가기 이벤트진입");
     e.preventDefault();
 
     if(confirm("해당 강아지분양정보를 수정하시겠습니까?")){
@@ -591,12 +591,12 @@ $("#modifyBtn").on("click", function(e){
 
 //분양글 삭제하기버튼처리
 $("#removeBtn").on("click", function(e){
-    console.log("dogsell-read.html 조회페이지 삭제하기 버튼이벤트 진입 - form처리 ");
+    //-console.log("dogsell-read.html 조회페이지 삭제하기 버튼이벤트 진입 - form처리 ");
     e.preventDefault();
 
     if(confirm("해당 강아지분양정보를 삭제하시겠습니까? 삭제하실경우 모든 댓글내용이 삭제되니 유의하세요!")){
         var dnoTag = $("#dno");
-        console.log(dnoTag);
+        //-console.log(dnoTag);
         readForm.empty();
 
         readForm.append(dnoTag);

@@ -190,7 +190,7 @@ var inquirycount = [[${count.inquirycount}]]
 
 
 var loginMember =[[${loginMember}]];
-console.log("admin_post_list.html 현재로그인한 회원-> "+ loginMember);
+//-console.log("admin_post_list.html 현재로그인한 회원-> "+ loginMember);
 
 
 $(document).ready(function(){
@@ -198,7 +198,7 @@ $(document).ready(function(){
 
     //검색+페이지이동
     $("a.page-link").on("click", function(e){
-        console.log("admin_post_list.html 검색+페이지이동 처리 클릭이벤트 진입");
+        //-console.log("admin_post_list.html 검색+페이지이동 처리 클릭이벤트 진입");
         e.preventDefault();
         var page = $(this).data("num");
 
@@ -217,7 +217,7 @@ $(document).ready(function(){
 
     $("#reset").on("click", function(e){
         e.preventDefault();
-        console.log("admin_post_list.html 검색+페이지이동 처리 클릭이벤트 진입");
+        //-console.log("admin_post_list.html 검색+페이지이동 처리 클릭이벤트 진입");
 
         $("form").empty();
 
@@ -235,21 +235,21 @@ $(document).ready(function(){
 //검색버튼클릭시
     $(".searchBtn").on("click", function(e){
         e.preventDefault();
-        console.log("admin_post_list.html 검색버튼 클릭이벤트 진입");
+        //-console.log("admin_post_list.html 검색버튼 클릭이벤트 진입");
         var selectvalue = $("select[name=type]").val();
-        console.log("admin_post_list.html 검색버튼 클릭이벤트 진입 먼저 select값 확인 -> "+selectvalue);
+        //-console.log("admin_post_list.html 검색버튼 클릭이벤트 진입 먼저 select값 확인 -> "+selectvalue);
 
         var selectkeyword = $("input[name=keyword]").val();
-        console.log("admin_post_list.html 검색버튼 클릭이벤트 진입 먼저 keyword값 확인 -> "+selectkeyword);
+        //-console.log("admin_post_list.html 검색버튼 클릭이벤트 진입 먼저 keyword값 확인 -> "+selectkeyword);
 
         if(selectvalue =="" || selectkeyword == ""){
-            console.log("admin_post_list.html  검색버튼 클릭이벤트 진입 select값이 없거나 검색키워드입력하지 않은경우");
+            //-console.log("admin_post_list.html  검색버튼 클릭이벤트 진입 select값이 없거나 검색키워드입력하지 않은경우");
             alert("검색조건을 선택하시고 검색어를 입력해주세요");
             return;
         }
 
         if(selectvalue !="" && selectkeyword != ""){
-            console.log("admin_post_list.html 검색버튼 클릭이벤트 진입 select값이 존재하고 검색키워드입력한 경우");
+            //-console.log("admin_post_list.html 검색버튼 클릭이벤트 진입 select값이 존재하고 검색키워드입력한 경우");
             $("form").submit();
         }
     });

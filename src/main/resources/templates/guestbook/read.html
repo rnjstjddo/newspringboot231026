@@ -185,7 +185,7 @@
 
 //방명록 댓글 날짜처리
 function dateFormat(date){
-console.log("guestbook-read.html 방명록 댓글 날짜처리 진입 파라미터 ->"+date);
+//-console.log("guestbook-read.html 방명록 댓글 날짜처리 진입 파라미터 ->"+date);
     var date =new Date(date);
 
     return date.getFullYear()+
@@ -195,11 +195,11 @@ console.log("guestbook-read.html 방명록 댓글 날짜처리 진입 파라미�
 
 
 function memberRemoveBtn(obj){
-    console.log("guestbook-read.html 방명록 댓글 게시글작성자=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입");
+    //-console.log("guestbook-read.html 방명록 댓글 게시글작성자=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입");
     if(confirm("해당 댓글을 삭제하시겠습니까?")){
-        console.log($(obj));
+        //-console.log($(obj));
         var grno =$(obj).data("grno");
-        console.log("guestbook-read.html 방명록 댓글 게시글작성자=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입 - onclick() 처리 삭제하려는 댓글번호 -> "+ grno);
+        //-console.log("guestbook-read.html 방명록 댓글 게시글작성자=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입 - onclick() 처리 삭제하려는 댓글번호 -> "+ grno);
 
         $.ajax({
             url:"/guestbook/reply/delete",
@@ -208,7 +208,7 @@ function memberRemoveBtn(obj){
             dataType:"text",
             success:function(result){
                 if(result){
-                    console.log("guestbook-read.html 방명록 댓글 게시글작성자=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입 -$.ajax success() 진입");
+                    //-console.log("guestbook-read.html 방명록 댓글 게시글작성자=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입 -$.ajax success() 진입");
                     alert(grno+"번 댓글이 삭제되었습니다.");
                     $(obj).closest(".memberReplyOuterLi").remove();
                 }
@@ -219,11 +219,11 @@ function memberRemoveBtn(obj){
 
 
 function authorRemoveBtn(obj){
-    console.log("guestbook-read.html 방명록 댓글 게시글작성자!=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입");
+    //-console.log("guestbook-read.html 방명록 댓글 게시글작성자!=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입");
     if(confirm("해당 댓글을 삭제하시겠습니까?")){
-        console.log($(obj));
+        //-console.log($(obj));
         var grno =$(obj).data("grno");
-        console.log("guestbook-read.html 방명록 댓글 게시글작성자!=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입 - onclick() 처리 삭제하려는 댓글번호 -> "+ grno);
+        //-console.log("guestbook-read.html 방명록 댓글 게시글작성자!=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입 - onclick() 처리 삭제하려는 댓글번호 -> "+ grno);
 
         $.ajax({
             url:"/guestbook/reply/delete",
@@ -232,7 +232,7 @@ function authorRemoveBtn(obj){
             dataType:"text",
             success:function(result){
                 if(result){
-                    console.log("guestbook-read.html 방명록 댓글 게시글작성자!=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입 -$.ajax success() 진입");
+                    //-console.log("guestbook-read.html 방명록 댓글 게시글작성자!=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입 -$.ajax success() 진입");
                     alert(grno+"번 댓글이 삭제되었습니다.");
                     $(obj).closest(".authorReplyOuterLi").remove();
                 }
@@ -247,7 +247,7 @@ $(document).ready(function(){
 
 var loginMember =[[${loginMember}]];
 var writer =[[${gDto.writer}]];
-console.log("guestbook-read.html 방명록 조회수정화면 현재 로그인한 회원 -> "+loginMember+", 방명록 작성자 -> "+writer);
+//-console.log("guestbook-read.html 방명록 조회수정화면 현재 로그인한 회원 -> "+loginMember+", 방명록 작성자 -> "+writer);
 
 
   var readForm=$("form");
@@ -256,15 +256,15 @@ console.log("guestbook-read.html 방명록 조회수정화면 현재 로그인�
   var keyword =[[${pageRequestDTO.keyword}]];
 
   var type =[[${pageRequestDTO.type}]];
-  console.log("페이지 -> "+page);
-  console.log("키워드 -> "+keyword);
-  console.log("타입 -> "+type);
+  //-console.log("페이지 -> "+page);
+  //-console.log("키워드 -> "+keyword);
+  //-console.log("타입 -> "+type);
 
   var gno =[[${gDto.gno}]];
 
     //방명록 댓글등록
     $(".replyAddBtn").on("click", function(){
-        console.log("guestbook-read.html 방명록 댓글등록버튼 클릭이벤트 진입");
+        //-console.log("guestbook-read.html 방명록 댓글등록버튼 클릭이벤트 진입");
 
         var reply =$(".memberReplyP").val();
         var comment = $(".replyAddTextArea").val();
@@ -272,17 +272,17 @@ console.log("guestbook-read.html 방명록 조회수정화면 현재 로그인�
         var authorReply =$(".authorReplyP").val();
         var data={comment:comment, name:loginMember, gno:gno};
 
-        console.log("guestbook-read.html 방명록 댓글등록버튼 클릭이벤트 진입 - 내용 -> ");
-        console.log(data);
+        //-console.log("guestbook-read.html 방명록 댓글등록버튼 클릭이벤트 진입 - 내용 -> ");
+        //-console.log(data);
 
         //댓글내용없을경우
         if(reply=='' || comment == ''){
-            console.log("guestbook-read.html 방명록 댓글등록버튼 클릭이벤트 진입 - 댓글내용없을경우 다시 돌아가기");
+            //-console.log("guestbook-read.html 방명록 댓글등록버튼 클릭이벤트 진입 - 댓글내용없을경우 다시 돌아가기");
             alert("방명록 댓글 작성공간을 채워주셔야 등록됩니다!");
             return;
         }
-        console.log("guestbook-read.html 방명록 댓글등록버튼 클릭이벤트 진입 -$.ajax보낼 data ->");
-        console.log(data);
+        //-console.log("guestbook-read.html 방명록 댓글등록버튼 클릭이벤트 진입 -$.ajax보낼 data ->");
+        //-console.log(data);
 
          $.ajax({
             url:"/guestbook/reply/save",
@@ -292,20 +292,20 @@ console.log("guestbook-read.html 방명록 조회수정화면 현재 로그인�
             success: function(result){
             // GuestbookReplyDTO -> Long grno; /Long gno; / MemberDTO mDto; /String name; /String comment;/LocalDateTime modifiedDate, createdDate;
 
-                console.log("guestbook-read.html 방명록 댓글등록버튼 클릭이벤트 진입 $.ajax success() 진입");
-                console.log("grno -> "+result.grno);
-                console.log("gno -> " +result.gno);
-                console.log("name -> "+result.name);
+                //-console.log("guestbook-read.html 방명록 댓글등록버튼 클릭이벤트 진입 $.ajax success() 진입");
+                //-console.log("grno -> "+result.grno);
+                //-console.log("gno -> " +result.gno);
+                //-console.log("name -> "+result.name);
                 var name =result.name;
-                console.log("comment -> "+result.comment);
-                console.log(result.createdDate);
+                //-console.log("comment -> "+result.comment);
+                //-console.log(result.createdDate);
                 var newDate =dateFormat(result.modifiedDate);
-                console.log("변환한 modifiedDate -> " + newDate);
+                //-console.log("변환한 modifiedDate -> " + newDate);
 
 
                 if(result.grno !=null){
                      if(loginMember == name){
-                         console.log("guestbook-read.html 방명록 댓글등록버튼 클릭이벤트 진입  $.ajax success() 진입 -현재로그인사용자와 댓글자가 동일한경우 진입");
+                         //-console.log("guestbook-read.html 방명록 댓글등록버튼 클릭이벤트 진입  $.ajax success() 진입 -현재로그인사용자와 댓글자가 동일한경우 진입");
 
                         var str =``;
 
@@ -326,14 +326,14 @@ console.log("guestbook-read.html 방명록 조회수정화면 현재 로그인�
                         str+=`</div>`;
                         str+=`</li>`;
 
-                        console.log(str);
+                        //-console.log(str);
                         $(".replyOuterUl").append(str);
                         $(".replyAddTextArea").val("");
                         $(".noGuestbookReply").remove();
                      }//if문
 
                 if(loginMember != name){
-                    console.log("guestbook-read.html 방명록 댓글등록버튼 클릭이벤트 진입 $.ajax success() 진입 - 현재로그인사용자와 댓글자가 다른 경우 진입 -들여쓰기한다.");
+                    //-console.log("guestbook-read.html 방명록 댓글등록버튼 클릭이벤트 진입 $.ajax success() 진입 - 현재로그인사용자와 댓글자가 다른 경우 진입 -들여쓰기한다.");
 
                         var str=``;
                         str+=`<li style="list-style-type:none;" class="memberReplyOuterLi">`;
@@ -355,7 +355,7 @@ console.log("guestbook-read.html 방명록 조회수정화면 현재 로그인�
                         str+=`</div>`;
                         str+=`</li>`;
 
-                        console.log(str);
+                        //-console.log(str);
 
                         $(".replyOuterUl").append(str);
                         $(".replyAddTextArea").val("");
@@ -368,7 +368,7 @@ console.log("guestbook-read.html 방명록 조회수정화면 현재 로그인�
 
 //방명록 수정하기
 $("#modifyBtn").on("click", function(e){
-    console.log("read.html 조회수정페이지 저장하기 버튼이벤트 진입 - form처리 ");
+    //-console.log("read.html 조회수정페이지 저장하기 버튼이벤트 진입 - form처리 ");
     e.preventDefault();
 
     if(confirm("해당 내용으로 방명록을 수정하시겠습니까?")){
@@ -403,13 +403,13 @@ $("#modifyBtn").on("click", function(e){
         data:JSON.stringify(data)
     })
     .done(function(){
-        console.log("posts-update.html 수정페이지 저장하기 버튼이벤트 진입 -done() 진입");
+        //-console.log("posts-update.html 수정페이지 저장하기 버튼이벤트 진입 -done() 진입");
         alert(id+"번 게시글이 수정되었습니다.");
         location.replace(`/?`+link);
     })
     .fail(function(error){
-        console.log("posts-update.html 수정페이지 저장하기 버튼이벤트 진입 -fail() 진입");
-        console.log(error);
+        //-console.log("posts-update.html 수정페이지 저장하기 버튼이벤트 진입 -fail() 진입");
+        //-console.log(error);
         alert("작성자만 수정할수있습니다.");
     });
 -->
@@ -420,12 +420,12 @@ var pageRequestDTO = [[${pageRequestDTO}]];
 
 //방명록 삭제하기버튼처리
 $("#removeBtn").on("click", function(e){
-    console.log("guestbook-read.html 방명록 조회수정페이지 삭제하기 버튼이벤트 진입 - form처리 ");
+    //-console.log("guestbook-read.html 방명록 조회수정페이지 삭제하기 버튼이벤트 진입 - form처리 ");
     e.preventDefault();
     var gno = $("#gno").val();
     var gnoTag = $("#gno");
 
-    console.log("guestbook-read.html 방명록 조회수정페이지 삭제하기 버튼이벤트 진입 - form처리 -삭제하려는 방명록 번호 -> "+gno);
+    //-console.log("guestbook-read.html 방명록 조회수정페이지 삭제하기 버튼이벤트 진입 - form처리 -삭제하려는 방명록 번호 -> "+gno);
 
     if(confirm(gnoTag+"번 방명록을 삭제하시겠습니까? 관련 댓글까지 모두 삭제되어 복구가 불가능합니다.")){
 
@@ -435,9 +435,9 @@ $("#removeBtn").on("click", function(e){
             contentType:"application/json;charset=utf-8",
             data:{gno:gno},
             success:function(result){
-                console.log("read.html 조회수정페이지 삭제하기 버튼이벤트 진입 -먼저 댓글부터 ajax 삭제처리 - success() 진입");
+                //-console.log("read.html 조회수정페이지 삭제하기 버튼이벤트 진입 -먼저 댓글부터 ajax 삭제처리 - success() 진입");
                 if(true){
-                    console.log(result);
+                    //-console.log(result);
                     readForm.empty();
 
                     readForm.append(gnoTag);

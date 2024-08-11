@@ -172,7 +172,7 @@
 
 //게시글 댓글 날짜처리
 function dateFormat(date){
-console.log("update.html 날짜처리 진입 파라미터 ->"+date);
+//-console.log("update.html 날짜처리 진입 파라미터 ->"+date);
     var date =new Date(date);
 
     return date.getFullYear()+
@@ -182,9 +182,9 @@ console.log("update.html 날짜처리 진입 파라미터 ->"+date);
 
 
 function memberRemoveBtn(obj){
-    console.log("post-update.html member 화면댓글목록 삭제버튼 클릭이벤트 진입");
+    //-console.log("post-update.html member 화면댓글목록 삭제버튼 클릭이벤트 진입");
     if(confirm("해당 댓글을 삭제하시겠습니까?")){
-        console.log($(obj));
+        //-console.log($(obj));
         var prno =$(obj).data("prno");
 
         $.ajax({
@@ -193,8 +193,8 @@ function memberRemoveBtn(obj){
             data:{prno:prno},
             dataType:"text",
             success:function(result){
-                console.log("post-update.html member 화면댓글목록 삭제버튼 클릭이벤트 진입 -$.ajax success() 진입");
-                console.log(result);
+                //-console.log("post-update.html member 화면댓글목록 삭제버튼 클릭이벤트 진입 -$.ajax success() 진입");
+                //-console.log(result);
                 $(obj).closest(".memberReplyOuterLi").remove();
             }//success
         });//$.ajax
@@ -203,9 +203,9 @@ function memberRemoveBtn(obj){
 
 
 function authorRemoveBtn(obj){
-    console.log("post-update.html author 화면댓글목록 삭제버튼 클릭이벤트 진입");
+    //-console.log("post-update.html author 화면댓글목록 삭제버튼 클릭이벤트 진입");
     if(confirm("해당 댓글을 삭제하시겠습니까?")){
-        console.log($(obj));
+        //-console.log($(obj));
         var prno =$(obj).data("prno");
 
         $.ajax({
@@ -214,8 +214,8 @@ function authorRemoveBtn(obj){
             data:{prno:prno},
             dataType:"text",
             success:function(result){
-                console.log("post-update.html author 화면댓글목록 삭제버튼 클릭이벤트 진입 -$.ajax success() 진입");
-                console.log(result);
+                //-console.log("post-update.html author 화면댓글목록 삭제버튼 클릭이벤트 진입 -$.ajax success() 진입");
+                //-console.log(result);
                $(obj).closest(".authorReplyOuterLi").remove();
             }//success
         });//$.ajax
@@ -227,17 +227,17 @@ function authorRemoveBtn(obj){
 $(document).ready(function(){
 
 var loginMember =[[${loginMember}]];
-console.log("post-update.html 게시글 조회수정화면 현재 로그인한 회원 -> "+loginMember);
+//-console.log("post-update.html 게시글 조회수정화면 현재 로그인한 회원 -> "+loginMember);
 
 var author =[[${posts.author}]];
 var id=[[${posts.id}]];
 var posts =[[${posts}]]
 
-console.log("현재 loginMember -> "+loginMember+", 현재 게시글 author -> "+author);
+//-console.log("현재 loginMember -> "+loginMember+", 현재 게시글 author -> "+author);
 
     //댓글처리
     $(".replyAddBtn").on("click", function(){
-        console.log("update.html 댓글등록버튼 클릭이벤트 진입");
+        //-console.log("update.html 댓글등록버튼 클릭이벤트 진입");
         var comment = $(".replyAddTextArea").val();
         comment = comment.trim();
         var reply =$(".memberReplyP").val();
@@ -246,8 +246,8 @@ console.log("현재 loginMember -> "+loginMember+", 현재 게시글 author -> "
         var data={comment:comment, name:loginMember, pno:id};
 
 
-        console.log("update.html 댓글등록버튼 클릭이벤트 진입 -$.ajax보낼 data ->");
-        console.log(data);
+        //-console.log("update.html 댓글등록버튼 클릭이벤트 진입 -$.ajax보낼 data ->");
+        //-console.log(data);
 
          $.ajax({
             url:"/post/reply/save",
@@ -255,20 +255,20 @@ console.log("현재 loginMember -> "+loginMember+", 현재 게시글 author -> "
             data:JSON.stringify(data),
             contentType:"application/json;charset=utf-8",
             success: function(result){
-                console.log("update.html 댓글등록버튼 클릭이벤트 진입 $.ajax success() 진입");
-                console.log("prno -> "+result.prno);
-                console.log("pno -> " +result.pno);
-                console.log("name -> "+result.name);
+                //-console.log("update.html 댓글등록버튼 클릭이벤트 진입 $.ajax success() 진입");
+                //-console.log("prno -> "+result.prno);
+                //-console.log("pno -> " +result.pno);
+                //-console.log("name -> "+result.name);
                 var name =result.name;
-                console.log("comment -> "+result.comment);
-                console.log(result.createdDate);
+                //-console.log("comment -> "+result.comment);
+                //-console.log(result.createdDate);
                 var newDate =dateFormat(result.modifiedDate);
-                console.log("변환한 modifiedDate -> " + newDate);
+                //-console.log("변환한 modifiedDate -> " + newDate);
 
 
                 if(result.prno !=null){
                      if(loginMember == author){
-                         console.log("update.html 댓글등록버튼 클릭이벤트 진입  $.ajax success() 진입 -현재로그인사용자와 댓글자가 동일한경우 진입");
+                        //-console.log("update.html 댓글등록버튼 클릭이벤트 진입  $.ajax success() 진입 -현재로그인사용자와 댓글자가 동일한경우 진입");
 
                         var str =``;
 
@@ -289,14 +289,14 @@ console.log("현재 loginMember -> "+loginMember+", 현재 게시글 author -> "
                         str+=`</div>`;
                         str+=`</li>`;
 
-                        console.log(str);
+                        //-console.log(str);
                         $(".replyOuterUl").append(str);
                         $(".replyAddTextArea").val("");
                         $(".noPostReply").remove();
                      }//if문
 
                 if(loginMember != author){
-                    console.log("update.html 댓글등록버튼 클릭이벤트 진입 $.ajax success() 진입 - 현재로그인사용자와 댓글자가 다른 경우 진입 -들여쓰기한다.");
+                    //-console.log("update.html 댓글등록버튼 클릭이벤트 진입 $.ajax success() 진입 - 현재로그인사용자와 댓글자가 다른 경우 진입 -들여쓰기한다.");
 
                         var str=``;
                         str+=`<li style="list-style-type:none;" class="memberReplyOuterLi">`;
@@ -318,7 +318,7 @@ console.log("현재 loginMember -> "+loginMember+", 현재 게시글 author -> "
                         str+=`</div>`;
                         str+=`</li>`;
 
-                        console.log(str);
+                        //-console.log(str);
 
                         $(".replyOuterUl").append(str);
                         $(".replyAddTextArea").val("");
@@ -332,7 +332,7 @@ console.log("현재 loginMember -> "+loginMember+", 현재 게시글 author -> "
 
 //member댓글삭제
 $(".replyOuterUl").on("click", ".memberRemoveBtn", function(){
-console.log("update.html member댓글삭제 클릭 이벤트진입");
+//-console.log("update.html member댓글삭제 클릭 이벤트진입");
     if(confirm("해당 댓글을 삭제하시겠습니까?")){
        var target =$(this);
        target.closest(".memberReplyOuterLi").remove();
@@ -342,13 +342,13 @@ console.log("update.html member댓글삭제 클릭 이벤트진입");
 
 //author댓글삭제
 $(".replyOuterUl").on("click", ".authorRemoveBtn", function(){
-console.log("update.html author댓글삭제 클릭 이벤트진입");
+//-console.log("update.html author댓글삭제 클릭 이벤트진입");
     //if(confirm("해당 댓글을 삭제하시겠습니까? 관련 다른 회원님들이 작성한 댓글까지 모두 삭제됩니다.")){
     if(confirm("해당 댓글을 삭제하시겠습니까?")){
          var target =$(this);
-         console.log(target);
+         //-console.log(target);
          var cl = target.closest(".authorReplyOuterLi");
-         console.log(cl);
+         //-console.log(cl);
          target.closest("li").remove();
     }//if문
 });
@@ -357,7 +357,7 @@ console.log("update.html author댓글삭제 클릭 이벤트진입");
 
 //날짜처리
 function dateFormat(date){
-console.log("update.html 날짜처리 진입 파라미터 ->"+date);
+//-console.log("update.html 날짜처리 진입 파라미터 ->"+date);
     var date =new Date(date);
 
     return date.getFullYear()+
@@ -372,7 +372,7 @@ var link = [[${pageRequestDto.getLink()}]];
 
 //게시글 수정하기
 $("#modifyBtn").on("click", function(e){
-    console.log("posts-update.html 수정페이지 저장하기 버튼이벤트 진입 -ajax처리 api서버로 ");
+    //-console.log("posts-update.html 수정페이지 저장하기 버튼이벤트 진입 -ajax처리 api서버로 ");
     e.preventDefault();
 
     var id = $("input[name='id']").val();
@@ -380,10 +380,10 @@ $("#modifyBtn").on("click", function(e){
     var content = $("#content").val();
     var author = $("#author").val();
 
-    console.log(id);
-    console.log(title);
-    console.log(content);
-    console.log(author);
+    //-console.log(id);
+    //-console.log(title);
+    //-console.log(content);
+    //-console.log(author);
 
     if(confirm(id+"번 게시글을 수정하시겠습니까?")){
         var data={
@@ -398,13 +398,13 @@ $("#modifyBtn").on("click", function(e){
             data:JSON.stringify(data)
         })
         .done(function(){
-            console.log("posts-update.html 수정페이지 저장하기 버튼이벤트 진입 -done() 진입");
+            //-console.log("posts-update.html 수정페이지 저장하기 버튼이벤트 진입 -done() 진입");
             alert(id+"번 게시글이 수정되었습니다.");
             location.replace(`/post/list?`+link);
         })
         .fail(function(error){
-            console.log("posts-update.html 수정페이지 저장하기 버튼이벤트 진입 -fail() 진입");
-            console.log(error);
+            //-console.log("posts-update.html 수정페이지 저장하기 버튼이벤트 진입 -fail() 진입");
+            //-console.log(error);
             alert("작성자만 수정할수있습니다.");
         });
     }//if문
@@ -413,7 +413,7 @@ $("#modifyBtn").on("click", function(e){
 
 //게시글 삭제하기버튼처리
 $("#removeBtn").on("click", function(e){
-    console.log("posts-update.html 수정페이지 삭제하기 버튼이벤트 진입 -ajax처리 api서버로 ");
+    //-console.log("posts-update.html 수정페이지 삭제하기 버튼이벤트 진입 -ajax처리 api서버로 ");
     e.preventDefault();
 
 
@@ -431,13 +431,13 @@ $("#removeBtn").on("click", function(e){
             contentType:'application/json;charset=utf-8',
         })
         .done(function(){
-            console.log("posts-update.html 수정페이지 삭제하기 버튼이벤트 진입 -done() 진입");
+            //-console.log("posts-update.html 수정페이지 삭제하기 버튼이벤트 진입 -done() 진입");
             alert(id+"번 게시글이 삭제되었습니다.");
             location.replace(`/post/list?`+link);
         })
         .fail(function(error){
-            console.log("posts-update.html 수정페이지 삭제하기 버튼이벤트 진입 -fail() 진입");
-            console.log(error);
+            //-console.log("posts-update.html 수정페이지 삭제하기 버튼이벤트 진입 -fail() 진입");
+            //-console.log(error);
             alert("작성자만 삭제할수있습니다.");
         });
 

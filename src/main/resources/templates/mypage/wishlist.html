@@ -185,20 +185,20 @@
 
 
 function phoneCheck(target){
-    console.log("wishlist.html 폰번호 정규식표현 검사 진입");
-    console.log(target);
+    //-console.log("wishlist.html 폰번호 정규식표현 검사 진입");
+    //-console.log(target);
     var num = target.value;
-    console.log("wishlist.html 폰번호 정규식표현 검사 진입 -> "+ num);
+    //-console.log("wishlist.html 폰번호 정규식표현 검사 진입 -> "+ num);
 
     var number = num.replace(/ /gi, '');
     var check = /^(01[016789]{1})?[0-9]{3,4}?[0-9]{4}$/;
     var result = check.test(number);
 
     if(check.test(num)){
-        console.log("정규식 맞음");
+        //-console.log("정규식 맞음");
         return;
     }else{
-        console.log("정규식 틀림");
+        //-console.log("정규식 틀림");
         alert("핸드폰번호의 공백과 '-' 기호를 제외한 숫자만 입력해주세요!")
         return;
     }
@@ -211,16 +211,16 @@ var name = [[${memberDTO.name}]];
 
 //분양위시리스트삭제
 $(".removeWishBtn").on("click",function(){
-    console.log("wishlist.html 위시리스트 삭제버튼 클릭이벤트 진입");
+    //-console.log("wishlist.html 위시리스트 삭제버튼 클릭이벤트 진입");
     var wishnum = $(this).data("wishnum");
     var name = $(this).data("name");
     var wishDiv = $(this).closest(".wishDiv");
     var data={name:name}
-    console.log(data);
+    //-console.log(data);
 
     //현재 위시상품수
     var beforeCountnum = $(".countNum").html();
-    console.log("wishlist.html 위시리스트 삭제버튼 클릭이벤트 진입 삭제전 위시상품수 -> "+beforeCountnum)
+    //-console.log("wishlist.html 위시리스트 삭제버튼 클릭이벤트 진입 삭제전 위시상품수 -> "+beforeCountnum)
 
     $.ajax({
         url:"/mypage/wishlist/remove/"+wishnum,
@@ -230,22 +230,21 @@ $(".removeWishBtn").on("click",function(){
         //data:JSON.stringify(data),
         data:{name:name},
         success:function(result){
-            console.log("wishlist.html 위시리스트 삭제버튼 클릭이벤트 진입 - $.ajax success() 진입");
+            //-console.log("wishlist.html 위시리스트 삭제버튼 클릭이벤트 진입 - $.ajax success() 진입");
             if(!result){
-                console.log("존재하지 않는 위시번호입니다.");
+                //-console.log("존재하지 않는 위시번호입니다.");
                 alert("존재하지 않는 위시번호입니다.");
             }
             if(result){
                 if( (beforeCountnum -1) == 0){
-                    console.log("wishlist.html 위시리스트 삭제버튼 클릭이벤트 진입 - $.ajax success() 진입"+
-                            " 찜한상품수가 0일 경우 진입");
+                    //-console.log("wishlist.html 위시리스트 삭제버튼 클릭이벤트 진입 - $.ajax success() 진입 찜한상품수가 0일 경우 진입");
 
                     $(".wishListEmpty").show();
                     $(".countNumDiv").hide();
                     alert(wishnum+"번 분양글이 위시리스트에서 삭제되었습니다.");
                     wishDiv.remove();
                 }else{
-                    console.log("wishlist.html 위시리스트 삭제버튼 클릭이벤트 진입 - $.ajax success() 진입"+
+                    //-console.log("wishlist.html 위시리스트 삭제버튼 클릭이벤트 진입 - $.ajax success() 진입"+
                             " 찜한상품수가 0이 아닐 경우 진입");
 
                     $(".countNum").html(beforeCountnum-1);
@@ -263,25 +262,25 @@ $(".removeWishBtn").on("click",function(){
 var messageWriter;
 
 $(".contactBtn").on("click", function(){
-    console.log("wishlist.html 메지지보내기 클릭이벤트 진입 분양글 주인 -> ");
+    //-console.log("wishlist.html 메지지보내기 클릭이벤트 진입 분양글 주인 -> ");
     messageWriter = $(this).data("writer");
     var w= $(this).data("writer");
-    console.log(messageWriter);
-    console.log(w);
+    //-console.log(messageWriter);
+    //-console.log(w);
     $(".contactModal").show();
 
 });
 
 
 $(".contactModalCloseBtn").on("click", function(){
-    console.log("wishlist.html 모달창 메지지보내기 닫기이벤트 진입");
+    //-console.log("wishlist.html 모달창 메지지보내기 닫기이벤트 진입");
     $(".contactModal").hide();
 });
 
 
 
 $(".contactModal").on("click", "#submitButton", function(){
-    console.log("wishlist.html 모달창 메지지보내기 전송이벤트 진입");
+    //-console.log("wishlist.html 모달창 메지지보내기 전송이벤트 진입");
     var target = $(this);
     var name =$("#name").val();
     var email =$("#email").val();
@@ -302,7 +301,7 @@ $(".contactModal").on("click", "#submitButton", function(){
         var data ={email:email,name:name, content:message, number:phone,
                 recipientString:messageWriter, senderString:name};
 
-        console.log(data);
+        //-console.log(data);
 
         $.ajax({
             url:"/mypage/message/send",
@@ -311,7 +310,7 @@ $(".contactModal").on("click", "#submitButton", function(){
             dataType:"text",
             data:JSON.stringify(data),
             success:function(result){
-                console.log("wishlist.html 모달창 메지지보내기 전송이벤트 진입 - $.ajax success() 진입");
+                //-console.log("wishlist.html 모달창 메지지보내기 전송이벤트 진입 - $.ajax success() 진입");
                 alert(name +"님 쪽지 전달이 완료되었습니다.!");
                 target.closest(".modal").find("#phone").val("");
                 target.closest(".modal").find("#message").val("");

@@ -98,7 +98,7 @@ $(document).ready(function(){
 
 
 $("#registerBtn").on("click", function(e){
-    console.log("register.html 등록하기 버튼이벤트 진입 -ajax처리 api서버로 ");
+    //-console.log("register.html 등록하기 버튼이벤트 진입 -ajax처리 api서버로 ");
     e.preventDefault();
 
     var title = $("#title").val();
@@ -117,13 +117,13 @@ $("#registerBtn").on("click", function(e){
         data:JSON.stringify(data)
     })
     .done(function(result){
-        console.log("register.html 등록하기 버튼이벤트 진입 -ajax처리 api서버로 -done() 진입");
+        //-console.log("register.html 등록하기 버튼이벤트 진입 -ajax처리 api서버로 -done() 진입");
         alert(result+"번 게시글이 등록되었습니다.");
         location.replace(`/?`+link);
     })
     .fail(function(error){
-        console.log("register.html 등록하기 버튼이벤트 진입 -ajax처리 api서버로 -then() 진입");
-        console.log(error);
+        //-console.log("register.html 등록하기 버튼이벤트 진입 -ajax처리 api서버로 -then() 진입");
+        //-console.log(error);
     });
 
 });//등록하기버튼 이벤트처리

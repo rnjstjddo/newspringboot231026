@@ -97,7 +97,7 @@ $(document).ready(function(){
 
 
 $("#registerBtn").on("click", function(e){
-    console.log("posts-save.html 등록하기 버튼이벤트 진입 -ajax처리 api서버로 ");
+    //-console.log("posts-save.html 등록하기 버튼이벤트 진입 -ajax처리 api서버로 ");
     e.preventDefault();
 
     var title = $("input[name='title']").val();
@@ -107,10 +107,10 @@ $("#registerBtn").on("click", function(e){
     var data={
         title:title, content:content, author:author
     };
-    console.log(data);
+    //-console.log(data);
 
     if(title == '' || content == ''|| author ==''){
-        console.log("posts-save.html 등록하기 버튼이벤트 진입 -ajax처리 api서버로 - 작성칸 비웠을때 진입");
+        //-console.log("posts-save.html 등록하기 버튼이벤트 진입 -ajax처리 api서버로 - 작성칸 비웠을때 진입");
         alert("게시글 작성란이 비었습니다. 채워주셔야 등록이 됩니다!");
         return;
     }
@@ -124,13 +124,13 @@ $("#registerBtn").on("click", function(e){
         data:JSON.stringify(data)
     })
     .done(function(result){
-        console.log("posts-save.html 등록하기 버튼이벤트 진입 -ajax처리 api서버로 -done() 진입");
+        //-console.log("posts-save.html 등록하기 버튼이벤트 진입 -ajax처리 api서버로 -done() 진입");
         alert(result+"번 게시글이 등록되었습니다.");
         location.replace(`/post/list?`+link);
     })
     .fail(function(error){
-        console.log("posts-save.html 등록하기 버튼이벤트 진입 -ajax처리 api서버로 -then() 진입");
-        console.log(error);
+        //-console.log("posts-save.html 등록하기 버튼이벤트 진입 -ajax처리 api서버로 -then() 진입");
+        //-console.log(error);
     });
 
 

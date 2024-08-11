@@ -11,7 +11,7 @@ var registerjs = {
 
         // --------------------------------------------------------------------------
             function checkExtension(fileName, fileSize){
-                console.log("register.html 첨부파일 checkExtension() 정규표현식 검증함수 진입");
+                //- console.log("register.html 첨부파일 checkExtension() 정규표현식 검증함수 진입");
 
                 if(fileSize >= maxSize){
                     alert("파일사이즈를 초과했습니다.");
@@ -30,7 +30,7 @@ var registerjs = {
         // --------------------------------------------------------------------------
             //첨부파일이미지 change() 이벤트
             $("input[type='file']").change(function(){
-                console.log("register.html 첨부파일 change() 이벤트 진입");
+                //-console.log("register.html 첨부파일 change() 이벤트 진입");
 
                 var formData = new FormData();
                 var fileTag= $(this);
@@ -41,7 +41,7 @@ var registerjs = {
 
                 $.each(multipartFiles, function(index, obj){
                     if(!checkExtension(obj.name, obj.size)){
-                        console.log("register.html 첨부파일 change() 이벤트 진입 - 파일정규표현식 부적합할때 진입");
+                        //-console.log("register.html 첨부파일 change() 이벤트 진입 - 파일정규표현식 부적합할때 진입");
                         $("#file").val("");
                         return false;
                     }
@@ -51,7 +51,7 @@ var registerjs = {
                 });//each
 
                 if(!appended){
-                    console.log("register.html 첨부파일 change() 이벤트 진입 - 파일정규표현식 부적합할때 진입 $.each 함수 나와서 return 던진다.");
+                    //-console.log("register.html 첨부파일 change() 이벤트 진입 - 파일정규표현식 부적합할때 진입 $.each 함수 나와서 return 던진다.");
                     return;
                 }// each내부여서 밖으로 나와서 change()이벤트함수 내에서 처리
 
@@ -64,15 +64,15 @@ var registerjs = {
                     dataType:'json',
 
                     success:function(result){
-                        console.log("register.html 첨부파일 change() 이벤트 진입 - $.ajax success() 진입");
-                        console.log(result);
-                        console.log("첨부파일 업로드가 완료되었습니다. 분양글 등록버튼을 클릭하시면 글등록가능합니다!")
+                        //-console.log("register.html 첨부파일 change() 이벤트 진입 - $.ajax success() 진입");
+                        //-console.log(result);
+                        //-console.log("첨부파일 업로드가 완료되었습니다. 분양글 등록버튼을 클릭하시면 글등록가능합니다!")
                         showResult(result);//서버에서 받은 이미정보로 이미지 화면에 보여주기
                     },
                     error: function(jqXHR, testStatus, errorThrown){
-                        console.log("register.html 첨부파일 change() 이벤트 진입 - $.ajax error() 진입");
+                        //-console.log("register.html 첨부파일 change() 이벤트 진입 - $.ajax error() 진입");
                         alert("첨부파일이 업로드되지 않았습니다. 다른 파일을 선택해주세요!")
-                        console.log(testStatus);
+                        //-console.log(testStatus);
                     }
 
                 });//$.ajax
@@ -80,10 +80,10 @@ var registerjs = {
 
         // --------------------------------------------------------------------------
             $("#age").keyup(function(){
-                console.log("register.html keyup() 이벤트진입 age경우 소수점 1자리 검증진입");
+                //-console.log("register.html keyup() 이벤트진입 age경우 소수점 1자리 검증진입");
 
                 var age =$(this).val();
-                console.log("register.html keyup() 이벤트진입 age경우 소수점 1자리 검증 age값 -> "+age);
+                //-console.log("register.html keyup() 이벤트진입 age경우 소수점 1자리 검증 age값 -> "+age);
                 var verify = false;
                 if (/^[\d]*\.?[\d]{0,1}$/.test(age)) {
                    verify = true;
@@ -91,7 +91,7 @@ var registerjs = {
                 }
 
                 if(!verify){
-                    console.log("register.html keyup() 이벤트진입 age경우 소수점 1자리 검증 - 검증실패시");
+                    //-console.log("register.html keyup() 이벤트진입 age경우 소수점 1자리 검증 - 검증실패시");
                     alert("나이는 소수점 첫째자리까지만 입력해주세요");
                     return;
                 }
@@ -99,11 +99,11 @@ var registerjs = {
 
         // --------------------------------------------------------------------------
             $("#weight").keyup(function(){
-                console.log("register.html keyup() 이벤트진입 weight경우 소수점 1자리 검증진입");
+                //-console.log("register.html keyup() 이벤트진입 weight경우 소수점 1자리 검증진입");
 
                 var weight =$(this).val();
 
-                console.log("register.html keyup() 이벤트진입 weight경우 소수점 1자리 검증 -weight -> "+weight);
+                //-console.log("register.html keyup() 이벤트진입 weight경우 소수점 1자리 검증 -weight -> "+weight);
 
                 var verify = false;
                 if (/^[\d]*\.?[\d]{0,1}$/.test(weight)) {
@@ -112,7 +112,7 @@ var registerjs = {
                 }
 
                 if(!verify){
-                    console.log("register.html keyup() 이벤트진입 weight 소수점 1자리 검증 - 검증실패시");
+                    //-console.log("register.html keyup() 이벤트진입 weight 소수점 1자리 검증 - 검증실패시");
                     alert("몸무게는 소수점 첫째자리까지만 입력해주세요");
                     return;
                 }
@@ -121,10 +121,10 @@ var registerjs = {
 
         // --------------------------------------------------------------------------
              $("#gender").focusout(function(){
-                console.log("register.html focusout() 이벤트진입 gender경우 한글1문자 검증진입");
+                //-console.log("register.html focusout() 이벤트진입 gender경우 한글1문자 검증진입");
 
                 var gender =$(this).val();
-                console.log("register.html focusout() 이벤트진입 gender경우 한글1문자 검증진입 - gener값 -> "+gender);
+                //-console.log("register.html focusout() 이벤트진입 gender경우 한글1문자 검증진입 - gener값 -> "+gender);
 
                 var verify = false;
                 if (/^[ㄱ-힣]$/.test(gender)) {
@@ -133,7 +133,7 @@ var registerjs = {
                 }
 
                 if(!verify){
-                    console.log("register.html keyup() 이벤트진입 gender경우 한글1문자 검증 - 검증실패시");
+                    //-console.log("register.html keyup() 이벤트진입 gender경우 한글1문자 검증 - 검증실패시");
                     alert("성별은 한글문자 1개로 입력해주세요");
                     return;
                 }
@@ -141,7 +141,7 @@ var registerjs = {
 
         // --------------------------------------------------------------------------
             function showResult(uploadResultArr){
-                console.log("register.html showResult()함수진입 - $.ajax success() 서버에서 전달받은 첨부파일데이터로 화면에서 이미지 보여주기");
+                //-console.log("register.html showResult()함수진입 - $.ajax success() 서버에서 전달받은 첨부파일데이터로 화면에서 이미지 보여주기");
 
                 var uploadUl= $(".uploadResult ul");
                 //등록버튼 클릭시 이미지정보도 서버의 파라미터로 들어가야하기에 미리 저장한다. 삭제할때는 제거시킨다. 반드시
@@ -149,8 +149,8 @@ var registerjs = {
 
                 var str="";
                 $.each(uploadResultArr, function(index, obj){
-                    console.log("register.html showResult()함수진입 - $.ajax success() 서버에서 전달받은 첨부파일데이터로 화면에서 이미지 보여주기 -$.each 진입");
-                    console.log(obj); //fileName, uuid, folderPath;
+                    //-console.log("register.html showResult()함수진입 - $.ajax success() 서버에서 전달받은 첨부파일데이터로 화면에서 이미지 보여주기 -$.each 진입");
+                    //-console.log(obj); //fileName, uuid, folderPath;
                     str+=`<li data-name="${obj.fileName}" data-path="${obj.folderPath}" data-uuid="${obj.uuid}"
                              style='list-style-type:none;float:left;'>
                         <br>
@@ -163,24 +163,24 @@ var registerjs = {
                     var folderPathLi = obj.folderPath;
                     var uuidLi = obj.uuid;
 
-                    console.log("register.html showResult()함수진입 - $.ajax success() obj.imgName -> "+ fileNameLi);
-                    console.log("register.html showResult()함수진입 - $.ajax success() obj.path -> "+ folderPathLi);
-                    console.log("register.html showResult()함수진입 - $.ajax success() obj.uuid -> "+ uuidLi);
+                    //-console.log("register.html showResult()함수진입 - $.ajax success() obj.imgName -> "+ fileNameLi);
+                    //-console.log("register.html showResult()함수진입 - $.ajax success() obj.path -> "+ folderPathLi);
+                    //-console.log("register.html showResult()함수진입 - $.ajax success() obj.uuid -> "+ uuidLi);
 
                     imageDataArray.push({imgName:fileNameLi,path:folderPathLi,uuid:uuidLi});
-                    console.log("register.html showResult()함수진입 - $.ajax success() imageDataArray 배열 출력");
+                    //-console.log("register.html showResult()함수진입 - $.ajax success() imageDataArray 배열 출력");
 
-                    console.log(imageDataArray);
+                    //-console.log(imageDataArray);
                 });//$.each
 
                 uploadUl.append(str);
-                console.log(str);
+                //-console.log(str);
             }//showResult()
 
 
         // --------------------------------------------------------------------------
             $(".uploadResult ").on("click", "li", function(){
-                console.log("register.html 첨부파일 이미지 삭제버튼 클릭이벤트 진입 이벤트위임방식진행");
+                //-console.log("register.html 첨부파일 이미지 삭제버튼 클릭이벤트 진입 이벤트위임방식진행");
 
                 var target = $(this);
                 var dataFile = target.find("a").data("file");
@@ -188,15 +188,15 @@ var registerjs = {
                 var fileNameData = target.data("name");
                 var uuidData = target.data("uuid");
                 var folderPathData = target.data("path");
-                console.log("register.html 첨부파일 이미지 삭제버튼 클릭이벤트 진입 이벤트위임방식진행 -dataFile "+dataFile);
-                console.log("register.html 첨부파일 이미지 삭제버튼 클릭이벤트 진입 이벤트위임방식진행 -fileNameData "+fileNameData);
-                console.log("register.html 첨부파일 이미지 삭제버튼 클릭이벤트 진입 이벤트위임방식진행 -uuidData "+uuidData);
-                console.log("register.html 첨부파일 이미지 삭제버튼 클릭이벤트 진입 이벤트위임방식진행 -folderPathData "+folderPathData);
+                //-console.log("register.html 첨부파일 이미지 삭제버튼 클릭이벤트 진입 이벤트위임방식진행 -dataFile "+dataFile);
+                //-console.log("register.html 첨부파일 이미지 삭제버튼 클릭이벤트 진입 이벤트위임방식진행 -fileNameData "+fileNameData);
+                //-console.log("register.html 첨부파일 이미지 삭제버튼 클릭이벤트 진입 이벤트위임방식진행 -uuidData "+uuidData);
+                //-console.log("register.html 첨부파일 이미지 삭제버튼 클릭이벤트 진입 이벤트위임방식진행 -folderPathData "+folderPathData);
 
 
                 //i => i.name == "강호동"
                 var inumIndex = imageDataArray.findIndex(i=> i.uuid == "uuidData");
-                console.log("register.html 첨부파일 이미지 삭제버튼 클릭이벤트 진입 이벤트위임방식진행 - 삭제할이미지 번호 inum 의 indexOf() 적용-> "+ inumIndex);
+                //-console.log("register.html 첨부파일 이미지 삭제버튼 클릭이벤트 진입 이벤트위임방식진행 - 삭제할이미지 번호 inum 의 indexOf() 적용-> "+ inumIndex);
 
                 $.ajax({
                     url: '/dogsellremoveFile',
@@ -204,20 +204,20 @@ var registerjs = {
                     dataType:'text',//받은것
                     type:'post',
                     success: function(result){
-                        console.log("register.html 첨부파일 이미지 삭제버튼 클릭이벤트 진입 이벤트위임방식진행 -ajax success() 진입");
-                        console.log(result);
+                        //-console.log("register.html 첨부파일 이미지 삭제버튼 클릭이벤트 진입 이벤트위임방식진행 -ajax success() 진입");
+                        //-console.log(result);
                         //객체배열에서도 삭제하기
                         imageDataArray.splice(inumIndex,1);
-                        console.log("register.html 첨부파일 이미지 삭제버튼 클릭이벤트 진입 이벤트위임방식진행 -ajax success() 진입 -삭제후 imageDataArray배열객체 확인");
+                        //-console.log("register.html 첨부파일 이미지 삭제버튼 클릭이벤트 진입 이벤트위임방식진행 -ajax success() 진입 -삭제후 imageDataArray배열객체 확인");
 
-                        console.log(imageDataArray);
+                        //-console.log(imageDataArray);
                         target.remove();
 
                         var filecheck =$(".uploadResult ").find("li").size();
-                        console.log("dogsellregister.js 글등록에서 업로드한 파일삭제시 모두 삭제할경우 파일선택에서 이름도 초기화시키키 먼저 li태그 존재하는지 확인");
-                        console.log(filecheck);
+                        //-console.log("dogsellregister.js 글등록에서 업로드한 파일삭제시 모두 삭제할경우 파일선택에서 이름도 초기화시키키 먼저 li태그 존재하는지 확인");
+                        //-console.log(filecheck);
                         if(filecheck == 0){
-                            console.log("첨부파일이 한개도 없기에 초기화시킨다.")
+                            //-console.log("첨부파일이 한개도 없기에 초기화시킨다.")
                             $("#file").val("");
                             return;
                         }
@@ -228,7 +228,7 @@ var registerjs = {
 
         // --------------------------------------------------------------------------
         $("#registerBtn").on("click", function(e){
-            console.log("register.html 등록하기 버튼이벤트 진입 ");
+            //-console.log("register.html 등록하기 버튼이벤트 진입 ");
             e.preventDefault();
 
             var registerForm = $("form");
@@ -322,7 +322,7 @@ var registerjs = {
                 }
 
                 if(!priceverify){
-                    console.log("register.html 등록버튼클릭시 price경우 숫자만 - 검증실패시");
+                    //-console.log("register.html 등록버튼클릭시 price경우 숫자만 - 검증실패시");
                     alert("분양가격은 단위가 만원입니다.");
                     setTimeout(function(){
                         $("#price").focus();
@@ -336,7 +336,7 @@ var registerjs = {
                 }
 
                 if(!ageverify){
-                    console.log("register.html 등록버튼클릭시 age경우 소수점 1자리 검증 - 검증실패시");
+                    //-console.log("register.html 등록버튼클릭시 age경우 소수점 1자리 검증 - 검증실패시");
                     alert("나이는 소수점 첫째자리까지만 입력해주세요");
                     setTimeout(function(){
                         $("#age").focus();
@@ -349,7 +349,7 @@ var registerjs = {
                 }
 
                 if(!weightverify){
-                    console.log("register.html 등록버튼클릭시 weight경우 소수점 1자리 검증 - 검증실패시");
+                    //-console.log("register.html 등록버튼클릭시 weight경우 소수점 1자리 검증 - 검증실패시");
                     alert("무게는 소수점 첫째자리까지만 입력해주세요");
                     setTimeout(function(){
                         $("#weight").focus();
@@ -362,7 +362,7 @@ var registerjs = {
                 }
 
                 if(!genderverify){
-                    console.log("register.html 등록버튼클릭시 gender경우 한글1문자 검증 - 검증실패시");
+                    //-console.log("register.html 등록버튼클릭시 gender경우 한글1문자 검증 - 검증실패시");
                     alert("성별은 한글문자 1개로 입력해주세요");
                     setTimeout(function(){
                         $("#gender").focus();
@@ -379,12 +379,12 @@ var registerjs = {
 
 
             if( genderverify && ageverify && weightverify &&priceverify){
-                console.log("register.html 등록하기 버튼이벤트 진입 - 모든검증 true");
+                //-console.log("register.html 등록하기 버튼이벤트 진입 - 모든검증 true");
 
                 //이미지정보추출
 
-                console.log("register.html 등록하기 버튼이벤트 진입 - imageDataArray 배열객체 -> ");
-                console.log(imageDataArray);
+                //-console.log("register.html 등록하기 버튼이벤트 진입 - imageDataArray 배열객체 -> ");
+                //-console.log(imageDataArray);
 
         /*
                 var str="";
@@ -410,7 +410,7 @@ var registerjs = {
                     //dsImageList:imageDataArray
                     //dsImageList.inum:inum, dsIorgmageList.uuid:uuid, dsImageList.imgName:imgName, dsImageList.path:path
                 };
-                console.log(data);
+                //-console.log(data);
 
                 $.ajax({
                     url:'/dogsell/register',
@@ -420,13 +420,13 @@ var registerjs = {
                     data:JSON.stringify(data)
                 })
                 .done(function(result){
-                    console.log("register.html 등록하기 버튼이벤트 진입 -ajax처리 api서버로 -done() 진입");
+                    //-console.log("register.html 등록하기 버튼이벤트 진입 -ajax처리 api서버로 -done() 진입");
                     alert(result+"번 게시글이 등록되었습니다.");
                     location.replace(`/dogsell/list`);
                 })
                 .fail(function(error){
-                    console.log("register.html 등록하기 버튼이벤트 진입 -ajax처리 api서버로 -fail() 진입");
-                    console.log(error);
+                    //-console.log("register.html 등록하기 버튼이벤트 진입 -ajax처리 api서버로 -fail() 진입");
+                    //-console.log(error);
                 });//ajax
 
             }//if

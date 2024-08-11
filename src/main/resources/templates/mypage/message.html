@@ -119,7 +119,7 @@
 var countSender = [[${countSender}]];
 var countRecipient = [[${countRecipient}]];
 
-console.log("message.html countSender -> "+countSender +",countRecipient"+countRecipient)
+//-console.log("message.html countSender -> "+countSender +",countRecipient"+countRecipient)
 
 $(document).ready(function(){
 
@@ -129,8 +129,8 @@ var smDate =$(".smRemoveCheck").data("date");
 var rmDate =$(".rmRemoveCheck").data("date");
 
 (function(){
-    console.log("message.list 즉시실행함수 내 보낸쪽지목록 핸드폰번호 포맷처리 함수 진입 파라미터 -> "+smnumber);
-    console.log("message.list 즉시실행함수 내 받은쪽지목록 핸드폰번호 포맷처리 함수 진입 파라미터 -> "+rmnumber);
+    //-console.log("message.list 즉시실행함수 내 보낸쪽지목록 핸드폰번호 포맷처리 함수 진입 파라미터 -> "+smnumber);
+    //-console.log("message.list 즉시실행함수 내 받은쪽지목록 핸드폰번호 포맷처리 함수 진입 파라미터 -> "+rmnumber);
 
     var rmformatNum = '';
     var smformatNum = '';
@@ -160,32 +160,32 @@ var rmDate =$(".rmRemoveCheck").data("date");
     $(".smformatNumber").html(smformatNum);
 
     var smdate =new Date(smDate);
-    console.log("message.html 즉시실행함수 내 날짜출력 보낸쪽지목록 -> "+ smdate);
+    //-console.log("message.html 즉시실행함수 내 날짜출력 보낸쪽지목록 -> "+ smdate);
     smdate = smdate.getFullYear()+'/'+(smdate.getMonth()+1)+'/'+smdate.getDate()+' '+ smdate.getHours()+':'+smdate.getMinutes();
     $(".smdate").html(smdate);
 
     var rmdate =new Date(rmDate);
-    console.log("message.html 즉시실행함수 내 날짜출력 받은쪽지목록 -> "+ rmdate);
+    //-console.log("message.html 즉시실행함수 내 날짜출력 받은쪽지목록 -> "+ rmdate);
     rmdate = rmdate.getFullYear()+'/'+(rmdate.getMonth()+1)+'/'+rmdate.getDate()+' '+ rmdate.getHours()+':'+rmdate.getMinutes();
     $(".rmdate").html(rmdate);
 
 }());
 
 $(".smRemoveCheck").on("click", function(){
-    console.log("message.list 보낸쪽지메시지 checkbox삭제버튼 클릭시");
+    //-console.log("message.list 보낸쪽지메시지 checkbox삭제버튼 클릭시");
     if(confirm("해당 메시지를 삭제하시겠습니까? 삭제하시면 복구가 불가능합니다.")){
     var smRemoveCheckSpan =$(this).closest(".smRemoveCheckSpan")
-    console.log(smRemoveCheckSpan)
+    //-console.log(smRemoveCheckSpan)
     var nameVal = $(this).data("name");
     var numberVal = $(this).data("number");
     var messageid= $(this).data("messageid");
 
     var data ={name:nameVal, number:numberVal, messageid:messageid};
 
-    console.log("message.list 보낸쪽지 갯수 ->"+ countSender)
+    //-console.log("message.list 보낸쪽지 갯수 ->"+ countSender)
 
-    console.log("message.list 보낸쪽지메시지 checkbox삭제버튼 클릭시 -$.ajax 보낼 데이터 출력 -> ");
-    console.log(data)
+    //-console.log("message.list 보낸쪽지메시지 checkbox삭제버튼 클릭시 -$.ajax 보낼 데이터 출력 -> ");
+    //-console.log(data)
 
         $.ajax({
             url:"/mypage/message/removeSender",
@@ -193,7 +193,7 @@ $(".smRemoveCheck").on("click", function(){
             contentType:"application/json;charset=utf-8",
             data: JSON.stringify(data),
             success:function(result){
-                console.log("message.list 보낸쪽지메시지 checkbox삭제버튼 클릭시 -$.ajax success() 진입");
+                //-console.log("message.list 보낸쪽지메시지 checkbox삭제버튼 클릭시 -$.ajax success() 진입");
                 if(result ==="success"){
                     countSender = countSender-1
 
@@ -215,20 +215,20 @@ $(".smRemoveCheck").on("click", function(){
 
 
 $(".rmRemoveCheck").on("click", function(){
-    console.log("message.list 받은쪽지메시지 checkbox삭제버튼 클릭시");
+    //-console.log("message.list 받은쪽지메시지 checkbox삭제버튼 클릭시");
     if(confirm("해당 메시지를 삭제하시겠습니까? 삭제하시면 복구가 불가능합니다.")){
 
     var rmRemoveCheckSpan =$(this).closest(".rmRemoveCheckSpan")
-    console.log(rmRemoveCheckSpan)
+    //-console.log(rmRemoveCheckSpan)
 
     var nameVal = $(this).data("name");
     var numberVal = $(this).data("number");
     var messageid= $(this).data("messageid");
 
     var data ={name:nameVal, number:numberVal,messageid:messageid};
-    console.log("message.list 받은쪽지메시지 checkbox삭제버튼 클릭시 -$.ajax 보낸 데이터 출력 -> ");
-    console.log(data);
-    console.log("message.list 받은쪽지 갯수 ->"+ countRecipient)
+    //-console.log("message.list 받은쪽지메시지 checkbox삭제버튼 클릭시 -$.ajax 보낸 데이터 출력 -> ");
+    //-console.log(data);
+    //-console.log("message.list 받은쪽지 갯수 ->"+ countRecipient)
 
         $.ajax({
             url:"/mypage/message/removeRecipient",
@@ -236,7 +236,7 @@ $(".rmRemoveCheck").on("click", function(){
             contentType:"application/json;charset=utf-8",
             data: JSON.stringify(data),
             success:function(result){
-                console.log("message.list 받은쪽지메시지 checkbox삭제버튼 클릭시 -$.ajax success() 진입");
+                //-console.log("message.list 받은쪽지메시지 checkbox삭제버튼 클릭시 -$.ajax success() 진입");
                 if(result ==="success"){
                     countRecipient =countRecipient-1
                     if( countRecipient ==0){

@@ -189,17 +189,17 @@
 $(document).ready(function(){
 
 $(".searchBtn").on("click", function(){
-    console.log("list.html 강아지 품종검색 클릭이벤트 진입 검색한 강아지품종 ->")
+    //-console.log("list.html 강아지 품종검색 클릭이벤트 진입 검색한 강아지품종 ->")
 
     const searchBreed = $("input[name='searchBreed']").val();
-    console.log(searchBreed)
+    //-console.log(searchBreed)
     const regex = new RegExp("^[가-힣a-zA-Z]+$");
     if(!regex.test(searchBreed)){
-        console.log("list.html 강아지품종검색 한글 영문 이외의 문자 유효성체크 오류발생")
+        //-console.log("list.html 강아지품종검색 한글 영문 이외의 문자 유효성체크 오류발생")
         alert("한글과 영문만 입력가능합니다.")
         $("input[name='searchBreed']").val("").focus();
     }else{
-        console.log("list.html 강아지품종검색 한글 영문 이외의 문자 유효성체크 확인후 submit() 처리")
+        //-console.log("list.html 강아지품종검색 한글 영문 이외의 문자 유효성체크 확인후 submit() 처리")
         $("form").submit();
     }
 });
