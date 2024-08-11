@@ -43,7 +43,7 @@
 
                     <br>
 
-                    <button class="btn btn-outline-primary">일반로그인</button>
+                    <button class="btn btn-outline-primary loginBtn" type="button">일반로그인</button>
                     <br>
                     <br>
                     <div style="display:inline-block;text-align:right;">
@@ -83,6 +83,7 @@
 <script th:inline="javascript">
 //-console.log("login.html파일 진입");
 
+
 var exception =[[${exception}]]
 var error =[[${error}]]
 
@@ -95,6 +96,18 @@ if("true" == error ){
 
 $(document).ready(function(){
 
+    //로그인버튼 클릭시
+    $("loginBtn").on("click", function(){
+        var username = $("input[name='username']").val();
+        var password = $("input[name='password']").val();
+
+        if(username=="" || password ==""){
+            alert("이메일과 비밀번호를 입력해주세요!");
+            $("input[name='username']").focus();
+            return;
+        };
+        $("form").submit();
+    });//로그인버튼
 
 });
 
