@@ -343,6 +343,7 @@ $(document).ready(function(){
                 if(result == "true"){
                     console.log("관리자페이지 admin_inquiry_list.html 문의글 전체목록에서 답글작성 성공 진입 -> "+result);
                     alert("문의글에 대한 답변이 전달되었습니다!")
+                    $("#inquiryReplyModalDivBody").val("");
                     location.replace(`/admin/tab/inquiry`);
                 }else{
                     console.log("관리자페이지 admin_inquiry_list.html 문의글 전체목록에서 답글작성 실패 진입 -> "+result);
@@ -354,6 +355,7 @@ $(document).ready(function(){
             fail : function(){
                 console.log("관리자페이지 admin_inquiry_list.html 문의글 전체목록에서 답글작성 실패 진입")
                 alert("문의글에 대한 답변이 전달되지 않았습니다. 다시 한번 확인해주세요!")
+                $("#inquiryReplyModalDivBody").val("");
                 location.replace(`/admin/tab/inquiry`)
             }
         });//끝 $.ajax
@@ -395,7 +397,7 @@ $(document).ready(function(){
                     $(".inquiryReplyModalShowDivHeader").html(innumVal+"번 문의글 | 문의일자 "+createdDateVal);
                     $(".inquiryReplyModalShowDivBodyOriginal").html(contentVal);
                     $(".inquiryReplyModalShowDivBody").html(result.content);
-                    $(".inquiryReplyModalDiv").show();
+                    $(".inquiryReplyShowModal").show();
 
                 }else{
                     console.log("관리자페이지 admin_inquiry_list.html 문의글 전체목록에서 답글보기 실패 진입 ");

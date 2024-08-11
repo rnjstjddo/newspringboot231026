@@ -157,7 +157,7 @@
 
 
         <!--답변보기 모달창열기 -->
-        <div class="modal inquiryReplyModalShowDiv" tabindex="-1"  >
+        <div class="modal inquiryReplyModalShowDiv" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -255,10 +255,12 @@ $(document).ready(function(){
                 if(result == "true"){
                     console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글작성 성공 진입 -> "+result);
                     alert("문의글에 대한 답변이 전달되었습니다!")
+                    $("#inquiryReplyModalDivBody").val("");
                     location.replace(`/admin/tab/inquiry`);
                 }else{
                     console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글작성 실패 진입 -> "+result);
                     alert("문의글에 대한 답변이 전달되지 않았습니다. 다시 한번 확인해주세요!")
+                    $("#inquiryReplyModalDivBody").val("");
                     location.replace(`/admin/tab/inquiry`)
                 }
             },
@@ -269,7 +271,6 @@ $(document).ready(function(){
                 location.replace(`/admin/tab/inquiry`)
             }
         });//끝 $.ajax
-
     });//끝 on()클릭 이벤트직입 답변글작성완료
 
     //답변글작성 모달창 닫기이벤트진입
@@ -306,7 +307,7 @@ $(document).ready(function(){
                     $(".inquiryReplyModalShowDivHeader").html(innumVal+"번 문의글 | 문의일자 "+createdDateVal);
                     $(".inquiryReplyModalShowDivBodyOriginal").html(contentVal);
                     $(".inquiryReplyModalShowDivBody").html(result.content);
-                    $(".inquiryReplyModalDiv").show();
+                    $(".inquiryReplyModalShowDiv").show();
 
                 }else{
                     console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글보기 실패 진입 ");
@@ -321,8 +322,6 @@ $(document).ready(function(){
                 location.replace(`/admin/tab/inquiry`)
             }
         });//끝 $.ajax
-
-
     });//답변보기 모달창열기
 
     //답변보기 모달창 닫기이벤트진입

@@ -768,12 +768,11 @@ public class AdminController {
         //게시글댓글
         count.setPostreplycount(prs.getCountLocalDate(localDate));
         //게시글
-        count.setPostcount(prs.getCountLocalDate(localDate));
+        count.setPostcount(ps.getCountLocalDate(localDate));
         //방명록
         count.setGuestcount(gs.getCountLocalDate(localDate));
         //방명록댓글
         count.setGuestreplycount(grs.getCountLocalDate(localDate));
-
         //회원
         count.setMembercount(ms.getCountLocalDate(localDate));
 
