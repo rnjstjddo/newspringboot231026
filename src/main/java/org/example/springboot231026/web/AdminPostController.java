@@ -363,7 +363,8 @@ public class AdminPostController {
             return "redirect:/admin/home/home";
         }
 
-        return "admin/admin_dogsell_list";
+        return "admin/admin_dogsell_list?yearmonth="+yearmonth+"&tabtitle="+tabtitle;
+        //return "admin/admin_dogsell_list";
     }
 
 
