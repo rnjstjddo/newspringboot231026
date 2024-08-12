@@ -118,7 +118,7 @@
                     [[${localDate}]] 일자에 등록된 분양글이 없습니다.
                 </th:block>
 
-                <th:block th:if="${#lists.isEmpty(pResponseDtoList) and ${pResponseDtoList.type} !=null and
+                <th:block th:if="${!#lists.isEmpty(pResponseDtoList)} and ${pResponseDtoList.type} !=null and
                         ${pResponseDtoList.keyword} !=null">
                     <br><br>
                     <img class="card-img-top" style="height:100px;width:auto;" src="/image/imoji/waiting.jpg" alt="" />
