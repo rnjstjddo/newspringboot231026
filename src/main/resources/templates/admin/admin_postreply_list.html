@@ -16,11 +16,18 @@
                     달력으로이동
                 </a>
                 <a type="button" class="btn btn-outline-primary">
-                    업데이트일자 [[${localDate}]]
+                    검색일자 [[${localDate}]]
                 </a>
                 <br><br>
 
                 <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link fs-5 " th:classappend="${tabtitle} =='dogsell' ? active : ''"
+                           aria-current="page" th:href="|@{/admin/dogsell/list?yearmonth={localDate}(localDate=${localDate})}&tabtitle=dogsell|">
+                            분양글
+                            <span class="badge text-bg-warning">[[${count.dogsellcount}]]</span>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link fs-5 " th:classappend="${tabtitle} =='guestbook' ? active : ''"
                            aria-current="page" th:href="|@{/admin/guestbook/list?yearmonth={localDate}(localDate=${localDate})}&tabtitle=guestbook|">
@@ -75,7 +82,7 @@
                     <form th:action="@{/admin/postreply/list}" method="post">
                         <input type="hidden" name="yearmonth" th:value="${localDate}">
                         <input type="hidden" name="tabtitle" th:value="postreply">
-
+                        <input type="hidden" name="dogsellcount" th:value="${count.dogsellcount}">
                         <input type="hidden" name="guestcount" th:value="${count.guestcount}">
                         <input type="hidden" name="guestreplycount" th:value="${count.guestreplycount}">
                         <input type="hidden" name="postcount" th:value="${count.postcount}">
@@ -184,6 +191,7 @@ var loginMember =[[${loginMember}]];
 //-console.log("admin_postreply_list.html 현재로그인한 회원-> "+ loginMember);
 
 var localDate = [[${localDate}]]
+var dogsellcount = [[${count.dogsellcount}]]
 var guestcount = [[${count.guestcount}]]
 var guestreplycount = [[${count.guestreplycount}]]
 var postcount = [[${count.postcount}]]
@@ -201,8 +209,8 @@ $(document).ready(function(){
         var page = $(this).data("num");
 
         $("form").append(`<input type='hidden' name='page' value=${page}>`);
-
         $("form").append(`<input type="hidden" name="yearmonth" value="${localDate}">`);
+        $("form").append(`<input type="hidden" name="dogsellcount" value="${dogsellcount}">`);
         $("form").append(`<input type="hidden" name="tabtitle" value="postreply">`);
         $("form").append(`<input type="hidden" name="guestcount" value="${guestcount}">`);
         $("form").append(`<input type="hidden" name="guestreplycount" value="${guestreplycount}">`);
@@ -217,10 +225,9 @@ $(document).ready(function(){
     $("#reset").on("click", function(e){
         e.preventDefault();
         $("form").empty();
-
-
         $("form").append(`<input type="hidden" name="yearmonth" value="${localDate}">`);
         $("form").append(`<input type="hidden" name="tabtitle" value="postreply">`);
+        $("form").append(`<input type="hidden" name="dogsellcount" value="${dogsellcount}">`);
         $("form").append(`<input type="hidden" name="guestcount" value="${guestcount}">`);
         $("form").append(`<input type="hidden" name="guestreplycount" value="${guestreplycount}">`);
         $("form").append(`<input type="hidden" name="postcount" value="${postcount}">`);

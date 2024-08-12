@@ -2,6 +2,7 @@ package org.example.springboot231026.web;
 
 
 import lombok.AllArgsConstructor;
+import org.example.springboot231026.dto.dogsell.DogSellListDTO;
 import org.example.springboot231026.dto.guestbook.GuestPageRequestDTO;
 import org.example.springboot231026.dto.guestbook.GuestPageResultDTO;
 import org.example.springboot231026.dto.member.MemberDTO;
@@ -23,6 +24,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Controller
 @RequestMapping("/admin/tab")
 @AllArgsConstructor
@@ -41,6 +46,27 @@ public class AdminTabController {
     private final InquiryService is;
     //회원
     private final MemberService ms;
+
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/dogsell") //admin/tab/dogsell
+    public String adminDogList(@ModelAttribute("pageRequestDTO") PageRequestDTO pageRequestDTO, Model model,
+                               @AuthenticationPrincipal MemberDTO memberDTO,
+                               @RequestParam(required = false) String yearmonth) {
+        System.out.println("관리자컨트롤러AdminTabController /admin/tab/dogsell 진입 ");
+
+        PageResponseDTO pResponseDto = dogSellService.list(pageRequestDTO);
+
+        if (pResponseDto.getDtoList().size() > 0 && pResponseDto.getEnd() != 0) {
+            System.out.println("관리자컨트롤러AdminTabController /admin/tab/dogsell 진입 " +
+                    " PageResponseDTO 존재할경우 getTotal() - > " + pResponseDto.getTotal()+", getSize() -> "+pResponseDto.getSize());
+
+            model.addAttribute("responseDtoList", pResponseDto.getDtoList());
+            model.addAttribute("responseDto", pResponseDto);
+        }
+
+        return "admin/tab/admin_tab_dogsell";
+    }
 
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")

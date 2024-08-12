@@ -301,12 +301,11 @@ $(document).ready(function(){
             dataType:'text',
             success: function(result){
                 if(result !=null){
-                    console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글보기 성공 진입 -> ");
-                    console.log(result);
+                    console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글보기 성공 진입 ");
 
                     $(".inquiryReplyModalShowDivHeader").html(innumVal+"번 문의글 | 문의일자 "+createdDateVal);
                     $(".inquiryReplyModalShowDivBodyOriginal").html(contentVal);
-                    $(".inquiryReplyModalShowDivBody").html(result.content);
+                    $("#inquiryReplyModalShowDivBody").html(result.content);
                     $(".inquiryReplyModalShowDiv").show();
 
                 }else{

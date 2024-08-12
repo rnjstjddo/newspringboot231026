@@ -13,10 +13,17 @@
                 달력으로이동
             </a>
             <a type="button" class="btn btn-outline-primary">
-                업데이트일자 [[${localDate}]]
+                검색일자 [[${localDate}]]
             </a>
             <br><br>
             <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link fs-5 " th:classappend="${tabtitle} =='dogsell' ? active : ''"
+                       aria-current="page" th:href="|@{/admin/dogsell/list?yearmonth={localDate}(localDate=${localDate})}&tabtitle=dogsell|">
+                        분양글
+                        <span class="badge text-bg-warning">[[${count.dogsellcount}]]</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link fs-5 " th:classappend="${tabtitle} =='guestbook' ? active : ''"
                        aria-current="page" th:href="|@{/admin/guestbook/list?yearmonth={localDate}(localDate=${localDate})}&tabtitle=guestbook|">
@@ -69,7 +76,7 @@
                 <form th:action="@{/admin/inquiry/list}" method="post">
                     <input type="hidden" name="yearmonth" th:value="${localDate}">
                     <input type="hidden" name="tabtitle" th:value="inquiry">
-
+                    <input type="hidden" name="dogsellcount" th:value="${count.dogsellcount}">
                     <input type="hidden" name="guestcount" th:value="${count.guestcount}">
                     <input type="hidden" name="guestreplycount" th:value="${count.guestreplycount}">
                     <input type="hidden" name="postcount" th:value="${count.postcount}">
@@ -245,6 +252,7 @@
 
 
 var localDate = [[${localDate}]]
+var dogsellcount = [[${count.dogsellcount}]]
 var guestcount = [[${count.guestcount}]]
 var guestreplycount = [[${count.guestreplycount}]]
 var postcount = [[${count.postcount}]]
@@ -271,9 +279,8 @@ $(document).ready(function(){
         var page = $(this).data("num");
 
         $("form").append(`<input type='hidden' name='page' value=${page}>`);
-
-
         $("form").append(`<input type="hidden" name="yearmonth" value="${localDate}">`);
+        $("form").append(`<input type="hidden" name="dogsellcount" value="${dogsellcount}">`);
         $("form").append(`<input type="hidden" name="tabtitle" value="inquiry">`);
         $("form").append(`<input type="hidden" name="guestcount" value="${guestcount}">`);
         $("form").append(`<input type="hidden" name="guestreplycount" value="${guestreplycount}">`);
@@ -294,6 +301,7 @@ $(document).ready(function(){
 
         $("form").append(`<input type="hidden" name="yearmonth" value="${localDate}">`);
         $("form").append(`<input type="hidden" name="tabtitle" value="inquiry">`);
+        $("form").append(`<input type="hidden" name="dogsellcount" value="${dogsellcount}">`);
         $("form").append(`<input type="hidden" name="guestcount" value="${guestcount}">`);
         $("form").append(`<input type="hidden" name="guestreplycount" value="${guestreplycount}">`);
         $("form").append(`<input type="hidden" name="postcount" value="${postcount}">`);
@@ -348,6 +356,7 @@ $(document).ready(function(){
                 }else{
                     console.log("관리자페이지 admin_inquiry_list.html 문의글 전체목록에서 답글작성 실패 진입 -> "+result);
                     alert("문의글에 대한 답변이 전달되지 않았습니다. 다시 한번 확인해주세요!")
+                    $("#inquiryReplyModalDivBody").val("");
                     location.replace(`/admin/tab/inquiry`)
                 }
             },
@@ -391,13 +400,12 @@ $(document).ready(function(){
             dataType:'text',
             success: function(result){
                 if(result !=null){
-                    console.log("관리자페이지 admin_inquiry_list.html 문의글 전체목록에서 답글보기 성공 진입 -> ");
-                    console.log(result);
+                    console.log("관리자페이지 admin_inquiry_list.html 문의글 전체목록에서 답글보기 성공 진입 ");
 
                     $(".inquiryReplyModalShowDivHeader").html(innumVal+"번 문의글 | 문의일자 "+createdDateVal);
                     $(".inquiryReplyModalShowDivBodyOriginal").html(contentVal);
-                    $(".inquiryReplyModalShowDivBody").html(result.content);
-                    $(".inquiryReplyShowModal").show();
+                    $("#inquiryReplyModalShowDivBody").html(result.content);
+                    $(".inquiryReplyModalShowDiv").show();
 
                 }else{
                     console.log("관리자페이지 admin_inquiry_list.html 문의글 전체목록에서 답글보기 실패 진입 ");

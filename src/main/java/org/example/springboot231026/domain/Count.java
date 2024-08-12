@@ -11,6 +11,7 @@ import lombok.ToString;
 @NoArgsConstructor
 public class Count {
 
+    private Long dogsellcount;
     private Long guestcount;
     private Long guestreplycount;
     private Long postcount;

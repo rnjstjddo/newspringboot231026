@@ -402,31 +402,51 @@ public class AdminController {
     //분양글
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/dogsell/list")
-    public String adminDogList(Model model, @AuthenticationPrincipal MemberDTO memberDTO,
+    public String adminDogList(@ModelAttribute("pageRequestDTO") PageRequestDTO pageRequestDTO, Model model,
                                @RequestParam(required = false) String yearmonth,
-                               @RequestParam(required = false) String tabtitle) {
-        System.out.println("관리자컨트롤러 /admin/dogsell/list 진입 파라미터 날짜 String -> " + yearmonth);
+                               @AuthenticationPrincipal MemberDTO memberDTO,
+                               @RequestParam(required = false) String tabtitle,
+                               @ModelAttribute("count") Count count) {
+        System.out.println("관리자컨트롤러 /admin/dogsell/list 진입 ");
         if (tabtitle != null) {
-
-            System.out.println("tabtitle 존재할때 진입 ->  " + tabtitle);
+            System.out.println("관리자컨트롤러 /admin/dogsell/list 진입 파라미터 tabtitle -> " + tabtitle);
             model.addAttribute("tabtitle", tabtitle);
         }
-        List<DogSellListDTO> dogSellList = dogSellService.adminDogSellList();
+        if (yearmonth != null) {
+            System.out.println("관리자컨트롤러 /admin/dogsell/list 진입 파라미터 yearmonth -> "+yearmonth);
+            LocalDate localDate = LocalDate.parse(yearmonth);
+            model.addAttribute("localDate", yearmonth);
 
-        List<LocalDateTime> localDateTimeList = dogSellList.stream().map(DogSellListDTO::getModifiedDate)
-                .collect(Collectors.toList());
+            PageResponseDTO<DogSellListDTO> pResponseDto = dogSellService.getListAdminCreatedDate(pageRequestDTO, localDate);
 
+            if (pResponseDto.getDtoList().size() > 0 && pResponseDto.getEnd() != 0) {
+                System.out.println("관리자컨트롤러 /admin/dogsell/list 진입 " +
+                        " GuestPageResultDTO getSize() -> " + pResponseDto.getPage() + ", getTotalPage() -> " + pResponseDto.getTotal());
 
-        model.addAttribute("dogSellList", dogSellList);
-        model.addAttribute("localDateTimeList", localDateTimeList);
+                model.addAttribute("pResponseDtoList", pResponseDto.getDtoList());
+                model.addAttribute("pResponseDto", pResponseDto);
+            }
 
+            if(count.getGuestcount() ==null) {
+                count = this.returnCount(localDate);
+                model.addAttribute("count", count);
+                System.out.println("관리자컨트롤러 /admin/dogsell/list 진입 Count출력 -> "+ count.toString());
+            }
 
-        model.addAttribute("loginMember", memberDTO.getName());
-        return "admin/admin_dog_list";
+        }//yearmonth존재할경우
+        else {
+            System.out.println("관리자컨트롤러 /admin/dogsell/list 진입 쿼리스트링으로 yearmonth 존재하지 않을때 진입");
+            return "redirect:/admin/home/home";
+        }
+
+        if (memberDTO != null) {
+            model.addAttribute("loginMember", memberDTO.getName());
+        }
+        return "admin/admin_dogsell_list";
     }
     
     //관리자페이지에서 품종검색
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+/*    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/dogsell/list/search")
     public String adminDogListPost(Model model, @AuthenticationPrincipal MemberDTO memberDTO,
                                @RequestParam(required = false) String yearmonth,
@@ -452,7 +472,7 @@ public class AdminController {
         model.addAttribute("loginMember", memberDTO.getName());
         return "admin/admin_dog_list";
         //return "redirect:/admin/dogsell/list";
-    }
+    }*/
 
 
     //방명록글 특정날짜만 쿼리만들자.
@@ -487,7 +507,7 @@ public class AdminController {
             if(count.getGuestcount() ==null) {
                 count = this.returnCount(localDate);
                 model.addAttribute("count", count);
-                System.out.println("Count출력 -> "+ count.toString());
+                System.out.println("관리자컨트롤러 /admin/guestbook/list 진입 Count출력 -> "+ count.toString());
             }
 
         }//yearmonth존재할경우
@@ -535,7 +555,7 @@ public class AdminController {
             if(count.getGuestreplycount() ==null) {
                 count = this.returnCount(localDate);
                 model.addAttribute("count", count);
-                System.out.println("Count출력 -> "+ count.toString());
+                System.out.println("관리자컨트롤러 /admin/guestbookreply/list 진입 Count출력 -> "+ count.toString());
 
             }
 
@@ -641,7 +661,7 @@ public class AdminController {
             if(count.getPostreplycount() ==null) {
                 count = this.returnCount(localDate);
                 model.addAttribute("count", count);
-                System.out.println("Count출력 -> "+ count.toString());
+                System.out.println("관리자컨트롤러 /admin/postreply/list 진입 Count출력 -> "+ count.toString());
 
             }
 
@@ -692,16 +712,13 @@ public class AdminController {
             if(count.getInquirycount() ==null) {
                 count = this.returnCount(localDate);
                 model.addAttribute("count", count);
-                System.out.println("Count출력 -> "+ count.toString());
-
+                System.out.println("관리자컨트롤러 /admin/inquiry/list 진입 Count출력 -> "+ count.toString());
             }
-
         }//yearmonth존재할경우
         else {
             System.out.println("관리자컨트롤러 /admin/inquiry/list 진입 쿼리스트링으로 yearmonth 존재하지 않을때 진입");
             return "redirect:/admin/home/home";
         }
-
 
         if (memberDTO != null) {
             model.addAttribute("loginMember", memberDTO.getName());
@@ -744,7 +761,7 @@ public class AdminController {
             if(count.getMembercount() ==null) {
                 count = this.returnCount(localDate);
                 model.addAttribute("count", count);
-                System.out.println("Count출력 -> "+ count.toString());
+                System.out.println("관리자컨트롤러 /admin/member/list 진입 Count출력 -> "+ count.toString());
 
             }
         }//if존재시
@@ -756,12 +773,63 @@ public class AdminController {
         return "admin/admin_member_list";
     }
 
+    //분양글
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/dogsell/list")
+    public String adminDogsellList(Model model, @ModelAttribute("pageRequestDTO") PageRequestDTO pageRequestDTO,
+                                  @AuthenticationPrincipal MemberDTO memberDTO,
+                                  @RequestParam(required = false) String yearmonth,
+                                  @RequestParam(required = false) String tabtitle,
+                                  @ModelAttribute Count count) {
+        System.out.println("관리자컨트롤러 /admin/dogsell/list 진입-> " + pageRequestDTO.toString());
+
+        if (tabtitle != null) {
+            model.addAttribute("tabtitle", tabtitle);
+        }
+
+        if (yearmonth != null) {
+            LocalDate localDate = LocalDate.parse(yearmonth);
+            model.addAttribute("localDate", yearmonth);
+
+            PageResponseDTO pResponseDto = dogSellService.getListAdminCreatedDate(pageRequestDTO, localDate);
+
+
+            if (pResponseDto.getDtoList().size() > 0 && pResponseDto.getEnd() != 0) {
+                System.out.println("관리자컨트롤러 /admin/dogsell/list 진입 " +
+                        " PageResponseDTO getSize() -> " + pResponseDto.getSize());
+
+                model.addAttribute("responseDtoList", pResponseDto.getDtoList());
+                model.addAttribute("pResponseDto", pResponseDto);
+            }
+
+            if(count.getDogsellcount() ==null) {
+                count = this.returnCount(localDate);
+                model.addAttribute("count", count);
+                System.out.println("관리자컨트롤러 /admin/dogsell/list 진입 Count출력 -> "+ count.toString());
+
+            }
+        }//if존재시
+        else {
+            System.out.println("관리자컨트롤러 /admin/dogsell/list 진입 쿼리스트링으로 yearmonth 존재하지 않을때 진입");
+            return "redirect:/admin/home/home";
+        }
+
+        return "admin/admin_dogsell_list";
+    }
+
+
+
+
+
     //일자에 맞는 개수반환 현재 회원은 오류로 제외시킴
     public Count returnCount(LocalDate localDate) {
         System.out.println("관리자컨트롤러 returnCount() 진입 Count 객체반환 파라미터로 받은 날짜 -> "+localDate);
 
         //반환타입
         Count count = new Count();
+
+        //분양글
+        count.setDogsellcount(dogSellService.getCountLocalDate(localDate));
 
         //문의글
         count.setInquirycount(is.getCountLocalDate(localDate));

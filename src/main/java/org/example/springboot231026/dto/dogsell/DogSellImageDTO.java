@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.springboot231026.domain.dog.DogSellImage;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -51,4 +52,7 @@ public class DogSellImageDTO {
         }
         return "";
     }
+
+
+
 }

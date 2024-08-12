@@ -538,6 +538,7 @@ $(".countAll a").on("click", function(e){
     var postreplycount;
     var inquirycount;
     var membercount;
+    var dogsellcount;
 
     for(let i=1; i<aa.length; i++){
         //-console.log(aa[i].innerHTML);
@@ -572,6 +573,12 @@ $(".countAll a").on("click", function(e){
             membercount = name.substr(-1)
             //-console.log(membercount)
         }
+
+        if(name.startsWith("분양글수")){
+            dogsellcount = name.substr(-1)
+            //-console.log(dogsellcount)
+        }
+
     }//for문종료
 
 });//a태그

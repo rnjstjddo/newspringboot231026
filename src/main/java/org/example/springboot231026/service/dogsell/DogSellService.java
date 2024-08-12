@@ -5,11 +5,22 @@ import org.example.springboot231026.domain.dog.DogSell;
 import org.example.springboot231026.domain.dog.DogSellImage;
 import org.example.springboot231026.domain.dog.DogSellImageRepository;
 import org.example.springboot231026.domain.dog.DogSellRepository;
+import org.example.springboot231026.domain.member.Member;
+import org.example.springboot231026.domain.posts.Posts;
 import org.example.springboot231026.dto.dogsell.*;
+import org.example.springboot231026.dto.member.MemberDTO;
+import org.example.springboot231026.dto.page.PageRequestDTO;
+import org.example.springboot231026.dto.page.PageResponseDTO;
+import org.example.springboot231026.dto.post.PostsListResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -523,6 +534,119 @@ public class DogSellService {
         }
         return listDto;
     }
+
+
+    //관리자페이지에서 특정날짜게시글수
+    public Long getCountLocalDate(LocalDate localDate){
+        System.out.println("service-dogsell클래스 DogSellService getCountLocalDate() 진입 시작시간 -> "+localDate.atTime(LocalTime.MIN)+"종료시간 -> "+localDate.atTime(LocalTime.MAX));
+
+        Long count = dsr.getCountLocalDate(localDate.atTime(LocalTime.MIN), localDate.atTime(LocalTime.MAX));
+        System.out.println("service-dogsell클래스 DogSellService getCountLocalDate() 진입 localDate 분양글수 -> "+ count);
+        return count;
+    }
+    
+    //관리자페이지
+    @Transactional
+    public PageResponseDTO<DogSellListDTO> getListAdminCreatedDate(PageRequestDTO requestDTO, LocalDate localDate) {
+        System.out.println("service-dogsell클래스 DogSellService getListAdminCreatedDate() 진입 ");
+
+        String [] types = requestDTO.getTypes();
+        String keyword = requestDTO.getKeyword();
+
+        //Pageable p = requestDTO.getPageable("createdDate");
+
+        Pageable p = PageRequest.of(requestDTO.getPage()-1, requestDTO.getSize());
+
+        //날짜까지 추가
+        Page<DogSell> page = dsr.searchDogSellAllCreatedDate(types, keyword, p,localDate);
+
+        List<Object []> objectArray =dsr.getDogSellByModifiedDate();
+        List<DogSellListDTO> listDto = new ArrayList<>();
+
+        //DogSellListDTO  entityToDtoDogListSell
+
+        listDto = page.getContent().stream()
+                .map(entity -> DogSellListDTO.builder()
+                        .createdDate(entity.getCreatedDate())
+                        .modifiedDate(entity.getModifiedDate())
+                        .dno(entity.getDno())
+                        .price(entity.getPrice())
+                        .age(entity.getAge())
+                        .gender(entity.getGender())
+                        .name(entity.getName())
+                        .health(entity.getHealth())
+                        .content(entity.getContent())
+                        .type(entity.getType())
+                        .weight(entity.getWeight())
+                        .complete(entity.getComplete())
+                        .membername(entity.getWriter())
+                        .dsiDtoList(entityToDto(dsir.findByDno(entity.getDno()))).build())
+                .collect(Collectors.toList());
+
+        return PageResponseDTO.<DogSellListDTO>withAll()
+                .requestDTO(requestDTO)
+                .dtoList(listDto)
+                .total((int)page.getTotalElements())
+                .build();
+
+    }
+
+    public List<DogSellImageDTO> entityToDto(List<DogSellImage> entityList){
+        System.out.println("service-dogsell클래스 DogSellService entityToDto() 진입");
+        List<DogSellImageDTO> dtoList =new ArrayList<>();
+
+        for(DogSellImage entity : entityList) {
+            DogSellImageDTO dto = new DogSellImageDTO();
+
+            dto.setUuid(entity.getUuid());
+            dto.setPath(entity.getPath());
+            dto.setImgName(entity.getImgName());
+            dto.setInum(entity.getInum());
+            dtoList.add(dto);
+        }
+        return dtoList;
+    }
+
+    //분양글목록
+    @Transactional
+    public PageResponseDTO<DogSellListDTO> list(PageRequestDTO requestDTO){
+        System.out.println("service-dogsell클래스 DogSellService list() 진입 파라미터 PageRequestDTO -> "+ requestDTO.toString());
+
+        String [] types = requestDTO.getTypes();
+        String keyword = requestDTO.getKeyword();
+        Pageable p = requestDTO.getPageable("dno");
+
+        Page<DogSell> page = dsr.searchDogSellAll(types, keyword, p);
+
+        //System.out.println("service-dogsell클래스 DogSellService list() 진입 파라미터 DogSell엔티티 -> "+ page.getContent());
+
+        List<DogSellListDTO> listDto = new ArrayList<>();
+
+        listDto = page.getContent().stream()
+                .map(entity -> DogSellListDTO.builder()
+                        .createdDate(entity.getCreatedDate())
+                        .modifiedDate(entity.getModifiedDate())
+                        .dno(entity.getDno())
+                        .price(entity.getPrice())
+                        .age(entity.getAge())
+                        .gender(entity.getGender())
+                        .name(entity.getName())
+                        .health(entity.getHealth())
+                        .content(entity.getContent())
+                        .type(entity.getType())
+                        .weight(entity.getWeight())
+                        .complete(entity.getComplete())
+                        .membername(entity.getWriter())
+                        .dsiDtoList(entityToDto(dsir.findByDno(entity.getDno()))).build())
+                .collect(Collectors.toList());
+
+        return PageResponseDTO.<DogSellListDTO>withAll()
+                .requestDTO(requestDTO)
+                .dtoList(listDto)
+                .total((int)page.getTotalElements())
+                .build();
+    }
+
 
 //System.out.println("service-dogsell클래스 DogSellService register() 진입");
 }
