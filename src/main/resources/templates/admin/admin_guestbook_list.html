@@ -157,7 +157,7 @@
                         <br>
                         <br>
 
-                        <th:block th:if="${#lists.isEmpty(pResponseDtoList)} and ${pageRequestDTO.type} ==null and
+                        <th:block th:if="${pResponseDtoList} ==null  and ${pageRequestDTO.type} ==null and
                         ${pageRequestDTO.keyword} ==null">
                             <img class="card-img-top" style="height:100px;width:auto;" src="/image/imoji/waiting.jpg" alt="" />
                             [[${localDate}]] 일자에 등록된 방명록이 없습니다.

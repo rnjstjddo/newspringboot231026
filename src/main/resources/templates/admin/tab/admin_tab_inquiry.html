@@ -110,7 +110,8 @@
                 <br>
                 <br>
 
-                <th:block th:if="${#lists.isEmpty(responseDtoList)}">
+                <th:block th:if="${responseDtoList} ==null and ${pageRequestDTO.type} ==null and
+                        ${pageRequestDTO.keyword} ==null">
                     <img class="card-img-top" style="height:100px;width:auto;" src="/image/imoji/waiting.jpg" alt="" />
                     등록된 문의글이 없습니다.
                 </th:block>
