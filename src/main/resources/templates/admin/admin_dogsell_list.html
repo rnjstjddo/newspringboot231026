@@ -112,15 +112,15 @@
                     </div>
 
 
-                <th:block th:if="${pResponseDtoList} ==null and ${pResponseDto.type} ==null and
-                        ${pResponseDto.keyword} ==null">
+                <th:block th:if="${pResponseDtoList} ==null and ${pageRequestDTO.type} ==null and
+                        ${pageRequestDTO.keyword} ==null">
                     <br><br>
                     <img class="card-img-top" style="height:100px;width:auto;" src="/image/imoji/waiting.jpg" alt="" />
                     [[${localDate}]] 일자에 등록된 분양글이 없습니다.
                 </th:block>
 
-                <th:block th:if="${pResponseDtoList} ==null and ${pResponseDto.type} !=null and
-                        ${pResponseDto.keyword} !=null">
+                <th:block th:if="${pResponseDtoList} ==null and ${pageRequestDTO.type} !=null and
+                        ${pageRequestDTO.keyword} !=null">
                     <br><br>
                     <img class="card-img-top" style="height:100px;width:auto;" src="/image/imoji/waiting.jpg" alt="" />
                     <b>검색 결과가 없습니다. </b> &nbsp;&nbsp;

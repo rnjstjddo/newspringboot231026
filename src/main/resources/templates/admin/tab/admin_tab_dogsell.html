@@ -63,14 +63,14 @@
                     </aside>
                 </section>-->
 
-                    <th:block th:if="${responseDtoList} ==null and ${responseDto.type} !=null
+                    <th:block th:if="${responseDtoList} ==null and ${pageRequestDTO.type} !=null
                         and ${pageRequestDTO.keyword} !=null">
                         <br><br>
                         <img class="card-img-top" style="height:100px;width:auto;" src="/image/imoji/waiting.jpg" alt="" />
                         검색조건에 맞는 분양글이 없습니다.
                     </th:block>
 
-                    <th:block th:if="${responseDtoList} ==null  and ${responseDto.type} ==null
+                    <th:block th:if="${responseDtoList} ==null  and ${pageRequestDTO.type} ==null
                         and ${pageRequestDTO.keyword} ==null">
                         <br><br>
                         <img class="card-img-top" style="height:100px;width:auto;" src="/image/imoji/waiting.jpg" alt="" />
