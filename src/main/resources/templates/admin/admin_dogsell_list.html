@@ -243,6 +243,7 @@ $(document).ready(function(){
         //-console.log("admin_dogsell_list.html 검색+페이지이동 처리 클릭이벤트 진입");
         e.preventDefault();
         var page = $(this).data("num");
+        console.log("페이지번호 확인 -> "+ page)
 
         $("form").append(`<input type='hidden' name='page' value="${page}">`);
         $("form").append(`<input type="hidden" name="yearmonth" value="${localDate}">`);
@@ -274,7 +275,9 @@ $(document).ready(function(){
         $("form").append(`<input type="hidden" name="postreplycount" value="${postreplycount}">`);
         $("form").append(`<input type="hidden" name="inquirycount" value="${inquirycount}">`);
 
-        $("form").submit();
+        var href = window.location.href;
+        console.log("현재url얻기 -> "+ href);
+        $("form").attr("action",href).submit();
     });
 
 
