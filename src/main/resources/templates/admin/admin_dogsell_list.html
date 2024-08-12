@@ -78,7 +78,7 @@
 
 
 
-                <form action="/admin/dogsell/list" method="post">
+                <form th:action="@{/admin/dogsell/list}" method="post">
                     <input type="hidden" name="yearmonth" th:value="${localDate}">
                     <input type="hidden" name="tabtitle" th:value="dogsell">
                     <input type="hidden" name="dogsellcount" th:value="${count.dogsellcount}">
@@ -166,15 +166,14 @@
                                 </ul>
                             </div>
                         </div>
-
-                </th:block><!-- 해당날짜에 분양글이 존재할경우 th:if -->
+                    </th:block><!-- 해당날짜에 분양글이 존재할경우 th:if -->
                 </div>
                 </th:block><!-- th:each-->
 
                 <br><br>
 
                 <th:block th:if="${pResponseDtoList} != null">
-                <div>
+                <div class="mb-3">
                     <nav  aria-label="Page navigation example">
                         <div>
                             <ul class="pagination">

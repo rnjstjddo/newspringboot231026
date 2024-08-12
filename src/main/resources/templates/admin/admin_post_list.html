@@ -115,7 +115,8 @@
 
 
                     <br>
-                    <th:block th:if="${#lists.isEmpty(responseDtoList)}">
+                    <th:block th:if="${#lists.isEmpty(responseDtoList)} and ${pageRequestDTO.type} ==null and
+                        ${pageRequestDTO.keyword} ==null">
                         <img class="card-img-top" style="height:100px;width:auto;" src="/image/imoji/waiting.jpg" alt="" />
                         [[${localDate}]] 일자에 등록된 게시물이 없습니다.
                     </th:block>
