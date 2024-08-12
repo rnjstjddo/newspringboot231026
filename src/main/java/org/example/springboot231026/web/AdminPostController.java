@@ -327,6 +327,46 @@ public class AdminPostController {
         return "admin/admin_member_list";
     }
 
+    //분양글
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PostMapping("/dogsell/list")
+    public String adminDogSellList(Model model, @ModelAttribute("pageRequestDTO") PageRequestDTO pageRequestDTO,
+                                  @AuthenticationPrincipal MemberDTO memberDTO,
+                                  String yearmonth,
+                                  String tabtitle,
+                                  @ModelAttribute Count count) {
+        System.out.println("관리자컨트롤러PostController /admin/dogsell/list 진입 String타입 날짜 -> " + yearmonth);
+        System.out.println("관리자컨트롤러PostController /admin/dogsell/list 진입 Count -> " + count.toString());
+        System.out.println("관리자컨트롤러PostController /admin/dogsell/list 진입 tabtitle -> " + tabtitle);
+        System.out.println("관리자컨트롤러PostController /admin/dogsell/list 진입 GuestPageRequestDTO -> " + pageRequestDTO.toString());
+
+        if (tabtitle != null) {
+            model.addAttribute("tabtitle", tabtitle);
+        }
+
+        if (yearmonth != null) {
+            LocalDate localDate = LocalDate.parse(yearmonth);
+
+            //PageResponseDTO pResponseDto = ms.getListAdminModifiedDate(pageRequestDTO, localDate);
+            PageResponseDTO pResponseDto = dogSellService.getListAdminCreatedDate(pageRequestDTO, localDate);
+
+            if (pResponseDto.getDtoList().size() > 0 && pResponseDto.getEnd() != 0) {
+                System.out.println("관리자컨트롤러 /admin/dogsell/list 진입 " +
+                        " PageResponseDTO getSize() -> " + pResponseDto.getSize());
+
+                model.addAttribute("responseDtoList", pResponseDto.getDtoList());
+                model.addAttribute("pResponseDto", pResponseDto);
+            }
+        }//if존재시
+        else {
+            System.out.println("관리자컨트롤러 /admin/dogsell/list 진입 쿼리스트링으로 yearmonth 존재하지 않을때 진입");
+            return "redirect:/admin/home/home";
+        }
+
+        return "admin/admin_dogsell_list";
+    }
+
+
     //일자에 맞는 개수반환 현재 회원은 오류로 제외시킴
     public Count returnCount(LocalDate localDate) {
         System.out.println("관리자컨트롤러 returnCount() 진입 Count 객체반환");
