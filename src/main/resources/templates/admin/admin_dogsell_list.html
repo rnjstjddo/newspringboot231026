@@ -78,7 +78,7 @@
 
 
 
-                <form action="/admin/dogsell/list" method="get">
+                <form action="/admin/dogsell/list" method="post">
                     <input type="hidden" name="yearmonth" th:value="${localDate}">
                     <input type="hidden" name="tabtitle" th:value="dogsell">
                     <input type="hidden" name="dogsellcount" th:value="${count.dogsellcount}">
@@ -112,7 +112,8 @@
                     </div>
 
 
-                <th:block th:if="${#lists.isEmpty(pResponseDtoList)}">
+                <th:block th:if="${#lists.isEmpty(pResponseDtoList)}and ${pResponseDto.type} ==null and
+                        ${pResponseDto.keyword} ==null">
                     <br><br>
                     <img class="card-img-top" style="height:100px;width:auto;" src="/image/imoji/waiting.jpg" alt="" />
                     [[${localDate}]] 일자에 등록된 분양글이 없습니다.
@@ -126,9 +127,10 @@
                 </th:block>
 
                 <br><br>
+
+                <th:block th:if="${!#lists.isEmpty(pResponseDtoList)}">
                 <div style="float:left;">
                     <br>
-                    <th:block th:if="${!#lists.isEmpty(pResponseDtoList)}">
                     <th:block th:each="dogSell:${pResponseDtoList}">
                         <div class="container mt-3" style="height:800px">
                             <p class="fw-bold fs-5">[[${#temporals.format(dogSell.createdDate, 'yyyy-MM-dd')}]] 분양글</p>
@@ -164,12 +166,15 @@
                                 </ul>
                             </div>
                         </div>
-                    </th:block><!-- th:each-->
+
                 </th:block><!-- 해당날짜에 분양글이 존재할경우 th:if -->
                 </div>
+                </th:block><!-- th:each-->
 
                 <br><br>
+
                 <th:block th:if="${pResponseDtoList} != null">
+                <div>
                     <nav  aria-label="Page navigation example">
                         <div>
                             <ul class="pagination">
@@ -189,6 +194,7 @@
 
                         </div>
                     </nav>
+                </div>
                 </th:block>
                 </form>
             </div><!-- 컨테이너 -->
