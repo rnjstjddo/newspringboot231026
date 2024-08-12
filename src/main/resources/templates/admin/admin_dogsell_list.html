@@ -274,9 +274,11 @@ $(document).ready(function(){
         $("form").append(`<input type="hidden" name="postreplycount" value="${postreplycount}">`);
         $("form").append(`<input type="hidden" name="inquirycount" value="${inquirycount}">`);
 
-        var href = window.location.href;
-        console.log("현재url얻기 -> "+ href);
-        $("form").attr("action",href).submit();
+        //var href = window.location.href;
+        var href = window.location.search;
+
+        console.log("현재 쿼리스트링 얻기 -> "+ href);
+        $("form").attr("action","/admin/dogsell/list"+href).submit();
     });
 
 
