@@ -85,7 +85,7 @@ public class Member0Auth2UserDetailsService extends DefaultOAuth2UserService {
         //Member entity = mr.findByUsername(email, true).orElseGet(() -> {return new Member();});
 
         //Optional<Member> o = mr.findByUsername(email, true);
-        Member o = mr.findByUsername(email, true)
+        Member o = mr.findByUsername(email, "true")
                 .orElseGet(() -> {return new Member();});
 
         //System.out.println("google-service클래스 MemberOAuth2UserDetailsService 오버라이딩 loadUser() 진입 -가져온 사용자정보 소셜로그인 회원 DB확인 엔티티 Member -> "+ o.get());
@@ -99,7 +99,7 @@ public class Member0Auth2UserDetailsService extends DefaultOAuth2UserService {
 
             Member entity = Member.builder()
                     .name(email)
-                    .fromSocial(true)
+                    .fromSocial("true")
                     .role(RoleType.USER)
                     .email(email)
                     .password(pe.encode(googlePassword)) //소셜로그인사용자는 패스워드고정
@@ -115,7 +115,7 @@ public class Member0Auth2UserDetailsService extends DefaultOAuth2UserService {
 // List<WishNum> wishNum 9개
 
             dto = new MemberDTO(
-                    omember.get().getName(), omember.get().getPassword(), MemberDTO.setAuthorities("USER"), omember.get().isFromSocial(),
+                    omember.get().getName(), omember.get().getPassword(), MemberDTO.setAuthorities("USER"), omember.get().getFromSocial(),
                     ou.getAttributes() ,omember.get().getName(), omember.get().getEmail()
             );
             dto.setRole(RoleType.USER);
@@ -135,7 +135,7 @@ public class Member0Auth2UserDetailsService extends DefaultOAuth2UserService {
                     ou.getAttributes(), o.get().getName(), o.get().getEmail()
             );*/
             dto = new MemberDTO(
-                    o.getName(), o.getPassword(), MemberDTO.setAuthorities("USER"), o.isFromSocial(),
+                    o.getName(), o.getPassword(), MemberDTO.setAuthorities("USER"), o.getFromSocial(),
                     ou.getAttributes(), o.getName(), o.getEmail()
             );
 

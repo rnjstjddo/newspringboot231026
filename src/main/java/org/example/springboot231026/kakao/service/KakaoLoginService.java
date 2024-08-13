@@ -107,7 +107,7 @@ public class KakaoLoginService {
                 .password(pe.encode(kakaoPassword))
                 .email(email)
                 .role(RoleType.USER)
-                .fromSocial(true)
+                .fromSocial("true")
                 .build();
         System.out.println("kakao-service클래스 KakaoLoginService getUserInfo() 진입 - 사용자정보로 생성한 엔티티 Member-> "+ m.toString());
 // Member(email=sungaekwon88@gmail.com, name=권성애, password=kakao123, fromSocial=true, role=USER)

@@ -3,6 +3,8 @@ package org.example.springboot231026.domain.member;
 
 import lombok.*;
 import org.example.springboot231026.domain.posts.BaseTimeEntity;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,6 +16,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @ToString
 @Table(name="members")
+//@DynamicInsert
 public class Member extends BaseTimeEntity {
 // Member->  String email, name, password; /boolean fromSocial; /RoleType role;
     @Id
@@ -33,8 +36,12 @@ public class Member extends BaseTimeEntity {
     @Column(length = 100,nullable = false)
     private String password;
 
-    @Column( nullable = false)
-    private boolean fromSocial;
+    //@Column( nullable = false)
+    //private boolean fromSocial;
+    //@ColumnDefault("'FALSE'")
+    @Column(nullable = false)
+    @Builder.Default
+    private String fromSocial = "false";
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

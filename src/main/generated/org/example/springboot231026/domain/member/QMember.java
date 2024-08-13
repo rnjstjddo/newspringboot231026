@@ -26,7 +26,7 @@ public class QMember extends EntityPathBase<Member> {
 
     public final StringPath email = createString("email");
 
-    public final BooleanPath fromSocial = createBoolean("fromSocial");
+    public final StringPath fromSocial = createString("fromSocial");
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;

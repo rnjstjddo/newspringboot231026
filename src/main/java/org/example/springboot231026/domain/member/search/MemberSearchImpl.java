@@ -41,7 +41,7 @@ public class MemberSearchImpl extends QuerydslRepositorySupport implements Membe
                         bb.or(qp.name.contains(keyword));
                         break;
                     case"b":
-                        bb.or(qp.fromSocial.stringValue().contains(keyword));
+                        bb.or(qp.fromSocial.contains(keyword));
                         break;
                     case"r":
                         bb.or(qp.role.stringValue().contains(keyword));
@@ -95,7 +95,7 @@ public class MemberSearchImpl extends QuerydslRepositorySupport implements Membe
                         bb.or(qp.name.contains(keyword));
                         break;
                     case"b":
-                        bb.or(qp.fromSocial.stringValue().contains(keyword));
+                        bb.or(qp.fromSocial.contains(keyword));
                         break;
                     case"r":
                         bb.or(qp.role.stringValue().contains(keyword));
@@ -147,7 +147,7 @@ public class MemberSearchImpl extends QuerydslRepositorySupport implements Membe
                         bb.or(qp.name.contains(keyword));
                         break;
                     case"b":
-                        bb.or(qp.fromSocial.stringValue().contains(keyword));
+                        bb.or(qp.fromSocial.contains(keyword));
                         break;
                     case"r":
                         bb.or(qp.role.stringValue().contains(keyword));

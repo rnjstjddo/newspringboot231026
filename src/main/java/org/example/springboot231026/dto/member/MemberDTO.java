@@ -26,9 +26,9 @@ public class MemberDTO extends User implements OAuth2User {
     @Autowired
     private MemberRepository mr;
 
-    private String name, password, email;
+    private String name, password, email,fromSocial;
     private RoleType role;
-    private boolean fromSocial;
+    //private boolean fromSocial;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime createdDate, modifiedDate;
@@ -36,7 +36,7 @@ public class MemberDTO extends User implements OAuth2User {
     //소셜로그인 멤버필드추가
     private Map<String, Object> attrs;
 
-    public MemberDTO(String username,String password, boolean fromSocial,
+    public MemberDTO(String username,String password, String fromSocial,
                      Collection<? extends GrantedAuthority> authorities,
                      String name, String email, RoleType role,
                      LocalDateTime createdDate, LocalDateTime modifiedDate,
@@ -54,7 +54,7 @@ public class MemberDTO extends User implements OAuth2User {
         this.attrs=attrs;
     }
 
-    public MemberDTO(String username, String password, Collection<? extends GrantedAuthority> authorities, boolean fromSocial,
+    public MemberDTO(String username, String password, Collection<? extends GrantedAuthority> authorities, String fromSocial,
                      Map<String, Object> attrs, String name, String email) { //7개
         //super(username, password, authorities);
         this(username, password, fromSocial, authorities);
@@ -87,7 +87,7 @@ public class MemberDTO extends User implements OAuth2User {
 
     }
 
-    public MemberDTO(String username, String password, boolean fromSocial,
+    public MemberDTO(String username, String password, String fromSocial,
                      Collection<? extends GrantedAuthority> authorities) {//4개
         super(username, password, authorities);
         System.out.println("dto-member클래스 MemberDTO 생성자진입 - User상속");
@@ -120,7 +120,7 @@ public class MemberDTO extends User implements OAuth2User {
 
     //관리자페이지에서 사용
     public MemberDTO(String username,String password,
-                     Collection<? extends GrantedAuthority> authorities, boolean fromSocial,
+                     Collection<? extends GrantedAuthority> authorities, String fromSocial,
                      String name, String email, RoleType role,
                      LocalDateTime createdDate, LocalDateTime modifiedDate){
         super(username, password, authorities);

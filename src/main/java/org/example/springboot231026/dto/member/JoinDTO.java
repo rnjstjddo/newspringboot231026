@@ -16,7 +16,9 @@ public class JoinDTO {
 
     private String name, password, email;
     private RoleType role;
-    private boolean fromSocial;
+    //private boolean fromSocial;
+    private String formSocial;
+
     private LocalDateTime createdDate, modifiedDate;
 
 

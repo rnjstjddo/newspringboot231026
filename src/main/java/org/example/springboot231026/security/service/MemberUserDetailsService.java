@@ -30,7 +30,7 @@ public class MemberUserDetailsService implements UserDetailsService {
         //Member entity = mr.findByUsername(username,false).orElseThrow(() ->{return new UsernameNotFoundException("회원이 존재하지 않습니다.");});
 
 
-        if((entity != null && entity.isFromSocial() == true) || (entity != null && entity.isFromSocial() == false)) {
+        if((entity != null && entity.getFromSocial() == "true") || (entity != null && entity.getFromSocial() == "false")) {
 
             System.out.println("security-service MemberUserDetailsService 오버라이딩 loadUserByUsername() 진입 " +
                     " Member엔티티가 존재하고 fromSocial 값이 true/false인 경우 진입 entity -> "+ entity.toString());
@@ -38,7 +38,7 @@ public class MemberUserDetailsService implements UserDetailsService {
             MemberDTO dto = new MemberDTO(
                     entity.getEmail(),
                     entity.getPassword(),
-                    entity.isFromSocial(),
+                    entity.getFromSocial(),
                     setAuthorities(entity.getRole().toString())
 
             );

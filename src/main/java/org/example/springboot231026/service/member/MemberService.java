@@ -77,7 +77,7 @@ public class MemberService {
 
             System.out.println("service-member패키지 MemberService클래스 memberJoin() 진입 admin회원가입 경우 진입 -> "+ dto.getName());
             dto.setPassword(pe.encode(dto.getPassword()));
-            dto.setFromSocial(false);
+            dto.setFormSocial("false");
             dto.setRole(RoleType.ADMIN);
             Member m = this.toEntity(dto);
             mr.save(m);
@@ -86,7 +86,7 @@ public class MemberService {
 
             System.out.println("service-member패키지 MemberService클래스 memberJoin() 진입 admin회원가입 아닌 경우 진입");
             dto.setPassword(pe.encode(dto.getPassword()));
-            dto.setFromSocial(false);
+            dto.setFormSocial("false");
             dto.setRole(RoleType.USER);
             Member m = this.toEntity(dto);
             mr.save(m);
@@ -113,7 +113,7 @@ public class MemberService {
     public Member updateJoin(JoinDTO joinDTO, MemberDTO memberDTO){
         System.out.println("service-member패키지 MemberService클래스 updateJoin() 진입 - 일반회원이 비밀번호 변경한 경우 진입");
 
-        Optional<Member> o = mr.findByUsername(memberDTO.getEmail(), memberDTO.isFromSocial());
+        Optional<Member> o = mr.findByUsername(memberDTO.getEmail(), memberDTO.getFromSocial());
                 //.orElseThrow(() -> new IllegalArgumentException("존재하는 않는 회원입니다."));
         Member m = o.get();
         m.updateMember(joinDTO.getName(), pe.encode(joinDTO.getPassword()));
@@ -126,7 +126,7 @@ public class MemberService {
     public Member updateSocialJoin(String name, MemberDTO memberDTO){
         System.out.println("service-member패키지 MemberService클래스 updateSocialJoin() 진입 ");
 
-        Optional<Member> o = mr.findByUsername(memberDTO.getEmail(), memberDTO.isFromSocial());
+        Optional<Member> o = mr.findByUsername(memberDTO.getEmail(), memberDTO.getFromSocial());
         //.orElseThrow(() -> new IllegalArgumentException("존재하는 않는 회원입니다."));
         Member m = o.get();
         m.updateSocialMember(name);
@@ -141,7 +141,7 @@ public class MemberService {
         Member m = Member.builder()
                 .password(dto.getPassword())
                 .email(dto.getEmail())
-                .fromSocial(dto.isFromSocial())
+                .fromSocial(dto.getFormSocial())
                 .name(dto.getName())
                 .role(dto.getRole())
                 .build();
@@ -166,7 +166,7 @@ public class MemberService {
         Member entity = Member.builder()
                 .name(mDto.getName())
                 .email(mDto.getEmail())
-                .fromSocial(mDto.isFromSocial())
+                .fromSocial(mDto.getFromSocial())
                 .password(pe.encode(mDto.getPassword()))
                 .role(mDto.getRole())
                 //.wishNumList(null)
@@ -182,7 +182,7 @@ public class MemberService {
     public Member getUser(String email){
         System.out.println("dto-member패키지 MemberService클래스 getUser() 진입 파라미터 username -> "+ email);
 
-        return mr.findByUsername(email, true).orElseGet(() ->{return new Member();});
+        return mr.findByUsername(email, "true").orElseGet(() ->{return new Member();});
         //빈엔티티반환
     }
 
@@ -237,7 +237,7 @@ public class MemberService {
         Member m = Member.builder()
                 .password(dto.getPassword())
                 .email(dto.getEmail())
-                .fromSocial(false)
+                .fromSocial("false")
                 .name(dto.getName())
                 .role(RoleType.USER)
                 //.wishNumList(null)
@@ -258,7 +258,7 @@ public class MemberService {
         for(Member entity: list){
             result.add(new MemberDTO(entity.getName(), entity.getPassword(),
                     MemberDTO.setAuthorities(entity.getRole().name()),
-                    entity.isFromSocial(),entity.getName(), entity.getEmail(), entity.getRole(),
+                    entity.getFromSocial(),entity.getName(), entity.getEmail(), entity.getRole(),
                     entity.getCreatedDate(),entity.getModifiedDate()));
         }
         return result;
@@ -287,7 +287,7 @@ public class MemberService {
         List<MemberDTO> list = page.getContent().stream()
                 .map(entity ->new MemberDTO(entity.getName(), entity.getPassword(),
                         MemberDTO.setAuthorities(entity.getRole().name()),
-                        entity.isFromSocial(),entity.getName(), entity.getEmail(), entity.getRole(),
+                        entity.getFromSocial(),entity.getName(), entity.getEmail(), entity.getRole(),
                         entity.getCreatedDate(),entity.getModifiedDate()) )
                 .collect(Collectors.toList());
 
@@ -319,7 +319,7 @@ public class MemberService {
         List<MemberDTO> list = page.getContent().stream()
                 .map(entity ->new MemberDTO(entity.getName(), entity.getPassword(),
                         MemberDTO.setAuthorities(entity.getRole().name()),
-                        entity.isFromSocial(),entity.getName(), entity.getEmail(), entity.getRole(),
+                        entity.getFromSocial(),entity.getName(), entity.getEmail(), entity.getRole(),
                         entity.getCreatedDate(),entity.getModifiedDate()) )
                 .collect(Collectors.toList());
 
@@ -349,7 +349,7 @@ public class MemberService {
         List<MemberDTO> list = page.getContent().stream()
                 .map(entity ->new MemberDTO(entity.getName(), entity.getPassword(),
                         MemberDTO.setAuthorities(entity.getRole().name()),
-                        entity.isFromSocial(),entity.getName(), entity.getEmail(), entity.getRole(),
+                        entity.getFromSocial(),entity.getName(), entity.getEmail(), entity.getRole(),
                         entity.getCreatedDate(),entity.getModifiedDate()) )
                 .collect(Collectors.toList());
 
