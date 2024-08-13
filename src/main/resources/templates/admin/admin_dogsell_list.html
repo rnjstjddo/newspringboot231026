@@ -105,7 +105,7 @@
 
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary btn-search searchBtn" type="button">검색</button>
-                                    <button type="reset" class="btn btn-outline-secondary">초기화</button>
+                                    <button type="button" class="btn btn-outline-secondary" id="reset">초기화</button>
                                 </div>
                             </div>
                         </div>
@@ -246,15 +246,15 @@ $(document).ready(function(){
         var page = $(this).data("num");
         console.log("페이지번호 확인 -> "+ page)
 
-        //$("form").append(`<input type='hidden' name='page' value="${page}">`);
+        $("form").append(`<input type='hidden' name='page' value="${page}">`);
         //$("form").append(`<input type="hidden" name="yearmonth" value="${localDate}">`);
         //$("form").append(`<input type="hidden" name="tabtitle" value="dogsell">`);
-        $("form").append(`<input type="hidden" name="dogsellcount" value="${dogsellcount}">`);
-        $("form").append(`<input type="hidden" name="guestcount" value="${guestcount}">`);
-        $("form").append(`<input type="hidden" name="guestreplycount" value="${guestreplycount}">`);
-        $("form").append(`<input type="hidden" name="postcount" value="${postcount}">`);
-        $("form").append(`<input type="hidden" name="postreplycount" value="${postreplycount}">`);
-        $("form").append(`<input type="hidden" name="inquirycount" value="${inquirycount}">`);
+        //$("form").append(`<input type="hidden" name="dogsellcount" value="${dogsellcount}">`);
+        //$("form").append(`<input type="hidden" name="guestcount" value="${guestcount}">`);
+        //$("form").append(`<input type="hidden" name="guestreplycount" value="${guestreplycount}">`);
+        //$("form").append(`<input type="hidden" name="postcount" value="${postcount}">`);
+        //$("form").append(`<input type="hidden" name="postreplycount" value="${postreplycount}">`);
+        //$("form").append(`<input type="hidden" name="inquirycount" value="${inquirycount}">`);
 
         var href = window.location.search;
         const urlParams = new URLSearchParams("${href}");
@@ -265,7 +265,8 @@ $(document).ready(function(){
         console.log("admin_dogsell_list.html 페이지이동 버튼 클릭진입 현재 쿼리스트링 type 얻기 -> "+ type);
 
         //$("form").attr("action",`/admin/dogsell/list${href}`).submit();
-        $("form").attr("action",`/admin/dogsell/list?page=${page}&yearmonth=${localDate}&tabtitle=dogsell&type=${type}&keyword=${keyword}`).submit();
+        //$("form").attr("action",`/admin/dogsell/list?page=${page}&yearmonth=${localDate}&tabtitle=dogsell&type=${type}&keyword=${keyword}`).submit();
+        $("form").submit();
     });//검색+페이지이동
 
 
@@ -277,12 +278,12 @@ $(document).ready(function(){
 
         //$("form").append(`<input type="hidden" name="yearmonth" value="${localDate}">`);
         //$("form").append(`<input type="hidden" name="tabtitle" value="dogsell">`);
-        $("form").append(`<input type="hidden" name="dogsellcount" value="${dogsellcount}">`);
-        $("form").append(`<input type="hidden" name="guestcount" value="${guestcount}">`);
-        $("form").append(`<input type="hidden" name="guestreplycount" value="${guestreplycount}">`);
-        $("form").append(`<input type="hidden" name="postcount" value="${postcount}">`);
-        $("form").append(`<input type="hidden" name="postreplycount" value="${postreplycount}">`);
-        $("form").append(`<input type="hidden" name="inquirycount" value="${inquirycount}">`);
+        //$("form").append(`<input type="hidden" name="dogsellcount" value="${dogsellcount}">`);
+        //$("form").append(`<input type="hidden" name="guestcount" value="${guestcount}">`);
+        //$("form").append(`<input type="hidden" name="guestreplycount" value="${guestreplycount}">`);
+        //$("form").append(`<input type="hidden" name="postcount" value="${postcount}">`);
+        //$("form").append(`<input type="hidden" name="postreplycount" value="${postreplycount}">`);
+        //$("form").append(`<input type="hidden" name="inquirycount" value="${inquirycount}">`);
 
         //var href = window.location.href;
         var href = window.location.search;
