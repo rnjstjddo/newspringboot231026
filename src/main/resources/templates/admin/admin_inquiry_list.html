@@ -470,6 +470,31 @@ $(document).ready(function(){
             $("form").submit();
         }
     });
+
+     $(".searchBtn").on("keyup",function(key){
+        if(key.keyCode==13){
+            console.log("admin_inquiry_list.html 검색버튼 클릭이벤트 진입");
+            var selectvalue = $("select[name=type]").val();
+            console.log("admin_inquiry_list.html 검색버튼 클릭이벤트 진입 먼저 select값 확인 -> "+selectvalue);
+
+            var selectkeyword = $("input[name=keyword]").val();
+            console.log("admin_inquiry_list.html 검색버튼 클릭이벤트 진입 먼저 keyword값 확인 -> "+selectkeyword);
+
+            if(selectvalue =="" || selectkeyword == ""){
+                console.log("admin_inquiry_list.html  검색버튼 클릭이벤트 진입 select값이 없거나 검색키워드입력하지 않은경우");
+                alert("검색조건을 선택하시고 검색어를 입력해주세요");
+                return;
+            }
+
+            if(selectvalue !="" && selectkeyword != ""){
+                console.log("admin_inquiry_list.html 검색버튼 클릭이벤트 진입 select값이 존재하고 검색키워드입력한 경우");
+                //$("form").attr("action", `/admin/inquiry/list?yearmonth=${localDate}&tabtitle=inquiry`).submit();
+                $("form").submit();
+            }
+        }
+     });
+
+
 });
 </script>
 </th:block>

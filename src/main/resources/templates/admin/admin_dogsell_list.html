@@ -133,7 +133,7 @@
                 <div>
                     <br>
                     <th:block th:each="dogSell:${pResponseDtoList}">
-                        <div class="container mt-3" style="height:800px">
+                        <div class="container mt-3" style="height:800px;display:inline-block;">
                             <p class="fw-bold fs-5">[[${#temporals.format(dogSell.createdDate, 'yyyy-MM-dd')}]] 분양글</p>
                             <div class="card" style="width:18rem;">
                                 <div style="text-align:center;">
@@ -333,6 +333,45 @@ $(document).ready(function(){
             $("form").submit();
         }
     });
+
+     $(".searchBtn").on("keyup",function(key){
+        if(key.keyCode==13){
+            //-console.log("admin_dogsell_list.html 검색버튼 클릭이벤트 진입");
+            var selectvalue = $("select[name=type]").val();
+            //-console.log("admin_dogsell_list.html 검색버튼 클릭이벤트 진입 먼저 select값 확인 -> "+selectvalue);
+
+            var selectkeyword = $("input[name=keyword]").val();
+            //-console.log("admin_dogsell_list.html 검색버튼 클릭이벤트 진입 먼저 keyword값 확인 -> "+selectkeyword);
+
+            if(selectvalue =="" || selectkeyword == ""){
+                //-console.log("admin_dogsell_list.html  검색버튼 클릭이벤트 진입 select값이 없거나 검색키워드입력하지 않은경우");
+                alert("검색조건을 선택하시고 검색어를 입력해주세요");
+                return;
+            }
+
+            if(selectvalue !="" && selectkeyword != ""){
+                //-console.log("admin_dogsell_list.html 검색버튼 클릭이벤트 진입 select값이 존재하고 검색키워드입력한 경우");
+                //var localDate = $("input[name='localDate']").val();
+
+                var href = window.location.search;
+                const urlParams = new URLSearchParams("${href}");
+                var typequery = urlParams.get("type");
+                var keywordquery = urlParams.get("keyword");
+                console.log("admin_dogsell_list.html 페이지이동 버튼 클릭진입 현재 쿼리스트링 얻기 -> "+ href);
+                console.log("admin_dogsell_list.html 페이지이동 버튼 클릭진입 현재 쿼리스트링 keyword 얻기 -> "+ keywordquery);
+                console.log("admin_dogsell_list.html 페이지이동 버튼 클릭진입 현재 쿼리스트링 type 얻기 -> "+ typequery);
+
+                var keyword = $("input[name='keyword']").val();
+                console.log("admin_dogsell_list.html 페이지이동 버튼 클릭진입  keyword 얻기 -> "+ keyword);
+                console.log("admin_dogsell_list.html 페이지이동 버튼 클릭진입  type 얻기 -> "+ selectvalue);
+
+                //$("form").attr("action", `/admin/dogsell/list?yearmonth=${localDate}&tabtitle=dogsell&type=${type}&keyword=${keyword}`)
+                //.submit();
+
+                $("form").submit();
+            }
+        }
+     });
 
 
 //관리자페이지 분양글에서 특징글 전체 보이게 모달창으로 보이게할때

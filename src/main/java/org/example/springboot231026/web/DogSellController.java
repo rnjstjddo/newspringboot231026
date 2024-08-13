@@ -56,7 +56,9 @@ public class DogSellController {
                 model.addAttribute("dsListDto", dsListDto);
             }
 
-            List<String> completeList= dsListDto.stream().map(dto -> dto.getComplete()).collect(Collectors.toList());
+            List<String> completeList= dsListDto.stream().map(dto -> dto.getComplete())
+                    .collect(Collectors.toList());
+            System.out.println("컨트롤러DogSellController list() 진입 complete 값 -> "+ completeList.toString());
 
             Map<String, Object> map = wns.wishNumListGet(memberDTO.getName());
             //Map<String, Object> map = wns.wishNumListGet(memberDTO.getEmail());

@@ -62,11 +62,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         //http.httpBasic().and().authorizeRequests().antMatchers("/**").permitAll();
 
         http.authorizeRequests().anyRequest().authenticated();
-        http.formLogin().loginPage("/member/login").defaultSuccessUrl("/post/list")
+        http.formLogin().loginPage("/member/login").defaultSuccessUrl("/home/home")
                 //.failureHandler(customAuthFailureHandler());
                 .failureHandler(customAuthFailureHandler);
         http.csrf().disable();
-        http.logout().logoutUrl("/member/logout").logoutSuccessUrl("/post/list");
+        http.logout().logoutUrl("/member/logout").logoutSuccessUrl("/home/home");
         http.exceptionHandling().accessDeniedHandler(accessDeniedHandler());
         //자동로그인설정
         http.rememberMe().key("12345678").tokenRepository(persistentTokenRepository())
