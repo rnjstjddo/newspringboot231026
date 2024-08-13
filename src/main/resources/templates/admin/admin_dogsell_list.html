@@ -79,8 +79,8 @@
 
 
                 <form th:action="@{/admin/dogsell/list}" method="get">
-                    <!--<input type="hidden" name="yearmonth" th:value="${localDate}">
-                    <input type="hidden" name="tabtitle" th:value="dogsell">-->
+                    <input type="hidden" name="yearmonth" th:value="${localDate}">
+                    <input type="hidden" name="tabtitle" th:value="dogsell">
                     <input type="hidden" name="dogsellcount" th:value="${count.dogsellcount}">
                     <input type="hidden" name="guestcount" th:value="${count.guestcount}">
                     <input type="hidden" name="guestreplycount" th:value="${count.guestreplycount}">
@@ -257,7 +257,7 @@ $(document).ready(function(){
         $("form").append(`<input type="hidden" name="inquirycount" value="${inquirycount}">`);
 
         var href = window.location.search;
-        const urlParams = new URLSearchParams("${href}");
+        const urlParams = new URLSearchParams(${href});
         var type = urlParams.get("type");
         var keyword = urlParams.get("keyword");
         console.log("admin_dogsell_list.html 페이지이동 버튼 클릭진입 현재 쿼리스트링 얻기 -> "+ href);
@@ -312,20 +312,20 @@ $(document).ready(function(){
             //var localDate = $("input[name='localDate']").val();
 
             var href = window.location.search;
-            const urlParams = new URLSearchParams("${href}");
+            const urlParams = new URLSearchParams(${href});
             var typequery = urlParams.get("type");
             var keywordquery = urlParams.get("keyword");
             console.log("admin_dogsell_list.html 페이지이동 버튼 클릭진입 현재 쿼리스트링 얻기 -> "+ href);
             console.log("admin_dogsell_list.html 페이지이동 버튼 클릭진입 현재 쿼리스트링 keyword 얻기 -> "+ keywordquery);
             console.log("admin_dogsell_list.html 페이지이동 버튼 클릭진입 현재 쿼리스트링 type 얻기 -> "+ typequery);
 
-            var type = $("input[name='type']").val();
             var keyword = $("input[name='keyword']").val();
             console.log("admin_dogsell_list.html 페이지이동 버튼 클릭진입  keyword 얻기 -> "+ keyword);
-            console.log("admin_dogsell_list.html 페이지이동 버튼 클릭진입  type 얻기 -> "+ type);
+            console.log("admin_dogsell_list.html 페이지이동 버튼 클릭진입  type 얻기 -> "+ selectvalue);
 
-            $("form").attr("action", `/admin/dogsell/list?yearmonth=${localDate}&tabtitle=dogsell&type=${type}&keyword=${keyword}`)
-            .submit();
+            <!--$("form").attr("action", `/admin/dogsell/list?yearmonth=${localDate}&tabtitle=dogsell&type=${type}&keyword=${keyword}`)
+            .submit();-->
+            $("form").submit();
         }
     });
 
