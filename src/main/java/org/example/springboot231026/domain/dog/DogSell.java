@@ -54,6 +54,7 @@ public class DogSell extends BaseTimeEntity {
 
     //분양완료경우
     @Column(nullable = false)
+    //@Convert(converter = BooleanToYNConverter.class)
     @Builder.Default
     private Boolean complete=false;
 
