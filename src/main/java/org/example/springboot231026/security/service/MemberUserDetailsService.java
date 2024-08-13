@@ -27,10 +27,8 @@ public class MemberUserDetailsService implements UserDetailsService {
 
         System.out.println("security-service MemberUserDetailsService 오버라이딩 loadUserByUsername() 진입 파라미터 username으로 DB엔티티 가져옴 Member ->"+entity.toString() );
 
-        //Member entity = mr.findByUsername(username,false).orElseThrow(() ->{return new UsernameNotFoundException("회원이 존재하지 않습니다.");});
-
-
-        if((entity != null && entity.getFromSocial() == "true") || (entity != null && entity.getFromSocial() == "false")) {
+        if( (entity != null && entity.getFromSocial() == "true") ||
+                (entity != null && entity.getFromSocial() == "false") ) {
 
             System.out.println("security-service MemberUserDetailsService 오버라이딩 loadUserByUsername() 진입 " +
                     " Member엔티티가 존재하고 fromSocial 값이 true/false인 경우 진입 entity -> "+ entity.toString());
