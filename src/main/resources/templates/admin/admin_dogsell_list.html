@@ -274,7 +274,9 @@ $(document).ready(function(){
         e.preventDefault();
         //-console.log("admin_guestbook_list.html 검색+페이지이동 reset버튼 클릭이벤트 진입");
 
-        $("form").empty();
+        //$("form").empty();
+        $("select[name=type]").val("");
+        $("input[name=keyword]").val("");
 
         //$("form").append(`<input type="hidden" name="yearmonth" value="${localDate}">`);
         //$("form").append(`<input type="hidden" name="tabtitle" value="dogsell">`);
