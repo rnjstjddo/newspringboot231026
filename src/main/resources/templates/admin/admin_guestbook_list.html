@@ -76,9 +76,9 @@
                     <a class="btn btn-outline-secondary" type="button" href="/admin/tab/guestbook">방명록 전체목록페이지로 이동</a>
                 </div>
 
-                <form th:action="@{/admin/guestbook/list}" method="post">
-                    <input type="hidden" name="yearmonth" th:value="${localDate}">
-                    <input type="hidden" name="tabtitle" th:value="guestbook">
+                <form th:action="@{/admin/guestbook/list}" method="get">
+                    <!--<input type="hidden" name="yearmonth" th:value="${localDate}">
+                    <input type="hidden" name="tabtitle" th:value="guestbook">-->
                     <input type="hidden" name="dogsellcount" th:value="${count.dogsellcount}">
                     <input type="hidden" name="guestcount" th:value="${count.guestcount}">
                     <input type="hidden" name="guestreplycount" th:value="${count.guestreplycount}">
@@ -200,10 +200,9 @@ $(document).ready(function(){
         var page = $(this).data("num");
 
 
-        $("form").append(`<input type='hidden' name='page' value="${page}">`);
-
-        $("form").append(`<input type="hidden" name="yearmonth" value="${localDate}">`);
-        $("form").append(`<input type="hidden" name="tabtitle" value="guestbook">`);
+        //$("form").append(`<input type='hidden' name='page' value="${page}">`);
+        //$("form").append(`<input type="hidden" name="yearmonth" value="${localDate}">`);
+        //$("form").append(`<input type="hidden" name="tabtitle" value="guestbook">`);
         $("form").append(`<input type="hidden" name="dogsellcount" value="${dogsellcount}">`);
         $("form").append(`<input type="hidden" name="guestcount" value="${guestcount}">`);
         $("form").append(`<input type="hidden" name="guestreplycount" value="${guestreplycount}">`);
@@ -211,7 +210,17 @@ $(document).ready(function(){
         $("form").append(`<input type="hidden" name="postreplycount" value="${postreplycount}">`);
         $("form").append(`<input type="hidden" name="inquirycount" value="${inquirycount}">`);
 
-        $("form").submit();
+       var href = window.location.search;
+        const urlParams = new URLSearchParams("${href}");
+        var type = urlParams.get("type");
+        var keyword = urlParams.get("keyword");
+        console.log("admin_guestbook_list.html 페이지이동 버튼 클릭진입 현재 쿼리스트링 얻기 -> "+ href);
+        console.log("admin_guestbook_list.html 페이지이동 버튼 클릭진입 현재 쿼리스트링 keyword 얻기 -> "+ keyword);
+        console.log("admin_guestbook_list.html 페이지이동 버튼 클릭진입 현재 쿼리스트링 type 얻기 -> "+ type);
+
+        //$("form").attr("action",`/admin/guestbook/list${href}`).submit();
+        $("form").attr("action",`/admin/guestbook/list?page=${page}&yearmonth=${localDate}&tabtitle=guestbook&type=${type}&keyword=${keyword}`).submit();
+
     });//검색+페이지이동
 
 
@@ -221,8 +230,8 @@ $(document).ready(function(){
 
         $("form").empty();
 
-        $("form").append(`<input type="hidden" name="yearmonth" value="${localDate}">`);
-        $("form").append(`<input type="hidden" name="tabtitle" value="guestbook">`);
+        //$("form").append(`<input type="hidden" name="yearmonth" value="${localDate}">`);
+        //$("form").append(`<input type="hidden" name="tabtitle" value="guestbook">`);
         $("form").append(`<input type="hidden" name="dogsellcount" value="${dogsellcount}">`);
         $("form").append(`<input type="hidden" name="guestcount" value="${guestcount}">`);
         $("form").append(`<input type="hidden" name="guestreplycount" value="${guestreplycount}">`);
@@ -230,7 +239,10 @@ $(document).ready(function(){
         $("form").append(`<input type="hidden" name="postreplycount" value="${postreplycount}">`);
         $("form").append(`<input type="hidden" name="inquirycount" value="${inquirycount}">`);
 
-        $("form").submit();
+         var href = window.location.search;
+        console.log("admin_guestbook_list.html 검색 초기화 버튼클릭 진입 현재 쿼리스트링 얻기 -> "+ href);
+        $("form").attr("action",`/admin/guestbook/list?yearmonth=${localDate}&tabtitle=guestbook`).submit();
+
     });
 
 
@@ -252,8 +264,7 @@ $(document).ready(function(){
 
         if(selectvalue !="" && selectkeyword != ""){
             //-console.log("admin_guestbook_list.html 검색버튼 클릭이벤트 진입 select값이 존재하고 검색키워드입력한 경우");
-            $("form").submit();
-        }
+            $("form").attr("action", `/admin/guestbook/list?yearmonth=${localDate}&tabtitle=guestbook`).submit();        }
     });
 
 

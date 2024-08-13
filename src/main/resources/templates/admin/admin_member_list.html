@@ -75,9 +75,9 @@
                 </div>
 
 
-                    <form th:action="@{/admin/member/list}" method="post">
-                        <input type="hidden" name="yearmonth" th:value="${localDate}">
-                        <input type="hidden" name="tabtitle" th:value="member">
+                    <form th:action="@{/admin/member/list}" method="get">
+                       <!-- <input type="hidden" name="yearmonth" th:value="${localDate}">
+                        <input type="hidden" name="tabtitle" th:value="member">-->
                         <input type="hidden" name="dogsellcount" th:value="${count.dogsellcount}">
                         <input type="hidden" name="guestcount" th:value="${count.guestcount}">
                         <input type="hidden" name="guestreplycount" th:value="${count.guestreplycount}">
@@ -194,17 +194,28 @@ $(document).ready(function(){
         e.preventDefault();
         var page = $(this).data("num");
 
-        $("form").append(`<input type='hidden' name='page' value="${page}">`);
-        $("form").append(`<input type="hidden" name="yearmonth" value="${localDate}">`);
+        //$("form").append(`<input type='hidden' name='page' value="${page}">`);
+        //$("form").append(`<input type="hidden" name="yearmonth" value="${localDate}">`);
         $("form").append(`<input type="hidden" name="dogsellcount" value="${dogsellcount}">`);
-        $("form").append(`<input type="hidden" name="tabtitle" value="member">`);
+        //$("form").append(`<input type="hidden" name="tabtitle" value="member">`);
         $("form").append(`<input type="hidden" name="guestcount" value="${guestcount}">`);
         $("form").append(`<input type="hidden" name="guestreplycount" value="${guestreplycount}">`);
         $("form").append(`<input type="hidden" name="postcount" value="${postcount}">`);
         $("form").append(`<input type="hidden" name="postreplycount" value="${postreplycount}">`);
         $("form").append(`<input type="hidden" name="inquirycount" value="${inquirycount}">`);
 
-        $("form").submit();
+
+        var href = window.location.search;
+        const urlParams = new URLSearchParams("${href}");
+        var type = urlParams.get("type");
+        var keyword = urlParams.get("keyword");
+        console.log("admin_member_list.html 페이지이동 버튼 클릭진입 현재 쿼리스트링 얻기 -> "+ href);
+        console.log("admin_member_list.html 페이지이동 버튼 클릭진입 현재 쿼리스트링 keyword 얻기 -> "+ keyword);
+        console.log("admin_member_list.html 페이지이동 버튼 클릭진입 현재 쿼리스트링 type 얻기 -> "+ type);
+
+        //$("form").attr("action",`/admin/member/list${href}`).submit();
+        $("form").attr("action",`/admin/member/list?page=${page}&yearmonth=${localDate}&tabtitle=member&type=${type}&keyword=${keyword}`).submit();
+
     });//검색+페이지이동
 
 
@@ -222,7 +233,10 @@ $(document).ready(function(){
         $("form").append(`<input type="hidden" name="postreplycount" value="${postreplycount}">`);
         $("form").append(`<input type="hidden" name="inquirycount" value="${inquirycount}">`);
 
-        $("form").submit();
+        var href = window.location.search;
+        console.log("admin_member_list.html 검색 초기화 버튼클릭 진입 현재 쿼리스트링 얻기 -> "+ href);
+        $("form").attr("action",`/admin/member/list?yearmonth=${localDate}&tabtitle=member`).submit();
+
     });
 
 //검색버튼클릭시
@@ -243,7 +257,7 @@ $(document).ready(function(){
 
         if(selectvalue !="" && selectkeyword != ""){
             //-console.log("admin_member_list.html 검색버튼 클릭이벤트 진입 select값이 존재하고 검색키워드입력한 경우");
-            $("form").submit();
+            $("form").attr("action", `/admin/member/list?yearmonth=${localDate}&tabtitle=member`).submit();
         }
     });
 

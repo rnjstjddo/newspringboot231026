@@ -25,7 +25,7 @@ import java.time.LocalDate;
 @Controller
 @RequestMapping("/admin")
 @AllArgsConstructor
-public class AdminPostController {
+public class AdminSearchController {
 
 
     //분양글
@@ -44,11 +44,11 @@ public class AdminPostController {
 
     //방명록글 특정날짜만 쿼리만들자.
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/guestbook/list")
+    @GetMapping("/guestbook/list")
     public String adminGuestbookList(@ModelAttribute("pageRequestDTO") GuestPageRequestDTO pageRequestDTO, Model model,
-                                     String yearmonth,
+                                     @RequestParam(required = false) String yearmonth,
                                      @AuthenticationPrincipal MemberDTO memberDTO,
-                                     String tabtitle,
+                                     @RequestParam(required = false) String tabtitle,
                                      @ModelAttribute("count") Count count) {
         System.out.println("관리자컨트롤러PostController /admin/guestbook/list 진입 String타입 날짜 -> " + yearmonth);
         System.out.println("관리자컨트롤러PostController /admin/guestbook/list 진입 Count -> " + count.toString());
@@ -99,11 +99,11 @@ public class AdminPostController {
 
     //방명록댓글 특정날짜만 쿼리만들자.
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/guestbookreply/list")
+    @GetMapping("/guestbookreply/list")
     public String adminGuestbookReplyList(@ModelAttribute("pageRequestDTO") GuestPageRequestDTO pageRequestDTO, Model model,
-                                          String yearmonth,
+                                          @RequestParam(required = false) String yearmonth,
                                           @AuthenticationPrincipal MemberDTO memberDTO,
-                                          String tabtitle,
+                                          @RequestParam(required = false) String tabtitle,
                                           @ModelAttribute Count count) {
         System.out.println("관리자컨트롤러PostController /admin/guestbookreply/list 진입 String타입 날짜 -> " + yearmonth);
         System.out.println("관리자컨트롤러PostController /admin/guestbookreply/list 진입 String타입 날짜 -> " + yearmonth);
@@ -147,11 +147,11 @@ public class AdminPostController {
 
     //게시글 날짜처리
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/post/list")
+    @GetMapping("/post/list")
     public String adminPostList(@ModelAttribute("pageRequestDTO") PageRequestDTO pageRequestDTO, Model model,
                                 @AuthenticationPrincipal MemberDTO memberDTO,
-                                String yearmonth,
-                                String tabtitle,
+                                @RequestParam(required = false) String yearmonth,
+                                @RequestParam(required = false) String tabtitle,
                                 @ModelAttribute Count count) {
         System.out.println("관리자컨트롤러PostController /admin/post/list 진입 String타입 날짜 -> " + yearmonth);
         System.out.println("관리자컨트롤러PostController /admin/post/list 진입 Count -> " + count.toString());
@@ -195,11 +195,11 @@ public class AdminPostController {
 
     //게시글댓글 날짜처리
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/postreply/list") //admin/postreply/list
+    @GetMapping("/postreply/list") //admin/postreply/list
     public String adminPostReplyList(@ModelAttribute("pageRequestDTO") PageRequestDTO pageRequestDTO, Model model,
                                      @AuthenticationPrincipal MemberDTO memberDTO,
-                                     String yearmonth,
-                                     String tabtitle,
+                                     @RequestParam(required = false) String yearmonth,
+                                     @RequestParam(required = false) String tabtitle,
                                      @ModelAttribute Count count) {
         System.out.println("관리자컨트롤러PostController /admin/postreply/list 진입 String타입 날짜 -> " + yearmonth);
         System.out.println("관리자컨트롤러PostController /admin/postreply/list 진입 Count -> " + count.toString());
@@ -244,11 +244,11 @@ public class AdminPostController {
 
     //문의글
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/inquiry/list")
+    @GetMapping("/inquiry/list")
     public String adminInguiryList(Model model, @ModelAttribute("pageRequestDTO") PageRequestDTO pageRequestDTO,
                                    @AuthenticationPrincipal MemberDTO memberDTO,
-                                   String yearmonth,
-                                   String tabtitle,
+                                   @RequestParam(required = false) String yearmonth,
+                                   @RequestParam(required = false) String tabtitle,
                                    @ModelAttribute Count count) {
         System.out.println("관리자컨트롤러PostController /admin/inquiry/list 진입 String타입 날짜 -> " + yearmonth);
         System.out.println("관리자컨트롤러PostController /admin/inquiry/list 진입 Count -> " + count.toString());
@@ -290,11 +290,11 @@ public class AdminPostController {
 
     //회원
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/member/list")
+    @GetMapping("/member/list")
     public String adminMemberList(Model model, @ModelAttribute("pageRequestDTO") PageRequestDTO pageRequestDTO,
                                   @AuthenticationPrincipal MemberDTO memberDTO,
-                                  String yearmonth,
-                                  String tabtitle,
+                                  @RequestParam(required = false) String yearmonth,
+                                  @RequestParam(required = false) String tabtitle,
                                   @ModelAttribute Count count) {
         System.out.println("관리자컨트롤러PostController /admin/member/list 진입 String타입 날짜 -> " + yearmonth);
         System.out.println("관리자컨트롤러PostController /admin/member/list 진입 Count -> " + count.toString());
@@ -329,11 +329,11 @@ public class AdminPostController {
 
     //분양글
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/dogsell/list")
+    @GetMapping("/dogsell/list")
     public String adminDogSellList(Model model, @ModelAttribute("pageRequestDTO") PageRequestDTO pageRequestDTO,
                                   @AuthenticationPrincipal MemberDTO memberDTO,
-                                  String yearmonth,
-                                  String tabtitle,
+                                   @RequestParam(required = false) String yearmonth,
+                                   @RequestParam(required = false) String tabtitle,
                                   @ModelAttribute Count count) {
         System.out.println("관리자컨트롤러PostController /admin/dogsell/list 진입 String타입 날짜 -> " + yearmonth);
         System.out.println("관리자컨트롤러PostController /admin/dogsell/list 진입 Count -> " + count.toString());
@@ -363,8 +363,8 @@ public class AdminPostController {
             return "redirect:/admin/home/home";
         }
 
-        return "admin/admin_dogsell_list?yearmonth="+yearmonth+"&tabtitle="+tabtitle;
-        //return "admin/admin_dogsell_list";
+        //return "admin/admin_dogsell_list?yearmonth="+yearmonth+"&tabtitle="+tabtitle;
+        return "admin/admin_dogsell_list";
     }
 
 
