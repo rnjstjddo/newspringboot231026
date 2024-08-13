@@ -39,7 +39,7 @@ public class DogSellSearchImpl extends QuerydslRepositorySupport implements DogS
 
                     switch(type){
                         case"c":
-                            bb.or(ds.complete.stringValue().contains(keyword));
+                            bb.or(ds.complete.contains(keyword));
                             break;
                         case"w":
                             bb.or(ds.writer.contains(keyword));
@@ -81,7 +81,7 @@ public class DogSellSearchImpl extends QuerydslRepositorySupport implements DogS
 
                 switch(type){
                     case"c":
-                        bb.or(ds.complete.stringValue().contains(keyword));
+                        bb.or(ds.complete.contains(keyword));
                         break;
                     case"w":
                         bb.or(ds.writer.contains(keyword));
@@ -125,7 +125,7 @@ public class DogSellSearchImpl extends QuerydslRepositorySupport implements DogS
 
                 switch(type){
                     case"c":
-                        bb.or(ds.complete.as(keyword));
+                        bb.or(ds.complete.contains(keyword));
                         break;
                     case"w":
                         bb.or(ds.writer.contains(keyword));

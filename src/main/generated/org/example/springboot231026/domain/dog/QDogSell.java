@@ -23,7 +23,7 @@ public class QDogSell extends EntityPathBase<DogSell> {
 
     public final NumberPath<Double> age = createNumber("age", Double.class);
 
-    public final BooleanPath complete = createBoolean("complete");
+    public final StringPath complete = createString("complete");
 
     public final StringPath content = createString("content");
 

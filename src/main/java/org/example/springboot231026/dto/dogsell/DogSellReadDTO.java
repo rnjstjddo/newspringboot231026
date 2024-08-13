@@ -25,7 +25,9 @@ public class DogSellReadDTO {
     private String writer, content,title, gender, type, name, health;
 
     //추가
-    private Boolean complete;
+    //private Boolean complete;
+    private String complete;
+
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime createdDate, modifiedDate;

@@ -21,8 +21,8 @@ public class DogSellListDTO {
     private Double weight, age;
     //private Long inum;
 
-    //
-    private Boolean complete;
+    //private Boolean complete;
+    private String complete;
 
     //추가
     private String membername;

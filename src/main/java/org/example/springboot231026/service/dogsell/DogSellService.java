@@ -211,7 +211,7 @@ public class DogSellService {
 
         boolean result =false;
         if(entity.isPresent()){
-            entity.get().changeComplete(true);
+            entity.get().changeComplete("true");
             result = true;
         }
         return result;

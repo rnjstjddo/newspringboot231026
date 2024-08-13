@@ -3,6 +3,8 @@ package org.example.springboot231026.domain.dog;
 
 import lombok.*;
 import org.example.springboot231026.domain.posts.BaseTimeEntity;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 
@@ -12,6 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @ToString
+@DynamicInsert
 
 public class DogSell extends BaseTimeEntity {
 
@@ -53,11 +56,15 @@ public class DogSell extends BaseTimeEntity {
 
 
     //분양완료경우
-    @Column(nullable = false)
+    //@Column(nullable = false)
     //@Convert(converter = BooleanToYNConverter.class)
+    //@Builder.Default
+    //private Boolean complete=false;
+    @ColumnDefault("'FALSE'")
+    @Column(name="complete",nullable = false)
     @Builder.Default
-    private Boolean complete=false;
-
+    //private Boolean complete = false;
+    private String complete = "false";
 
     public DogSell change(String title, String gender, String type, String name,String content,
                           String health, Double age, Double weight, int price){
@@ -75,7 +82,7 @@ public class DogSell extends BaseTimeEntity {
         return this;
     }
 
-    public void changeComplete(boolean value){
+    public void changeComplete(String value){
         System.out.println("domain-dog패키지 DogSell클래스 changeComplete()진입 분양완료된 분양강아지");
         this.complete=value;
     }
