@@ -105,7 +105,7 @@
 
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary btn-search searchBtn" type="button">검색</button>
-                                    <button type="reset" class="btn btn-outline-secondary" id="reset">초기화</button>
+                                    <button type="reset" class="btn btn-outline-secondary">초기화</button>
                                 </div>
                             </div>
                         </div>
@@ -287,7 +287,8 @@ $(document).ready(function(){
         //var href = window.location.href;
         var href = window.location.search;
         console.log("admin_dogsell_list.html 검색 초기화 버튼클릭 진입 현재 쿼리스트링 얻기 -> "+ href);
-        $("form").attr("action",`/admin/dogsell/list?yearmonth=${localDate}&tabtitle=dogsell`).submit();
+        //$("form").attr("action",`/admin/dogsell/list?yearmonth=${localDate}&tabtitle=dogsell`).submit();
+        $("form").submit();
     });
 
 
