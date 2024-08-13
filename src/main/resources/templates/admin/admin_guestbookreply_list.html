@@ -103,7 +103,7 @@
 
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary btn-search searchBtn" type="submit">검색</button>
-                                <button type="reset" class="btn btn-outline-secondary" id="reset">초기화</button>
+                                <button type="button" class="btn btn-outline-secondary" id="reset">초기화</button>
                             </div>
                         </div>
                     </div>
@@ -195,15 +195,15 @@ $(document).ready(function(){
         e.preventDefault();
         var page = $(this).data("num");
 
-        //$("form").append(`<input type='hidden' name='page' value="${page}">`);
+        $("form").append(`<input type='hidden' name='page' value="${page}">`);
         //$("form").append(`<input type="hidden" name="yearmonth" value="${localDate}">`);
-        $("form").append(`<input type="hidden" name="dogsellcount" value="${dogsellcount}">`);
+        //$("form").append(`<input type="hidden" name="dogsellcount" value="${dogsellcount}">`);
         //$("form").append(`<input type="hidden" name="tabtitle" value="guestbookreply">`);
-        $("form").append(`<input type="hidden" name="guestcount" value="${guestcount}">`);
-        $("form").append(`<input type="hidden" name="guestreplycount" value="${guestreplycount}">`);
-        $("form").append(`<input type="hidden" name="postcount" value="${postcount}">`);
-        $("form").append(`<input type="hidden" name="postreplycount" value="${postreplycount}">`);
-        $("form").append(`<input type="hidden" name="inquirycount" value="${inquirycount}">`);
+        //$("form").append(`<input type="hidden" name="guestcount" value="${guestcount}">`);
+        //$("form").append(`<input type="hidden" name="guestreplycount" value="${guestreplycount}">`);
+        //$("form").append(`<input type="hidden" name="postcount" value="${postcount}">`);
+        //$("form").append(`<input type="hidden" name="postreplycount" value="${postreplycount}">`);
+        //$("form").append(`<input type="hidden" name="inquirycount" value="${inquirycount}">`);
 
         var href = window.location.search;
         const urlParams = new URLSearchParams("${href}");
@@ -214,8 +214,8 @@ $(document).ready(function(){
         console.log("admin_guestbookreply_list.html 페이지이동 버튼 클릭진입 현재 쿼리스트링 type 얻기 -> "+ type);
 
         //$("form").attr("action",`/admin/guestbookreply/list${href}`).submit();
-        $("form").attr("action",`/admin/guestbookreply/list?page=${page}&yearmonth=${localDate}&tabtitle=guestbookreply&type=${type}&keyword=${keyword}`).submit();
-
+        //$("form").attr("action",`/admin/guestbookreply/list?page=${page}&yearmonth=${localDate}&tabtitle=guestbookreply&type=${type}&keyword=${keyword}`).submit();
+        $("form").submit();
     });//검색+페이지이동
 
 
@@ -223,21 +223,23 @@ $(document).ready(function(){
         e.preventDefault();
         //-console.log("admin_guestbookreply_list.html 방명록댓글검색+페이지이동 처리 클릭이벤트 진입");
 
-        $("form").empty();
+        //$("form").empty();
+        $("select[name=type]").val("");
+        $("input[name=keyword]").val("");
 
         //$("form").append(`<input type="hidden" name="yearmonth" value="${localDate}">`);
         //$("form").append(`<input type="hidden" name="tabtitle" value="guestbookreply">`);
-        $("form").append(`<input type="hidden" name="dogsellcount" value="${dogsellcount}">`);
-        $("form").append(`<input type="hidden" name="guestcount" value="${guestcount}">`);
-        $("form").append(`<input type="hidden" name="guestreplycount" value="${guestreplycount}">`);
-        $("form").append(`<input type="hidden" name="postcount" value="${postcount}">`);
-        $("form").append(`<input type="hidden" name="postreplycount" value="${postreplycount}">`);
-        $("form").append(`<input type="hidden" name="inquirycount" value="${inquirycount}">`);
+        //$("form").append(`<input type="hidden" name="dogsellcount" value="${dogsellcount}">`);
+        //$("form").append(`<input type="hidden" name="guestcount" value="${guestcount}">`);
+        //$("form").append(`<input type="hidden" name="guestreplycount" value="${guestreplycount}">`);
+        //$("form").append(`<input type="hidden" name="postcount" value="${postcount}">`);
+        //$("form").append(`<input type="hidden" name="postreplycount" value="${postreplycount}">`);
+        //$("form").append(`<input type="hidden" name="inquirycount" value="${inquirycount}">`);
 
         var href = window.location.search;
         console.log("admin_guestbookreply_list.html 검색 초기화 버튼클릭 진입 현재 쿼리스트링 얻기 -> "+ href);
-        $("form").attr("action",`/admin/guestbookreply/list?&yearmonth=${localDate}&tabtitle=guestbookreply`).submit();
-;
+        //$("form").attr("action",`/admin/guestbookreply/list?&yearmonth=${localDate}&tabtitle=guestbookreply`).submit();
+        $("form").submit();
     });
 
 
@@ -259,7 +261,8 @@ $(document).ready(function(){
 
         if(selectvalue !="" && selectkeyword != ""){
             //-console.log("admin_guestbookreply_list.html 검색버튼 클릭이벤트 진입 select값이 존재하고 검색키워드입력한 경우");
-            $("form").attr("action", `/admin/guestbookreply/list?yearmonth=${localDate}&tabtitle=guestbookreply`).submit();
+            //$("form").attr("action", `/admin/guestbookreply/list?yearmonth=${localDate}&tabtitle=guestbookreply`).submit();
+            $("form").submit();
         }
     });
 
