@@ -126,6 +126,7 @@ public class DogSellSearchImpl extends QuerydslRepositorySupport implements DogS
                 switch(type){
                     case"c":
                         bb.or(ds.complete.stringValue().contains(keyword));
+                        System.out.println("dogsell-search패키지 DogSellSearchImpl클래스 searchInquiryAll() 진입 complete값 -> "+ ds.complete + " stringValue() -> "+ ds.complete.stringValue() +" toString() -> "+ ds.complete.toString());
                         break;
                     case"w":
                         bb.or(ds.writer.contains(keyword));
