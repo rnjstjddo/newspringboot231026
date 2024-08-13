@@ -257,7 +257,7 @@ $(document).ready(function(){
         $("form").append(`<input type="hidden" name="inquirycount" value="${inquirycount}">`);
 
         var href = window.location.search;
-        const urlParams = new URLSearchParams(${href});
+        const urlParams = new URLSearchParams("${href}");
         var type = urlParams.get("type");
         var keyword = urlParams.get("keyword");
         console.log("admin_dogsell_list.html 페이지이동 버튼 클릭진입 현재 쿼리스트링 얻기 -> "+ href);
@@ -312,7 +312,7 @@ $(document).ready(function(){
             //var localDate = $("input[name='localDate']").val();
 
             var href = window.location.search;
-            const urlParams = new URLSearchParams(${href});
+            const urlParams = new URLSearchParams("${href}");
             var typequery = urlParams.get("type");
             var keywordquery = urlParams.get("keyword");
             console.log("admin_dogsell_list.html 페이지이동 버튼 클릭진입 현재 쿼리스트링 얻기 -> "+ href);
