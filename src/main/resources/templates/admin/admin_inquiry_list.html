@@ -122,7 +122,7 @@
 
                     </tr>
 
-                    <tr th:each="dto:${responseDtoList}">
+                    <tr th:each="dto:${pResponseDtoList}">
                         <td id="id">[[${dto.innum}]]</td>
                         <td>[[${dto.content}]]</td>
                         <td>[[${dto.writer}]]</td>
@@ -148,7 +148,7 @@
                     </tr>
                 </table>
 
-                <th:block th:if="${responseDtoList} != null">
+                <th:block th:if="${pResponseDtoList} != null">
                     <nav  aria-label="Page navigation example">
                         <div>
                             <ul class="pagination">
@@ -173,14 +173,14 @@
                 <br>
                 <br>
 
-                <th:block th:if="${responseDtoList} ==null and ${pageRequestDTO.type} ==null and
+                <th:block th:if="${pResponseDtoList} ==null and ${pageRequestDTO.type} ==null and
                         ${pageRequestDTO.keyword} ==null">
                     <img class="card-img-top" style="height:100px;width:auto;" src="/image/imoji/waiting.jpg" alt="" />
                     [[${localDate}]] 일자에 등록된 문의글이 없습니다.
                 </th:block>
 
 
-                <th:block th:if="${responseDtoList} ==null and ${pageRequestDTO.type} !=null and
+                <th:block th:if="${pResponseDtoList} ==null and ${pageRequestDTO.type} !=null and
                         ${pageRequestDTO.keyword} !=null">
                     <div style="text-align:center;">
                         <b>검색 결과가 없습니다. </b> &nbsp;&nbsp;

@@ -1,3 +1,4 @@
+/*
 package org.example.springboot231026.web;
 
 import lombok.AllArgsConstructor;
@@ -77,11 +78,11 @@ public class AdminSearchController {
                 model.addAttribute("pResponseDto", pResponseDto);
             }
 
-           /* if(count.getGuestcount() ==null) {
+           *//* if(count.getGuestcount() ==null) {
                 count = this.returnCount(localDate);
                 model.addAttribute("count", count);
                 System.out.println("Count출력 -> "+ count.toString());
-            }*/
+            }*//*
 
         }//yearmonth존재할경우
         else {
@@ -392,3 +393,4 @@ public class AdminSearchController {
     }
 
 }
+*/

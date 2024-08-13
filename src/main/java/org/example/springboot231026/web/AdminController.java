@@ -601,7 +601,7 @@ public class AdminController {
                 System.out.println("관리자컨트롤러 /admin/post/list 진입 " +
                         " PageResponseDTO 게시글 존재하는 경우 진입 getSize() -> " + pResponseDto.getSize() + ", getTotal() -> " + pResponseDto.getTotal());
 
-                model.addAttribute("responseDtoList", pResponseDto.getDtoList());
+                model.addAttribute("pResponseDtoList", pResponseDto.getDtoList());
                 model.addAttribute("pResponseDto", pResponseDto);
             }
 
@@ -653,7 +653,7 @@ public class AdminController {
                 System.out.println("관리자컨트롤러 /admin/postreply/list 진입 " +
                         " PageResponseDTO getSize() -> " + pResponseDto.getSize() + ", getTotal() -> " + pResponseDto.getTotal());
 
-                model.addAttribute("responseDtoList", pResponseDto.getDtoList());
+                model.addAttribute("pResponseDtoList", pResponseDto.getDtoList());
                 model.addAttribute("pResponseDto", pResponseDto);
             }
 
@@ -704,7 +704,7 @@ public class AdminController {
                 System.out.println("관리자컨트롤러 /admin/inquiry/list 진입 " +
                         " PageResponseDTO getSize() -> " + pResponseDto.getSize());
 
-                model.addAttribute("responseDtoList", pResponseDto.getDtoList());
+                model.addAttribute("pResponseDtoList", pResponseDto.getDtoList());
                 model.addAttribute("pResponseDto", pResponseDto);
             }
 
@@ -754,7 +754,7 @@ public class AdminController {
                 System.out.println("관리자컨트롤러 /admin/member/list 진입 " +
                         " PageResponseDTO getSize() -> " + pResponseDto.getSize());
 
-                model.addAttribute("responseDtoList", pResponseDto.getDtoList());
+                model.addAttribute("pResponseDtoList", pResponseDto.getDtoList());
                 model.addAttribute("pResponseDto", pResponseDto);
             }
 

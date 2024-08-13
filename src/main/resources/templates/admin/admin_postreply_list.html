@@ -117,14 +117,14 @@
 
 
                     <br>
-                    <th:block th:if="${responseDtoList} ==null and ${pageRequestDTO.type} ==null and
+                    <th:block th:if="${pResponseDtoList} ==null and ${pageRequestDTO.type} ==null and
                         ${pageRequestDTO.keyword} ==null">
                         <img class="card-img-top" style="height:100px;width:auto;" src="/image/imoji/waiting.jpg" alt="" />
                         [[${localDate}]] 일자에 등록된 게시물댓글이 없습니다.
                     </th:block>
 
 
-                    <th:block th:if="${responseDtoList} ==null and ${pageRequestDTO.type} !=null and
+                    <th:block th:if="${pResponseDtoList} ==null and ${pageRequestDTO.type} !=null and
                         ${pageRequestDTO.keyword} !=null">
                         <div style="text-align:center;">
                             <b>검색 결과가 없습니다. </b> &nbsp;&nbsp;
@@ -132,7 +132,7 @@
                     </th:block>
                     <br>
 
-                    <th:block th:if="${!#lists.isEmpty(responseDtoList)}">
+                    <th:block th:if="${!#lists.isEmpty(pResponseDtoList)}">
 
                         <table class="table table-hover">
                                 <tr>
@@ -145,7 +145,7 @@
                             </tr>
 
 
-                            <tr th:each="dto:${responseDtoList}">
+                            <tr th:each="dto:${pResponseDtoList}">
                                 <td id="id" >[[${dto.prno}]]</td>
                                 <td>[[${dto.pno}]]</td>
                                 <td>[[${dto.comment}]]</td>
