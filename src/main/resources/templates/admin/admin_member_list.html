@@ -94,10 +94,9 @@
                                     <select class="form-select" name="type">
                                         <option th:selected ="${pageRequestDTO.type == null}" value="" >---</option>
                                         <option th:selected ="${pageRequestDTO.type == 'n'}" value="n">회원명</option>
+                                        <option th:selected ="${pageRequestDTO.type == 'e'}" value="e">회원이메일</option>
                                         <option th:selected ="${pageRequestDTO.type == 'b'}" value="b">소셜로그인여부</option>
                                         <option th:selected ="${pageRequestDTO.type == 'r'}" value="r">회원권한</option>
-                                        <option th:selected ="${pageRequestDTO.type == 'nb'}" value="nb">회원명&소셜로그인여부</option>
-                                        <option th:selected ="${pageRequestDTO.type == 'nbr'}" value="nbr">회원명&소셜로그인여부&회원권한</option>
                                     </select>
                                 </div>
 

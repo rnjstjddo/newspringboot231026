@@ -46,6 +46,9 @@ public class MemberSearchImpl extends QuerydslRepositorySupport implements Membe
                     case"r":
                         bb.or(qp.role.stringValue().contains(keyword));
                         break;
+                    case"e":
+                        bb.or(qp.email.contains(keyword));
+                        break;
                 }
             }//for
             jpp.where(bb);
@@ -100,6 +103,9 @@ public class MemberSearchImpl extends QuerydslRepositorySupport implements Membe
                     case"r":
                         bb.or(qp.role.stringValue().contains(keyword));
                         break;
+                    case"e":
+                        bb.or(qp.email.contains(keyword));
+                        break;
                 }
             }//for
             jpp.where(bb);
@@ -151,6 +157,9 @@ public class MemberSearchImpl extends QuerydslRepositorySupport implements Membe
                         break;
                     case"r":
                         bb.or(qp.role.stringValue().contains(keyword));
+                        break;
+                    case"e":
+                        bb.or(qp.email.contains(keyword));
                         break;
                 }
             }//for

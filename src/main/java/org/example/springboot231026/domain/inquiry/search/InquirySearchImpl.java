@@ -35,8 +35,8 @@ public class InquirySearchImpl extends QuerydslRepositorySupport implements Inqu
                 for(String type: types){
 
                     switch(type){
-                        case"b":
-                            bb.or(qp.complete.stringValue().contains(keyword));
+                        case"a":
+                            bb.or(qp.complete.contains(keyword));
                             break;
                         case"c":
                             bb.or(qp.content.contains(keyword));
@@ -76,8 +76,8 @@ public class InquirySearchImpl extends QuerydslRepositorySupport implements Inqu
             for(String type: types){
 
                 switch(type){
-                    case"b":
-                        bb.or(qp.complete.stringValue().contains(keyword));
+                    case"a":
+                        bb.or(qp.complete.contains(keyword));
                         break;
                     case"c":
                         bb.or(qp.content.contains(keyword));
@@ -120,8 +120,8 @@ public class InquirySearchImpl extends QuerydslRepositorySupport implements Inqu
             for(String type: types){
 
                 switch(type){
-                    case"b":
-                        bb.or(qp.complete.stringValue().contains(keyword));
+                    case"a":
+                        bb.or(qp.complete.contains(keyword));
                         break;
                     case"c":
                         bb.or(qp.content.contains(keyword));
