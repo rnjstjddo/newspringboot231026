@@ -20,7 +20,7 @@ var registerjs = {
                 }
 
                 if(!regex.test(fileName)){
-                    alert("해당종류의 파일은 업로드 할수없습니다");
+                    alert("jpg|bmp|jpeg|png|gif 이외의 파일은 업로드 할수없습니다");
                     $("input[type=file]").val("")
                     return false;
                 }

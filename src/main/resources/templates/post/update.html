@@ -36,7 +36,7 @@
                     <div class="mb-3">
                         제목
                         <input class="form-control" type="text"  name="title" id="title"  placeholder="제목을 작성해주세요"
-                               th:value="${posts.title}" required/>
+                               th:value="${posts.title}" readonly/>
                     </div>
                     <br>
                     <br>
@@ -53,7 +53,7 @@
 
                     <div class="mb-3">
                         <label class="form-label">내용</label>
-                        <textarea class="form-control"  name="content"  id="content" rows="3" required>[[${posts.content}]]</textarea>
+                        <textarea class="form-control"  name="content"  id="content" rows="3" readonly>[[${posts.content}]]</textarea>
                     </div>
                     <br>
 
@@ -75,7 +75,7 @@
                         <th:block th:if="${loginMember == posts.author}">
                         <button type="button" style="display:inline-block;" class="btn btn-outline-primary" id="modifyBtn">게시글 저장하기</button>
                         <button type="button" style="display:inline-block;" class="btn btn-outline-danger" id="removeBtn">게시글 삭제하기</button>
-                        <button type="reset"  style="display:inline-block;" class="btn btn-outline-secondary">초기화</button>
+                        <button type="button"  style="display:inline-block;" class="btn btn-outline-secondary" id="resetBtn">초기화</button>
                         </th:block>
                         <th:block th:unless="${loginMember == posts.author}">
                         </th:block>
@@ -186,6 +186,7 @@ function memberRemoveBtn(obj){
     if(confirm("해당 댓글을 삭제하시겠습니까?")){
         //-console.log($(obj));
         var prno =$(obj).data("prno");
+        console.log("방명록 댓글삭제 번호 확인 -> "+ prno);
 
         $.ajax({
             url:"/post/reply/delete",
@@ -201,18 +202,19 @@ function memberRemoveBtn(obj){
     }//if문
 }
 
-
+//------------------- 댓글삭제처리
 function authorRemoveBtn(obj){
     //-console.log("post-update.html author 화면댓글목록 삭제버튼 클릭이벤트 진입");
     if(confirm("해당 댓글을 삭제하시겠습니까?")){
         //-console.log($(obj));
         var prno =$(obj).data("prno");
+        console.log("방명록 댓글삭제 번호 확인 -> "+ prno);
 
         $.ajax({
             url:"/post/reply/delete",
             type:"delete",
             data:{prno:prno},
-            dataType:"text",
+            dataType:"text", //String success넘어온다
             success:function(result){
                 //-console.log("post-update.html author 화면댓글목록 삭제버튼 클릭이벤트 진입 -$.ajax success() 진입");
                 //-console.log(result);
@@ -445,6 +447,9 @@ $("#removeBtn").on("click", function(e){
 });//삭제하기버튼 이벤트처리
 
 
+$("#resetBtn").on("click", function(){
+    location.reload();
+});
 
 
 });//$(document)

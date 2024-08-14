@@ -88,7 +88,7 @@
                         <th:block th:if="${loginMember == gDto.writer}">
                         <button type="button" style="display:inline-block;" class="btn btn-outline-primary" id="modifyBtn">게시글 저장하기</button>
                         <button type="button" style="display:inline-block;" class="btn btn-outline-danger" id="removeBtn">게시글 삭제하기</button>
-                        <button type="reset"  style="display:inline-block;" class="btn btn-outline-secondary">초기화</button>
+                        <button type="button"  style="display:inline-block;" class="btn btn-outline-secondary"  id="resetBtn">초기화</button>
                         </th:block>
                         <th:block th:if="${loginMember != gDto.writer}">
                         </th:block>
@@ -193,7 +193,7 @@ function dateFormat(date){
 }
 
 
-
+//------------------------ 댓글삭제하기
 function memberRemoveBtn(obj){
     //-console.log("guestbook-read.html 방명록 댓글 게시글작성자=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입");
     if(confirm("해당 댓글을 삭제하시겠습니까?")){
@@ -205,11 +205,11 @@ function memberRemoveBtn(obj){
             url:"/guestbook/reply/delete",
             type:"delete",
             data:{grno:grno},
-            dataType:"text",
+            dataType:"json",
             success:function(result){
                 if(result){
                     //-console.log("guestbook-read.html 방명록 댓글 게시글작성자=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입 -$.ajax success() 진입");
-                    alert(grno+"번 댓글이 삭제되었습니다.");
+                    alert(${grno}+"번 댓글이 삭제되었습니다.");
                     $(obj).closest(".memberReplyOuterLi").remove();
                 }
             }//success
@@ -262,7 +262,7 @@ var writer =[[${gDto.writer}]];
 
   var gno =[[${gDto.gno}]];
 
-    //방명록 댓글등록
+//------------------방명록 댓글등록
     $(".replyAddBtn").on("click", function(){
         //-console.log("guestbook-read.html 방명록 댓글등록버튼 클릭이벤트 진입");
 
@@ -366,7 +366,7 @@ var writer =[[${gDto.writer}]];
         });//$.ajax
     });//방명록 댓글등록 클릭이벤트
 
-//방명록 수정하기
+//------------------------방명록 수정하기
 $("#modifyBtn").on("click", function(e){
     //-console.log("read.html 조회수정페이지 저장하기 버튼이벤트 진입 - form처리 ");
     e.preventDefault();
@@ -389,36 +389,11 @@ $("#modifyBtn").on("click", function(e){
         readForm.attr("method","post");
         readForm.submit();
     }
-
-<!--
-    var data={
-        title:title, content:content, author:author
-    };
-
-    $.ajax({
-        url:'/api/v1/posts/'+id,
-        method:'put',
-        dataType:'json',
-        contentType:'application/json;charset=utf-8',
-        data:JSON.stringify(data)
-    })
-    .done(function(){
-        //-console.log("posts-update.html 수정페이지 저장하기 버튼이벤트 진입 -done() 진입");
-        alert(id+"번 게시글이 수정되었습니다.");
-        location.replace(`/?`+link);
-    })
-    .fail(function(error){
-        //-console.log("posts-update.html 수정페이지 저장하기 버튼이벤트 진입 -fail() 진입");
-        //-console.log(error);
-        alert("작성자만 수정할수있습니다.");
-    });
--->
-
 });//방명록 저장하기버튼 이벤트처리
 
 var pageRequestDTO = [[${pageRequestDTO}]];
 
-//방명록 삭제하기버튼처리
+//-------------------------------방명록 삭제하기버튼처리
 $("#removeBtn").on("click", function(e){
     //-console.log("guestbook-read.html 방명록 조회수정페이지 삭제하기 버튼이벤트 진입 - form처리 ");
     e.preventDefault();
@@ -452,6 +427,10 @@ $("#removeBtn").on("click", function(e){
         });//$.ajax
     }//if
 });//방명록 삭제하기버튼 이벤트처리
+
+$("#resetBtn").on("click", function(){
+    location.reload();
+});
 
 });//$(document)
 </script>

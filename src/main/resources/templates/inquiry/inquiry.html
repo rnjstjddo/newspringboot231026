@@ -57,7 +57,7 @@
                             </div>
                             <div class="input-group">
                                 <span class="input-group-text">문의내용</span>
-                                <textarea class="form-control content" name="content" rows="7" required></textarea>
+                                <textarea class="form-control content" name="content" id="content" rows="7" required></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -146,8 +146,16 @@ $(document).ready(function(){
                 alert("핸드폰번호의 공백과 '-' 기호를 제외한 숫자만 입력해주세요!")
                 return;
             }else{
+                var contentVal = $("#content").val();
+
+                if(contentVal == null || contentVal ==""){
+                    alert("문의내용을 입력해주세요!")
+                    $("#content").focus();
+                    return;
+                }
                 if(confirm("아래 내용으로 관리자에게 문의하시겠습니까?")){
                     $("form").attr("method","post").attr("action","/inquiry/register").submit();
+                    $(".inquiryModal").hide();
                 }
             }//끝if정규식
         }else{

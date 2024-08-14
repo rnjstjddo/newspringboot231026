@@ -24,7 +24,7 @@
                     <div class="mb-3">
                         제목
                         <input class="form-control" type="text"  name="title" id="title"  placeholder="제목을 작성해주세요"
-                               th:value="${readDto.title}" required/>
+                               th:value="${readDto.title}" readonly/>
                     </div>
                     <br>
                     <div class="mb-3">
@@ -71,7 +71,7 @@
                     <br>
                     <div class="mb-3">
                         <label class="form-label">내용</label>
-                        <textarea class="form-control"  name="content"  id="content" rows="3" required>[[${readDto.content}]]</textarea>
+                        <textarea class="form-control"  name="content"  id="content" rows="3" readonly>[[${readDto.content}]]</textarea>
                     </div>
                     <br>
 
@@ -116,7 +116,7 @@
                             <button type="button" style="display:inline-block;" class="btn btn-outline-primary" id="modifyBtn">분양정보 수정하러하기</button>
                             <button type="button" style="display:inline-block;" class="btn btn-outline-danger" id="removeBtn">분양정보 삭제하기</button>
                             <button type="button" style="display:inline-block;" class="btn btn-outline-warning" id="completeBtn">분양완료 표시하기</button>
-                            <button type="reset"  style="display:inline-block;" class="btn btn-outline-secondary">초기화</button>
+                            <!--<button type="reset"  style="display:inline-block;" class="btn btn-outline-secondary">초기화</button>-->
                         </th:block>
                     </div>
                 </form>
