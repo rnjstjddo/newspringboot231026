@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 
+import java.util.Optional;
+
 import static org.example.springboot231026.dto.member.MemberDTO.setAuthorities;
 
 
@@ -23,15 +25,15 @@ public class MemberUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("security-service MemberUserDetailsService 오버라이딩 loadUserByUsername() 진입 파라미터 username -> "+ username );
 
-        Member entity = mr.findByEmail(username).orElseGet(() ->{ return new Member();});
+        Optional<Member> o = mr.findByEmail(username);
 
-        System.out.println("security-service MemberUserDetailsService 오버라이딩 loadUserByUsername() 진입 파라미터 username으로 DB엔티티 가져옴 Member ->"+entity.toString() );
+        if(o.isPresent()) {
+            System.out.println("security-service MemberUserDetailsService 오버라이딩 loadUserByUsername() 진입 파라미터 username으로 DB엔티티 가져옴 Member 존재할경우 진입 ->" + o.get().toString());
 
-        if( (entity != null && entity.getFromSocial() == "true") ||
-                (entity != null && entity.getFromSocial() == "false") ) {
+            Member entity = o.get();
 
             System.out.println("security-service MemberUserDetailsService 오버라이딩 loadUserByUsername() 진입 " +
-                    " Member엔티티가 존재하고 fromSocial 값이 true/false인 경우 진입 entity -> "+ entity.toString());
+                    " Member엔티티가 존재하고 fromSocial 값이 true/false인 경우 진입 entity -> " + entity.toString());
 
             MemberDTO dto = new MemberDTO(
                     entity.getEmail(),
@@ -49,7 +51,7 @@ public class MemberUserDetailsService implements UserDetailsService {
             System.out.println("security-service MemberUserDetailsService 오버라이딩 loadUserByUsername() 진입 MemberDTO(UserDetails반환타입) ->" + dto.toString());
 
             return dto;
-        }//if문
+        }
         return null;
     }
 }
