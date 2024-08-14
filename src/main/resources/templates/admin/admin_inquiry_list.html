@@ -74,8 +74,8 @@
             </div>
 
                 <form th:action="@{/admin/inquiry/list}" method="get">
-                    <!--<input type="hidden" name="yearmonth" th:value="${localDate}">
-                    <input type="hidden" name="tabtitle" th:value="inquiry">-->
+                    <input type="hidden" name="yearmonth" th:value="${localDate}">
+                    <input type="hidden" name="tabtitle" th:value="inquiry">
                     <input type="hidden" name="dogsellcount" th:value="${count.dogsellcount}">
                     <input type="hidden" name="guestcount" th:value="${count.guestcount}">
                     <input type="hidden" name="guestreplycount" th:value="${count.guestreplycount}">
@@ -408,7 +408,7 @@ $(document).ready(function(){
         createdDateVal= dateFormat(createdDateVal);
 
         $.ajax({
-            url:'/admin/inquiry/innumVal',
+            url:'/admin/inquiry/'+innumVal,
             method:'post',
             contentType: "application/json;charset=utf-8",
             dataType:'text',

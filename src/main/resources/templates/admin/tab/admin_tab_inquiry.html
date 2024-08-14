@@ -295,7 +295,7 @@ $(document).ready(function(){
         createdDateVal= dateFormat(createdDateVal);
 
         $.ajax({
-            url:'/admin/inquiry/innumVal',
+            url:'/admin/inquiry/'+innumVal,
             method:'post',
             contentType: "application/json;charset=utf-8",
             dataType:'text',
