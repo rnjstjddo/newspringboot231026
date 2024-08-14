@@ -298,7 +298,7 @@ $(document).ready(function(){
             url:'/admin/inquiry/'+innumVal,
             method:'post',
             contentType: "application/json;charset=utf-8",
-            dataType:'text',
+            dataType:'json',
             success: function(result){
                 if(result !=null){
                     console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글보기 성공 진입 ");
