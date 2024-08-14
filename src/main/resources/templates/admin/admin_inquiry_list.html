@@ -419,12 +419,9 @@ $(document).ready(function(){
                     $(".inquiryReplyModalShowDivHeader").html(innumVal+"번 문의글 | 문의일자 "+createdDateVal);
                     $(".inquiryReplyModalShowDivBodyOriginal").html(contentVal);
                     console.log("답변보기내용 -> ");
-                    console.log(result);
-                    //$(result).each(function(i, inquiry){
-                    //    console.log("ajax 결과 each로 받음 content출력 ->"+inquiry.content);
-                    //});
+                    console.log(result["content"]);
                     //$("#inquiryReplyModalShowDivBody").val(result.content);
-                    $("#inquiryReplyModalShowDivBody").val(content);
+                    $("#inquiryReplyModalShowDivBody").val(result["content"]);
                     $(".inquiryReplyModalShowDiv").show();
 
                 }else{

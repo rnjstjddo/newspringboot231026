@@ -145,7 +145,7 @@ public class DogSellController {
     public @ResponseBody Long registerPost(@RequestBody DogSellDTO dsDto){
         System.out.println("컨트롤러DogSellController registerPost() 진입 파라미터 DogSellDTO -> "+ dsDto.toString());
         //System.out.println("컨트롤러DogController registerPost() 진입 파라미터 DogSellDTO -> "+ dsDto.toString());
-        dsDto.setComplete(false);//처음등록시에는 false 분양완료 안된상태로 값이 들어가야한다.
+        dsDto.setComplete("false");//처음등록시에는 false 분양완료 안된상태로 값이 들어가야한다.
         Long dno =dss.register(dsDto);
         return dno;
     }

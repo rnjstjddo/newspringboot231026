@@ -26,7 +26,7 @@ public class DogSellDTO {
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDateTime createdDate, modifiedDate;
 
-    private Boolean complete;
+    private String complete;
 
     @Builder.Default
     private List<DogSellImageDTO> dsiDtoList = new ArrayList<>();
