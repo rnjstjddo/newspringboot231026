@@ -418,7 +418,8 @@ $(document).ready(function(){
 
                     $(".inquiryReplyModalShowDivHeader").html(innumVal+"번 문의글 | 문의일자 "+createdDateVal);
                     $(".inquiryReplyModalShowDivBodyOriginal").html(contentVal);
-                    console.log("답변보기내용 -> "+ result.content);
+                    console.log("답변보기내용 -> ");
+                    console.log(result);
                     $("#inquiryReplyModalShowDivBody").val(result.content);
                     $(".inquiryReplyModalShowDiv").show();
 

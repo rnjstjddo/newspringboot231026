@@ -76,8 +76,9 @@
                         아직 등록된 분양글이 없습니다.
                     </th:block>
 
+                <div style="float:left;">
                     <th:block th:each="dogSell:${responseDtoList}">
-                    <div class="container mt-3" style="height:800px;float:left;" >
+                    <div class="container mt-3" style="height:800px;" >
                         <p class="fw-bold fs-5">[[${#temporals.format(dogSell.createdDate, 'yyyy-MM-dd')}]] 분양글</p>
                         <div class="card" style="width:18rem;">
                             <div style="text-align:center;">
@@ -87,9 +88,9 @@
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item"><span class="fw-bolder">분양결과</span>&nbsp;
-                                    <th:block th:switch="${#strings.toString(dogSell.complete)}">
-                                        <th:block th:case="true">분양완료</th:block>
-                                        <th:block th:case="false">분양중</th:block>
+                                    <th:block th:switch="${dogSell.complete}">
+                                        <th:block th:case=true>분양완료</th:block>
+                                        <th:block th:case=false>분양중</th:block>
                                     </th:block>
                                     <!--[[${dogSell.complete}]]-->
                                 </li>
@@ -112,6 +113,7 @@
                         </div>
                     </div>
                     </th:block>
+                </div>
 
                     <br>
                     <br>
