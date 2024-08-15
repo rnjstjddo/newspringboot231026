@@ -77,8 +77,9 @@
                     </th:block>
 
                <!-- <div style="float:left;"> class="col-lg-4 mb-5 firstDiv" display: inline-block; -->
+
+                <th:block th:each="dogSell:${responseDtoList}">
                 <div>
-                    <th:block th:each="dogSell:${responseDtoList}">
                     <div class="container mt-3" style="height:800px;display:inline-block;" >
                         <p class="fw-bold fs-5">[[${#temporals.format(dogSell.createdDate, 'yyyy-MM-dd')}]] 분양글</p>
                         <div class="card" style="width:18rem;">
@@ -114,8 +115,8 @@
                             </ul>
                         </div>
                     </div>
-                    </th:block>
                 </div>
+                </th:block>
 
                     <br>
                     <br>
