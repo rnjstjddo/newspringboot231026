@@ -76,14 +76,14 @@
                         아직 등록된 분양글이 없습니다.
                     </th:block>
 
-               <!-- <div style="float:left;"> class="col-lg-4 mb-5 firstDiv" display: inline-block; <div style="overflow:hidden;"> -->
+               <!-- <div style="float:left;"> mt-3 class="col-lg-4 mb-5 firstDiv" display: inline-block; <div style="overflow:hidden;"> -->
 
 
                 <th:block th:each="dogSell:${responseDtoList}">
-
-                    <div class="container mt-3" style="height:800px;">
+                <div style="overflow:hidden;">
+                    <div class="container" style="height:800px;float:left;">
                         <p class="fw-bold fs-5">[[${#temporals.format(dogSell.createdDate, 'yyyy-MM-dd')}]] 분양글</p>
-                        <div class="card" style="width:18rem;float:left;">
+                        <div class="card" style="width:18rem;">
                             <div style="text-align:center;">
                                 <img style="height:150px;width:auto;"
                                     th:src="|/dogselldisplay?fileName=${dogSell.dsiDtoList[0].getImageURL()}|"
@@ -116,6 +116,7 @@
                             </ul>
                         </div>
                     </div>
+                </div>
                 </th:block>
 
                     <br>
