@@ -246,8 +246,9 @@ var posts =[[${posts}]]
         var authorReply =$(".authorReplyP").val();
 
         var data={comment:comment, name:loginMember, pno:id};
+        console.log("게시글댓글내용확인 -> "+ comment);
 
-        if(comment== null){
+        if(comment== null || comment ==""){
             alert("게시글댓글 내용을 입력해주세요!")
             $(".replyAddTextArea").focus();
             return;
