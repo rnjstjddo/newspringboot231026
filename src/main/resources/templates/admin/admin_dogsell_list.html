@@ -129,51 +129,48 @@
                 <br><br>
 
                 <th:block th:if="${!#lists.isEmpty(pResponseDtoList)}">
-               <!-- <div style="float:left;">  class="col-lg-4 mb-5 firstDiv"-->
-                <div>
+                <th:block th:each="dogSell:${pResponseDtoList}">
                     <br>
-                    <th:block th:each="dogSell:${pResponseDtoList}">
-                        <div class="container mt-3" style="height:800px;float:left;">
-                            <p class="fw-bold fs-5">[[${#temporals.format(dogSell.createdDate, 'yyyy-MM-dd')}]] 분양글</p>
-                            <div class="card" style="width:18rem;">
-                                <div style="text-align:center;">
-                                    <img style="height:150px;width:auto;"
-                                         th:src="|/dogselldisplay?fileName=${dogSell.dsiDtoList[0].getImageURL()}|"
-                                         class="card-img-top"/>
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><span class="fw-bolder">분양결과</span>&nbsp;
-                                        <th:block th:if="${dogSell.complete== true}">
-                                            분양완료
-                                        </th:block>
-                                        <th:block th:unless="${dogSell.complete== true}">
-                                            분양중
-                                        </th:block>
-                                    </li>
-                                    <li class="list-group-item"><span class="fw-bolder">특징</span>&nbsp;
-                                        <span style="display:block; overflow:hidden; text-overflow:ellipsis; width:250px; height:100px;">
-                                        <button type="button" th:data-dno="${dogSell.dno}" th:data-content="${dogSell.content}" class="btn btn-outline-success btn-sm contentAll">전체보기</button> [[${dogSell.content}]]
-                                    </span>
-                                    </li>
-                                    <li class="list-group-item"><sapn class="fw-bolder">분양번호</sapn>&nbsp;[[${dogSell.dno}]]</li>
-                                    <li class="list-group-item"><sapn class="fw-bolder">작성자</sapn>&nbsp;[[${dogSell.membername}]]</li>
-                                    <li class="list-group-item"><sapn class="fw-bolder">나이</sapn>&nbsp;[[${dogSell.age}]]세</li>
-                                    <li class="list-group-item"><sapn class="fw-bolder">무게</sapn>&nbsp;[[${dogSell.weight}]]kg</li>
-                                    <li class="list-group-item"><sapn class="fw-bolder">품종</sapn>&nbsp;[[${dogSell.type}]]</li>
-                                    <li class="list-group-item"><sapn class="fw-bolder">암수</sapn>&nbsp;[[${dogSell.gender}]]</li>
-                                    <li class="list-group-item"><sapn class="fw-bolder">건강상태</sapn>&nbsp;[[${dogSell.health}]]</li>
-                                    <li class="list-group-item"><sapn class="fw-bolder">작성시간</sapn>&nbsp;[[${#temporals.format(dogSell.createdDate, 'yyyy-MM-dd HH:mm:ss')}]]</li>
-                                    <li class="list-group-item"><sapn class="fw-bolder">수정시간</sapn>&nbsp;[[${#temporals.format(dogSell.modifiedDate, 'yyyy-MM-dd HH:mm:ss')}]]</li>
-                                    <li class="list-group-item"><sapn class="fw-bolder">희망가격</sapn>&nbsp;[[${dogSell.price}]]만원</li>
-                                </ul>
+                    <br>
+                    <div style="height:800px;float:left;margin-right:20px;">
+                        <p class="fw-bold fs-5">[[${#temporals.format(dogSell.createdDate, 'yyyy-MM-dd')}]] 분양글</p>
+                        <div class="card" style="width:18rem;">
+                            <div style="text-align:center;">
+                                <img style="height:150px;width:auto;"
+                                     th:src="|/dogselldisplay?fileName=${dogSell.dsiDtoList[0].getImageURL()}|"
+                                     class="card-img-top"/>
                             </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><span class="fw-bolder">분양결과</span>&nbsp;
+                                    <th:block th:if="${dogSell.complete== true}">
+                                        분양완료
+                                    </th:block>
+                                    <th:block th:unless="${dogSell.complete== true}">
+                                        분양중
+                                    </th:block>
+                                </li>
+                                <li class="list-group-item"><span class="fw-bolder">특징</span>&nbsp;
+                                    <span style="display:block; overflow:hidden; text-overflow:ellipsis; width:250px; height:100px;">
+                                    <button type="button" th:data-dno="${dogSell.dno}" th:data-content="${dogSell.content}" class="btn btn-outline-success btn-sm contentAll">전체보기</button> [[${dogSell.content}]]
+                                </span>
+                                </li>
+                                <li class="list-group-item"><sapn class="fw-bolder">분양번호</sapn>&nbsp;[[${dogSell.dno}]]</li>
+                                <li class="list-group-item"><sapn class="fw-bolder">작성자</sapn>&nbsp;[[${dogSell.membername}]]</li>
+                                <li class="list-group-item"><sapn class="fw-bolder">나이</sapn>&nbsp;[[${dogSell.age}]]세</li>
+                                <li class="list-group-item"><sapn class="fw-bolder">무게</sapn>&nbsp;[[${dogSell.weight}]]kg</li>
+                                <li class="list-group-item"><sapn class="fw-bolder">품종</sapn>&nbsp;[[${dogSell.type}]]</li>
+                                <li class="list-group-item"><sapn class="fw-bolder">암수</sapn>&nbsp;[[${dogSell.gender}]]</li>
+                                <li class="list-group-item"><sapn class="fw-bolder">건강상태</sapn>&nbsp;[[${dogSell.health}]]</li>
+                                <li class="list-group-item"><sapn class="fw-bolder">작성시간</sapn>&nbsp;[[${#temporals.format(dogSell.createdDate, 'yyyy-MM-dd HH:mm:ss')}]]</li>
+                                <li class="list-group-item"><sapn class="fw-bolder">수정시간</sapn>&nbsp;[[${#temporals.format(dogSell.modifiedDate, 'yyyy-MM-dd HH:mm:ss')}]]</li>
+                                <li class="list-group-item"><sapn class="fw-bolder">희망가격</sapn>&nbsp;[[${dogSell.price}]]만원</li>
+                            </ul>
                         </div>
-                    </th:block><!-- 해당날짜에 분양글이 존재할경우 th:if -->
-                </div>
+                    </div>
+                </th:block><!-- 해당날짜에 분양글이 존재할경우 th:if -->
                 </th:block><!-- th:each-->
 
-                <br><br>
-
+                <br>
                 <th:block th:if="${pResponseDtoList} != null">
                 <div class="mb-3" style="clear:left;">
                     <nav  aria-label="Page navigation example">

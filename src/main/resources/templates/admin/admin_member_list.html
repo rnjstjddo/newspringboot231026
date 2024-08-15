@@ -208,9 +208,9 @@ $(document).ready(function(){
         const urlParams = new URLSearchParams("${href}");
         var type = urlParams.get("type");
         var keyword = urlParams.get("keyword");
-        console.log("admin_member_list.html 페이지이동 버튼 클릭진입 현재 쿼리스트링 얻기 -> "+ href);
-        console.log("admin_member_list.html 페이지이동 버튼 클릭진입 현재 쿼리스트링 keyword 얻기 -> "+ keyword);
-        console.log("admin_member_list.html 페이지이동 버튼 클릭진입 현재 쿼리스트링 type 얻기 -> "+ type);
+        //-console.log("admin_member_list.html 페이지이동 버튼 클릭진입 현재 쿼리스트링 얻기 -> "+ href);
+        //-console.log("admin_member_list.html 페이지이동 버튼 클릭진입 현재 쿼리스트링 keyword 얻기 -> "+ keyword);
+        //-console.log("admin_member_list.html 페이지이동 버튼 클릭진입 현재 쿼리스트링 type 얻기 -> "+ type);
 
         //$("form").attr("action",`/admin/member/list${href}`).submit();
         //$("form").attr("action",`/admin/member/list?page=${page}&yearmonth=${localDate}&tabtitle=member&type=${type}&keyword=${keyword}`).submit();
@@ -236,7 +236,7 @@ $(document).ready(function(){
         //$("form").append(`<input type="hidden" name="inquirycount" value="${inquirycount}">`);
 
         var href = window.location.search;
-        console.log("admin_member_list.html 검색 초기화 버튼클릭 진입 현재 쿼리스트링 얻기 -> "+ href);
+        //-console.log("admin_member_list.html 검색 초기화 버튼클릭 진입 현재 쿼리스트링 얻기 -> "+ href);
         //$("form").attr("action",`/admin/member/list?yearmonth=${localDate}&tabtitle=member`).submit();
         $("form").submit();
     });

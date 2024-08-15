@@ -186,7 +186,7 @@ function memberRemoveBtn(obj){
     if(confirm("해당 댓글을 삭제하시겠습니까?")){
         //-console.log($(obj));
         var prno =$(obj).data("prno");
-        console.log("방명록 댓글삭제 번호 확인 -> "+ prno);
+        //-console.log("방명록 댓글삭제 번호 확인 -> "+ prno);
 
         $.ajax({
             url:"/post/reply/delete",
@@ -208,7 +208,7 @@ function authorRemoveBtn(obj){
     if(confirm("해당 댓글을 삭제하시겠습니까?")){
         //-console.log($(obj));
         var prno =$(obj).data("prno");
-        console.log("방명록 댓글삭제 번호 확인 -> "+ prno);
+        //-console.log("방명록 댓글삭제 번호 확인 -> "+ prno);
 
         $.ajax({
             url:"/post/reply/delete",
@@ -246,7 +246,7 @@ var posts =[[${posts}]]
         var authorReply =$(".authorReplyP").val();
 
         var data={comment:comment, name:loginMember, pno:id};
-        console.log("게시글댓글내용확인 -> "+ comment);
+        //-console.log("게시글댓글내용확인 -> "+ comment);
 
         if(comment== null || comment ==""){
             alert("게시글댓글 내용을 입력해주세요!")

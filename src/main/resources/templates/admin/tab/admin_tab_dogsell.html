@@ -37,30 +37,7 @@
                             </div>
                         </div>
                     </div><!-- 검색처리 -->
-                <!--
-                <section class="py-5">
-                    <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
-                        <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
-                            <div class="mb-4 mb-xl-0">
-                                <div class="fs-3 fw-bold text-white">강아지품종검색</div>
-                            </div>
 
-                            <form action="/admin/dogsell/list/search" method="get">
-                                <div class="mb-4 mb-xl-0">
-                                    <div class="input-group col-auto">
-                                        <input class="form-control" name="searchBreed" type="text"
-                                               aria-describedby="button-newsletter" th:value="${searchBreed}"/>
-                                        <button class="btn btn-outline-light searchBtn" type="button">찾기</button>&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <button class="btn btn-outline-light" id="resetSearch" type="button">초기화</button>
-                                        &nbsp;&nbsp;
-                                        <a class="btn btn-outline-light" type="button" href="/admin/dogsell/list">분양글전체목록</a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </aside>
-                </section>-->
 
                     <th:block th:if="${responseDtoList} ==null and ${pageRequestDTO.type} !=null
                         and ${pageRequestDTO.keyword} !=null">
@@ -76,11 +53,11 @@
                         아직 등록된 분양글이 없습니다.
                     </th:block>
 
-               <!-- <div style="float:left;"> mt-3 class="col-lg-4 mb-5 firstDiv" display: inline-block; <div style="overflow:hidden;"> -->
-
-
+                <th:block th:if="${!#lists.isEmpty(responseDtoList)}">
                 <th:block th:each="dogSell:${responseDtoList}">
-                    <div style="height:800px;float:left;">
+                    <br>
+                    <br>
+                    <div style="height:800px;float:left;margin-right:20px;">
                         <p class="fw-bold fs-5">[[${#temporals.format(dogSell.createdDate, 'yyyy-MM-dd')}]] 분양글</p>
                         <div class="card" style="width:18rem;">
                             <div style="text-align:center;">
@@ -116,8 +93,8 @@
                         </div>
                     </div>
                 </th:block>
+                </th:block>
 
-                    <br>
                     <br>
                     <th:block th:if="${responseDtoList} != null">
                     <div class="mb-3" style="clear:left">

@@ -188,7 +188,7 @@
 <script th:inline="javascript">
 
 function dateFormat(date){
-console.log("admin_inquiry_list.html 날짜처리 진입 파라미터 ->"+date);
+//-console.log("admin_inquiry_list.html 날짜처리 진입 파라미터 ->"+date);
     var date =new Date(date);
 
     return date.getFullYear()+
@@ -200,7 +200,7 @@ console.log("admin_inquiry_list.html 날짜처리 진입 파라미터 ->"+date);
 $(document).ready(function(){
  //검색+페이지이동
     $("a.page-link").on("click", function(e){
-        console.log("admin_tab_inquiry.html 검색+페이지이동 처리 클릭이벤트 진입");
+        //-console.log("admin_tab_inquiry.html 검색+페이지이동 처리 클릭이벤트 진입");
         e.preventDefault();
         var page = $(this).data("num");
 
@@ -219,7 +219,7 @@ $(document).ready(function(){
     //관리자페이지 전체문의글에서 답변시 모달창으로 작성
     $(".inquiryReplyModal").on("click", function(){
     //inquiryReplyModalDiv inquiryReplyModalDivHeader inquiryReplyModalDivBody inquiryReplyModalDivBtn
-        console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글작성 클릭이벤트 진입");
+        //-console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글작성 클릭이벤트 진입");
         //innum content writer createdDate
         var innumVal =$(this).data("innum");
         var contentVal =$(this).data("content");
@@ -237,13 +237,13 @@ $(document).ready(function(){
 
     //답변작성완료 버튼 클릭시
     $(".inquiryReplyModalDivSendBtn").on("click", function(){
-        console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글작성 완료 이벤트버튼 클릭 진입");
+        //-console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글작성 완료 이벤트버튼 클릭 진입");
         var replyVal = $("#inquiryReplyModalDivBody").val();
         var innumVal =$(this).data("innum");
         //InquiryReplyDto Long inrenum / String content / Long innum / InquiryDto inquiryDto / LocalDateTime createdDate, modifiedDate;
 
         var data ={innum: innumVal, content: replyVal}
-        console.log(data);
+        //-console.log(data);
 
         $.ajax({
             url:'/admin/inquiry/register',
@@ -253,12 +253,12 @@ $(document).ready(function(){
             dataType:'text',
             success: function(result){
                 if(result == "true"){
-                    console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글작성 성공 진입 -> "+result);
+                    //-console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글작성 성공 진입 -> "+result);
                     alert("문의글에 대한 답변이 전달되었습니다!")
                     $("#inquiryReplyModalDivBody").val("");
                     location.replace(`/admin/tab/inquiry`);
                 }else{
-                    console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글작성 실패 진입 -> "+result);
+                    //-console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글작성 실패 진입 -> "+result);
                     alert("문의글에 대한 답변이 전달되지 않았습니다. 다시 한번 확인해주세요!")
                     $("#inquiryReplyModalDivBody").val("");
                     location.replace(`/admin/tab/inquiry`)
@@ -266,7 +266,7 @@ $(document).ready(function(){
             },
 
             fail : function(){
-                console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글작성 실패 진입")
+                //-console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글작성 실패 진입")
                 alert("문의글에 대한 답변이 전달되지 않았습니다. 다시 한번 확인해주세요!")
                 location.replace(`/admin/tab/inquiry`)
             }
@@ -275,7 +275,7 @@ $(document).ready(function(){
 
     //답변글작성 모달창 닫기이벤트진입
     $(".inquiryReplyModalDivBtn").on("click",function(){
-        console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글작성 모달창 닫기 이벤트 진입");
+        //-console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글작성 모달창 닫기 이벤트 진입");
         $(".inquiryReplyModalDiv").hide();
     });//끝 on() 답변글작성 모달창닫기이벤트
 
@@ -283,7 +283,7 @@ $(document).ready(function(){
     //답변보기 모달창열기
     $(".inquiryReplyShowModal").on("click", function(){
     //inquiryReplyModalShowDiv inquiryReplyModalShowDivHeader inquiryReplyModalShowDivBody inquiryReplyModalShowDivBtn
-        console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글보기 클릭이벤트 진입");
+        //-console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글보기 클릭이벤트 진입");
         //innum content writer createdDate
 
         var innumVal =$(this).data("innum");
@@ -301,23 +301,23 @@ $(document).ready(function(){
             dataType:'json',
             success: function(result){
                 if(result !=null){
-                    console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글보기 성공 진입 ");
+                    //-console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글보기 성공 진입 ");
 
                     $(".inquiryReplyModalShowDivHeader").html(innumVal+"번 문의글 | 문의일자 "+createdDateVal);
                     $(".inquiryReplyModalShowDivBodyOriginal").html(contentVal);
-                    console.log("답변보기내용 -> "+ result.content);
+                    //-console.log("답변보기내용 -> "+ result.content);
                     $("#inquiryReplyModalShowDivBody").val(result.content);
                     $(".inquiryReplyModalShowDiv").show();
 
                 }else{
-                    console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글보기 실패 진입 ");
+                    //-console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글보기 실패 진입 ");
                     alert("문의글에 대한 답변이 확인되지 않습니다.")
                     location.replace(`/admin/tab/inquiry`)
                 }
             },
 
             fail : function(){
-                console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글보기 실패 진입")
+                //-console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글보기 실패 진입")
                 alert("문의글에 대한 답변이 확인되지 않습니다.")
                 location.replace(`/admin/tab/inquiry`)
             }
@@ -326,7 +326,7 @@ $(document).ready(function(){
 
     //답변보기 모달창 닫기이벤트진입
     $(".inquiryReplyModalShowDivBtn").on("click",function(){
-        console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글보기 모달창 닫기 이벤트 진입");
+        //-console.log("관리자페이지 admin_tab_inquiry.html 문의글 전체목록에서 답글보기 모달창 닫기 이벤트 진입");
         $(".inquiryReplyModalShowDiv").hide();
     });//끝 on() 답변보기 모달창닫기이벤트
 
@@ -334,42 +334,42 @@ $(document).ready(function(){
 //검색버튼클릭시
     $(".searchBtn").on("click", function(e){
         e.preventDefault();
-        console.log("admin_tab_inquiry.html 검색버튼 클릭이벤트 진입");
+        //-console.log("admin_tab_inquiry.html 검색버튼 클릭이벤트 진입");
         var selectvalue = $("select[name=type]").val();
-        console.log("admin_tab_inquiry.html 검색버튼 클릭이벤트 진입 먼저 select값 확인 -> "+selectvalue);
+        //-console.log("admin_tab_inquiry.html 검색버튼 클릭이벤트 진입 먼저 select값 확인 -> "+selectvalue);
 
         var selectkeyword = $("input[name=keyword]").val();
-        console.log("admin_tab_inquiry.html 검색버튼 클릭이벤트 진입 먼저 keyword값 확인 -> "+selectkeyword);
+        //-console.log("admin_tab_inquiry.html 검색버튼 클릭이벤트 진입 먼저 keyword값 확인 -> "+selectkeyword);
 
         if(selectvalue =="" || selectkeyword == ""){
-            console.log("admin_tab_inquiry.html  검색버튼 클릭이벤트 진입 select값이 없거나 검색키워드입력하지 않은경우");
+            //-console.log("admin_tab_inquiry.html  검색버튼 클릭이벤트 진입 select값이 없거나 검색키워드입력하지 않은경우");
             alert("검색조건을 선택하시고 검색어를 입력해주세요");
             return;
         }
 
         if(selectvalue !="" && selectkeyword != ""){
-            console.log("admin_tab_inquiry.html 검색버튼 클릭이벤트 진입 select값이 존재하고 검색키워드입력한 경우");
+            //-console.log("admin_tab_inquiry.html 검색버튼 클릭이벤트 진입 select값이 존재하고 검색키워드입력한 경우");
             $("form").submit();
         }
     });
 
      $(".searchBtn").on("keyup",function(key){
         if(key.keyCode==13){
-            console.log("admin_tab_inquiry.html 검색버튼 클릭이벤트 진입");
+            //-console.log("admin_tab_inquiry.html 검색버튼 클릭이벤트 진입");
             var selectvalue = $("select[name=type]").val();
-            console.log("admin_tab_inquiry.html 검색버튼 클릭이벤트 진입 먼저 select값 확인 -> "+selectvalue);
+            //-console.log("admin_tab_inquiry.html 검색버튼 클릭이벤트 진입 먼저 select값 확인 -> "+selectvalue);
 
             var selectkeyword = $("input[name=keyword]").val();
-            console.log("admin_tab_inquiry.html 검색버튼 클릭이벤트 진입 먼저 keyword값 확인 -> "+selectkeyword);
+            //-console.log("admin_tab_inquiry.html 검색버튼 클릭이벤트 진입 먼저 keyword값 확인 -> "+selectkeyword);
 
             if(selectvalue =="" || selectkeyword == ""){
-                console.log("admin_tab_inquiry.html  검색버튼 클릭이벤트 진입 select값이 없거나 검색키워드입력하지 않은경우");
+                //-console.log("admin_tab_inquiry.html  검색버튼 클릭이벤트 진입 select값이 없거나 검색키워드입력하지 않은경우");
                 alert("검색조건을 선택하시고 검색어를 입력해주세요");
                 return;
             }
 
             if(selectvalue !="" && selectkeyword != ""){
-                console.log("admin_tab_inquiry.html 검색버튼 클릭이벤트 진입 select값이 존재하고 검색키워드입력한 경우");
+                //-console.log("admin_tab_inquiry.html 검색버튼 클릭이벤트 진입 select값이 존재하고 검색키워드입력한 경우");
                 $("form").submit();
             }
         }

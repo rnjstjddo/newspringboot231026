@@ -197,10 +197,10 @@ function dateFormat(date){
 function memberRemoveBtn(obj){
     //-console.log("guestbook-read.html 방명록 댓글 게시글작성자=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입");
     if(confirm("해당 댓글을 삭제하시겠습니까?")){
-        console.log(obj);
+        //-console.log(obj);
         var grno =$(obj).data("grno");
         //-console.log("guestbook-read.html 방명록 댓글 게시글작성자=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입 - onclick() 처리 삭제하려는 댓글번호 -> "+ grno);
-        console.log("방명록 삭제번호 확인 ajax전 -> "+grno);
+        //-console.log("방명록 삭제번호 확인 ajax전 -> "+grno);
 
         $.ajax({
             url:"/guestbook/reply/delete",
@@ -210,8 +210,8 @@ function memberRemoveBtn(obj){
             success:function(result){
                 if(result){
                     //-console.log("guestbook-read.html 방명록 댓글 게시글작성자=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입 -$.ajax success() 진입");
-                    console.log("ajax 댓극삭제 성공후 서버에서 전달되어온 값 -> "+result);
-                    console.log("방명록 삭제번호 확인 ajax후 -> "+grno);
+                    //-console.log("ajax 댓극삭제 성공후 서버에서 전달되어온 값 -> "+result);
+                    //-console.log("방명록 삭제번호 확인 ajax후 -> "+grno);
                     alert(grno+"번 댓글이 삭제되었습니다.");
                     $(obj).closest(".memberReplyOuterLi").remove();
                 }
@@ -224,11 +224,11 @@ function memberRemoveBtn(obj){
 function authorRemoveBtn(obj){
     //-console.log("guestbook-read.html 방명록 댓글 게시글작성자!=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입");
     if(confirm("해당 댓글을 삭제하시겠습니까?")){
-        console.log(obj);
+        //-console.log(obj);
         var grno =$(obj).data("grno");
         //-console.log("guestbook-read.html 방명록 댓글 게시글작성자!=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입 - onclick() 처리 삭제하려는 댓글번호 -> "+ grno);
 
-        console.log("방명록 삭제번호 확인 ajax전 -> "+grno);
+        //-console.log("방명록 삭제번호 확인 ajax전 -> "+grno);
         $.ajax({
             url:"/guestbook/reply/delete",
             type:"delete",
@@ -237,8 +237,8 @@ function authorRemoveBtn(obj){
             success:function(result){
                 if(result){
                     //-console.log("guestbook-read.html 방명록 댓글 게시글작성자!=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입 -$.ajax success() 진입");
-                    console.log("방명록 삭제 ajax 성공후 서버에서 넘어온 값 확인 -> "+ result);
-                    console.log("방명록 삭제번호 확인 ajax후 -> "+grno);
+                    //-console.log("방명록 삭제 ajax 성공후 서버에서 넘어온 값 확인 -> "+ result);
+                    //-console.log("방명록 삭제번호 확인 ajax후 -> "+grno);
 
                     alert(grno+"번 댓글이 삭제되었습니다.");
                     $(obj).closest(".authorReplyOuterLi").remove();
