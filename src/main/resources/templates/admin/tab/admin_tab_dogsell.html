@@ -80,7 +80,6 @@
 
 
                 <th:block th:each="dogSell:${responseDtoList}">
-                <div style="overflow:hidden;">
                     <div style="height:800px;float:left;">
                         <p class="fw-bold fs-5">[[${#temporals.format(dogSell.createdDate, 'yyyy-MM-dd')}]] 분양글</p>
                         <div class="card" style="width:18rem;">
@@ -116,7 +115,6 @@
                             </ul>
                         </div>
                     </div>
-                </div>
                 </th:block>
 
                     <br>
