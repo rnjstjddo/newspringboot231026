@@ -135,6 +135,12 @@ $(document).ready(function(){
 
         //-console.log(phone);
 
+        if(contentVal == null || contentVal ==""){
+            alert("문의내용을 입력해주세요!")
+            $("#content").focus();
+            return;
+        }
+
 
         if(phone.length != 0){
             //-console.log("inquiry.html 관리자에게 문의하기 핸드폰번호 입력했을 경우 유효성체크 진입");

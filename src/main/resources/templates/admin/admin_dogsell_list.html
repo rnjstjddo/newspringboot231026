@@ -129,11 +129,11 @@
                 <br><br>
 
                 <th:block th:if="${!#lists.isEmpty(pResponseDtoList)}">
-               <!-- <div style="float:left;">-->
-                <div class="col-lg-4 mb-5 firstDiv">
+               <!-- <div style="float:left;">  class="col-lg-4 mb-5 firstDiv"-->
+                <div>
                     <br>
                     <th:block th:each="dogSell:${pResponseDtoList}">
-                        <div class="container mt-3" style="height:800px;">
+                        <div class="container mt-3" style="height:800px;float:left;">
                             <p class="fw-bold fs-5">[[${#temporals.format(dogSell.createdDate, 'yyyy-MM-dd')}]] 분양글</p>
                             <div class="card" style="width:18rem;">
                                 <div style="text-align:center;">

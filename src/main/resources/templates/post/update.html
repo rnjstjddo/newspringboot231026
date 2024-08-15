@@ -247,6 +247,11 @@ var posts =[[${posts}]]
 
         var data={comment:comment, name:loginMember, pno:id};
 
+        if(comment== null){
+            alert("게시글댓글 내용을 입력해주세요!")
+            $(".replyAddTextArea").focus();
+            return;
+        }
 
         //-console.log("update.html 댓글등록버튼 클릭이벤트 진입 -$.ajax보낼 data ->");
         //-console.log(data);
