@@ -126,10 +126,7 @@
                     <b>검색 결과가 없습니다. </b> &nbsp;&nbsp;
                 </th:block>
 
-                <br><br>
-
-                <th:block th:if="${!#lists.isEmpty(pResponseDtoList)}">
-                <th:block th:each="dogSell:${pResponseDtoList}">
+                <th:block th:each="dogSell:${pResponseDtoList}" th:if="${!#lists.isEmpty(pResponseDtoList)}">
                     <div style="height:800px;float:left;margin-right:20px;">
                         <p class="fw-bold fs-5">[[${#temporals.format(dogSell.createdDate, 'yyyy-MM-dd')}]] 분양글</p>
                         <div class="card" style="width:18rem;">
@@ -165,13 +162,13 @@
                             </ul>
                         </div>
                     </div>
-                    <br>
                 </th:block><!-- 해당날짜에 분양글이 존재할경우 th:if -->
-                </th:block><!-- th:each-->
 
-                <br>
+
                 <th:block th:if="${pResponseDtoList} != null">
                 <div class="mb-3" style="clear:left;">
+                    <br>
+                    <br>
                     <nav  aria-label="Page navigation example">
                         <div>
                             <ul class="pagination">
