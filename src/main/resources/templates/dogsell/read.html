@@ -376,6 +376,7 @@ $(".modalReviewRegisterBtn").on("click", function(e){
     if(modalReviewText ==""){
         alert("댓글 내용을 입력해주세요!");
         $("#modalReviewText").focus();
+        return;// 이게없으면 안된다.
     }
 
     $.ajax({
