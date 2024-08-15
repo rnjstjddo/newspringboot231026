@@ -132,8 +132,8 @@
                                                         </div>
                                                         [[${rDto.comment}]]
                                                         <a href="javascript:;" style="text-decoration:none;"
-                                                           onclick="authorRemoveBtn(this);" data-num="${rDto.grno}"
-                                                           th:data-grno="${rDto.grno}" th:if="${loginMember ==  rDto.name}">
+                                                           onclick="authorRemoveBtn(this);" th:attr="data-grno=${rDto.grno}"
+                                                           th:if="${loginMember ==  rDto.name}">
                                                             X</a>
                                                         <div class="d-flex mt-4">
                                                         </div>
@@ -157,8 +157,7 @@
                                                         </div>
                                                         [[${rDto.comment}]]
                                                         <a href="javascript:;" style="text-decoration:none;"
-                                                           onclick="memberRemoveBtn(this);" th:data-grno="${rDto.grno}"
-                                                           data-num="${rDto.grno}"
+                                                           onclick="memberRemoveBtn(this);" th:attr="data-grno=${rDto.grno}"
                                                            th:if="${rDto.name ==  loginMember}">
                                                             X</a>
                                                         <div class="d-flex mt-4">
@@ -199,9 +198,7 @@ function memberRemoveBtn(obj){
     //-console.log("guestbook-read.html 방명록 댓글 게시글작성자=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입");
     if(confirm("해당 댓글을 삭제하시겠습니까?")){
         console.log(obj);
-        //var aTag = $(obj).closest("a");
-        //console.log(aTag);
-        var grno =$(obj).data("num");
+        var grno =$(obj).data("grno");
         //-console.log("guestbook-read.html 방명록 댓글 게시글작성자=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입 - onclick() 처리 삭제하려는 댓글번호 -> "+ grno);
         console.log("방명록 삭제번호 확인 ajax전 -> "+grno);
 
@@ -228,8 +225,7 @@ function authorRemoveBtn(obj){
     //-console.log("guestbook-read.html 방명록 댓글 게시글작성자!=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입");
     if(confirm("해당 댓글을 삭제하시겠습니까?")){
         console.log(obj);
-        //var grno =$(obj).data("grno");
-        var grno =$(obj).attr("th:data-grno");
+        var grno =$(obj).data("grno");
         //-console.log("guestbook-read.html 방명록 댓글 게시글작성자!=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입 - onclick() 처리 삭제하려는 댓글번호 -> "+ grno);
 
         console.log("방명록 삭제번호 확인 ajax전 -> "+grno);
@@ -259,7 +255,6 @@ $(document).ready(function(){
 var loginMember =[[${loginMember}]];
 var writer =[[${gDto.writer}]];
 //-console.log("guestbook-read.html 방명록 조회수정화면 현재 로그인한 회원 -> "+loginMember+", 방명록 작성자 -> "+writer);
-
 
   var readForm=$("form");
   var page =[[${pageRequestDTO.page}]];
