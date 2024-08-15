@@ -33,8 +33,7 @@
                     </div>
                     <br>
                     <br>
-
-                    <th:block th:if="${memberDTO.fromSocial == false}">
+                    <th:block th:if="${#strings.equals(memberDTO.fromSocial,false)}">
                     <div class="col-12">
                         <label class="form-label">비밀번호</label>
                         <input type="password" class="form-control" autocomplete="off"
