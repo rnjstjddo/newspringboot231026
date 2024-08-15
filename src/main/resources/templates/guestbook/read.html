@@ -205,11 +205,12 @@ function memberRemoveBtn(obj){
             url:"/guestbook/reply/delete",
             type:"delete",
             data:{grno:grno},
-            dataType:"json",
+            dataType:"text",
             success:function(result){
                 if(result){
                     //-console.log("guestbook-read.html 방명록 댓글 게시글작성자=댓글작성자 화면댓글목록 삭제버튼 클릭이벤트 진입 -$.ajax success() 진입");
-                    alert(${grno}+"번 댓글이 삭제되었습니다.");
+                    console.log("ajax 댓극삭제 성공후 서버에서 전달되어온 값 -> "+result);
+                    alert(grno+"번 댓글이 삭제되었습니다.");
                     $(obj).closest(".memberReplyOuterLi").remove();
                 }
             }//success

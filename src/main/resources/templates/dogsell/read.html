@@ -373,6 +373,11 @@ $(".modalReviewRegisterBtn").on("click", function(e){
 
     //-console.log("dogsell-read.html 모달창 댓글등록 클릭이벤트 진입 - $.ajax로 보낼 데이터 출력 -> "+ data);
 
+    if(modalReviewText ==""){
+        alert("댓글 내용을 입력해주세요!");
+        $("#modalReviewText").focus();
+    }
+
     $.ajax({
         url:"/dogsell/reply/register/"+dnoValue,
         type:'post',

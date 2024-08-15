@@ -101,6 +101,12 @@ $(document).ready(function(){
         var username = $("input[name='username']").val();
         var password = $("input[name='password']").val();
 
+        if(username=="" || password ==""){
+            alert("이메일과 비밀번호를 입력해주세요!");
+            $("input[name='username']").focus();
+            return;
+        };
+
         const pattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
 
         if(pattern.test(username) === false) {
@@ -108,12 +114,6 @@ $(document).ready(function(){
             $("input[name='username']").focus();
             return;
         }
-
-        if(username=="" || password ==""){
-            alert("이메일과 비밀번호를 입력해주세요!");
-            $("input[name='username']").focus();
-            return;
-        };
 
         $("form").submit();
     });//로그인버튼
