@@ -120,7 +120,7 @@
                                                 [[${rDto.comment}]]
                                                 <a href="javascript:;" style="text-decoration:none;"
                                                    onclick="authorRemoveBtn(this);"
-                                                   th:data-prno="${rDto.prno}" th:if="${loginMember ==  rDto.name}">
+                                                   th:attr="data-prno=${rDto.prno}" th:if="${loginMember ==  rDto.name}">
                                                 X</a>
                                                 <div class="d-flex mt-4">
                                                 </div>
@@ -144,7 +144,7 @@
                                                 </div>
                                                 [[${rDto.comment}]]
                                                 <a href="javascript:;" style="text-decoration:none;"
-                                                   onclick="memberRemoveBtn(this);" th:data-prno="${rDto.prno}"
+                                                   onclick="memberRemoveBtn(this);" th:attr="data-prno=${rDto.prno}"
                                                    th:if="${rDto.name ==  loginMember}">
                                                 X</a>
                                                 <div class="d-flex mt-4">
@@ -196,6 +196,7 @@ function memberRemoveBtn(obj){
             success:function(result){
                 //-console.log("post-update.html member 화면댓글목록 삭제버튼 클릭이벤트 진입 -$.ajax success() 진입");
                 //-console.log(result);
+                alert(prno+"번 댓글이 삭제되었습니다.");
                 $(obj).closest(".memberReplyOuterLi").remove();
             }//success
         });//$.ajax
@@ -218,6 +219,7 @@ function authorRemoveBtn(obj){
             success:function(result){
                 //-console.log("post-update.html author 화면댓글목록 삭제버튼 클릭이벤트 진입 -$.ajax success() 진입");
                 //-console.log(result);
+                alert(prno+"번 댓글이 삭제되었습니다.");
                $(obj).closest(".authorReplyOuterLi").remove();
             }//success
         });//$.ajax
@@ -290,7 +292,7 @@ var posts =[[${posts}]]
                         str+=`</div>`;
                         str+=`${result.comment}`;
                         str+=`<a href="javascript:;" style="text-decoration:none;" onclick="authorRemoveBtn(this);"`;
-                        str+=`th:data-prno="${result.prno}" th:if="${loginMember == result.name}">X</a>`;
+                        str+=`th:attr="data-prno=${result.prno}" th:if="${loginMember == result.name}">X</a>`;
                         str+=`<div class="d-flex mt-4">`;
                         str+=`</div>`;
                         str+=`</div>`;
@@ -316,7 +318,7 @@ var posts =[[${posts}]]
                         str+=`<div class="fw-bold">${result.name} | ${newDate}</div>`;
                         str+=`${result.comment}`;
                         str+=`<a href="javascript:;" style="text-decoration:none;"`;
-                        str+=`onclick="memberRemoveBtn(this);" th:data-prno="${result.prno}"`;
+                        str+=`onclick="memberRemoveBtn(this);" th:attr="data-prno=${result.prno}"`;
                         str+=`th:if="${loginMember == result.name}">`;
                         str+=`X</a>`;
                         str+=`</div>`;
