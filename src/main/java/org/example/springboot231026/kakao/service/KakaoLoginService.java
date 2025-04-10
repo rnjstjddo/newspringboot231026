@@ -41,7 +41,7 @@ public class KakaoLoginService {
         //body.add("redirect_uri", "http://localhost:8080/oauth/kakao");
         //이전aws계정시 body.add("redirect_uri", "http://ec2-3-39-29-255.ap-northeast-2.compute.amazonaws.com/oauth/kakao");
         //body.add("redirect_uri", "http://ec2-3-39-29-255.ap-northeast-2.compute.amazonaws.com:8080/oauth/kakao");
-        body.add("redirect_uri", "http://merrydog2024.kro.kr/oauth/kakao");
+        body.add("redirect_uri", "http://merrydog2024.store/oauth/kakao");
 
         body.add("code", code);
 
