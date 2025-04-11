@@ -311,6 +311,8 @@ $.each(starBtnList, function(i, o){
 
         $(this).closest(".col-lg-4").css("filter","opacity(50%)").css("position","relative").css("z-index","0");
         $(this).closest(".col-lg-4").find(".card-footer").html(`<h3 class="text-muted fst-italic">분양완료</h3>`)
+        $(this).find(".fw-bold").closest("a").css("pointer-events", "none");
+
     }//if문
 });
 })();
