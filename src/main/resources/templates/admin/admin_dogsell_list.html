@@ -139,10 +139,10 @@
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item"><span class="fw-bolder">분양결과</span>&nbsp;
-                                    <th:block th:if="${dogSell.complete== true}">
+                                    <th:block th:if="${dogSell.complete== ''}">
                                         분양완료
                                     </th:block>
-                                    <th:block th:unless="${dogSell.complete== true}">
+                                    <th:block th:unless="${dogSell.complete== ''}">
                                         분양중 [[${dogSell.complete}]]
                                     </th:block>
                                 </li>
