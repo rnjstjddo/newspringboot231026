@@ -18,10 +18,10 @@ public class PageResponseDTO<E> {
 
     @Builder(builderMethodName= "withAll")
     public PageResponseDTO(PageRequestDTO requestDTO, List<E> dtoList, int total){
-        System.out.println("dto-page클래스 PageResponseDTO<E> 생성자 진입 3개 파라미터 갖는다.");
+        //System.out.println("dto-page클래스 PageResponseDTO<E> 생성자 진입 3개 파라미터 갖는다.");
 
         if(total<=0){
-            System.out.println("dto-page클래스 PageResponseDTO<E> 생성자 진입 3개 파라미터 갖는다. - 게시글 수 0개 이하일때 return");
+            //System.out.println("dto-page클래스 PageResponseDTO<E> 생성자 진입 3개 파라미터 갖는다. - 게시글 수 0개 이하일때 return");
 
             return;
         }

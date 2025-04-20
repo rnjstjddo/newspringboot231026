@@ -21,7 +21,7 @@ public class CustomAuthFailureHandler extends SimpleUrlAuthenticationFailureHand
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
-        System.out.println("CustomAuthFailureHandler  onAuthenticationFailure() 진입 매개변수AuthenticationException "+exception);
+        //System.out.println("CustomAuthFailureHandler  onAuthenticationFailure() 진입 매개변수AuthenticationException "+exception);
         String errorMessage;
 
         if (exception instanceof BadCredentialsException) {

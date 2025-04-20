@@ -20,13 +20,13 @@ public class DogSellSearchImpl extends QuerydslRepositorySupport implements DogS
 
     public DogSellSearchImpl() {
         super(DogSell.class);
-        System.out.println("dogsell-search패키지 DogSellSearchImpl클래스 생성자진입");
+        //System.out.println("dogsell-search패키지 DogSellSearchImpl클래스 생성자진입");
     }
 
     //관리자페이지에서 날짜조건에 맞는 문의글 페이징처리와 동적검색 모두처리
     @Override
     public Page<DogSell> searchDogSellAllModifiedDate(String[] types, String keyword, Pageable pageable, LocalDate localDate) {
-        System.out.println("dogsell-search패키지 DogSellSearchImpl클래스 searchInquiryAllModifiedDate() 진입");
+        //System.out.println("dogsell-search패키지 DogSellSearchImpl클래스 searchInquiryAllModifiedDate() 진입");
 
         QDogSell ds = QDogSell.dogSell;
         JPQLQuery<DogSell> jpp = from(ds);
@@ -57,9 +57,9 @@ public class DogSellSearchImpl extends QuerydslRepositorySupport implements DogS
             //페이징처리
             this.getQuerydsl().applyPagination(pageable, jpp);
 
-            System.out.println("Querydsl<DogSell> -> "+jpp);
+            //System.out.println("Querydsl<DogSell> -> "+jpp);
             List<DogSell> list= jpp.fetch();
-            System.out.println(list.toString());
+            //System.out.println(list.toString());
             long count = jpp.fetchCount();
 
             return new PageImpl<>(list, pageable, count);
@@ -67,7 +67,7 @@ public class DogSellSearchImpl extends QuerydslRepositorySupport implements DogS
 
     @Override
     public Page<DogSell> searchDogSellAllCreatedDate(String[] types, String keyword, Pageable pageable, LocalDate localDate) {
-        System.out.println("dogsell-search패키지 DogSellSearchImpl클래스 searchInquiryAllCreatedDate() 진입");
+        //System.out.println("dogsell-search패키지 DogSellSearchImpl클래스 searchInquiryAllCreatedDate() 진입");
 
         QDogSell ds = QDogSell.dogSell;
         JPQLQuery<DogSell> jpp = from(ds);
@@ -99,9 +99,9 @@ public class DogSellSearchImpl extends QuerydslRepositorySupport implements DogS
         //페이징처리
         this.getQuerydsl().applyPagination(pageable, jpp);
 
-        System.out.println("Querydsl<DogSell> -> "+jpp);
+        //System.out.println("Querydsl<DogSell> -> "+jpp);
         List<DogSell> list= jpp.fetch();
-        System.out.println(list.toString());
+        //System.out.println(list.toString());
         long count = jpp.fetchCount();
 
         return new PageImpl<>(list, pageable, count);
@@ -113,7 +113,7 @@ public class DogSellSearchImpl extends QuerydslRepositorySupport implements DogS
     //관리자페이지에서 분양글 페이징처리와 동적검색 모두처리
     @Override
     public Page<DogSell> searchDogSellAll(String[] types, String keyword, Pageable pageable) {
-        System.out.println("dogsell-search패키지 DogSellSearchImpl클래스 searchInquiryAll() 진입");
+        //System.out.println("dogsell-search패키지 DogSellSearchImpl클래스 searchInquiryAll() 진입");
 
         QDogSell ds = QDogSell.dogSell;
         JPQLQuery<DogSell> jpp = from(ds);

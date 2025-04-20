@@ -15,20 +15,20 @@ public class DogSellReplyController {
 
     @PostMapping("/register/{dno}")
     public Long register(@RequestBody DogSellReplyDTO rDto, @PathVariable Long dno){
-        System.out.println("DogSellReplyController register() 진입 파라미터 출력 -> "+ rDto.toString()+", dno -> "+dno);
+        //System.out.println("DogSellReplyController register() 진입 파라미터 출력 -> "+ rDto.toString()+", dno -> "+dno);
         Long drno =dsrs.dsReplyRegister(rDto, dno);
         return drno;
     }
 
     @PostMapping("/remove")
     public @ResponseBody Long remove(@RequestBody Long drno) {
-        System.out.println("DogSellReplyController remove() 진입 파라미터 출력 -> " + drno);
+        //System.out.println("DogSellReplyController remove() 진입 파라미터 출력 -> " + drno);
         dsrs.dsReplyRemove(drno);
         return drno;
     }
     @PutMapping("/modify/{dno}")
     public Long modify(@RequestBody DogSellReplyDTO rDto, @PathVariable Long dno) {
-        System.out.println("DogSellReplyController modify() 진입 @PathVariable -> " + dno);
+        //System.out.println("DogSellReplyController modify() 진입 @PathVariable -> " + dno);
         //DogSellReplyDTO -> Long drno; / String text, replyer;/ DogSell dno;     private LocalDateTime createdDate, modifiedDate;
         dsrs.dsReplyModify(rDto, dno);
         return rDto.getDrno();

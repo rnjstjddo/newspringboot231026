@@ -39,7 +39,7 @@ public class UploadController {
     @PostMapping("/uploadAjax")
     //public void uploadFile(MultipartFile[] multipartFiles){
     public ResponseEntity<List<UploadResultDTO>> uploadFile(MultipartFile[] multipartFiles){
-        System.out.println("upload-controller클래스 UploadController uploadFile() 진입");
+        //System.out.println("upload-controller클래스 UploadController uploadFile() 진입");
 
 
         //반환타입 객체생성
@@ -49,30 +49,30 @@ public class UploadController {
 
             //파일검사
             if(multipartFile.getContentType().startsWith("image") == false){
-                System.out.println("upload-controller클래스 UploadController uploadFile() 진입 - 파일검사 image 시작하는 않는 파일의 경우");
+                //System.out.println("upload-controller클래스 UploadController uploadFile() 진입 - 파일검사 image 시작하는 않는 파일의 경우");
                 return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 
             }
 
 
             String originName = multipartFile.getOriginalFilename();
-            System.out.println("upload-controller클래스 UploadController uploadFile() 진입 getOriginalFilename() -> "+ originName);
+            //System.out.println("upload-controller클래스 UploadController uploadFile() 진입 getOriginalFilename() -> "+ originName);
 
             originName = originName.substring(originName.lastIndexOf("\\")+1);
-            System.out.println("upload-controller클래스 UploadController uploadFile() 진입 lastIndexOf(\\) -> "+ originName);
+            //System.out.println("upload-controller클래스 UploadController uploadFile() 진입 lastIndexOf(\\) -> "+ originName);
 
             //날짜폴더생성
             String datePath = makeFolder(); //c경로까지 포함
-            System.out.println("upload-controller클래스 UploadController uploadFile() 진입 날짜폴더생성 String타입-> "+ datePath);
+            //System.out.println("upload-controller클래스 UploadController uploadFile() 진입 날짜폴더생성 String타입-> "+ datePath);
 
             String uuid= UUID.randomUUID().toString();
 
             String saveName = cPath+ File.separator+datePath+ File.separator+uuid+"_"+originName;
-            System.out.println("upload-controller클래스 UploadController uploadFile() 진입 저장할파일경로 String타입 -> "+ saveName);
+            //System.out.println("upload-controller클래스 UploadController uploadFile() 진입 저장할파일경로 String타입 -> "+ saveName);
 
             Path savePath = Paths.get(saveName);
 
-            System.out.println("upload-controller클래스 UploadController uploadFile() 진입 저장할파일경로 Path타입 -> "+ savePath);
+            //System.out.println("upload-controller클래스 UploadController uploadFile() 진입 저장할파일경로 Path타입 -> "+ savePath);
 
             try {
 
@@ -81,7 +81,7 @@ public class UploadController {
                 String thumb = cPath+ File.separator+ datePath+File.separator+
                         "s_"+ uuid+"_"+originName;
 
-                System.out.println("upload-controller클래스 UploadController uploadFile() 진입 썸네일저장할파일경로 String타입 -> "+ thumb);
+                //System.out.println("upload-controller클래스 UploadController uploadFile() 진입 썸네일저장할파일경로 String타입 -> "+ thumb);
 
                 File thumbFile = new File(thumb);
 
@@ -99,16 +99,16 @@ public class UploadController {
     }
 
     private String makeFolder() {
-        System.out.println("upload-controller클래스 UploadController makeFolder() 진입 - 날짜생성폴더 만들기");
+        //System.out.println("upload-controller클래스 UploadController makeFolder() 진입 - 날짜생성폴더 만들기");
 
         String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-        System.out.println("upload-controller클래스 UploadController makeFolder() 진입 - 날짜생성폴더 만들기 DateTimeFormatter.ofPattern() -> "+ date);
+        //System.out.println("upload-controller클래스 UploadController makeFolder() 진입 - 날짜생성폴더 만들기 DateTimeFormatter.ofPattern() -> "+ date);
         //2023/11/08
         String folderPath = date.replace("/", File.separator);
 
         File folder = new File(cPath, folderPath); //parent, child
 
-        System.out.println("upload-controller클래스 UploadController makeFolder() 진입 - 날짜생성폴더 만들기 File객체로 폴더생성 -> "+ folder);
+        //System.out.println("upload-controller클래스 UploadController makeFolder() 진입 - 날짜생성폴더 만들기 File객체로 폴더생성 -> "+ folder);
         // C: \ upload231026 \ 2023 \ 11 \ 08
         if(folder.exists() == false){
             folder.mkdirs();
@@ -119,7 +119,7 @@ public class UploadController {
 
     @GetMapping("/display")
     private ResponseEntity<byte []> getFile(String fileName) {
-        System.out.println("upload-controller클래스 UploadController getFile() 진입 - 파일이미지 json 전송 반환타입 byte[] 파라미터 -> "+ fileName);
+        //System.out.println("upload-controller클래스 UploadController getFile() 진입 - 파일이미지 json 전송 반환타입 byte[] 파라미터 -> "+ fileName);
 
         ResponseEntity<byte []> result = null;
 
@@ -129,7 +129,7 @@ public class UploadController {
 
             File file = new File(cPath + File.separator + srcdecode);
 
-            System.out.println("upload-controller클래스 UploadController getFile() 진입 - URLDecoder 후에 File객체생성 -> "+ file);
+            //System.out.println("upload-controller클래스 UploadController getFile() 진입 - URLDecoder 후에 File객체생성 -> "+ file);
 
             HttpHeaders headers= new HttpHeaders();
 
@@ -148,7 +148,7 @@ public class UploadController {
     //업로드파일삭제 서버폴더 삭제처리
     @PostMapping("/removeFile")
     public ResponseEntity<Boolean> removeFile(String fileName){
-        System.out.println("upload-controller클래스 UploadController removeFile() 진입 - 파라미터 String -> "+ fileName);
+        //System.out.println("upload-controller클래스 UploadController removeFile() 진입 - 파라미터 String -> "+ fileName);
 
         String srcName = null;
 
@@ -170,5 +170,5 @@ public class UploadController {
 
     }
 
-//    System.out.println("upload-controller클래스 UploadController getFile() 진입 - URLDecoder 후에 File객체생성 -> "+ file);
+//System.out.println("upload-controller클래스 UploadController getFile() 진입 - URLDecoder 후에 File객체생성 -> "+ file);
 }

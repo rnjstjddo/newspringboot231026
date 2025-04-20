@@ -11,7 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class WebBCryptConfiguration {
     @Bean
     public PasswordEncoder passwordEncoder(){
-        System.out.println("security-config클래스 WebBCryptConfiguration PasswordEncoder 객체반환 -순환참조문제로 분리시킴");
+        //System.out.println("security-config클래스 WebBCryptConfiguration PasswordEncoder 객체반환 -순환참조문제로 분리시킴");
         return new BCryptPasswordEncoder();
     }
 }

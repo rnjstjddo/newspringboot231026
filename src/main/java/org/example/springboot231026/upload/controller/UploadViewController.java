@@ -9,7 +9,7 @@ public class UploadViewController {
 
     @GetMapping("/uploadEx")
     public void uploadEx(){
-        System.out.println("upload-controller클래스 UploadViewController uploadEx() 진입");
+        //System.out.println("upload-controller클래스 UploadViewController uploadEx() 진입");
     }
 
 

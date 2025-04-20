@@ -29,12 +29,12 @@ public class MemberController {
                       @RequestParam(required = false) String error,
                       @RequestParam(required = false) String exception,
                       RedirectAttributes rttrs) {
-        System.out.println("컨트롤러클래스 MemberController login() 진입");
-        System.out.println(error);
-        System.out.println(exception);
+        //System.out.println("컨트롤러클래스 MemberController login() 진입");
+        //System.out.println(error);
+        //System.out.println(exception);
         //if(error == "true") {
         if (error !=null && error.equals("true")){
-            System.out.println("컨트롤러클래스 MemberController login() 진입 로그인시 에러존재할때 진입");
+            //System.out.println("컨트롤러클래스 MemberController login() 진입 로그인시 에러존재할때 진입");
 
             rttrs.addFlashAttribute("exception", exception);
             rttrs.addFlashAttribute("error", error);
@@ -47,7 +47,7 @@ public class MemberController {
 
     @GetMapping("/member/join")
     public void joinGet(@ModelAttribute("pageRequestDto") PageRequestDTO requestDTO, Model model){
-        System.out.println("컨트롤러클래스 MemberController joinGet() 진입");
+        //System.out.println("컨트롤러클래스 MemberController joinGet() 진입");
 
     }
 
@@ -55,7 +55,7 @@ public class MemberController {
     @GetMapping("/member/updateJoin")
     public void updateJoin(@ModelAttribute("pageRequestDto") PageRequestDTO requestDTO, Model model,
                            @AuthenticationPrincipal MemberDTO memberDTO){
-        System.out.println("컨트롤러클래스 MemberController updateJoin() 진입");
+        //System.out.println("컨트롤러클래스 MemberController updateJoin() 진입");
         model.addAttribute("memberDTO", memberDTO);
     }
 
@@ -63,18 +63,18 @@ public class MemberController {
     @GetMapping("/member/updateSocialJoin")
     public String updateSocialJoin(@ModelAttribute("pageRequestDto") PageRequestDTO requestDTO, Model model,
                                    @AuthenticationPrincipal MemberDTO memberDTO, HttpServletRequest request){
-        System.out.println("컨트롤러클래스 MemberController updateSocialJoin() 진입");
+        //System.out.println("컨트롤러클래스 MemberController updateSocialJoin() 진입");
         model.addAttribute("memberDTO", memberDTO);
 
-        System.out.println(memberDTO.getCreatedDate());
-        System.out.println(memberDTO.getModifiedDate());
-        System.out.println(memberDTO.getName());
-        System.out.println(memberDTO.getEmail());
+        //System.out.println(memberDTO.getCreatedDate());
+        //System.out.println(memberDTO.getModifiedDate());
+        //System.out.println(memberDTO.getName());
+        //System.out.println(memberDTO.getEmail());
 
         if(memberDTO.getCreatedDate()!=memberDTO.getModifiedDate() &&memberDTO.getName()!=memberDTO.getEmail()){
-            System.out.println("컨트롤러클래스 MemberController updateSocialJoin() 진입 닉네임을 수정한 적이 있는 소셜로그인회원이기에 홈으로 바로 홈으로 이동한다.");
+            //System.out.println("컨트롤러클래스 MemberController updateSocialJoin() 진입 닉네임을 수정한 적이 있는 소셜로그인회원이기에 홈으로 바로 홈으로 이동한다.");
             String referer = request.getHeader("Referer");
-            System.out.println("컨트롤러클래스 MemberController updateSocialJoin() 진입 referer -> "+ referer);
+            //System.out.println("컨트롤러클래스 MemberController updateSocialJoin() 진입 referer -> "+ referer);
             //referer.indexOf("/");
 
             return "redirect:/home/home";

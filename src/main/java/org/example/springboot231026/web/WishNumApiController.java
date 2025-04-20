@@ -22,10 +22,10 @@ public class WishNumApiController {
 
     @GetMapping("/insert")
     public @ResponseBody Object wishNumInsert(Model model, Long wishNum, @AuthenticationPrincipal MemberDTO memberDTO) {
-        System.out.println("컨트롤러 WishNumController wishNumInsert() 진입 ");
+        //System.out.println("컨트롤러 WishNumController wishNumInsert() 진입 ");
 
         if(memberDTO != null){
-            System.out.println("컨트롤러 WishNumController wishNumInsert() 진입 MemberDTO -> "+ memberDTO);
+            //System.out.println("컨트롤러 WishNumController wishNumInsert() 진입 MemberDTO -> "+ memberDTO);
         }
 
         Map<String, Object> map = wns.wishNumInsert(wishNum, memberDTO.getName(), memberDTO);
@@ -34,7 +34,7 @@ public class WishNumApiController {
         if ((Boolean) map.get("overlap") !=null && (Boolean) map.get("overlap") ==true) {
             return false;
         }
-        System.out.println("컨트롤러 WishNumController wishNumInsert() 진입 찜한 상품의 수 -> "+count );
+        //System.out.println("컨트롤러 WishNumController wishNumInsert() 진입 찜한 상품의 수 -> "+count );
         return count;
     }
 

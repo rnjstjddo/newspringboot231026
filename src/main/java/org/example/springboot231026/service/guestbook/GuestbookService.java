@@ -39,7 +39,7 @@ public class GuestbookService {
     private ModelMapper mm;
 
     public Long register(GuestbookDTO gDto) {
-        System.out.println("service-guestbook패키지 GuestbookService클래스 register() 진입");
+        //System.out.println("service-guestbook패키지 GuestbookService클래스 register() 진입");
 
         Guestbook entity = dtoToEntity(gDto);
         return gr.save(entity).getGno();
@@ -48,7 +48,7 @@ public class GuestbookService {
     
     //방명록목록
     public GuestPageResultDTO<GuestbookDTO, Guestbook> getList(GuestPageRequestDTO requestDTO){
-        System.out.println("service-guestbook패키지 GuestbookService클래스 getList() 진입 - 파라미터GuestPageRequestDTO -> "+ requestDTO);
+        //System.out.println("service-guestbook패키지 GuestbookService클래스 getList() 진입 - 파라미터GuestPageRequestDTO -> "+ requestDTO);
 
         Pageable p = requestDTO.getPageable(Sort.by("gno").descending());
 
@@ -63,7 +63,7 @@ public class GuestbookService {
 
     //방명록조회
     public GuestbookDTO read(Long gno){
-        System.out.println("service-guestbook패키지 GuestbookService클래스 read() 진입 파라미터 -> "+gno);
+        //System.out.println("service-guestbook패키지 GuestbookService클래스 read() 진입 파라미터 -> "+gno);
         Guestbook entity =gr.findByGno(gno).orElseGet( () -> {return new Guestbook();});
 
         return entityToDto(entity);
@@ -73,7 +73,7 @@ public class GuestbookService {
     //방명록수정
     @Transactional
     public GuestbookDTO modify(GuestbookDTO gDto){
-        System.out.println("service-guestbook패키지 GuestbookService클래스 read() 진입 파라미터 GuestbookDTO -> "+gDto);
+        //System.out.println("service-guestbook패키지 GuestbookService클래스 read() 진입 파라미터 GuestbookDTO -> "+gDto);
         Guestbook entity =gr.findByGno(gDto.getGno()).orElseGet( () -> {return new Guestbook();});
 
         entity.changeGuestbook(gDto.getTitle(), gDto.getContent());
@@ -84,7 +84,7 @@ public class GuestbookService {
     @Transactional
     //방명록삭제
     public void remove(Long gno){
-        System.out.println("service-guestbook패키지 GuestbookService클래스 remove() 진입 파라미터 -> "+gno);
+        //System.out.println("service-guestbook패키지 GuestbookService클래스 remove() 진입 파라미터 -> "+gno);
 
         //관련댓글부터 삭제
         grs.guestbookReplyDeleteGno(gno);
@@ -95,7 +95,7 @@ public class GuestbookService {
     @Transactional
     //회원탈퇴시 방명록삭제
     public boolean removeDeleteMember(String name){
-        System.out.println("service-guestbook패키지 GuestbookService클래스 removeDeleteMember() 진입 -> "+name);
+        //System.out.println("service-guestbook패키지 GuestbookService클래스 removeDeleteMember() 진입 -> "+name);
 
         List<Long> gnoList = gr.getGnoByWriter(name);
 
@@ -103,14 +103,14 @@ public class GuestbookService {
         if(gnoList.size() !=0 && gnoList !=null){
 
             for(Long gno : gnoList) {
-                System.out.println("service-guestbook패키지 GuestbookService클래스 removeDeleteMember() 진입 -> " +
-                        " 탈퇴할 회원의 삭제할 방명록이 존재할경우 진입  -> " + gno);
+               // System.out.println("service-guestbook패키지 GuestbookService클래스 removeDeleteMember() 진입 -> " +
+                       // " 탈퇴할 회원의 삭제할 방명록이 존재할경우 진입  -> " + gno);
                 this.remove(gno);
             }
             result = true;
         }else{
-            System.out.println("service-guestbook패키지 GuestbookService클래스 removeDeleteMember() 진입 -> "+
-                    " 탈퇴할 회원의 삭제할 방명록이 없을경우 진입");
+            //System.out.println("service-guestbook패키지 GuestbookService클래스 removeDeleteMember() 진입 -> "+
+                   // " 탈퇴할 회원의 삭제할 방명록이 없을경우 진입");
             result= true;
 
         }
@@ -119,7 +119,7 @@ public class GuestbookService {
     
     //방명록검색
     private BooleanBuilder getSearch(GuestPageRequestDTO pageRequestDTO){
-        System.out.println("service-guestbook패키지 GuestbookService클래스 getSearch() 진입");
+        //System.out.println("service-guestbook패키지 GuestbookService클래스 getSearch() 진입");
 
         String type = pageRequestDTO.getType();
         String keyword = pageRequestDTO.getKeyword();
@@ -132,7 +132,7 @@ public class GuestbookService {
         bb.and(be);
 
         if(type ==null || type.trim().length()==0){
-            System.out.println("service-guestbook패키지 GuestbookService클래스 getSearch() 진입 - 검색조건이 없는 경우 진입");
+            //System.out.println("service-guestbook패키지 GuestbookService클래스 getSearch() 진입 - 검색조건이 없는 경우 진입");
             return bb;
         }
 
@@ -154,14 +154,14 @@ public class GuestbookService {
 
     //mypage에서 내가 쓴 방명록보기
     public List<GuestbookDTO> getListMyPage(String name) {
-        System.out.println("service-guestbook패키지 GuestbookService클래스 getListMyPage() 진입 - 회원name -> " + name);
+        //System.out.println("service-guestbook패키지 GuestbookService클래스 getListMyPage() 진입 - 회원name -> " + name);
 
         Optional<List<Guestbook>> listOptional = gr.findByWriter(name);
         //반환타입생성
         List<GuestbookDTO> guestbookDTOList = new ArrayList<>();
 
         if(listOptional.isPresent()){
-            System.out.println("service-guestbook패키지 GuestbookService클래스 getListMyPage() 진입 - 방명록이 존재할경우 진입");
+            //System.out.println("service-guestbook패키지 GuestbookService클래스 getListMyPage() 진입 - 방명록이 존재할경우 진입");
             guestbookDTOList = listOptional.get().stream().map(entity -> mm.map(entity, GuestbookDTO.class))
                     .collect(Collectors.toList());
         }
@@ -199,7 +199,7 @@ public class GuestbookService {
 
     //관리자페이지에서 방명록 목록볼때 수정날짜이용해서 보기
     public List<GuestbookDTO> findByModifiedDate(LocalDate date){
-        System.out.println("service-guestbook패키지 GuestbookService클래스 findByModifiedDate() 진입 -> "+date);
+        //System.out.println("service-guestbook패키지 GuestbookService클래스 findByModifiedDate() 진입 -> "+date);
 
 
         LocalDateTime before = date.atStartOfDay();
@@ -217,7 +217,7 @@ public class GuestbookService {
 
     //관리자페이지에서 방명록 전체 가져오기 페이지처리없이
     public List<GuestbookDTO> findByAll(){
-        System.out.println("service-guestbook패키지 GuestbookService클래스 findByAll() 진입");
+        //System.out.println("service-guestbook패키지 GuestbookService클래스 findByAll() 진입");
 
         List<Guestbook> all = gr.findAll();
         List<GuestbookDTO> guestbookDTOList=new ArrayList<>();
@@ -229,7 +229,7 @@ public class GuestbookService {
 
     //동적검색만
     private BooleanBuilder getSearchAdmin(GuestPageRequestDTO pageRequestDTO){
-        System.out.println("service-guestbook패키지 GuestbookService클래스 getSearchAdmin() 진입 ");
+        //System.out.println("service-guestbook패키지 GuestbookService클래스 getSearchAdmin() 진입 ");
 
         String type = pageRequestDTO.getType();
         String keyword = pageRequestDTO.getKeyword();
@@ -242,7 +242,7 @@ public class GuestbookService {
         bb.and(be);
 
         if(type ==null || type.trim().length()==0){
-            System.out.println("service-guestbook패키지 GuestbookService클래스 getSearch() 진입 - 검색조건이 없는 경우 진입");
+            //System.out.println("service-guestbook패키지 GuestbookService클래스 getSearch() 진입 - 검색조건이 없는 경우 진입");
             return bb;
         }
 
@@ -264,7 +264,7 @@ public class GuestbookService {
 
     //동적검색+특정날짜추가
     private BooleanBuilder getSearchAdminModifiedDate(GuestPageRequestDTO pageRequestDTO, LocalDate localDate){
-        System.out.println("service-guestbook패키지 GuestbookService클래스 getSearchAdmin() 진입 ");
+        //System.out.println("service-guestbook패키지 GuestbookService클래스 getSearchAdmin() 진입 ");
 
         String type = pageRequestDTO.getType();
         String keyword = pageRequestDTO.getKeyword();
@@ -278,7 +278,7 @@ public class GuestbookService {
         bb.and(be);
 
         if(type ==null || type.trim().length()==0){
-            System.out.println("service-guestbook패키지 GuestbookService클래스 getSearch() 진입 - 검색조건이 없는 경우 진입");
+            //System.out.println("service-guestbook패키지 GuestbookService클래스 getSearch() 진입 - 검색조건이 없는 경우 진입");
             return bb;
         }
 
@@ -300,7 +300,7 @@ public class GuestbookService {
 
 
     private BooleanBuilder getSearchAdminCreatedDate(GuestPageRequestDTO pageRequestDTO, LocalDate localDate){
-        System.out.println("service-guestbook패키지 GuestbookService클래스 getSearchAdminCreatedDate() 진입 ");
+        //System.out.println("service-guestbook패키지 GuestbookService클래스 getSearchAdminCreatedDate() 진입 ");
 
         String type = pageRequestDTO.getType();
         String keyword = pageRequestDTO.getKeyword();
@@ -314,7 +314,7 @@ public class GuestbookService {
         bb.and(be);
 
         if(type ==null || type.trim().length()==0){
-            System.out.println("service-guestbook패키지 GuestbookService클래스 getSearchAdminCreatedDate() 진입 - 검색조건이 없는 경우 진입");
+            //System.out.println("service-guestbook패키지 GuestbookService클래스 getSearchAdminCreatedDate() 진입 - 검색조건이 없는 경우 진입");
             return bb;
         }
 
@@ -337,7 +337,7 @@ public class GuestbookService {
 
     //동적검색 + 특정날짜만 조회 수정날짜 기준
     public GuestPageResultDTO<GuestbookDTO, Guestbook> getListAdminModifiedDate(GuestPageRequestDTO requestDTO, LocalDate localDate){
-        System.out.println("service-guestbook패키지 GuestbookService클래스 getListAdminModifiedDate() 진입 - 파라미터GuestPageRequestDTO -> "+ requestDTO);
+        //System.out.println("service-guestbook패키지 GuestbookService클래스 getListAdminModifiedDate() 진입 - 파라미터GuestPageRequestDTO -> "+ requestDTO);
 
         Pageable p = requestDTO.getPageable(Sort.by("gno").descending());
 
@@ -352,7 +352,7 @@ public class GuestbookService {
     }
 
     public GuestPageResultDTO<GuestbookDTO, Guestbook> getListAdminCreatedDate(GuestPageRequestDTO requestDTO, LocalDate localDate){
-        System.out.println("service-guestbook패키지 GuestbookService클래스 getListAdminCreatedDate() 진입 - 파라미터GuestPageRequestDTO -> "+ requestDTO);
+        //System.out.println("service-guestbook패키지 GuestbookService클래스 getListAdminCreatedDate() 진입 - 파라미터GuestPageRequestDTO -> "+ requestDTO);
 
         Pageable p = requestDTO.getPageable(Sort.by("gno").descending());
 
@@ -371,7 +371,7 @@ public class GuestbookService {
 
     //전체 페이징처리
     public GuestPageResultDTO<GuestbookDTO, Guestbook> getListAdmin(GuestPageRequestDTO requestDTO){
-        System.out.println("service-guestbook패키지 GuestbookService클래스 getListAdmin() 진입 - 파라미터GuestPageRequestDTO -> "+ requestDTO);
+        //System.out.println("service-guestbook패키지 GuestbookService클래스 getListAdmin() 진입 - 파라미터GuestPageRequestDTO -> "+ requestDTO);
 
         Pageable p = requestDTO.getPageable(Sort.by("gno").descending());
 
@@ -388,7 +388,7 @@ public class GuestbookService {
 
     //특정날짜만 조회 수정날짜 기준
     public List<GuestbookDTO> findByModifiedDateLocalDate(LocalDate localDate){
-        System.out.println("service-guestbook패키지 GuestbookService클래스 findByModifiedDate() 진입 -> "+localDate);
+        //System.out.println("service-guestbook패키지 GuestbookService클래스 findByModifiedDate() 진입 -> "+localDate);
         List<Guestbook> list = gr.findByModifiedDateLocalDate(localDate);
 
         //반환타입
@@ -404,10 +404,10 @@ public class GuestbookService {
 
     //특정날짜방명록수
     public Long getCountLocalDate(LocalDate localDate){
-        System.out.println("service-guestbook패키지 GuestbookReplyService클래스 getCountLocalDate() 진입");
+        //System.out.println("service-guestbook패키지 GuestbookReplyService클래스 getCountLocalDate() 진입");
 
         Long count = gr.getCountLocalDate(localDate.atTime(LocalTime.MIN), localDate.atTime(LocalTime.MAX));
-        System.out.println("service-guestbook패키지 GuestbookReplyService클래스 getCountLocalDate() 진입 localDate 방명록수 -> "+ count);
+        //System.out.println("service-guestbook패키지 GuestbookReplyService클래스 getCountLocalDate() 진입 localDate 방명록수 -> "+ count);
         return count;
     }
 }

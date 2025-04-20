@@ -28,7 +28,7 @@ public class PostReplyDTO {
     private LocalDateTime modifiedDate, createdDate;
 
     public PostReplyDTO(Long prno, Long pno, String comment, String name, LocalDateTime modifiedDate, LocalDateTime createdDate){
-        System.out.println("dto-posts클래스 PostReplyDTO 생성자진입");
+        //System.out.println("dto-posts클래스 PostReplyDTO 생성자진입");
         this.prno=prno;
         this.pno=pno;
         this.comment=comment;

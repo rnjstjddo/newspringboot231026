@@ -25,7 +25,7 @@ public class GuestbookReplyDTO {
     private LocalDateTime modifiedDate, createdDate;
 
     public GuestbookReplyDTO(Long grno, Long gno, String comment, String name, LocalDateTime modifiedDate, LocalDateTime createdDate){
-        System.out.println("dto-posts클래스 GuestbookReplyDTO 생성자진입");
+        //System.out.println("dto-posts클래스 GuestbookReplyDTO 생성자진입");
         this.grno=grno;
         this.gno=gno;
         this.comment=comment;

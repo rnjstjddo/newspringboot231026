@@ -17,14 +17,14 @@ public class PostsListResponseDto {
     private LocalDateTime createdDate, modifiedDate;
 
     public PostsListResponseDto(Posts entity){
-        System.out.println("dto클래스 PostsListsResponseDto 생성자진입");
+        //System.out.println("dto클래스 PostsListsResponseDto 생성자진입");
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.author=entity.getAuthor();
         this.content=entity.getContent();
         this.createdDate=entity.getCreatedDate();
         this.modifiedDate=entity.getModifiedDate();
-        System.out.println("dto클래스 PostsListsResponseDto 생성자진입 -> "+ this.toString());
+        //System.out.println("dto클래스 PostsListsResponseDto 생성자진입 -> "+ this.toString());
 
     }
 }

@@ -30,7 +30,7 @@ public class DogSellReply extends BaseTimeEntity {
 
 //수정용
     public DogSellReply change(String text){
-        System.out.println("domain-dog클래스 DogSellReply 엔티티 change() 진입");
+        //System.out.println("domain-dog클래스 DogSellReply 엔티티 change() 진입");
         this.text=text;
         return this;
     }

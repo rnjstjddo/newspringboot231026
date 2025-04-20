@@ -21,7 +21,7 @@ public class PostsResponseDto {
     private LocalDateTime createdDate, modifiedDate;
 
     public PostsResponseDto(Posts entity){
-        System.out.println("dto클래스 PostsResponseDto 생성자진입 ");
+        //System.out.println("dto클래스 PostsResponseDto 생성자진입 ");
         this.id = entity.getId();
         this.title=entity.getTitle();
         this.content=entity.getContent();
@@ -31,5 +31,5 @@ public class PostsResponseDto {
         //System.out.println("dto클래스 PostsResponseDto 생성자진입 ->"+ this.toString());
     }
 
-    //        System.out.println("dto클래스 PostsResponseDto 생성자진입 ");
+    //System.out.println("dto클래스 PostsResponseDto 생성자진입 ");
 }

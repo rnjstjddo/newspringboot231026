@@ -29,7 +29,7 @@ public class KakaoLoginService {
     private String kakaoPassword;
 
     public String getAccessToken(String code){
-        System.out.println("kakao-service클래스 KakaoLoginService getAccessToken() 진입");
+        //System.out.println("kakao-service클래스 KakaoLoginService getAccessToken() 진입");
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
@@ -67,7 +67,7 @@ public class KakaoLoginService {
     }
 
     public Member getUserInfo(String accessToken) {
-        System.out.println("kakao-service클래스 KakaoLoginService getUserInfo() 진입 파라미터 액세스토큰 -> "+accessToken);
+        //System.out.println("kakao-service클래스 KakaoLoginService getUserInfo() 진입 파라미터 액세스토큰 -> "+accessToken);
         //HttpHeader생성
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("Authorization", "Bearer "+ accessToken);
@@ -84,7 +84,7 @@ public class KakaoLoginService {
 
         Gson gson =new Gson();
         Map<?,?> map = gson.fromJson(userInfo, Map.class);
-        System.out.println("kakao-service클래스 KakaoLoginService getUserInfo() 진입 - gson() 에서 Map변환 -> "+ map);
+        //System.out.println("kakao-service클래스 KakaoLoginService getUserInfo() 진입 - gson() 에서 Map변환 -> "+ map);
 //        {id=3.110723466E9,
 //        connected_at=2023-10-22T06:12:39Z,
 //        properties={nickname=권성애},
@@ -109,7 +109,7 @@ public class KakaoLoginService {
                 .role(RoleType.USER)
                 .fromSocial("true")
                 .build();
-        System.out.println("kakao-service클래스 KakaoLoginService getUserInfo() 진입 - 사용자정보로 생성한 엔티티 Member-> "+ m.toString());
+        //System.out.println("kakao-service클래스 KakaoLoginService getUserInfo() 진입 - 사용자정보로 생성한 엔티티 Member-> "+ m.toString());
 // Member(email=sungaekwon88@gmail.com, name=권성애, password=kakao123, fromSocial=true, role=USER)
         return m;
     }

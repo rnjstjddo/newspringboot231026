@@ -37,7 +37,7 @@ public class Guestbook extends BaseTimeEntity {
 
     //수정
     public Guestbook changeGuestbook(String title, String content){
-        System.out.println("guestbook-domain클래스 Guestbook엔티티 changeGuestbook() 진입");
+        //System.out.println("guestbook-domain클래스 Guestbook엔티티 changeGuestbook() 진입");
         this.title=title;
         this.content=content;
         return this;

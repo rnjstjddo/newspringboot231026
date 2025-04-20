@@ -42,15 +42,15 @@ public class HomeController {
                      @AuthenticationPrincipal MemberDTO memberDTO, Model model,
 
                      @ModelAttribute("pageRequestDto") PageRequestDTO requestDTO){
-        System.out.println("컨트롤러 HomeController home() 진입");
+        //System.out.println("컨트롤러 HomeController home() 진입");
 
         //분양글
         List<DogSellListDTO> dsListDto = dss.list();
-        System.out.println("HomeController home() 진입 List<DogSellListDTO> getDno()-> "
-                + dsListDto.stream().map(ds -> ds.getDno()).collect(Collectors.toList()).toString());
+        //System.out.println("HomeController home() 진입 List<DogSellListDTO> getDno()-> "
+               // + dsListDto.stream().map(ds -> ds.getDno()).collect(Collectors.toList()).toString());
 
         if(dsListDto !=null) {
-            System.out.println("컨트롤러 HomeController home() 진입 - 분양글 List<DogSellListDTO> 존재할때 -> ");
+            //System.out.println("컨트롤러 HomeController home() 진입 - 분양글 List<DogSellListDTO> 존재할때 -> ");
                 model.addAttribute("dsListDto", dsListDto);
         }
 
@@ -58,23 +58,23 @@ public class HomeController {
         GuestPageResultDTO guestPageResultDTO= gs.getList(pageRequestDTO);
 
         if(guestPageResultDTO.getDtoList().size() > 0 && guestPageResultDTO.getDtoList() !=null) {
-            System.out.println("컨트롤러 HomeController home() 진입 - 방명록 GuestPageResultDTO 존재할때 -> "+
-                    guestPageResultDTO.getDtoList().toString()
-            );
+            //System.out.println("컨트롤러 HomeController home() 진입 - 방명록 GuestPageResultDTO 존재할때 -> "+
+                   // guestPageResultDTO.getDtoList().toString()
+            //);
             model.addAttribute("pResponseDto", guestPageResultDTO.getDtoList()); //GuestPageResultDTO 들어간다.
             model.addAttribute("pResponseDtoPage", guestPageResultDTO.getPage());
         }
 
         if(memberDTO !=null) {
-            System.out.println("컨트롤러 HomeController home() 진입 - MemberDTO 회원존재할때 ");
+            //System.out.println("컨트롤러 HomeController home() 진입 - MemberDTO 회원존재할때 ");
             model.addAttribute("loginMember", memberDTO.getName());
         }
         //게시판
         PageResponseDTO responseDto= ps.list(requestDTO);
 
         if(responseDto.getDtoList().size() > 0 && responseDto.getDtoList()!=null) {
-            System.out.println("컨트롤러 HomeController home() 진입 - 게시판 PageResponseDTO 존재할때 -> "
-                    +responseDto.getDtoList().toString());
+            //System.out.println("컨트롤러 HomeController home() 진입 - 게시판 PageResponseDTO 존재할때 -> "
+              //      +responseDto.getDtoList().toString());
             model.addAttribute("responseDto", responseDto.getDtoList()); //PageResponseDTO 들어간다.
         }
 

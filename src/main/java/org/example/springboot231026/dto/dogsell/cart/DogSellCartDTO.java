@@ -25,16 +25,16 @@ public class DogSellCartDTO {
 
 
     public DogSellCartDTO(MemberDTO memberDTO){
-        System.out.println("dogsell-dto클래스 DogSellCartDTO 생성자 진입");
+        //System.out.println("dogsell-dto클래스 DogSellCartDTO 생성자 진입");
         this.mDto=memberDTO;
     }
     public void addDsDto(DogSellDTO dsDto){
-        System.out.println("dogsell-dto클래스 DogSellCartDTO List<DogSellDTO> 추가 addDsDto() 진입");
+        //System.out.println("dogsell-dto클래스 DogSellCartDTO List<DogSellDTO> 추가 addDsDto() 진입");
         dsDtoList.add(dsDto);
     }
 
     public void addWishnumList(Long wishnum){
-        System.out.println("dogsell-dto클래스 DogSellCartDTO List<DogSellDTO> 추가 addWishnumList() 진입");
+        //System.out.println("dogsell-dto클래스 DogSellCartDTO List<DogSellDTO> 추가 addWishnumList() 진입");
         wishnumList.add(wishnum);
     }
 

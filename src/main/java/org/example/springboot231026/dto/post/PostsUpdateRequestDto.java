@@ -15,11 +15,11 @@ public class PostsUpdateRequestDto {
 
     @Builder
     public PostsUpdateRequestDto(String title, String content, String author){
-        System.out.println("dto클래스 PostsUpdateRequestDto 생성자진입 ");
+        //System.out.println("dto클래스 PostsUpdateRequestDto 생성자진입 ");
         this.title=title;
         this.content=content;
         this.author=author;
-        System.out.println("dto클래스 PostsUpdateRequestDto 생성자진입 -> "+ this.toString());
+        //System.out.println("dto클래스 PostsUpdateRequestDto 생성자진입 -> "+ this.toString());
 
     }
 

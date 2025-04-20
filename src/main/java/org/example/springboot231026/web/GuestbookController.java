@@ -41,7 +41,7 @@ public class GuestbookController {
 
     @GetMapping("")
     public String index() {
-        System.out.println("View컨트롤러 GuestbookController index() 진입");
+        //System.out.println("View컨트롤러 GuestbookController index() 진입");
 
         return "redirect:/guestbook/list";
     }
@@ -49,11 +49,11 @@ public class GuestbookController {
     @GetMapping("/list")
     public void list(@ModelAttribute("pageRequestDTO") GuestPageRequestDTO pageRequestDTO, Model model,
                      @AuthenticationPrincipal MemberDTO memberDTO){
-        System.out.println("View컨트롤러 GuestbookController list() 진입");
+        //System.out.println("View컨트롤러 GuestbookController list() 진입");
         GuestPageResultDTO pResponseDto = gs.getList(pageRequestDTO);
         if(pResponseDto.getDtoList().size() >0 && pResponseDto.getEnd() !=0) {
-            System.out.println("View컨트롤러 GuestbookController list() 진입 "+
-                    " 방명록이 존재할 경우 진입 GuestPageResultDTO - > "+ pResponseDto.toString());
+            //System.out.println("View컨트롤러 GuestbookController list() 진입 "+
+                   // " 방명록이 존재할 경우 진입 GuestPageResultDTO - > "+ pResponseDto.toString());
 
             model.addAttribute("pResponseDtoList", pResponseDto.getDtoList());
             model.addAttribute("pResponseDto", pResponseDto);
@@ -102,15 +102,15 @@ public class GuestbookController {
                 {
 
                     //model.addAttribute("map",map);
-                    System.out.println("View컨트롤러 GuestbookController list() 진입 " +
-                            " 방명록이 존재할 경우 진입 Map 키-> "+ k+ ", 값 -> "+ v );
+                    //System.out.println("View컨트롤러 GuestbookController list() 진입 " +
+                            //" 방명록이 존재할 경우 진입 Map 키-> "+ k+ ", 값 -> "+ v );
                 });
             }//for문
         }
 
 
-        System.out.println("차이 GuestPageRequestDTO.getPage() -> "+pageRequestDTO.getPage()+
-                ", GuestPageResultDTO -> "+pResponseDto.getPage());
+        //System.out.println("차이 GuestPageRequestDTO.getPage() -> "+pageRequestDTO.getPage()+
+                //", GuestPageResultDTO -> "+pResponseDto.getPage());
         if(memberDTO !=null) {
             model.addAttribute("loginMember", memberDTO.getName());
         }
@@ -119,7 +119,7 @@ public class GuestbookController {
     @GetMapping("/register")
     public String register(@ModelAttribute("pageRequestDTO") GuestPageRequestDTO pageRequestDTO, Model model,
                          @AuthenticationPrincipal MemberDTO memberDTO){
-        System.out.println("View컨트롤러 GuestbookController register() 진입");
+        //System.out.println("View컨트롤러 GuestbookController register() 진입");
 
         if(memberDTO ==null) {
             return "redirect:/member/login";
@@ -135,7 +135,7 @@ public class GuestbookController {
     @PostMapping("/register")
     public String registerPost(@ModelAttribute("pageRequestDTO") GuestPageRequestDTO pageRequestDTO, GuestbookDTO gDto,
                                @AuthenticationPrincipal MemberDTO memberDTO, RedirectAttributes rttrs){
-        System.out.println("View컨트롤러 GuestbookController registerPost() 진입 파라미터 GuestPageRequestDTO -> "+pageRequestDTO);
+        //System.out.println("View컨트롤러 GuestbookController registerPost() 진입 파라미터 GuestPageRequestDTO -> "+pageRequestDTO);
 
         Long gno =gs.register(gDto);
 
@@ -159,7 +159,7 @@ public class GuestbookController {
     @GetMapping("/read")
     public String read(@ModelAttribute("pageRequestDTO") GuestPageRequestDTO pageRequestDTO, Long gno,
                      @AuthenticationPrincipal MemberDTO memberDTO, Model model){
-        System.out.println("View컨트롤러 GuestbookController read() 진입 파라미터 -> "+gno);
+        //System.out.println("View컨트롤러 GuestbookController read() 진입 파라미터 -> "+gno);
         GuestbookDTO guestbookDTO=gs.read(gno);
         model.addAttribute("gDto", guestbookDTO);
 
@@ -167,14 +167,14 @@ public class GuestbookController {
         List<GuestbookReplyDTO> guestbookReplyDTOList = grs.list(gno);
 
         if(memberDTO ==null) {
-            System.out.println("View컨트롤러 GuestbookController read() 진입 -> 방명록작성자 -> "+guestbookDTO.getWriter());
+            //System.out.println("View컨트롤러 GuestbookController read() 진입 -> 방명록작성자 -> "+guestbookDTO.getWriter());
             return "redirect:/member/login";
         }
 
         if(memberDTO !=null) {
-            System.out.println("View컨트롤러 GuestbookController read() 진입 - 현재 로그인한 회원 -> "+memberDTO.getName()+", -> 방명록작성자 -> "+guestbookDTO.getWriter());
+            //System.out.println("View컨트롤러 GuestbookController read() 진입 - 현재 로그인한 회원 -> "+memberDTO.getName()+", -> 방명록작성자 -> "+guestbookDTO.getWriter());
             if(guestbookReplyDTOList !=null){
-                System.out.println("VIEW컨트롤러 GuestbookController read()진입 - 댓글목록 List<GuestbookReplyDTO>  null 아닐 경우 출력 -> "+ guestbookReplyDTOList.toString());
+                //System.out.println("VIEW컨트롤러 GuestbookController read()진입 - 댓글목록 List<GuestbookReplyDTO>  null 아닐 경우 출력 -> "+ guestbookReplyDTOList.toString());
                 model.addAttribute("rDtoList", guestbookReplyDTOList);
             }
             model.addAttribute("loginMember", memberDTO.getName());
@@ -185,7 +185,7 @@ public class GuestbookController {
     @PostMapping("/modify")
     public String modify(@ModelAttribute("pageRequestDTO") GuestPageRequestDTO pageRequestDTO,
                          @AuthenticationPrincipal MemberDTO memberDTO,GuestbookDTO gDto, RedirectAttributes rttrs){
-        System.out.println("View컨트롤러 GuestbookController modify() 진입");
+        //System.out.println("View컨트롤러 GuestbookController modify() 진입");
 
         gs.modify(gDto);
 
@@ -208,7 +208,7 @@ public class GuestbookController {
     @PostMapping("/remove")
     public String remove(@ModelAttribute("pageRequestDTO") GuestPageRequestDTO pageRequestDTO,
                          @AuthenticationPrincipal MemberDTO memberDTO, Long gno, RedirectAttributes rttrs){
-        System.out.println("View컨트롤러 GuestbookController remove() 진입");
+        //System.out.println("View컨트롤러 GuestbookController remove() 진입");
 
         gs.remove(gno);
         rttrs.addAttribute("page", pageRequestDTO.getPage());

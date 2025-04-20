@@ -61,21 +61,21 @@ public class AdminController {
                             @AuthenticationPrincipal MemberDTO memberDTO,
                             @RequestParam(required = false) String yearmonth,
                             @RequestParam(required = false) String tabtitle) {
-        System.out.println("관리자컨트롤러 /admin/home/home 진입");
+        //System.out.println("관리자컨트롤러 /admin/home/home 진입");
 
         if (tabtitle != null) {
-            System.out.println("관리자컨트롤러 /admin/home/home 진입 tabtitle 존재할때 진입 ->  " + tabtitle);
+            //System.out.println("관리자컨트롤러 /admin/home/home 진입 tabtitle 존재할때 진입 ->  " + tabtitle);
             model.addAttribute("tabtitle", tabtitle);
         } else {
-            System.out.println("관리자컨트롤러 /admin/home/home 진입 tabtitle 존재하지 않을때 진입 ->  " + tabtitle);
+            //System.out.println("관리자컨트롤러 /admin/home/home 진입 tabtitle 존재하지 않을때 진입 ->  " + tabtitle);
             model.addAttribute("tabtitle", "guestbook");
         }
 
         if (yearmonth != null) {
-            System.out.println("관리자컨트롤러 /admin/home/home 진입 쿼리스트링 yearmonth 있을때 진입 -> "+ yearmonth);
+            //System.out.println("관리자컨트롤러 /admin/home/home 진입 쿼리스트링 yearmonth 있을때 진입 -> "+ yearmonth);
         }else{
             yearmonth = LocalDate.now().toString();
-            System.out.println("관리자컨트롤러 /admin/home/home 진입 쿼리스트링 yearmonth 없을때 진입 오늘날짜로 넣는다-> "+ yearmonth);
+            //System.out.println("관리자컨트롤러 /admin/home/home 진입 쿼리스트링 yearmonth 없을때 진입 오늘날짜로 넣는다-> "+ yearmonth);
         }
 //방명록-----------------------------------------
 
@@ -87,9 +87,9 @@ public class AdminController {
 
         if ((guestbookDTOList != null && guestbookDTOList.size() > 0) ||
                 (guestbookReplyDTOList != null && guestbookReplyDTOList.size() > 0)) {
-            System.out.println("관리자컨트롤러 /admin/home/home 진입 방명록 목록과 방명록댓글 목록 모두 존재할경우 진입");
-            System.out.println("관리자컨트롤러 /admin/home/home 방명록 총 개수 -> " + guestbookDTOList.size());
-            System.out.println("관리자컨트롤러 /admin/home/home 방명록댓글 총 개수 -> " + guestbookReplyDTOList.size());
+            //System.out.println("관리자컨트롤러 /admin/home/home 진입 방명록 목록과 방명록댓글 목록 모두 존재할경우 진입");
+            //System.out.println("관리자컨트롤러 /admin/home/home 방명록 총 개수 -> " + guestbookDTOList.size());
+            //System.out.println("관리자컨트롤러 /admin/home/home 방명록댓글 총 개수 -> " + guestbookReplyDTOList.size());
 
             //방명록 날짜필드 중복안되게 들고오기
             List<LocalDateTime> guestbookDateList = new ArrayList<>();
@@ -104,7 +104,7 @@ public class AdminController {
 
                 LocalDate plusAfterYearMonth = afterYearMonth.withDayOfMonth(afterYearMonth.lengthOfMonth()); //afterYearMonth.plusMonths(1);
 
-                System.out.println("관리자컨트롤러 /admin/home/home 진입 원본받은 날짜 -> " + yearmonth + ", 해당 월의 첫일 -> " + afterYearMonth + ", 해당 월의 마지막일 -> " + plusAfterYearMonth);
+                //System.out.println("관리자컨트롤러 /admin/home/home 진입 원본받은 날짜 -> " + yearmonth + ", 해당 월의 첫일 -> " + afterYearMonth + ", 해당 월의 마지막일 -> " + plusAfterYearMonth);
                 //방명록날짜만 중복안되게 들고오기
                 guestbookDateList = guestbookDTOList.stream()
                         //.filter(r -> r.getModifiedDate().toLocalDate().isAfter(afterYearMonth))
@@ -144,7 +144,7 @@ public class AdminController {
                         //.filter(r -> r.getModifiedDate().toLocalDate().isEqual(localDate)).count();
                         .filter(r -> r.getCreatedDate().toLocalDate().isEqual(localDate)).count();
                 guestbookDateCount.put(localDate, guestCount);
-                System.out.println("관리자컨트롤러 /admin/home/home " +localDate +" 일자의 방명록 갯수 guestCount ->  " + guestCount);
+                //System.out.println("관리자컨트롤러 /admin/home/home " +localDate +" 일자의 방명록 갯수 guestCount ->  " + guestCount);
 
 
             }//for문
@@ -159,7 +159,7 @@ public class AdminController {
                         //.filter(r -> r.getModifiedDate().toLocalDate().isEqual(localDate)).count();
                         .filter(r -> r.getCreatedDate().toLocalDate().isEqual(localDate)).count();
 
-                System.out.println("관리자컨트롤러 /admin/home/home " +localDate +" 일자의 방명록 댓글갯수 guestReplyCount ->  " + guestReplyCount);
+                //System.out.println("관리자컨트롤러 /admin/home/home " +localDate +" 일자의 방명록 댓글갯수 guestReplyCount ->  " + guestReplyCount);
 
                 guestbookReplyDateCount.put(localDate, guestReplyCount);
             }
@@ -180,8 +180,8 @@ public class AdminController {
 
         if ((postsListResponseDtoList != null && postsListResponseDtoList.size() > 0) ||
                 (postReplyDTOList != null && postReplyDTOList.size() > 0)) {
-            System.out.println("관리자컨트롤러 /admin/home/home 게시판 총 개수 -> " + guestbookDTOList.size());
-            System.out.println("관리자컨트롤러 /admin/home/home 게시판 총 댓글개수 -> " + guestbookReplyDTOList.size());
+            //System.out.println("관리자컨트롤러 /admin/home/home 게시판 총 개수 -> " + guestbookDTOList.size());
+            //System.out.println("관리자컨트롤러 /admin/home/home 게시판 총 댓글개수 -> " + guestbookReplyDTOList.size());
 
             //게시판 날짜필드만 중복안되게 들고오기
             List<LocalDateTime> postsDateList = new ArrayList<>();
@@ -236,7 +236,7 @@ public class AdminController {
                         //.filter(r -> r.getModifiedDate().toLocalDate().isEqual(localDate)).count();
                         .filter(r -> r.getCreatedDate().toLocalDate().isEqual(localDate)).count();
 
-                System.out.println("관리자컨트롤러 /admin/home/home " +postsDate +" 일자의 게시판갯수 postCount ->  " + postCount);
+                //System.out.println("관리자컨트롤러 /admin/home/home " +postsDate +" 일자의 게시판갯수 postCount ->  " + postCount);
                 postsDateCount.put(localDate, postCount);
 
             }//for문
@@ -251,7 +251,7 @@ public class AdminController {
                         //.filter(r -> r.getModifiedDate().toLocalDate().isEqual(localDate)).count();
                         .filter(r -> r.getCreatedDate().toLocalDate().isEqual(localDate)).count();
 
-                System.out.println("관리자컨트롤러 /admin/home/home " + postReplyDate + " 일자의 게시판댓글수 postReplyCount ->  " + postReplyCount);
+                //System.out.println("관리자컨트롤러 /admin/home/home " + postReplyDate + " 일자의 게시판댓글수 postReplyCount ->  " + postReplyCount);
 
                 postReplyDateCount.put(localDate, postReplyCount);
 
@@ -272,7 +272,7 @@ public class AdminController {
         List<InquiryDto> inquiryDtoList = is.findAll();
 
         if (inquiryDtoList.size() > 0 && inquiryDtoList != null) {
-            System.out.println("관리자컨트롤러 /admin/home/home 총 문의글 개수 -> " + inquiryDtoList.size());
+            //System.out.println("관리자컨트롤러 /admin/home/home 총 문의글 개수 -> " + inquiryDtoList.size());
 
             if (yearmonth != null) {
                 LocalDate afterYearMonth = LocalDate.parse(yearmonth).with(TemporalAdjusters.firstDayOfMonth());
@@ -302,7 +302,7 @@ public class AdminController {
                             //.filter(r -> r.getModifiedDate().toLocalDate().isEqual(localDate)).count();
                             .filter(r -> r.getCreatedDate().toLocalDate().isEqual(localDate)).count();
 
-                    System.out.println("관리자컨트롤러 /admin/home/home " + inquiryDate+" 일자의 문의글수 inquiryCount ->  " + inquiryCount);
+                    //System.out.println("관리자컨트롤러 /admin/home/home " + inquiryDate+" 일자의 문의글수 inquiryCount ->  " + inquiryCount);
 
                     inquiryDateCount.put(localDate, inquiryCount);
 
@@ -318,7 +318,7 @@ public class AdminController {
         List<MemberDTO> memberDTOList = ms.findAll();
 
         if (memberDTOList.size() > 0 && memberDTOList != null) {
-            System.out.println("관리자컨트롤러 /admin/home/home 총 회원 개수 -> " + memberDTOList.size());
+            //System.out.println("관리자컨트롤러 /admin/home/home 총 회원 개수 -> " + memberDTOList.size());
 
             if (yearmonth != null) {
                 LocalDate afterYearMonth = LocalDate.parse(yearmonth).with(TemporalAdjusters.firstDayOfMonth());
@@ -340,7 +340,7 @@ public class AdminController {
                     //해당일자에 가입한 회원수
                     Long memberCount = (Long) memberDTOList.stream()
                             .filter(r -> r.getCreatedDate().toLocalDate().isEqual(localDate)).count();
-                    System.out.println("관리자컨트롤러 /admin/home/home " +memberDate + " 일자의 회원수 memberCount ->  " + memberCount);
+                    //System.out.println("관리자컨트롤러 /admin/home/home " +memberDate + " 일자의 회원수 memberCount ->  " + memberCount);
 
                     memberDateCount.put(localDate, memberCount);
 
@@ -358,7 +358,7 @@ public class AdminController {
 
         if (dogSellListDto.size() > 0 && dogSellListDto != null) {
 
-            System.out.println("관리자컨트롤러 /admin/home/home 총 분양글 개수 -> " + dogSellListDto.size());
+            //System.out.println("관리자컨트롤러 /admin/home/home 총 분양글 개수 -> " + dogSellListDto.size());
 
             if (yearmonth != null) {
                 LocalDate afterYearMonth = LocalDate.parse(yearmonth).with(TemporalAdjusters.firstDayOfMonth());
@@ -384,7 +384,7 @@ public class AdminController {
                             .filter(r -> r.getCreatedDate().toLocalDate().isEqual(localDate)).count();
 
                     dogsellDateCount.put(localDate, dogsellCount);
-                    System.out.println("관리자컨트롤러 /admin/home/home"+ dogsellDate+ " 일자의 분양글수 dogsellCount ->  " + dogsellCount);
+                    //System.out.println("관리자컨트롤러 /admin/home/home"+ dogsellDate+ " 일자의 분양글수 dogsellCount ->  " + dogsellCount);
 
                 }//for종료 분양글 날짜별
                 model.addAttribute("dogsellDateCount", dogsellDateCount);
@@ -407,35 +407,39 @@ public class AdminController {
                                @AuthenticationPrincipal MemberDTO memberDTO,
                                @RequestParam(required = false) String tabtitle,
                                @ModelAttribute("count") Count count) {
-        System.out.println("관리자컨트롤러 /admin/dogsell/list 진입 ");
+        //System.out.println("관리자컨트롤러 /admin/dogsell/list 진입 ");
         if (tabtitle != null) {
-            System.out.println("관리자컨트롤러 /admin/dogsell/list 진입 파라미터 tabtitle -> " + tabtitle);
+            //System.out.println("관리자컨트롤러 /admin/dogsell/list 진입 파라미터 tabtitle -> " + tabtitle);
             model.addAttribute("tabtitle", tabtitle);
         }
         if (yearmonth != null) {
-            System.out.println("관리자컨트롤러 /admin/dogsell/list 진입 파라미터 yearmonth -> "+yearmonth);
+            //System.out.println("관리자컨트롤러 /admin/dogsell/list 진입 파라미터 yearmonth -> "+yearmonth);
             LocalDate localDate = LocalDate.parse(yearmonth);
             model.addAttribute("localDate", yearmonth);
 
             PageResponseDTO<DogSellListDTO> pResponseDto = dogSellService.getListAdminCreatedDate(pageRequestDTO, localDate);
 
             if (pResponseDto.getDtoList().size() > 0 && pResponseDto.getEnd() != 0) {
-                System.out.println("관리자컨트롤러 /admin/dogsell/list 진입 " +
-                        " GuestPageResultDTO getSize() -> " + pResponseDto.getPage() + ", getTotalPage() -> " + pResponseDto.getTotal());
+                //System.out.println("관리자컨트롤러 /admin/dogsell/list 진입 " +
+                        //" GuestPageResultDTO getSize() -> " + pResponseDto.getPage() + ", getTotalPage() -> " + pResponseDto.getTotal());
 
                 model.addAttribute("pResponseDtoList", pResponseDto.getDtoList());
+                pResponseDto.getDtoList().forEach(v -> {
+                    System.out.println("관리자컨트롤러에서 complete 출력해봄 -> "+v.getComplete()+", dno 출력 -> "+v.getDno()+" , name 출력 -> "+v.getName());
+                });
+
                 model.addAttribute("pResponseDto", pResponseDto);
             }
 
             if(count.getGuestcount() ==null) {
                 count = this.returnCount(localDate);
                 model.addAttribute("count", count);
-                System.out.println("관리자컨트롤러 /admin/dogsell/list 진입 Count출력 -> "+ count.toString());
+                //System.out.println("관리자컨트롤러 /admin/dogsell/list 진입 Count출력 -> "+ count.toString());
             }
 
         }//yearmonth존재할경우
         else {
-            System.out.println("관리자컨트롤러 /admin/dogsell/list 진입 쿼리스트링으로 yearmonth 존재하지 않을때 진입");
+            //System.out.println("관리자컨트롤러 /admin/dogsell/list 진입 쿼리스트링으로 yearmonth 존재하지 않을때 진입");
             return "redirect:/admin/home/home";
         }
 
@@ -483,10 +487,10 @@ public class AdminController {
                                      @AuthenticationPrincipal MemberDTO memberDTO,
                                      @RequestParam(required = false) String tabtitle,
                                      @ModelAttribute("count") Count count) {
-        System.out.println("관리자컨트롤러 /admin/guestbook/list 진입 String타입 날짜 -> " + yearmonth);
+        //System.out.println("관리자컨트롤러 /admin/guestbook/list 진입 String타입 날짜 -> " + yearmonth);
         if (tabtitle != null) {
 
-            System.out.println("tabtitle 존재할때 진입 ->  " + tabtitle);
+            //System.out.println("tabtitle 존재할때 진입 ->  " + tabtitle);
             model.addAttribute("tabtitle", tabtitle);
         }
         if (yearmonth != null) {
@@ -497,8 +501,8 @@ public class AdminController {
             GuestPageResultDTO pResponseDto = gs.getListAdminCreatedDate(pageRequestDTO, localDate);
 
             if (pResponseDto.getDtoList().size() > 0 && pResponseDto.getEnd() != 0) {
-                System.out.println("관리자컨트롤러 /admin/guestbook/list 진입 " +
-                        " GuestPageResultDTO getSize() -> " + pResponseDto.getPage() + ", getTotalPage() -> " + pResponseDto.getTotalPage());
+                //System.out.println("관리자컨트롤러 /admin/guestbook/list 진입 " +
+                        //" GuestPageResultDTO getSize() -> " + pResponseDto.getPage() + ", getTotalPage() -> " + pResponseDto.getTotalPage());
 
                 model.addAttribute("pResponseDtoList", pResponseDto.getDtoList());
                 model.addAttribute("pResponseDto", pResponseDto);
@@ -507,12 +511,12 @@ public class AdminController {
             if(count.getGuestcount() ==null) {
                 count = this.returnCount(localDate);
                 model.addAttribute("count", count);
-                System.out.println("관리자컨트롤러 /admin/guestbook/list 진입 Count출력 -> "+ count.toString());
+                //System.out.println("관리자컨트롤러 /admin/guestbook/list 진입 Count출력 -> "+ count.toString());
             }
 
         }//yearmonth존재할경우
         else {
-            System.out.println("관리자컨트롤러 /admin/guestbook/list 진입 쿼리스트링으로 yearmonth 존재하지 않을때 진입");
+            //System.out.println("관리자컨트롤러 /admin/guestbook/list 진입 쿼리스트링으로 yearmonth 존재하지 않을때 진입");
             return "redirect:/admin/home/home";
         }
 
@@ -531,10 +535,10 @@ public class AdminController {
                                           @AuthenticationPrincipal MemberDTO memberDTO,
                                           @RequestParam(required = false) String tabtitle,
                                           @ModelAttribute Count count) {
-        System.out.println("관리자컨트롤러 /admin/guestbookreply/list 진입 String타입 날짜 -> " + yearmonth);
+        //System.out.println("관리자컨트롤러 /admin/guestbookreply/list 진입 String타입 날짜 -> " + yearmonth);
         if (tabtitle != null) {
 
-            System.out.println("tabtitle 존재할때 진입 ->  " + tabtitle);
+            //System.out.println("tabtitle 존재할때 진입 ->  " + tabtitle);
             model.addAttribute("tabtitle", tabtitle);
         }
 
@@ -545,8 +549,8 @@ public class AdminController {
             GuestPageResultDTO pResponseDto = grs.getReplyListAdmin(pageRequestDTO, localDate);
 
             if (pResponseDto.getDtoList().size() > 0 && pResponseDto.getEnd() != 0) {
-                System.out.println("관리자컨트롤러 /admin/guestbookreply/list 진입 " +
-                        " GuestPageResultDTO getSize() -> " + pResponseDto.getSize() + ", getTotalPage() -> " + pResponseDto.getTotalPage());
+                //System.out.println("관리자컨트롤러 /admin/guestbookreply/list 진입 " +
+                      //  " GuestPageResultDTO getSize() -> " + pResponseDto.getSize() + ", getTotalPage() -> " + pResponseDto.getTotalPage());
 
                 model.addAttribute("pResponseDtoList", pResponseDto.getDtoList());
                 model.addAttribute("pResponseDto", pResponseDto);
@@ -555,13 +559,13 @@ public class AdminController {
             if(count.getGuestreplycount() ==null) {
                 count = this.returnCount(localDate);
                 model.addAttribute("count", count);
-                System.out.println("관리자컨트롤러 /admin/guestbookreply/list 진입 Count출력 -> "+ count.toString());
+                //System.out.println("관리자컨트롤러 /admin/guestbookreply/list 진입 Count출력 -> "+ count.toString());
 
             }
 
         }//yearmonth존재할경우
         else {
-            System.out.println("관리자컨트롤러 /admin/guestbookreply/list 진입 쿼리스트링으로 yearmonth 존재하지 않을때 진입");
+            //System.out.println("관리자컨트롤러 /admin/guestbookreply/list 진입 쿼리스트링으로 yearmonth 존재하지 않을때 진입");
             return "redirect:/admin/home/home";
         }
 
@@ -581,16 +585,16 @@ public class AdminController {
                                 @RequestParam(required = false) String yearmonth,
                                 @RequestParam(required = false) String tabtitle,
                                 @ModelAttribute Count count) {
-        System.out.println("관리자컨트롤러 /admin/post/list 진입");
+        //System.out.println("관리자컨트롤러 /admin/post/list 진입");
         if (tabtitle != null) {
 
-            System.out.println("관리자컨트롤러 /admin/post/list 진입 tabtitle 존재할때 진입 ->  " + tabtitle);
+            //System.out.println("관리자컨트롤러 /admin/post/list 진입 tabtitle 존재할때 진입 ->  " + tabtitle);
             model.addAttribute("tabtitle", tabtitle);
         }
         if (yearmonth != null) {
             LocalDate localDate = LocalDate.parse(yearmonth);
-            System.out.println("관리자컨트롤러 /admin/post/list 진입 yearmonth -> "+ yearmonth);
-            System.out.println("관리자컨트롤러 /admin/post/list 진입 LocalDate로 변경 -> "+ localDate);
+            //System.out.println("관리자컨트롤러 /admin/post/list 진입 yearmonth -> "+ yearmonth);
+            //System.out.println("관리자컨트롤러 /admin/post/list 진입 LocalDate로 변경 -> "+ localDate);
             
             model.addAttribute("localDate", yearmonth);
 
@@ -598,23 +602,23 @@ public class AdminController {
             PageResponseDTO pResponseDto = ps.getListAdminCreatedDate(pageRequestDTO, localDate);
 
             if (pResponseDto.getDtoList().size() > 0 && pResponseDto.getEnd() != 0) {
-                System.out.println("관리자컨트롤러 /admin/post/list 진입 " +
-                        " PageResponseDTO 게시글 존재하는 경우 진입 getSize() -> " + pResponseDto.getSize() + ", getTotal() -> " + pResponseDto.getTotal());
+                //System.out.println("관리자컨트롤러 /admin/post/list 진입 " +
+                        //" PageResponseDTO 게시글 존재하는 경우 진입 getSize() -> " + pResponseDto.getSize() + ", getTotal() -> " + pResponseDto.getTotal());
 
                 model.addAttribute("pResponseDtoList", pResponseDto.getDtoList());
                 model.addAttribute("pResponseDto", pResponseDto);
             }
 
             if(count.getPostcount() ==null) {
-                System.out.println("관리자컨트롤러 /admin/post/list 진입 게시글 갯수가 null 인경우 진입 ");
+                //System.out.println("관리자컨트롤러 /admin/post/list 진입 게시글 갯수가 null 인경우 진입 ");
                 count = this.returnCount(localDate);
                 model.addAttribute("count", count);
-                System.out.println("관리자컨트롤러 /admin/post/list 진입 Count출력 -> "+ count.toString());
+                //System.out.println("관리자컨트롤러 /admin/post/list 진입 Count출력 -> "+ count.toString());
             }
 
         }//yearmonth존재할경우
         else {
-            System.out.println("관리자컨트롤러 /admin/post/list 진입 쿼리스트링으로 yearmonth 존재하지 않을때 진입");
+            //System.out.println("관리자컨트롤러 /admin/post/list 진입 쿼리스트링으로 yearmonth 존재하지 않을때 진입");
             return "redirect:/admin/home/home";
         }
 
@@ -634,10 +638,10 @@ public class AdminController {
                                      @RequestParam(required = false) String yearmonth,
                                      @RequestParam(required = false) String tabtitle,
                                      @ModelAttribute Count count) {
-        System.out.println("관리자컨트롤러 /admin/postreply/list 진입");
+        //System.out.println("관리자컨트롤러 /admin/postreply/list 진입");
         if (tabtitle != null) {
 
-            System.out.println("tabtitle 존재할때 진입 ->  " + tabtitle);
+            //System.out.println("tabtitle 존재할때 진입 ->  " + tabtitle);
             model.addAttribute("tabtitle", tabtitle);
         }
 
@@ -650,8 +654,8 @@ public class AdminController {
             PageResponseDTO pResponseDto = prs.getListAdminCreatedDate(pageRequestDTO, localDate);
 
             if (pResponseDto.getDtoList().size() > 0 && pResponseDto.getEnd() != 0) {
-                System.out.println("관리자컨트롤러 /admin/postreply/list 진입 " +
-                        " PageResponseDTO getSize() -> " + pResponseDto.getSize() + ", getTotal() -> " + pResponseDto.getTotal());
+                //System.out.println("관리자컨트롤러 /admin/postreply/list 진입 " +
+                        //" PageResponseDTO getSize() -> " + pResponseDto.getSize() + ", getTotal() -> " + pResponseDto.getTotal());
 
                 model.addAttribute("pResponseDtoList", pResponseDto.getDtoList());
                 model.addAttribute("pResponseDto", pResponseDto);
@@ -661,13 +665,13 @@ public class AdminController {
             if(count.getPostreplycount() ==null) {
                 count = this.returnCount(localDate);
                 model.addAttribute("count", count);
-                System.out.println("관리자컨트롤러 /admin/postreply/list 진입 Count출력 -> "+ count.toString());
+                //System.out.println("관리자컨트롤러 /admin/postreply/list 진입 Count출력 -> "+ count.toString());
 
             }
 
         }//yearmonth존재할경우
         else {
-            System.out.println("관리자컨트롤러 /admin/postreply/list 진입 쿼리스트링으로 yearmonth 존재하지 않을때 진입");
+            //System.out.println("관리자컨트롤러 /admin/postreply/list 진입 쿼리스트링으로 yearmonth 존재하지 않을때 진입");
             return "redirect:/admin/home/home";
         }
 
@@ -687,7 +691,7 @@ public class AdminController {
                                    @RequestParam(required = false) String yearmonth,
                                    @RequestParam(required = false) String tabtitle,
                                    @ModelAttribute Count count) {
-        System.out.println("관리자컨트롤러 /admin/inquiry/list 진입");
+        //System.out.println("관리자컨트롤러 /admin/inquiry/list 진입");
 
         model.addAttribute("tabtitle", tabtitle);
         model.addAttribute("localDate", yearmonth);
@@ -701,8 +705,8 @@ public class AdminController {
 
 
             if (pResponseDto.getDtoList().size() > 0 && pResponseDto.getEnd() != 0) {
-                System.out.println("관리자컨트롤러 /admin/inquiry/list 진입 " +
-                        " PageResponseDTO getSize() -> " + pResponseDto.getSize());
+                //System.out.println("관리자컨트롤러 /admin/inquiry/list 진입 " +
+                        //" PageResponseDTO getSize() -> " + pResponseDto.getSize());
 
                 model.addAttribute("pResponseDtoList", pResponseDto.getDtoList());
                 model.addAttribute("pResponseDto", pResponseDto);
@@ -712,11 +716,11 @@ public class AdminController {
             if(count.getInquirycount() ==null) {
                 count = this.returnCount(localDate);
                 model.addAttribute("count", count);
-                System.out.println("관리자컨트롤러 /admin/inquiry/list 진입 Count출력 -> "+ count.toString());
+                //System.out.println("관리자컨트롤러 /admin/inquiry/list 진입 Count출력 -> "+ count.toString());
             }
         }//yearmonth존재할경우
         else {
-            System.out.println("관리자컨트롤러 /admin/inquiry/list 진입 쿼리스트링으로 yearmonth 존재하지 않을때 진입");
+            //System.out.println("관리자컨트롤러 /admin/inquiry/list 진입 쿼리스트링으로 yearmonth 존재하지 않을때 진입");
             return "redirect:/admin/home/home";
         }
 
@@ -736,7 +740,7 @@ public class AdminController {
                                   @RequestParam(required = false) String yearmonth,
                                   @RequestParam(required = false) String tabtitle,
                                   @ModelAttribute Count count) {
-        System.out.println("관리자컨트롤러 /admin/member/list 진입-> " + pageRequestDTO.toString());
+        //System.out.println("관리자컨트롤러 /admin/member/list 진입-> " + pageRequestDTO.toString());
 
         if (tabtitle != null) {
             model.addAttribute("tabtitle", tabtitle);
@@ -751,8 +755,8 @@ public class AdminController {
 
 
             if (pResponseDto.getDtoList().size() > 0 && pResponseDto.getEnd() != 0) {
-                System.out.println("관리자컨트롤러 /admin/member/list 진입 " +
-                        " PageResponseDTO getSize() -> " + pResponseDto.getSize());
+                //System.out.println("관리자컨트롤러 /admin/member/list 진입 " +
+                        //" PageResponseDTO getSize() -> " + pResponseDto.getSize());
 
                 model.addAttribute("pResponseDtoList", pResponseDto.getDtoList());
                 model.addAttribute("pResponseDto", pResponseDto);
@@ -761,12 +765,12 @@ public class AdminController {
             if(count.getMembercount() ==null) {
                 count = this.returnCount(localDate);
                 model.addAttribute("count", count);
-                System.out.println("관리자컨트롤러 /admin/member/list 진입 Count출력 -> "+ count.toString());
+                //System.out.println("관리자컨트롤러 /admin/member/list 진입 Count출력 -> "+ count.toString());
 
             }
         }//if존재시
         else {
-            System.out.println("관리자컨트롤러 /admin/member/list 진입 쿼리스트링으로 yearmonth 존재하지 않을때 진입");
+            //System.out.println("관리자컨트롤러 /admin/member/list 진입 쿼리스트링으로 yearmonth 존재하지 않을때 진입");
             return "redirect:/admin/home/home";
         }
 
@@ -776,7 +780,7 @@ public class AdminController {
 
     //일자에 맞는 개수반환 현재 회원은 오류로 제외시킴
     public Count returnCount(LocalDate localDate) {
-        System.out.println("관리자컨트롤러 returnCount() 진입 Count 객체반환 파라미터로 받은 날짜 -> "+localDate);
+        //System.out.println("관리자컨트롤러 returnCount() 진입 Count 객체반환 파라미터로 받은 날짜 -> "+localDate);
 
         //반환타입
         Count count = new Count();
@@ -798,7 +802,7 @@ public class AdminController {
         count.setMembercount(ms.getCountLocalDate(localDate));
 
         if(count !=null) {
-            System.out.println("관리자컨트롤러 returnCount() 진입 Count -> " + count.toString());
+            //System.out.println("관리자컨트롤러 returnCount() 진입 Count -> " + count.toString());
         }
         return count;
     }

@@ -42,7 +42,7 @@ public class MemberDTO extends User implements OAuth2User {
                      LocalDateTime createdDate, LocalDateTime modifiedDate,
                      Map<String, Object> attrs, List<WishNum> wishNum){
         this(username,password, fromSocial, authorities);
-        System.out.println("dto-member클래스 MemberDTO 생성자진입 -User 상속 ");
+        //System.out.println("dto-member클래스 MemberDTO 생성자진입 -User 상속 ");
 
         this.name=name;
         //this.password=password;
@@ -58,17 +58,17 @@ public class MemberDTO extends User implements OAuth2User {
                      Map<String, Object> attrs, String name, String email) { //7개
         //super(username, password, authorities);
         this(username, password, fromSocial, authorities);
-        System.out.println("dto-member클래스 MemberDTO 생성자진입 ajax용 회원가입시 컨트롤러파라미터 - OAuth2User 상속 ");
+        //System.out.println("dto-member클래스 MemberDTO 생성자진입 ajax용 회원가입시 컨트롤러파라미터 - OAuth2User 상속 ");
         this.name = name;
         this.email=email;
         this.attrs=attrs;
-        System.out.println("dto-member클래스 MemberDTO 생성자진입 ajax용 회원가입시 컨트롤러파라미터 - OAuth2User 상속 ->"+this.toString());
+        //System.out.println("dto-member클래스 MemberDTO 생성자진입 ajax용 회원가입시 컨트롤러파라미터 - OAuth2User 상속 ->"+this.toString());
 
     }
 
     @Override
     public  Map<String, Object> getAttributes() {
-        System.out.println("dto-member클래스 MemberDTO 오버라이딩 getAttributes() 진입 반환타입은 Map<String, Object> ");
+        //System.out.println("dto-member클래스 MemberDTO 오버라이딩 getAttributes() 진입 반환타입은 Map<String, Object> ");
 
         return this.attrs;
     }
@@ -78,41 +78,41 @@ public class MemberDTO extends User implements OAuth2User {
                      String name, String email) {//5개
         super(username, password, authorities);
 
-        System.out.println("dto-member클래스 MemberDTO 생성자진입 ajax용 회원가입시 컨트롤러파라미터 - User상속");
+        //System.out.println("dto-member클래스 MemberDTO 생성자진입 ajax용 회원가입시 컨트롤러파라미터 - User상속");
         this.name=name;
         this.password =password;
         this.email=email;
 
-        System.out.println("dto-member클래스 MemberDTO 생성자진입  ajax용 회원가입시 컨트롤러파라미터 - User상속 -> "+this.toString());
+        //System.out.println("dto-member클래스 MemberDTO 생성자진입  ajax용 회원가입시 컨트롤러파라미터 - User상속 -> "+this.toString());
 
     }
 
     public MemberDTO(String username, String password, String fromSocial,
                      Collection<? extends GrantedAuthority> authorities) {//4개
         super(username, password, authorities);
-        System.out.println("dto-member클래스 MemberDTO 생성자진입 - User상속");
+        //System.out.println("dto-member클래스 MemberDTO 생성자진입 - User상속");
         this.email=username;
         this.password=password;
         this.fromSocial=fromSocial;
 
-        System.out.println("dto-member클래스 MemberDTO 생성자진입 - User상속 - >"+ this.toString());
+        //System.out.println("dto-member클래스 MemberDTO 생성자진입 - User상속 - >"+ this.toString());
     }
 
 
 
     public static Collection<? extends GrantedAuthority> setAuthorities(String role){
-        System.out.println("dto-member클래스 MemberDTO setAuthorities 진입 파라미터 -> "+ role);
+        //System.out.println("dto-member클래스 MemberDTO setAuthorities 진입 파라미터 -> "+ role);
         Collection<GrantedAuthority> roleList = new ArrayList<>();
         roleList.add( () -> {
             return "ROLE_"+role;
         });
-        System.out.println("dto-member클래스 MemberDTO setAuthorities 진입 Collection<GrantedAuthority> 출력 -> "+ roleList);
+        //System.out.println("dto-member클래스 MemberDTO setAuthorities 진입 Collection<GrantedAuthority> 출력 -> "+ roleList);
         return roleList;
     }
 
 
     public MemberDTO setMember(Member entity){
-        System.out.println("dto-member클래스 MemberDTO setMember() 진입 회원정보 수정후 세션갱신");
+        //System.out.println("dto-member클래스 MemberDTO setMember() 진입 회원정보 수정후 세션갱신");
         //this.name=entity.getName(); 닉네임은 일반회원은 바꾸지 않음
         this.password=entity.getPassword();
         return this;
@@ -124,7 +124,7 @@ public class MemberDTO extends User implements OAuth2User {
                      String name, String email, RoleType role,
                      LocalDateTime createdDate, LocalDateTime modifiedDate){
         super(username, password, authorities);
-        System.out.println("dto-member클래스 MemberDTO 생성자진입");
+        //System.out.println("dto-member클래스 MemberDTO 생성자진입");
         this.password=password;
         this.fromSocial =fromSocial;
         this.name=name;

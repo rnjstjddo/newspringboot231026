@@ -56,7 +56,7 @@ public class GuestbookReplyService {
 
     //댓글목록
     public List<GuestbookReplyDTO> list(Long gno) {
-        System.out.println("service-guestbook패키지 GuestbookReplyService클래스 list() 진입 파라미터 gno -> " + gno);
+        //System.out.println("service-guestbook패키지 GuestbookReplyService클래스 list() 진입 파라미터 gno -> " + gno);
 
         List<GuestbookReply> list = grr.list(gno);
 
@@ -78,10 +78,10 @@ public class GuestbookReplyService {
                 })
                 .collect(Collectors.toList());
 
-        System.out.println("service-guestbook패키지 GuestbookReplyService클래스 list() 진입 List<GuestbookReplyDTO> -> " + dtoList.toString());
+        //System.out.println("service-guestbook패키지 GuestbookReplyService클래스 list() 진입 List<GuestbookReplyDTO> -> " + dtoList.toString());
 
         if (dtoList != null) {
-            System.out.println("service-guestbook패키지 GuestbookReplyService클래스 list() 진입 -반환타입 List<GuestbookReplyDTO> null 아닐경우 -> " + dtoList.toString());
+            //System.out.println("service-guestbook패키지 GuestbookReplyService클래스 list() 진입 -반환타입 List<GuestbookReplyDTO> null 아닐경우 -> " + dtoList.toString());
         }
         return dtoList;
 
@@ -89,7 +89,7 @@ public class GuestbookReplyService {
 
     //등록
     public GuestbookReplyDTO save(GuestbookReplyDTO dto) {
-        System.out.println("service-guestbook패키지 GuestbookReplyService클래스 save() 진입 파라미터 GuestbookReplyDTO -> " + dto.toString());
+        //System.out.println("service-guestbook패키지 GuestbookReplyService클래스 save() 진입 파라미터 GuestbookReplyDTO -> " + dto.toString());
 
         GuestbookReply entity = GuestbookReply.builder()
                 .comment(dto.getComment())
@@ -97,7 +97,7 @@ public class GuestbookReplyService {
                 .gno(dto.getGno())
                 .build();
         Long grno = grr.save(entity).getGrno();
-        System.out.println("service-guestbook패키지 GuestbookReplyService클래스 save() 진입 파라미터 생성한 GuestbookReply -> " + entity.toString());
+        //System.out.println("service-guestbook패키지 GuestbookReplyService클래스 save() 진입 파라미터 생성한 GuestbookReply -> " + entity.toString());
 
         Optional<GuestbookReply> or = grr.findById(grno);
 
@@ -107,14 +107,14 @@ public class GuestbookReplyService {
 
     //삭제
     public boolean guestbookReplyDeleteGno(Long gno) {
-        System.out.println("service-guestbook패키지 GuestbookReplyService클래스 guestbookReplyDeleteGno() 진입");
+        //System.out.println("service-guestbook패키지 GuestbookReplyService클래스 guestbookReplyDeleteGno() 진입");
         grr.deleteByGno(gno);
         return true;
     }
 
     //삭제
     public boolean guestbookReplyDelete(Long grno) {
-        System.out.println("service-guestbook패키지 GuestbookReplyService클래스 guestbookReplyDelete() 진입");
+        //System.out.println("service-guestbook패키지 GuestbookReplyService클래스 guestbookReplyDelete() 진입");
         grr.deleteById(grno);
         return true;
     }
@@ -122,8 +122,8 @@ public class GuestbookReplyService {
 
     //entity ->  dto
     public GuestbookReplyDTO entityToDto(Member mentity, GuestbookReply pentity) {
-        System.out.println("service-guestbook패키지 GuestbookReplyService클래스 entityToDto() 진입 파라미터 GuestbookReply -> " + pentity);
-        System.out.println("service-guestbook패키지 GuestbookReplyService클래스 entityToDto() 진입 파라미터 Member -> " + mentity);
+        //System.out.println("service-guestbook패키지 GuestbookReplyService클래스 entityToDto() 진입 파라미터 GuestbookReply -> " + pentity);
+        //System.out.println("service-guestbook패키지 GuestbookReplyService클래스 entityToDto() 진입 파라미터 Member -> " + mentity);
 
         MemberDTO mDto = ms.toMemberDto(mentity);
 
@@ -131,7 +131,7 @@ public class GuestbookReplyService {
                 pentity.getGrno(), pentity.getGno(), pentity.getComment(), mDto.getName(),
                 pentity.getModifiedDate(), pentity.getCreatedDate());
 
-        System.out.println("service-guestbook패키지 GuestbookReplyService클래스 entityToDto() 진입 생성한 GuestbookReplyDTO -> " + dto.toString());
+        //System.out.println("service-guestbook패키지 GuestbookReplyService클래스 entityToDto() 진입 생성한 GuestbookReplyDTO -> " + dto.toString());
 
         return dto;
     }
@@ -148,7 +148,7 @@ public class GuestbookReplyService {
 
     //관리자페이지 댓글전체 수
     public List<GuestbookReplyDTO> findAll() {
-        System.out.println("service-guestbook패키지 GuestbookReplyService클래스 findAll() 진입");
+        //System.out.println("service-guestbook패키지 GuestbookReplyService클래스 findAll() 진입");
         List<GuestbookReply> list = grr.findAll();
 
         //반환객체
@@ -163,7 +163,7 @@ public class GuestbookReplyService {
 
     //댓글동적검색으로 일치하는 날짜조회
     public GuestPageResultDTO<GuestbookReplyDTO, GuestbookReply> getReplyListAdmin(GuestPageRequestDTO requestDTO, LocalDate localDate) {
-        System.out.println("service-guestbook패키지 GuestbookReplyService클래스 getReplyListAdmin() 진입");
+        //System.out.println("service-guestbook패키지 GuestbookReplyService클래스 getReplyListAdmin() 진입");
 
         Pageable p = requestDTO.getPageable(Sort.by("grno").descending());
 
@@ -182,7 +182,7 @@ public class GuestbookReplyService {
 
     //댓글동적검색+특정날짜
     private BooleanBuilder getReplySearchAdmin(GuestPageRequestDTO pageRequestDTO, LocalDate localDate) {
-        System.out.println("service-guestbook패키지 GuestbookReplyService클래스 getReplySearchAdmin() 진입");
+        //System.out.println("service-guestbook패키지 GuestbookReplyService클래스 getReplySearchAdmin() 진입");
 
         String type = pageRequestDTO.getType();
         String keyword = pageRequestDTO.getKeyword();
@@ -197,7 +197,7 @@ public class GuestbookReplyService {
         bb.and(be);
 
         if (type == null || type.trim().length() == 0) {
-            System.out.println("service-guestbook패키지 GuestbookReplyService클래스 getSearch() 진입 - 검색조건이 없는 경우 진입");
+            //System.out.println("service-guestbook패키지 GuestbookReplyService클래스 getSearch() 진입 - 검색조건이 없는 경우 진입");
             return bb;
         }
 
@@ -220,7 +220,7 @@ public class GuestbookReplyService {
 
     //관리자페이지 탭 -> 댓글동적검색으로 일치하는 날짜조회 미포함
     public GuestPageResultDTO<GuestbookReplyDTO, GuestbookReply> getReplyListAdmin(GuestPageRequestDTO requestDTO) {
-        System.out.println("service-guestbook패키지 GuestbookReplyService클래스 getReplyListAdmin() 진입");
+        //System.out.println("service-guestbook패키지 GuestbookReplyService클래스 getReplyListAdmin() 진입");
 
         Pageable p = requestDTO.getPageable(Sort.by("grno").descending());
 
@@ -237,7 +237,7 @@ public class GuestbookReplyService {
 
     //댓글동적검색
     private BooleanBuilder getReplySearchAdmin(GuestPageRequestDTO pageRequestDTO) {
-        System.out.println("service-guestbook패키지 GuestbookReplyService클래스 getReplySearchAdmin() 진입");
+        //System.out.println("service-guestbook패키지 GuestbookReplyService클래스 getReplySearchAdmin() 진입");
 
         String type = pageRequestDTO.getType();
         String keyword = pageRequestDTO.getKeyword();
@@ -250,7 +250,7 @@ public class GuestbookReplyService {
         bb.and(be);
 
         if (type == null || type.trim().length() == 0) {
-            System.out.println("service-guestbook패키지 GuestbookReplyService클래스 getSearch() 진입 - 검색조건이 없는 경우 진입");
+            //System.out.println("service-guestbook패키지 GuestbookReplyService클래스 getSearch() 진입 - 검색조건이 없는 경우 진입");
             return bb;
         }
 
@@ -272,10 +272,10 @@ public class GuestbookReplyService {
 
     //특정날짜방명록댓글수
     public Long getCountLocalDate(LocalDate localDate){
-        System.out.println("service-guestbook패키지 GuestbookReplyService클래스 getCountLocalDate() 진입");
+        //System.out.println("service-guestbook패키지 GuestbookReplyService클래스 getCountLocalDate() 진입");
 
         Long count = grr.getCountLocalDate(localDate.atTime(LocalTime.MIN), localDate.atTime(LocalTime.MAX));
-        System.out.println("service-guestbook패키지 GuestbookReplyService클래스 getCountLocalDate() 진입 localDate 방명록댓글수 -> "+ count);
+        //System.out.println("service-guestbook패키지 GuestbookReplyService클래스 getCountLocalDate() 진입 localDate 방명록댓글수 -> "+ count);
         return count;
     }
 }

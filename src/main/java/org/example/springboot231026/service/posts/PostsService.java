@@ -46,7 +46,7 @@ public class PostsService {
 
     @Transactional
     public Long save(PostsSaveRequestDto dto){
-        System.out.println("service-posts패키지 PostsService클래스 save() 진입");
+        //System.out.println("service-posts패키지 PostsService클래스 save() 진입");
         return pr.save(dto.toEntity()).getId();
     }
 
@@ -54,17 +54,17 @@ public class PostsService {
     //게시글수정
     @Transactional
     public Long update(Long id, PostsUpdateRequestDto dto){
-        System.out.println("service-posts패키지 PostsService클래스 udpate() 진입");
+        //System.out.println("service-posts패키지 PostsService클래스 udpate() 진입");
         Posts entity = pr.findById(id).orElseThrow(() -> new IllegalArgumentException("해당게시글이 없습니다."));
         entity.update(dto.getTitle(), dto.getContent());
 
-        System.out.println("service-posts클래스 PostsService udpate() 진입 변경된 Posts엔티티 -> "+entity.toString());
+        //System.out.println("service-posts클래스 PostsService udpate() 진입 변경된 Posts엔티티 -> "+entity.toString());
         return id;
     }
 
     //게시글조회
     public PostsResponseDto findById(Long id){
-        System.out.println("service-posts패키지 PostsService클래스 findById() 진입");
+        //System.out.println("service-posts패키지 PostsService클래스 findById() 진입");
         Posts entity = pr.findById(id).orElseThrow(() -> new IllegalArgumentException("해당게시글이없습니다."));
 
         return new PostsResponseDto(entity);
@@ -73,7 +73,7 @@ public class PostsService {
     //게시글목록
     @Transactional
     public PageResponseDTO<PostsListResponseDto> list(PageRequestDTO requestDTO){
-        System.out.println("service-posts패키지 PostsService클래스 list() 진입 파라미터 PageRequestDTO -> "+ requestDTO.toString());
+        //System.out.println("service-posts패키지 PostsService클래스 list() 진입 파라미터 PageRequestDTO -> "+ requestDTO.toString());
 
 
         String [] types = requestDTO.getTypes();
@@ -82,7 +82,7 @@ public class PostsService {
 
         Page<Posts> page = pr.searchAll(types, keyword, p);
 
-        System.out.println("service-posts패키지 PostsService클래스 list() 진입 파라미터 Posts엔티티출력 -> "+ page.getContent());
+        //System.out.println("service-posts패키지 PostsService클래스 list() 진입 파라미터 Posts엔티티출력 -> "+ page.getContent());
 
         //entity->dto
         List<PostsListResponseDto> list = page.getContent().stream()
@@ -99,7 +99,7 @@ public class PostsService {
     //게시글삭제
     @Transactional
     public Long delete(Long id){
-        System.out.println("service-posts패키지 PostsService클래스 delete() 진입");
+        //System.out.println("service-posts패키지 PostsService클래스 delete() 진입");
         prr.deleteByPno(id);
         pr.deleteById(id);
         return id;
@@ -109,7 +109,7 @@ public class PostsService {
     //회원탈퇴에 의한 게시글삭제
     @Transactional
     public boolean deleteMessageDeleteMember(String name){
-        System.out.println("service-posts패키지 PostsService클래스 deleteMessageDeleteMember() 진입");
+        //System.out.println("service-posts패키지 PostsService클래스 deleteMessageDeleteMember() 진입");
 
         List<Long> idList= pr.getIdByAuthor(name);
 
@@ -117,15 +117,15 @@ public class PostsService {
 
         if(idList !=null && idList.size() !=0){
             for(Long id: idList) {
-                System.out.println("service-posts패키지 PostsService클래스 deleteMessageDeleteMember() 진입 " +
-                        " 탈퇴할 회원의 게시글과 댓글이 존재할경우 -> "+ id);
+                //System.out.println("service-posts패키지 PostsService클래스 deleteMessageDeleteMember() 진입 " +
+                       // " 탈퇴할 회원의 게시글과 댓글이 존재할경우 -> "+ id);
                 prr.deleteByPno(id);
                 pr.deleteById(id);
                 result =true;
             }
         }else{
-            System.out.println("service-posts패키지 PostsService클래스 deleteMessageDeleteMember() 진입 " +
-                    " 탈퇴할 회원의 게시글과 댓글이 없을경우 진입");
+            //System.out.println("service-posts패키지 PostsService클래스 deleteMessageDeleteMember() 진입 " +
+                    //" 탈퇴할 회원의 게시글과 댓글이 없을경우 진입");
 
             result = true;
         }
@@ -136,7 +136,7 @@ public class PostsService {
     //mypage
     @Transactional
     public List<PostsResponseDto> listMyPage(String author) {
-        System.out.println("service-posts패키지 PostsService클래스 listMyPage() 진입 - MyPage author -> " +author);
+        //System.out.println("service-posts패키지 PostsService클래스 listMyPage() 진입 - MyPage author -> " +author);
 
         Optional<List<Posts>> postsList = pr.findByAuthor(author);
 
@@ -144,7 +144,7 @@ public class PostsService {
         List<PostsResponseDto> postsResponseDtoList = new ArrayList<>();
 
         if(postsList.isPresent()){
-            System.out.println("service-post패키지 PostsService클래스 listMyPage() 진입 - 회원이 작성한 Posts 존재할경우 진입");
+            //System.out.println("service-post패키지 PostsService클래스 listMyPage() 진입 - 회원이 작성한 Posts 존재할경우 진입");
             for(Posts posts : postsList.get()){
                 postsResponseDtoList.add(mm.map(posts, PostsResponseDto.class));
             }
@@ -155,7 +155,7 @@ public class PostsService {
 
     //관리자페이지 전체 게시글 조회
     public List<PostsListResponseDto> findAll(){
-        System.out.println("service-posts패키지 PostsService클래스 findAll() 진입");
+        //System.out.println("service-posts패키지 PostsService클래스 findAll() 진입");
 
         List<Posts> o = pr.findAll();
 
@@ -170,7 +170,7 @@ public class PostsService {
     //동적검색+특정날짜추가
     @Transactional
     public PageResponseDTO<PostsListResponseDto> getListAdminModifiedDate(PageRequestDTO requestDTO,LocalDate localDate){
-        System.out.println("service-posts패키지 PostsService클래스 getListAdminModifiedDate() 진입 ");
+        //System.out.println("service-posts패키지 PostsService클래스 getListAdminModifiedDate() 진입 ");
 
 
         String [] types = requestDTO.getTypes();
@@ -180,7 +180,7 @@ public class PostsService {
         //날짜까지 추가
         Page<Posts> page = pr.searchAllModifiedDate(types, keyword, p,localDate);
 
-        System.out.println("service-posts패키지 PostsService클래스 public Page<PostsListResponseDto> getListAdminModifiedDate(LocalDate localDate){\n() 진입 파라미터 Posts엔티티출력 -> "+ page.getContent());
+        //System.out.println("service-posts패키지 PostsService클래스 public Page<PostsListResponseDto> getListAdminModifiedDate(LocalDate localDate){\n() 진입 파라미터 Posts엔티티출력 -> "+ page.getContent());
 
         //entity->dto
         List<PostsListResponseDto> list = page.getContent().stream()
@@ -197,7 +197,7 @@ public class PostsService {
     //동적검색+특정날짜추가
     @Transactional
     public PageResponseDTO<PostsListResponseDto> getListAdminCreatedDate(PageRequestDTO requestDTO,LocalDate localDate){
-        System.out.println("service-posts패키지 PostsService클래스 getListAdminCreatedDate() 진입 ");
+        //System.out.println("service-posts패키지 PostsService클래스 getListAdminCreatedDate() 진입 ");
 
         String [] types = requestDTO.getTypes();
         String keyword = requestDTO.getKeyword();
@@ -206,7 +206,7 @@ public class PostsService {
         //날짜까지 추가
         Page<Posts> page = pr.searchAllCreatedDate(types, keyword, p,localDate);
 
-        System.out.println("service-posts패키지 PostsService클래스 public Page<PostsListResponseDto> getListAdminCreatedDate() 진입 파라미터 Posts엔티티출력 -> "+ page.getContent());
+        //System.out.println("service-posts패키지 PostsService클래스 public Page<PostsListResponseDto> getListAdminCreatedDate() 진입 파라미터 Posts엔티티출력 -> "+ page.getContent());
 
         //entity->dto
         List<PostsListResponseDto> list = page.getContent().stream()
@@ -223,13 +223,13 @@ public class PostsService {
 
     //특정날짜게시글수
     public Long getCountLocalDate(LocalDate localDate){
-        System.out.println("service-posts패키지 PostsService클래스 getCountLocalDate() 진입 시작시간 -> "+localDate.atTime(LocalTime.MIN)+"종료시간 -> "+localDate.atTime(LocalTime.MAX));
+        //System.out.println("service-posts패키지 PostsService클래스 getCountLocalDate() 진입 시작시간 -> "+localDate.atTime(LocalTime.MIN)+"종료시간 -> "+localDate.atTime(LocalTime.MAX));
 
         Long count = pr.getCountLocalDate(localDate.atTime(LocalTime.MIN), localDate.atTime(LocalTime.MAX));
-        System.out.println("service-posts패키지 PostsService클래스 getCountLocalDate() 진입 localDate 게시글수 -> "+ count);
+        //System.out.println("service-posts패키지 PostsService클래스 getCountLocalDate() 진입 localDate 게시글수 -> "+ count);
         return count;
     }
 
 
-        //     System.out.println("service-posts패키지 PostsService클래스 save() 진입");
+        //System.out.println("service-posts패키지 PostsService클래스 save() 진입");
 }

@@ -53,13 +53,13 @@ public class AdminTabController {
     public String adminDogList(@ModelAttribute("pageRequestDTO") PageRequestDTO pageRequestDTO, Model model,
                                @AuthenticationPrincipal MemberDTO memberDTO,
                                @RequestParam(required = false) String yearmonth) {
-        System.out.println("관리자컨트롤러AdminTabController /admin/tab/dogsell 진입 ");
+        //System.out.println("관리자컨트롤러AdminTabController /admin/tab/dogsell 진입 ");
 
         PageResponseDTO pResponseDto = dogSellService.list(pageRequestDTO);
 
         if (pResponseDto.getDtoList().size() > 0 && pResponseDto.getEnd() != 0) {
-            System.out.println("관리자컨트롤러AdminTabController /admin/tab/dogsell 진입 " +
-                    " PageResponseDTO 존재할경우 getTotal() - > " + pResponseDto.getTotal()+", getSize() -> "+pResponseDto.getSize());
+            //System.out.println("관리자컨트롤러AdminTabController /admin/tab/dogsell 진입 " +
+                   // " PageResponseDTO 존재할경우 getTotal() - > " + pResponseDto.getTotal()+", getSize() -> "+pResponseDto.getSize());
 
             model.addAttribute("responseDtoList", pResponseDto.getDtoList());
             model.addAttribute("responseDto", pResponseDto);
@@ -74,13 +74,13 @@ public class AdminTabController {
     public String adminTabPost(@ModelAttribute("pageRequestDTO") PageRequestDTO pageRequestDTO, Model model,
                                @AuthenticationPrincipal MemberDTO memberDTO,
                                @RequestParam(required = false) String yearmonth) {
-        System.out.println("관리자컨트롤러AdminTabController /admin/tab/post 진입");
+        //System.out.println("관리자컨트롤러AdminTabController /admin/tab/post 진입");
 
         PageResponseDTO pResponseDto = ps.list(pageRequestDTO);
 
         if (pResponseDto.getDtoList().size() > 0 && pResponseDto.getEnd() != 0) {
-            System.out.println("관리자컨트롤러AdminTabController /admin/tab/post 진입 " +
-                    " PageResponseDTO 존재할경우 getTotal() - > " + pResponseDto.getTotal()+", getSize() -> "+pResponseDto.getSize());
+            //System.out.println("관리자컨트롤러AdminTabController /admin/tab/post 진입 " +
+                   // " PageResponseDTO 존재할경우 getTotal() - > " + pResponseDto.getTotal()+", getSize() -> "+pResponseDto.getSize());
 
             model.addAttribute("responseDtoList", pResponseDto.getDtoList());
             model.addAttribute("responseDto", pResponseDto);
@@ -94,13 +94,13 @@ public class AdminTabController {
     public String adminTabPostReply(@ModelAttribute("pageRequestDTO") PageRequestDTO pageRequestDTO, Model model,
                                @AuthenticationPrincipal MemberDTO memberDTO,
                                @RequestParam(required = false) String yearmonth) {
-        System.out.println("관리자컨트롤러AdminTabController /admin/tab/postreply 진입");
+        //System.out.println("관리자컨트롤러AdminTabController /admin/tab/postreply 진입");
 
         PageResponseDTO pResponseDto = prs.getListAdmin(pageRequestDTO);
 
         if (pResponseDto.getDtoList().size() > 0 && pResponseDto.getEnd() != 0) {
-            System.out.println("관리자컨트롤러AdminTabController /admin/tab/postreply 진입 " +
-                    " PageResponseDTO 존재할경우 getTotal() - > " + pResponseDto.getTotal()+", getSize() -> "+pResponseDto.getSize());
+            //System.out.println("관리자컨트롤러AdminTabController /admin/tab/postreply 진입 " +
+                    //" PageResponseDTO 존재할경우 getTotal() - > " + pResponseDto.getTotal()+", getSize() -> "+pResponseDto.getSize());
 
             model.addAttribute("responseDtoList", pResponseDto.getDtoList());
             model.addAttribute("responseDto", pResponseDto);
@@ -114,12 +114,12 @@ public class AdminTabController {
     public String adminTabGuestbookReply(@ModelAttribute("pageRequestDTO") GuestPageRequestDTO pageRequestDTO, Model model,
                                           @RequestParam(required = false)String yearmonth ,
                                           @AuthenticationPrincipal MemberDTO memberDTO) {
-        System.out.println("관리자컨트롤러AdminTabController /admin/tab/postreply 진입");
+        //System.out.println("관리자컨트롤러AdminTabController /admin/tab/postreply 진입");
         GuestPageResultDTO pResponseDto = grs.getReplyListAdmin(pageRequestDTO);
 
         if (pResponseDto.getDtoList().size() > 0 && pResponseDto.getEnd() != 0) {
-            System.out.println("관리자컨트롤러AdminTabController /admin/tab/postreply 진입 " +
-                    " GuestPageResultDTO getSize() - > " + pResponseDto.getSize()+", getTotalPage() -> "+ pResponseDto.getTotalPage());
+            //System.out.println("관리자컨트롤러AdminTabController /admin/tab/postreply 진입 " +
+                    //" GuestPageResultDTO getSize() - > " + pResponseDto.getSize()+", getTotalPage() -> "+ pResponseDto.getTotalPage());
 
             model.addAttribute("pResponseDtoList", pResponseDto.getDtoList());
             model.addAttribute("pResponseDto", pResponseDto);
@@ -134,12 +134,12 @@ public class AdminTabController {
     public String adminTabGuestbook(@ModelAttribute("pageRequestDTO") GuestPageRequestDTO pageRequestDTO, Model model,
                                          @RequestParam(required = false)String yearmonth ,
                                          @AuthenticationPrincipal MemberDTO memberDTO) {
-        System.out.println("관리자컨트롤러AdminTabController /admin/tab/post 진입");
+        //System.out.println("관리자컨트롤러AdminTabController /admin/tab/post 진입");
         GuestPageResultDTO pResponseDto = gs.getListAdmin(pageRequestDTO);
 
         if (pResponseDto.getDtoList().size() > 0 && pResponseDto.getEnd() != 0) {
-            System.out.println("관리자컨트롤러AdminTabController /admin/tab/post 진입 " +
-                    " GuestPageResultDTO getSize() - > " + pResponseDto.getSize()+", getTotalPage() -> "+ pResponseDto.getTotalPage());
+            //System.out.println("관리자컨트롤러AdminTabController /admin/tab/post 진입 " +
+                    //" GuestPageResultDTO getSize() - > " + pResponseDto.getSize()+", getTotalPage() -> "+ pResponseDto.getTotalPage());
 
             model.addAttribute("pResponseDtoList", pResponseDto.getDtoList());
             model.addAttribute("pResponseDto", pResponseDto);
@@ -154,13 +154,13 @@ public class AdminTabController {
     public String adminInguiryList(Model model, @ModelAttribute("pageRequestDTO") PageRequestDTO pageRequestDTO,
                                    @AuthenticationPrincipal MemberDTO memberDTO,
                                    @RequestParam(required = false) String yearmonth) {
-        System.out.println("관리자컨트롤러AdminTabController /admin/tab/inquiry 진입");
+        //System.out.println("관리자컨트롤러AdminTabController /admin/tab/inquiry 진입");
 
         PageResponseDTO pResponseDto = is.getListAdmin(pageRequestDTO);
 
         if (pResponseDto.getDtoList().size() > 0 && pResponseDto.getEnd() != 0) {
-            System.out.println("관리자컨트롤러AdminTabController /admin/tab/inquiry 진입 " +
-                    " PageResponseDTO getSize() -> " + pResponseDto.getSize()+" , getTotal() -> "+ pResponseDto.getTotal());
+            //System.out.println("관리자컨트롤러AdminTabController /admin/tab/inquiry 진입 " +
+                    //" PageResponseDTO getSize() -> " + pResponseDto.getSize()+" , getTotal() -> "+ pResponseDto.getTotal());
 
             model.addAttribute("responseDtoList", pResponseDto.getDtoList());
             model.addAttribute("pResponseDto", pResponseDto);
@@ -174,13 +174,13 @@ public class AdminTabController {
     public String adminMemberList(Model model, @ModelAttribute("pageRequestDTO") PageRequestDTO pageRequestDTO,
                                   @AuthenticationPrincipal MemberDTO memberDTO,
                                   @RequestParam(required = false) String yearmonth) {
-        System.out.println("관리자컨트롤러AdminTabController /admin/tab/member 진입");
+        //System.out.println("관리자컨트롤러AdminTabController /admin/tab/member 진입");
 
         PageResponseDTO pResponseDto = ms.getListAdmin(pageRequestDTO);
 
         if(pResponseDto.getDtoList().size() >0 && pResponseDto.getEnd() !=0) {
-            System.out.println("관리자컨트롤러AdminTabController /admin/tab/member 진입 " +
-                    " PageResponseDTO getTotal() -> " + pResponseDto.getTotal()+", getSize() -> "+pResponseDto.getSize());
+            //System.out.println("관리자컨트롤러AdminTabController /admin/tab/member 진입 " +
+                  //  " PageResponseDTO getTotal() -> " + pResponseDto.getTotal()+", getSize() -> "+pResponseDto.getSize());
 
             model.addAttribute("responseDtoList", pResponseDto.getDtoList());
             model.addAttribute("responseDto", pResponseDto);

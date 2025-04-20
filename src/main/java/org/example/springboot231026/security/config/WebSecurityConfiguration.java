@@ -54,7 +54,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        System.out.println("security-config클래스 WebSecurityConfiguration 오버라이딩 configure() 진입 파라미터 HttpSecurity ");
+        //System.out.println("security-config클래스 WebSecurityConfiguration 오버라이딩 configure() 진입 파라미터 HttpSecurity ");
 
         http.httpBasic().and().authorizeRequests().antMatchers("/auth/**", "/oauth/**", "/js/**", "/image/**", "/css/**", "/",
                 "/member/**", "/guestbook/**", "/uploadEx", "/display", "/removeFile", "/uploadAjax", "/dogsell/list",
@@ -82,7 +82,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     //자동로그인쿠키저장소
     @Bean
     public PersistentTokenRepository persistentTokenRepository() {
-        System.out.println("security-config클래스 WebSecurityConfiguration @Bean PersistentTokenRepository 생성");
+        //System.out.println("security-config클래스 WebSecurityConfiguration @Bean PersistentTokenRepository 생성");
         JdbcTokenRepositoryImpl repo = new JdbcTokenRepositoryImpl();
         repo.setDataSource(ds);
         return repo;
@@ -91,14 +91,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     //인증서버로부터 받은 사용자정보를 이용해서 Member엔티티객체 생성후 Manager를 사용해서 인증요청시 인자로 전달후 Authentication 생성
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
-        System.out.println("security-config클래스 WebSecurityConfiguration @Bean AuthenticationManager 생성");
+        //System.out.println("security-config클래스 WebSecurityConfiguration @Bean AuthenticationManager 생성");
         return super.authenticationManagerBean();
 
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        System.out.println("security-config클래스 WebSecurityConfiguration 오버라이딩 configure() 진입 ");
+        //System.out.println("security-config클래스 WebSecurityConfiguration 오버라이딩 configure() 진입 ");
 
         auth.userDetailsService(ms).passwordEncoder(pe);
     }
@@ -125,7 +125,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     //실패핸들러추가
     @Bean
     public AccessDeniedHandler accessDeniedHandler(){
-        System.out.println("security-config클래스 WebSecurityConfiguration @Bean AccessDeniedHandler 생성");
+        //System.out.println("security-config클래스 WebSecurityConfiguration @Bean AccessDeniedHandler 생성");
         return new Custom403Handler();
     }
 //        System.out.println("security-config클래스 WebSecurityConfiguration @Bean PasswordEncoder 생성 ");
