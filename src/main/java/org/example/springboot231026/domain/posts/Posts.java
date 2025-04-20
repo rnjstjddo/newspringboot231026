@@ -36,17 +36,17 @@ public class Posts extends BaseTimeEntity {
 
     @Builder
     public Posts(String title, String content, String autor){
-        System.out.println("domain-posts클래스 Posts 생성자진입");
+        //System.out.println("domain-posts클래스 Posts 생성자진입");
         this.title=title;
         this.content=content;
         this.author=autor;
-        System.out.println("domain-posts클래스 Posts 생성자진입 -> "+ this.toString());
+        //System.out.println("domain-posts클래스 Posts 생성자진입 -> "+ this.toString());
 
     }
 
     //제목과 내용 수정가능
     public void update(String title, String content){
-        System.out.println("domain-posts클래스 Posts update() 진입");
+        //System.out.println("domain-posts클래스 Posts update() 진입");
 
         this.title=title;
         this.content=content;

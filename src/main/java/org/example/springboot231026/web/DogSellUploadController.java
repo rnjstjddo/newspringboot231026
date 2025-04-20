@@ -40,7 +40,7 @@ public class DogSellUploadController {
     @PostMapping("/dogselluploadAjax")
     //public void uploadFile(MultipartFile[] multipartFiles){
     public ResponseEntity<List<DogSellUploadResultDTO>> uploadFile(MultipartFile [] multipartFiles){
-        System.out.println("upload-controller클래스 DogSellUploadController uploadFile() 진입");
+        //System.out.println("upload-controller클래스 DogSellUploadController uploadFile() 진입");
 
 
         //반환타입 객체생성
@@ -50,30 +50,30 @@ public class DogSellUploadController {
 
             //파일검사
             if(multipartFile.getContentType().startsWith("image") == false){
-                System.out.println("upload-controller클래스 DogSellUploadController uploadFile() 진입 - 파일검사 image 시작하는 않는 파일의 경우");
+                //System.out.println("upload-controller클래스 DogSellUploadController uploadFile() 진입 - 파일검사 image 시작하는 않는 파일의 경우");
                 return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 
             }
 
 
             String originName = multipartFile.getOriginalFilename();
-            System.out.println("upload-controller클래스 DogSellUploadController uploadFile() 진입 getOriginalFilename() -> "+ originName);
+            //System.out.println("upload-controller클래스 DogSellUploadController uploadFile() 진입 getOriginalFilename() -> "+ originName);
 
             originName = originName.substring(originName.lastIndexOf("\\")+1);
-            System.out.println("upload-controller클래스 DogSellUploadController uploadFile() 진입 lastIndexOf(\\) -> "+ originName);
+            //System.out.println("upload-controller클래스 DogSellUploadController uploadFile() 진입 lastIndexOf(\\) -> "+ originName);
 
             //날짜폴더생성
             String datePath = makeFolder(); //c경로까지 포함
-            System.out.println("upload-controller클래스 DogSellUploadController uploadFile() 진입 날짜폴더생성 String타입-> "+ datePath);
+            //System.out.println("upload-controller클래스 DogSellUploadController uploadFile() 진입 날짜폴더생성 String타입-> "+ datePath);
 
             String uuid= UUID.randomUUID().toString();
 
             String saveName = cPath+ File.separator+datePath+ File.separator+uuid+"_"+originName;
-            System.out.println("upload-controller클래스 DogSellUploadController uploadFile() 진입 저장할파일경로 String타입 -> "+ saveName);
+            //System.out.println("upload-controller클래스 DogSellUploadController uploadFile() 진입 저장할파일경로 String타입 -> "+ saveName);
 
             Path savePath = Paths.get(saveName);
 
-            System.out.println("upload-controller클래스 DogSellUploadController uploadFile() 진입 저장할파일경로 Path타입 -> "+ savePath);
+            //System.out.println("upload-controller클래스 DogSellUploadController uploadFile() 진입 저장할파일경로 Path타입 -> "+ savePath);
 
             try {
 
@@ -82,7 +82,7 @@ public class DogSellUploadController {
                 String thumb = cPath+ File.separator+ datePath+File.separator+
                         "s_"+ uuid+"_"+originName;
 
-                System.out.println("upload-controller클래스 DogSellUploadController uploadFile() 진입 썸네일저장할파일경로 String타입 -> "+ thumb);
+                //System.out.println("upload-controller클래스 DogSellUploadController uploadFile() 진입 썸네일저장할파일경로 String타입 -> "+ thumb);
 
                 File thumbFile = new File(thumb); //cPath 는 C:\\upload231026 이다
 
@@ -103,16 +103,16 @@ public class DogSellUploadController {
     }
 
     private String makeFolder() {
-        System.out.println("upload-controller클래스 DogSellUploadController makeFolder() 진입 - 날짜생성폴더 만들기");
+        //System.out.println("upload-controller클래스 DogSellUploadController makeFolder() 진입 - 날짜생성폴더 만들기");
 
         String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-        System.out.println("upload-controller클래스 DogSellUploadController makeFolder() 진입 - 날짜생성폴더 만들기 DateTimeFormatter.ofPattern() -> "+ date);
+        //System.out.println("upload-controller클래스 DogSellUploadController makeFolder() 진입 - 날짜생성폴더 만들기 DateTimeFormatter.ofPattern() -> "+ date);
         //2023/11/08
         String folderPath = date.replace("/", File.separator);
 
         File folder = new File(cPath, folderPath); //parent, child
 
-        System.out.println("upload-controller클래스 DogSellUploadController makeFolder() 진입 - 날짜생성폴더 만들기 File객체로 폴더생성 -> "+ folder);
+        //System.out.println("upload-controller클래스 DogSellUploadController makeFolder() 진입 - 날짜생성폴더 만들기 File객체로 폴더생성 -> "+ folder);
         // C: \ upload231026 \ 2023 \ 11 \ 08
         if(folder.exists() == false){
             folder.mkdirs();
@@ -123,7 +123,7 @@ public class DogSellUploadController {
 
     @GetMapping("/dogselldisplay")
     private ResponseEntity<byte []> getFile(String fileName) {
-        System.out.println("upload-controller클래스 DogSellUploadController getFile() 진입 - 파일이미지 json 전송 반환타입 byte[] 파라미터 -> "+ fileName);
+        //System.out.println("upload-controller클래스 DogSellUploadController getFile() 진입 - 파일이미지 json 전송 반환타입 byte[] 파라미터 -> "+ fileName);
 
         ResponseEntity<byte []> result = null;
 
@@ -133,7 +133,7 @@ public class DogSellUploadController {
 
             File file = new File(cPath + File.separator + srcdecode);
 
-            System.out.println("upload-controller클래스 DogSellUploadController getFile() 진입 - URLDecoder 후에 File객체생성 -> "+ file);
+            //System.out.println("upload-controller클래스 DogSellUploadController getFile() 진입 - URLDecoder 후에 File객체생성 -> "+ file);
 
             HttpHeaders headers= new HttpHeaders();
 
@@ -152,7 +152,7 @@ public class DogSellUploadController {
     //업로드파일삭제 서버폴더 삭제처리
     @PostMapping("/dogsellremoveFile")
     public ResponseEntity<Boolean> removeFile(String fileName){
-        System.out.println("upload-controller클래스 DogSellUploadController removeFile() 진입 - 파라미터 String -> "+ fileName);
+        //System.out.println("upload-controller클래스 DogSellUploadController removeFile() 진입 - 파라미터 String -> "+ fileName);
 
         String srcName = null;
 
@@ -174,5 +174,5 @@ public class DogSellUploadController {
 
     }
 
-//    System.out.println("upload-controller클래스 DogSellUploadController getFile() 진입 - URLDecoder 후에 File객체생성 -> "+ file);
+//System.out.println("upload-controller클래스 DogSellUploadController getFile() 진입 - URLDecoder 후에 File객체생성 -> "+ file);
 }

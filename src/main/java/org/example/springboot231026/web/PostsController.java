@@ -45,7 +45,7 @@ public class PostsController {
     @GetMapping("/list")
     public String index(@ModelAttribute("pageRequestDto") PageRequestDTO requestDTO, Model model,
                          @AuthenticationPrincipal MemberDTO memberDTO) {
-        System.out.println("VIEW컨트롤러 index()진입 파라미터 PageRequestDTO -> "+requestDTO);
+        //System.out.println("VIEW컨트롤러 index()진입 파라미터 PageRequestDTO -> "+requestDTO);
 
         if(memberDTO !=null) {
             model.addAttribute("loginMember", memberDTO.getName());
@@ -55,28 +55,28 @@ public class PostsController {
             //PageResponseDTO<PostsListResponseDto> dto= ps.list(requestDTO);
 
             PageResponseDTO responseDto= ps.list(requestDTO);
-            System.out.println("VIEW컨트롤러 index()진입 파라미터 PageResponseDTO -> "+responseDto);
+            //System.out.println("VIEW컨트롤러 index()진입 파라미터 PageResponseDTO -> "+responseDto);
 
-            System.out.println("VIEW컨트롤러 index()진입 파라미터 PageResponseDTO .getDtoList().size() -> "+responseDto.getDtoList().size());
-            System.out.println("VIEW컨트롤러 index()진입 파라미터 PageResponseDTO .getDtoList() -> "+responseDto.getDtoList());
+            //System.out.println("VIEW컨트롤러 index()진입 파라미터 PageResponseDTO .getDtoList().size() -> "+responseDto.getDtoList().size());
+            //System.out.println("VIEW컨트롤러 index()진입 파라미터 PageResponseDTO .getDtoList() -> "+responseDto.getDtoList());
 
             if(responseDto.getDtoList().size() ==0){
 // VIEW컨트롤러 index()진입 파라미터 PageResponseDTO ->
 // //PageResponseDTO(page=0, size=0, total=0, start=0, end=0, prev=false, next=false, dtoList=[])
-                System.out.println("VIEW컨트롤러 index()진입 PageResponseDTO 게시글이 없을경우 진입");
+                //System.out.println("VIEW컨트롤러 index()진입 PageResponseDTO 게시글이 없을경우 진입");
                 //PageResponseDTO nullDto = new PageResponseDTO();
                 //model.addAttribute("responseDto", nullDto);
                 PageResponseDTO nullDto = new PageResponseDTO();
                 model.addAttribute("responseDto", nullDto);
 
                 if (memberDTO != null) {
-                    System.out.println("VIEW컨트롤러 index()진입 PageResponseDTO 게시글이 없을경우 진입 - 로그인한 회원일경우 getName() 같이전달 ");
+                    //System.out.println("VIEW컨트롤러 index()진입 PageResponseDTO 게시글이 없을경우 진입 - 로그인한 회원일경우 getName() 같이전달 ");
                     model.addAttribute("loginMember", memberDTO.getName());
                     return "post/list";
                 }
             }else{
 
-                System.out.println("VIEW컨트롤러 index()진입 PageResponseDTO 게시글이 존재할 경우 진입");
+                //System.out.println("VIEW컨트롤러 index()진입 PageResponseDTO 게시글이 존재할 경우 진입");
                 model.addAttribute("responseDto", responseDto);
                 
                 //게시글 댓글
@@ -88,7 +88,7 @@ public class PostsController {
 
                 for(Object [] arrays: oarraysList){
                     map.put((Long) arrays[0], (Long) arrays[1]);
-                    System.out.println("게시글번호 -> "+arrays[0]+", 댓글수 -> "+arrays[1]);
+                    //System.out.println("게시글번호 -> "+arrays[0]+", 댓글수 -> "+arrays[1]);
                 }
                 
                 //댓글수 model담기
@@ -96,13 +96,13 @@ public class PostsController {
 
 
                 if (memberDTO != null) {
-                    System.out.println("VIEW컨트롤러 index()진입 PageResponseDTO 게시글이 존재할 경우 진입 - 로그인한 회원일경우 getName() 같이전달 ");
+                    //System.out.println("VIEW컨트롤러 index()진입 PageResponseDTO 게시글이 존재할 경우 진입 - 로그인한 회원일경우 getName() 같이전달 ");
                     model.addAttribute("loginMember", memberDTO.getName());
                     return "post/list";
                 }
             }
         }catch(Exception e) {
-            System.out.println("VIEW컨트롤러 index()진입 - catch() 진입");
+            //System.out.println("VIEW컨트롤러 index()진입 - catch() 진입");
                 e.printStackTrace();
             return "post/list";
         }
@@ -114,15 +114,15 @@ public class PostsController {
     @GetMapping("/save")
     public void postsSave(@ModelAttribute("pageRequestDto") PageRequestDTO requestDTO, Model model,
                              @AuthenticationPrincipal MemberDTO memberDTO){
-        System.out.println("VIEW컨트롤러 postsSave()진입");
+        //System.out.println("VIEW컨트롤러 postsSave()진입");
 
         try {
             if (memberDTO != null) {
-                System.out.println("VIEW컨트롤러 postsSave()진입 - 로그인한 회원일경우 getName() 같이전달 ");
+                //System.out.println("VIEW컨트롤러 postsSave()진입 - 로그인한 회원일경우 getName() 같이전달 ");
                 model.addAttribute("loginMember", memberDTO.getName());
             }
         }catch (Exception e){
-            System.out.println("VIEW컨트롤러 postsSave()진입 - catch() 진입");
+            //System.out.println("VIEW컨트롤러 postsSave()진입 - catch() 진입");
             e.printStackTrace();
         }
     }
@@ -132,27 +132,27 @@ public class PostsController {
     @GetMapping("/update")
     public void postsUpdate(@ModelAttribute("pageRequestDto") PageRequestDTO requestDTO, Model model,
                               Long id, @AuthenticationPrincipal MemberDTO memberDTO){
-        System.out.println("VIEW컨트롤러 postsUpdate()진입 파라미터번호 -> "+id);
+        //System.out.println("VIEW컨트롤러 postsUpdate()진입 파라미터번호 -> "+id);
 
         PostsResponseDto postsResponseDto = ps.findById(id);
         model.addAttribute("posts", postsResponseDto);
 
-        System.out.println("VIEW컨트롤러 postsUpdate()진입 현재 로그인사용자 -> "+memberDTO.getName()+", 게시글작성자 -> "+postsResponseDto.getAuthor());
+        //System.out.println("VIEW컨트롤러 postsUpdate()진입 현재 로그인사용자 -> "+memberDTO.getName()+", 게시글작성자 -> "+postsResponseDto.getAuthor());
 
 
         //댓글조회 함께 보여주기
         List<PostReplyDTO> replydtoList = prs.list(id);
-        System.out.println("VIEW컨트롤러 postsUpdate()진입 댓글출력 -> "+ replydtoList.toString());
+        //System.out.println("VIEW컨트롤러 postsUpdate()진입 댓글출력 -> "+ replydtoList.toString());
         model.addAttribute("rDtoList", replydtoList);
 
         try {
             if (memberDTO != null) {
-                System.out.println("VIEW컨트롤러 postsUpdate()진입 - 로그인한 회원일경우 getName() 같이전달 ");
+                //System.out.println("VIEW컨트롤러 postsUpdate()진입 - 로그인한 회원일경우 getName() 같이전달 ");
                 model.addAttribute("loginMember", memberDTO.getName());
 
             }
         }catch (Exception e){
-            System.out.println("VIEW컨트롤러 postsUpdate()진입 - catch() 진입");
+            //System.out.println("VIEW컨트롤러 postsUpdate()진입 - catch() 진입");
             e.printStackTrace();
         }
     }

@@ -17,13 +17,13 @@ public class InquirySearchImpl extends QuerydslRepositorySupport implements Inqu
 
     public InquirySearchImpl() {
         super(Inquiry.class);
-        System.out.println("inquiry-search패키지 InquirySearchImpl클래스 생성자진입");
+        //System.out.println("inquiry-search패키지 InquirySearchImpl클래스 생성자진입");
     }
 
     //관리자페이지에서 날짜조건에 맞는 문의글 페이징처리와 동적검색 모두처리
     @Override
     public Page<Inquiry> searchInquiryAllModifiedDate(String[] types, String keyword, Pageable pageable, LocalDate localDate) {
-        System.out.println("inquiry-search패키지 InquirySearchImpl클래스 searchInquiryAllModifiedDate() 진입");
+        //System.out.println("inquiry-search패키지 InquirySearchImpl클래스 searchInquiryAllModifiedDate() 진입");
 
             QInquiry qp = QInquiry.inquiry;
             JPQLQuery<Inquiry> jpp = from(qp);
@@ -54,9 +54,9 @@ public class InquirySearchImpl extends QuerydslRepositorySupport implements Inqu
             //페이징처리
             this.getQuerydsl().applyPagination(pageable, jpp);
 
-            System.out.println("Querydsl<Inquiry> -> "+jpp);
+            //System.out.println("Querydsl<Inquiry> -> "+jpp);
             List<Inquiry> list= jpp.fetch();
-            System.out.println(list.toString());
+            //System.out.println(list.toString());
             long count = jpp.fetchCount();
 
             return new PageImpl<>(list, pageable, count);
@@ -64,7 +64,7 @@ public class InquirySearchImpl extends QuerydslRepositorySupport implements Inqu
 
     @Override
     public Page<Inquiry> searchInquiryAllCreatedDate(String[] types, String keyword, Pageable pageable, LocalDate localDate) {
-        System.out.println("inquiry-search패키지 InquirySearchImpl클래스 searchInquiryAllCreatedDate() 진입");
+        //System.out.println("inquiry-search패키지 InquirySearchImpl클래스 searchInquiryAllCreatedDate() 진입");
 
         QInquiry qp = QInquiry.inquiry;
         JPQLQuery<Inquiry> jpp = from(qp);
@@ -95,9 +95,9 @@ public class InquirySearchImpl extends QuerydslRepositorySupport implements Inqu
         //페이징처리
         this.getQuerydsl().applyPagination(pageable, jpp);
 
-        System.out.println("Querydsl<Inquiry> -> "+jpp);
+        //System.out.println("Querydsl<Inquiry> -> "+jpp);
         List<Inquiry> list= jpp.fetch();
-        System.out.println(list.toString());
+        //System.out.println(list.toString());
         long count = jpp.fetchCount();
 
         return new PageImpl<>(list, pageable, count);
@@ -109,7 +109,7 @@ public class InquirySearchImpl extends QuerydslRepositorySupport implements Inqu
     //관리자페이지에서 문의글 페이징처리와 동적검색 모두처리
     @Override
     public Page<Inquiry> searchInquiryAll(String[] types, String keyword, Pageable pageable) {
-        System.out.println("inquiry-search패키지 InquirySearchImpl클래스 searchInquiryAll() 진입");
+        //System.out.println("inquiry-search패키지 InquirySearchImpl클래스 searchInquiryAll() 진입");
 
         QInquiry qp = QInquiry.inquiry;
         JPQLQuery<Inquiry> jpp = from(qp);

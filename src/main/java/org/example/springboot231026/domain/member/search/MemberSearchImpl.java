@@ -18,13 +18,13 @@ public class MemberSearchImpl extends QuerydslRepositorySupport implements Membe
     public MemberSearchImpl() {
         super(Member.class);
 
-        System.out.println("domain-member-search패키지 MemberSearchImpl 생성자진입");
+        //System.out.println("domain-member-search패키지 MemberSearchImpl 생성자진입");
     }
 
     @Override
     public Page<Member> searchMemberAllModifiedDate(String[] types, String keyword, Pageable pageable, LocalDate localDate) {
-        System.out.println("domain-member-search패키지 MemberSearchImpl 오버라이딩 searchMemberAllModifiedDate() 진입");
-        System.out.println("Pageable -> "+ pageable.toString());
+        //System.out.println("domain-member-search패키지 MemberSearchImpl 오버라이딩 searchMemberAllModifiedDate() 진입");
+        //System.out.println("Pageable -> "+ pageable.toString());
 
         QMember qp = QMember.member;
         JPQLQuery<Member> jpp = from(qp);
@@ -62,12 +62,12 @@ public class MemberSearchImpl extends QuerydslRepositorySupport implements Membe
         */
         //jpp.where(qp.email.isNotNull());
 
-        System.out.println("JPQLQuery<Member> -> "+ jpp);//JPQLQuery<Member>
+        //System.out.println("JPQLQuery<Member> -> "+ jpp);//JPQLQuery<Member>
 
         //페이징처리
         this.getQuerydsl().applyPagination(pageable, jpp);
 
-        System.out.println("JPQLQuery<Member> -> "+ jpp);//JPQLQuery<Member>
+        //System.out.println("JPQLQuery<Member> -> "+ jpp);//JPQLQuery<Member>
 
         List<Member> list= jpp.fetch();
 
@@ -80,8 +80,8 @@ public class MemberSearchImpl extends QuerydslRepositorySupport implements Membe
 
     @Override
     public Page<Member> searchMemberAllCreatedDate(String[] types, String keyword, Pageable pageable, LocalDate localDate) {
-        System.out.println("domain-member-search패키지 MemberSearchImpl 오버라이딩 searchMemberAllCreatedDate() 진입");
-        System.out.println("Pageable -> "+ pageable.toString());
+        //System.out.println("domain-member-search패키지 MemberSearchImpl 오버라이딩 searchMemberAllCreatedDate() 진입");
+        //System.out.println("Pageable -> "+ pageable.toString());
 
         QMember qp = QMember.member;
         JPQLQuery<Member> jpp = from(qp);
@@ -119,12 +119,12 @@ public class MemberSearchImpl extends QuerydslRepositorySupport implements Membe
         */
         //jpp.where(qp.email.isNotNull());
 
-        System.out.println("JPQLQuery<Member> -> "+ jpp);//JPQLQuery<Member>
+        //System.out.println("JPQLQuery<Member> -> "+ jpp);//JPQLQuery<Member>
 
         //페이징처리
         this.getQuerydsl().applyPagination(pageable, jpp);
 
-        System.out.println("JPQLQuery<Member> -> "+ jpp);//JPQLQuery<Member>
+        //System.out.println("JPQLQuery<Member> -> "+ jpp);//JPQLQuery<Member>
 
         List<Member> list= jpp.fetch();
 
@@ -138,7 +138,7 @@ public class MemberSearchImpl extends QuerydslRepositorySupport implements Membe
 
     @Override
     public Page<Member> searchMemberAll(String[] types, String keyword, Pageable pageable) {
-        System.out.println("domain-member-search패키지 MemberSearchImpl 오버라이딩 searchMemberAll() 진입");
+        //System.out.println("domain-member-search패키지 MemberSearchImpl 오버라이딩 searchMemberAll() 진입");
 
         QMember qp = QMember.member;
         JPQLQuery<Member> jpp = from(qp);

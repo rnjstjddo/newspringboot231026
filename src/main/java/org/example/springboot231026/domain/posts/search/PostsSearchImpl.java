@@ -20,14 +20,14 @@ public class PostsSearchImpl extends QuerydslRepositorySupport implements PostsS
 
     public PostsSearchImpl(){
         super(Posts.class);
-        System.out.println("domain-posts-search패키지 PostsSearchImpl클래스 생성자진입");
+        //System.out.println("domain-posts-search패키지 PostsSearchImpl클래스 생성자진입");
 
     }
 
 
     @Override
     public Page<Posts> searchAll(String[] types, String keyword, Pageable pageable) {
-        System.out.println("domain-posts-search패키지 PostsSearchImpl클래스 오버라이딩 searchAll() 진입");
+        //System.out.println("domain-posts-search패키지 PostsSearchImpl클래스 오버라이딩 searchAll() 진입");
 
         QPosts qp = QPosts.posts;
         JPQLQuery<Posts> jpp = from(qp);
@@ -68,7 +68,7 @@ public class PostsSearchImpl extends QuerydslRepositorySupport implements PostsS
     //관리자페이지에서 날짜조건에 맞는 게시글 페이징처리와 동적검색 모두처리
     @Override
     public Page<Posts> searchAllModifiedDate(String[] types, String keyword, Pageable pageable, LocalDate localDate) {
-        System.out.println("domain-posts-search패키지 PostsSearchImpl클래스 오버라이딩 searchAllModifiedDate() 진입");
+        //System.out.println("domain-posts-search패키지 PostsSearchImpl클래스 오버라이딩 searchAllModifiedDate() 진입");
 
         QPosts qp = QPosts.posts;
         JPQLQuery<Posts> jpp = from(qp);
@@ -108,7 +108,7 @@ public class PostsSearchImpl extends QuerydslRepositorySupport implements PostsS
 
     @Override
     public Page<Posts> searchAllCreatedDate(String[] types, String keyword, Pageable pageable, LocalDate localDate) {
-        System.out.println("domain-posts-search패키지 PostsSearchImpl클래스 오버라이딩 searchAllCreatedDate() 진입 " + localDate);
+        //System.out.println("domain-posts-search패키지 PostsSearchImpl클래스 오버라이딩 searchAllCreatedDate() 진입 " + localDate);
 
         QPosts qp = QPosts.posts;
         JPQLQuery<Posts> jpp = from(qp);
@@ -149,7 +149,7 @@ public class PostsSearchImpl extends QuerydslRepositorySupport implements PostsS
     //관리자페이지에서 날짜조건에 맞는 게시글 페이징처리와 동적검색 모두처리
     @Override
     public Page<PostReply> searchReplyAllModifiedDate(String[] types, String keyword, Pageable pageable, LocalDate localDate) {
-        System.out.println("domain-posts-search패키지 PostsSearchImpl클래스 오버라이딩 searchReplyAllModifiedDate() 진입");
+        //System.out.println("domain-posts-search패키지 PostsSearchImpl클래스 오버라이딩 searchReplyAllModifiedDate() 진입");
 
         QPostReply qp = QPostReply.postReply;
         JPQLQuery<PostReply> jpp = from(qp);
@@ -182,7 +182,7 @@ public class PostsSearchImpl extends QuerydslRepositorySupport implements PostsS
         //페이징처리
         this.getQuerydsl().applyPagination(pageable, jpp);
 
-        System.out.println("JPQLQuery<PostReply> -> "+ jpp);
+        //System.out.println("JPQLQuery<PostReply> -> "+ jpp);
         List<PostReply> list= jpp.fetch();
         long count = jpp.fetchCount();
 
@@ -193,7 +193,7 @@ public class PostsSearchImpl extends QuerydslRepositorySupport implements PostsS
 
     @Override
     public Page<PostReply> searchReplyAllCreatedDate(String[] types, String keyword, Pageable pageable, LocalDate localDate) {
-        System.out.println("domain-posts-search패키지 PostsSearchImpl클래스 오버라이딩 searchReplyAllCreatedDate() 진입");
+        //System.out.println("domain-posts-search패키지 PostsSearchImpl클래스 오버라이딩 searchReplyAllCreatedDate() 진입");
 
         QPostReply qp = QPostReply.postReply;
         JPQLQuery<PostReply> jpp = from(qp);
@@ -226,7 +226,7 @@ public class PostsSearchImpl extends QuerydslRepositorySupport implements PostsS
         //페이징처리
         this.getQuerydsl().applyPagination(pageable, jpp);
 
-        System.out.println("JPQLQuery<PostReply> -> "+ jpp);
+        //System.out.println("JPQLQuery<PostReply> -> "+ jpp);
         List<PostReply> list= jpp.fetch();
         long count = jpp.fetchCount();
 
@@ -238,7 +238,7 @@ public class PostsSearchImpl extends QuerydslRepositorySupport implements PostsS
     @Override
     public Page<PostReply> searchReplyAll(String[] types, String keyword, Pageable pageable) {
 
-        System.out.println("domain-posts-search패키지 PostsSearchImpl클래스 오버라이딩 searchReplyAll() 진입");
+        //System.out.println("domain-posts-search패키지 PostsSearchImpl클래스 오버라이딩 searchReplyAll() 진입");
 
         QPostReply qp = QPostReply.postReply;
         JPQLQuery<PostReply> jpp = from(qp);

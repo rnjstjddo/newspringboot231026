@@ -22,16 +22,16 @@ public class DogSellImageDTO {
     private String uuid,imgName,path;
 
     public DogSellImageDTO(String uuid, String imgName, String path){
-        System.out.println("dto-dogsell클래스 DogSellImageDTO 생성자진입");
+        //System.out.println("dto-dogsell클래스 DogSellImageDTO 생성자진입");
         
         this.imgName=imgName;
         this.path=path;
         this.uuid=uuid;
-        System.out.println("dto-dogsell클래스 DogSellImageDTO 생성자진입 결과 ->"+this.toString());
+        //System.out.println("dto-dogsell클래스 DogSellImageDTO 생성자진입 결과 ->"+this.toString());
     }
 
     public String getImageURL(){
-        System.out.println("dto-dogsell클래스 DogSellImageDTO getImageURL() 진입");
+        //System.out.println("dto-dogsell클래스 DogSellImageDTO getImageURL() 진입");
         try {
 
             return URLEncoder.encode(path+"/"+uuid+"_"+imgName,"utf-8");
@@ -43,7 +43,7 @@ public class DogSellImageDTO {
 
 
     public String getThumbnailURL(){
-        System.out.println("dto-dogsell클래스 DogSellImageDTO getThumbnailURL() 진입");
+        //System.out.println("dto-dogsell클래스 DogSellImageDTO getThumbnailURL() 진입");
         try {
 
             return URLEncoder.encode(path+"/s_"+uuid+"_"+imgName,"utf-8");

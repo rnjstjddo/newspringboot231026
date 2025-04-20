@@ -17,7 +17,7 @@ public class DogSellUploadResultDTO implements Serializable {
 
 
     public String getImageURL(){
-        System.out.println("upload-dto클래스 getImageURL() 진입 folderPath -> "+ folderPath);
+        //System.out.println("upload-dto클래스 getImageURL() 진입 folderPath -> "+ folderPath);
         // 서버에서 저장할때 C: \ upload231026\2023\11\08
 
         try {
@@ -30,7 +30,7 @@ public class DogSellUploadResultDTO implements Serializable {
     }
 
     public String getThumbnailURL(){
-        System.out.println("upload-dto클래스 getThumbnailURL() 진입");
+        //System.out.println("upload-dto클래스 getThumbnailURL() 진입");
 
         try {
 

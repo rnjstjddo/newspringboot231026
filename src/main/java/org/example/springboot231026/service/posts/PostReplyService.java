@@ -55,7 +55,7 @@ public class PostReplyService {
     
     //댓글목록
     public List<PostReplyDTO> list(Long pno){
-        System.out.println("service-postsposts패키지 PostReplyService클래스 list() 진입 파라미터 pno -> "+ pno);
+        //System.out.println("service-postsposts패키지 PostReplyService클래스 list() 진입 파라미터 pno -> "+ pno);
 
         List<PostReply> list =prr.list(pno);
 
@@ -70,7 +70,7 @@ public class PostReplyService {
 
     //등록
     public PostReplyDTO save(PostReplyDTO dto){
-        System.out.println("service-postsposts패키지 PostReplyService클래스 save() 진입 파라미터 PostReplyDTO -> "+ dto.toString());
+        //System.out.println("service-postsposts패키지 PostReplyService클래스 save() 진입 파라미터 PostReplyDTO -> "+ dto.toString());
 
         //PostReply-> Member member; / Long pno; / String  comment; /@Id Long prno
         PostReply entity = PostReply.builder()
@@ -79,7 +79,7 @@ public class PostReplyService {
                 .pno(dto.getPno())
                 .build();
         Long prno =prr.save(entity).getPrno();
-        System.out.println("service-postsposts패키지 PostReplyService클래스 save() 진입 파라미터 생성한 PostReply -> "+ entity.toString());
+        //System.out.println("service-postsposts패키지 PostReplyService클래스 save() 진입 파라미터 생성한 PostReply -> "+ entity.toString());
 
         Optional<PostReply> or = prr.findById(prno);
 
@@ -89,15 +89,15 @@ public class PostReplyService {
 
     //삭제
     public void postReplyDelete(Long prno) {
-        System.out.println("service-postsposts패키지 PostReplyService클래스 postReplyDelete() 진입");
+        //System.out.println("service-postsposts패키지 PostReplyService클래스 postReplyDelete() 진입");
         prr.deleteById(prno);
     }
 
 
     //entity ->  dto
     public PostReplyDTO entityToDto(Member mentity, PostReply pentity){
-        System.out.println("service-postsposts패키지 PostReplyService클래스entityToDto() 진입 파라미터 PostReply -> "+pentity);
-        System.out.println("service-postsposts패키지 PostReplyService클래스 entityToDto() 진입 파라미터 Member -> "+mentity);
+        //System.out.println("service-postsposts패키지 PostReplyService클래스entityToDto() 진입 파라미터 PostReply -> "+pentity);
+        //System.out.println("service-postsposts패키지 PostReplyService클래스 entityToDto() 진입 파라미터 Member -> "+mentity);
         //PostReplyDTO ->Long prno; pno; /MemberDTO mDto;/ String comment;/ LocalDateTime modifiedDate, createdDate;
 
         MemberDTO mDto = ms.toMemberDto(mentity);
@@ -106,14 +106,14 @@ public class PostReplyService {
                  pentity.getPrno(), pentity.getPno(),  pentity.getComment(),mDto.getName(),
                 pentity.getModifiedDate(), pentity.getCreatedDate());
 
-        System.out.println("service-posts패키지 PostReplyService클래스 entityToDto() 진입 생성한 PostReplyDTO -> "+ dto.toString() );
+        //System.out.println("service-posts패키지 PostReplyService클래스 entityToDto() 진입 생성한 PostReplyDTO -> "+ dto.toString() );
 
         return dto;
     }
 
     //관리자페이지 게시글댓글전체 들고오기
     public List<PostReplyDTO> findAll(){
-        System.out.println("service-postsposts패키지 PostReplyService클래스 findAll() 진입");
+        //System.out.println("service-postsposts패키지 PostReplyService클래스 findAll() 진입");
 
         List<PostReply> list = prr.findAll();
 
@@ -131,7 +131,7 @@ public class PostReplyService {
     //관리자 탭 페이지 동적검색 + 페이지처리
     @Transactional
     public PageResponseDTO<PostReplyDTO> getListAdmin(PageRequestDTO requestDTO) {
-        System.out.println("service-posts패키지 PostReplyService클래스 getListAdmin() 진입");
+        //System.out.println("service-posts패키지 PostReplyService클래스 getListAdmin() 진입");
 
         String [] types = requestDTO.getTypes();
         String keyword = requestDTO.getKeyword();
@@ -158,7 +158,7 @@ public class PostReplyService {
     //관리자 페이지 게시글댓글특정날짜 + 동적검색 + 페이지처리
     @Transactional
     public PageResponseDTO<PostReplyDTO> getListAdminModifiedDate(PageRequestDTO requestDTO, LocalDate localDate){
-        System.out.println("service-posts패키지 PostReplyService클래스 getListAdminModifiedDate() 진입");
+        //System.out.println("service-posts패키지 PostReplyService클래스 getListAdminModifiedDate() 진입");
 
         String [] types = requestDTO.getTypes();
         String keyword = requestDTO.getKeyword();
@@ -167,7 +167,7 @@ public class PostReplyService {
         //날짜까지 추가
         Page<PostReply> page = psi.searchReplyAllModifiedDate(types, keyword, p,localDate);
 
-        System.out.println("service-posts패키지 PostsService클래스 public Page<PostsListResponseDto> getListAdminModifiedDate(LocalDate localDate){\n() 진입 파라미터 Posts엔티티출력 -> "+ page.getContent());
+        //System.out.println("service-posts패키지 PostsService클래스 public Page<PostsListResponseDto> getListAdminModifiedDate(LocalDate localDate){\n() 진입 파라미터 Posts엔티티출력 -> "+ page.getContent());
 
         //entity->dto
         List<PostReplyDTO> list = page.getContent().stream()
@@ -187,7 +187,7 @@ public class PostReplyService {
     //관리자 페이지 게시글댓글특정날짜 + 동적검색 + 페이지처리
     @Transactional
     public PageResponseDTO<PostReplyDTO> getListAdminCreatedDate(PageRequestDTO requestDTO, LocalDate localDate){
-        System.out.println("service-posts패키지 PostReplyService클래스 getListAdminCreatedDate() 진입");
+        //System.out.println("service-posts패키지 PostReplyService클래스 getListAdminCreatedDate() 진입");
 
         String [] types = requestDTO.getTypes();
         String keyword = requestDTO.getKeyword();
@@ -197,7 +197,7 @@ public class PostReplyService {
         //Page<PostReply> page = psi.searchReplyAllModifiedDate(types, keyword, p,localDate);
         Page<PostReply> page = psi.searchReplyAllCreatedDate(types, keyword, p,localDate);
 
-        System.out.println("service-posts패키지 PostsService클래스 public Page<PostsListResponseDto> getListAdminCreatedDate() 진입 파라미터 Posts엔티티출력 -> "+ page.getContent());
+        //System.out.println("service-posts패키지 PostsService클래스 public Page<PostsListResponseDto> getListAdminCreatedDate() 진입 파라미터 Posts엔티티출력 -> "+ page.getContent());
 
         //entity->dto
         List<PostReplyDTO> list = page.getContent().stream()
@@ -216,10 +216,10 @@ public class PostReplyService {
 
     //특정날짜게시글수
     public Long getCountLocalDate(LocalDate localDate){
-        System.out.println("service-posts패키지 PostReplyService클래스 getCountLocalDate() 진입");
+        //System.out.println("service-posts패키지 PostReplyService클래스 getCountLocalDate() 진입");
 
         Long count = prr.getCountLocalDate(localDate.atTime(LocalTime.MIN), localDate.atTime(LocalTime.MAX));
-        System.out.println("service-posts패키지 PostReplyService클래스 getCountLocalDate() 진입 localDate 게시글댓글수 -> "+ count);
+        //System.out.println("service-posts패키지 PostReplyService클래스 getCountLocalDate() 진입 localDate 게시글댓글수 -> "+ count);
         return count;
     }
 

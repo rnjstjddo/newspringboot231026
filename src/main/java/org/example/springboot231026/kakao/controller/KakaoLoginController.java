@@ -35,33 +35,33 @@ public class KakaoLoginController {
 
     @GetMapping("/oauth/kakao")
     public String kakaoCallback(String code){
-        System.out.println("컨트롤러 KakaoLoginController kakaoCallback() 진입");
+        //System.out.println("컨트롤러 KakaoLoginController kakaoCallback() 진입");
 
         String at = ks.getAccessToken(code);
-        System.out.println("컨트롤러 KakaoLoginController kakaoCallback() 진입 - 카카오 엑세스토큰 얻기 -> "+ at);
+        //System.out.println("컨트롤러 KakaoLoginController kakaoCallback() 진입 - 카카오 엑세스토큰 얻기 -> "+ at);
 
         //엑세스토큰 이용해서 사용자정보 얻어온다. 이때 Member엔티티로 만들어반환한다.
         Member m = ks.getUserInfo(at);
 
-        System.out.println("컨트롤러 KakaoLoginController kakaoCallback() 진입 - 받은 사용자정보로 Member엔티티생성 -> "+ m.toString());
+        //System.out.println("컨트롤러 KakaoLoginController kakaoCallback() 진입 - 받은 사용자정보로 Member엔티티생성 -> "+ m.toString());
 
         Member entity = ms.getUser(m.getEmail());
-        System.out.println("컨트롤러 KakaoLoginController kakaoCallback() 진입 - DB에 사용자 존재하는지 확인 후 엔티티 반환 -> "+ entity.toString());
+        //System.out.println("컨트롤러 KakaoLoginController kakaoCallback() 진입 - DB에 사용자 존재하는지 확인 후 엔티티 반환 -> "+ entity.toString());
 
         if(entity.getEmail() == null){
-            System.out.println("컨트롤러 KakaoLoginController kakaoCallback() 진입 - DB에 존재하지 않는 사용자일경우 DB데이터 넣는다.");
+            //System.out.println("컨트롤러 KakaoLoginController kakaoCallback() 진입 - DB에 존재하지 않는 사용자일경우 DB데이터 넣는다.");
             String getName = ms.insertUser(m);
-            System.out.println("컨트롤러 KakaoLoginController kakaoCallback() 진입 - DB에 존재하지 않는 사용자일경우 DB데이터 넣는다. - 결과로 getName() 얻기 -> "+ getName);
+            //System.out.println("컨트롤러 KakaoLoginController kakaoCallback() 진입 - DB에 존재하지 않는 사용자일경우 DB데이터 넣는다. - 결과로 getName() 얻기 -> "+ getName);
 
         }
 
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(m.getEmail(), kakaoPassword);
 
-        System.out.println("컨트롤러 KakaoLoginController kakaoCallback() 진입 - UsernamePasswordAuthenticationToken 생성 -> "+token);
+        //System.out.println("컨트롤러 KakaoLoginController kakaoCallback() 진입 - UsernamePasswordAuthenticationToken 생성 -> "+token);
 
         Authentication auth = am.authenticate(token);
 
-        System.out.println("컨트롤러 KakaoLoginController kakaoCallback() 진입 - Authentication 생성 -> "+auth);
+        //System.out.println("컨트롤러 KakaoLoginController kakaoCallback() 진입 - Authentication 생성 -> "+auth);
         SecurityContextHolder.getContext().setAuthentication(auth);
 
         return "redirect:/member/updateSocialJoin";

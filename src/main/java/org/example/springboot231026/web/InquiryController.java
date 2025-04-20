@@ -23,15 +23,15 @@ public class InquiryController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/inquiry/inquiry")
     public String inquiryGet( @AuthenticationPrincipal MemberDTO memberDTO, Model model) {
-        System.out.println("VIEW컨트롤러 InquiryController inquiryGet() 진입");
+        //System.out.println("VIEW컨트롤러 InquiryController inquiryGet() 진입");
         try {
             if (memberDTO != null) {
-                System.out.println("VIEW컨트롤러 InquiryController inquiryGet() 진입 MemberDTO -> "+ memberDTO);
+                //System.out.println("VIEW컨트롤러 InquiryController inquiryGet() 진입 MemberDTO -> "+ memberDTO);
                 model.addAttribute("loginMember", memberDTO);
 
             }
         }catch (Exception e){
-            System.out.println("VIEW컨트롤러 InquiryController inquiryGet() 진입");
+            //System.out.println("VIEW컨트롤러 InquiryController inquiryGet() 진입");
             e.printStackTrace();
         }
 
@@ -41,21 +41,21 @@ public class InquiryController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/inquiry/register")
     public String inquiryRegister(InquiryDto inquiryDto, RedirectAttributes rttr) {
-        System.out.println("VIEW컨트롤러 InquiryController inquiryRegister() 진입 -> "+ inquiryDto.toString());
+        //System.out.println("VIEW컨트롤러 InquiryController inquiryRegister() 진입 -> "+ inquiryDto.toString());
 
         boolean result = inquiryService.inquiryRegister(inquiryDto);
 
-        System.out.println("VIEW컨트롤러 InquiryController inquiryRegister() 진입 문의글 등록후 boolean 값 -> "+ result);
+        //System.out.println("VIEW컨트롤러 InquiryController inquiryRegister() 진입 문의글 등록후 boolean 값 -> "+ result);
 
         if(result){
 
-            System.out.println("VIEW컨트롤러 InquiryController inquiryRegister() 진입 문의글 등록 성공진입");
+            //System.out.println("VIEW컨트롤러 InquiryController inquiryRegister() 진입 문의글 등록 성공진입");
 
             rttr.addFlashAttribute("register","success");
             return "redirect:/inquiry/inquiry";
 
         }else{
-            System.out.println("VIEW컨트롤러 InquiryController inquiryRegister() 진입 문의글 등록 성공진입");
+            //System.out.println("VIEW컨트롤러 InquiryController inquiryRegister() 진입 문의글 등록 성공진입");
 
             rttr.addFlashAttribute("register","fail");
             return "redirect:/inquiry/inquiry";

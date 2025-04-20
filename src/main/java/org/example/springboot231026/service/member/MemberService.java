@@ -71,11 +71,11 @@ public class MemberService {
 
     @Transactional
     public String memberJoin(JoinDTO dto){
-        System.out.println("service-member패키지 MemberService클래스 memberJoin() 진입 - 일반회원가입 경우" );
+        //System.out.println("service-member패키지 MemberService클래스 memberJoin() 진입 - 일반회원가입 경우" );
 
         if(dto.getName().equals("admin")){
 
-            System.out.println("service-member패키지 MemberService클래스 memberJoin() 진입 admin회원가입 경우 진입 -> "+ dto.getName());
+            //System.out.println("service-member패키지 MemberService클래스 memberJoin() 진입 admin회원가입 경우 진입 -> "+ dto.getName());
             dto.setPassword(pe.encode(dto.getPassword()));
             dto.setFormSocial("false");
             dto.setRole(RoleType.ADMIN);
@@ -84,7 +84,7 @@ public class MemberService {
             return m.getName();
         }else {
 
-            System.out.println("service-member패키지 MemberService클래스 memberJoin() 진입 admin회원가입 아닌 경우 진입");
+            //System.out.println("service-member패키지 MemberService클래스 memberJoin() 진입 admin회원가입 아닌 경우 진입");
             dto.setPassword(pe.encode(dto.getPassword()));
             dto.setFormSocial("false");
             dto.setRole(RoleType.USER);
@@ -96,22 +96,22 @@ public class MemberService {
 
     //아이디체크
     public String checkName(JoinDTO joinDTO){
-        System.out.println("service-member패키지 MemberService클래스 checkName() 진입 - 일반회원가입시 아이디중복확인");
+        //System.out.println("service-member패키지 MemberService클래스 checkName() 진입 - 일반회원가입시 아이디중복확인");
 
         Optional<Member> o = mr.findByName(joinDTO.getName());
 
         if(o.isPresent()){
-            System.out.println("service-member패키지 MemberService클래스 checkName() 진입 아이디 중복되는 경우 진입");
+            //System.out.println("service-member패키지 MemberService클래스 checkName() 진입 아이디 중복되는 경우 진입");
             return "false";
         }
-        System.out.println("service-member패키지 MemberService클래스 checkName() 진입 아이디 중복되지 않아서 true 전달");
+        //System.out.println("service-member패키지 MemberService클래스 checkName() 진입 아이디 중복되지 않아서 true 전달");
         return "true";
     }
 
 
     @Transactional
     public Member updateJoin(JoinDTO joinDTO, MemberDTO memberDTO){
-        System.out.println("service-member패키지 MemberService클래스 updateJoin() 진입 - 일반회원이 비밀번호 변경한 경우 진입");
+        //System.out.println("service-member패키지 MemberService클래스 updateJoin() 진입 - 일반회원이 비밀번호 변경한 경우 진입");
 
         Optional<Member> o = mr.findByUsername(memberDTO.getEmail(), memberDTO.getFromSocial());
                 //.orElseThrow(() -> new IllegalArgumentException("존재하는 않는 회원입니다."));
@@ -124,7 +124,7 @@ public class MemberService {
     @Transactional
     //@Commit
     public Member updateSocialJoin(String name, MemberDTO memberDTO){
-        System.out.println("service-member패키지 MemberService클래스 updateSocialJoin() 진입 ");
+        //System.out.println("service-member패키지 MemberService클래스 updateSocialJoin() 진입 ");
 
         Optional<Member> o = mr.findByUsername(memberDTO.getEmail(), memberDTO.getFromSocial());
         //.orElseThrow(() -> new IllegalArgumentException("존재하는 않는 회원입니다."));
@@ -136,7 +136,7 @@ public class MemberService {
     }
 
     public Member toEntity(JoinDTO dto) {
-        System.out.println("dto-member패키지 MemberService클래스 toEntity() 진입");
+        //System.out.println("dto-member패키지 MemberService클래스 toEntity() 진입");
 
         Member m = Member.builder()
                 .password(dto.getPassword())
@@ -148,7 +148,7 @@ public class MemberService {
         return m;
     }
     public MemberDTO toMemberDto(Member entity) {
-        System.out.println("dto-member패키지 MemberService클래스 toMemberDto() 진입");
+        //System.out.println("dto-member패키지 MemberService클래스 toMemberDto() 진입");
 
         MemberDTO dto = new MemberDTO(
                  entity.getEmail(),
@@ -162,7 +162,7 @@ public class MemberService {
     }
 
     public Member dtoToEntity(MemberDTO mDto) {
-        System.out.println("dto-member패키지 MemberService클래스 dtoToEntity() 진입");
+        //System.out.println("dto-member패키지 MemberService클래스 dtoToEntity() 진입");
         Member entity = Member.builder()
                 .name(mDto.getName())
                 .email(mDto.getEmail())
@@ -172,7 +172,7 @@ public class MemberService {
                 //.wishNumList(null)
                 .build();
 
-        System.out.println("dto-member패키지 MemberService클래스 toMemberDto() 진입 MemberDTO -> "+ entity.toString());
+        //System.out.println("dto-member패키지 MemberService클래스 toMemberDto() 진입 MemberDTO -> "+ entity.toString());
         return entity;
     }
 
@@ -180,7 +180,7 @@ public class MemberService {
     //카카오 서버로부터 사용자정보얻고 DB에 존재하는 회원인지 확인
     @Transactional(readOnly = true)
     public Member getUser(String email){
-        System.out.println("dto-member패키지 MemberService클래스 getUser() 진입 파라미터 username -> "+ email);
+        //System.out.println("dto-member패키지 MemberService클래스 getUser() 진입 파라미터 username -> "+ email);
 
         return mr.findByUsername(email, "true").orElseGet(() ->{return new Member();});
         //빈엔티티반환
@@ -188,7 +188,7 @@ public class MemberService {
 
     @Transactional
     public String insertUser(Member m){
-        System.out.println("service-member패키지 MemberService클래스 insertUser() 진입 - DB에 저장한다.");
+        //System.out.println("service-member패키지 MemberService클래스 insertUser() 진입 - DB에 저장한다.");
 
         mr.save(m);
         return m.getName();
@@ -196,9 +196,9 @@ public class MemberService {
 
     @Transactional
     public Member nameCheck(String name){
-        System.out.println("service-member패키지 MemberService클래스 nameCheck() 진입 - 소셜로그인회원은 닉네임수정시 중복을 먼저확인한다.");
+        //System.out.println("service-member패키지 MemberService클래스 nameCheck() 진입 - 소셜로그인회원은 닉네임수정시 중복을 먼저확인한다.");
         Member entity = mr.findByName(name).orElseGet(() -> {return new Member();});
-        System.out.println("service-member패키지 MemberService클래스 nameCheck() 진입 - 소셜로그인회원은 닉네임수정시 중복을 먼저확인한다. Member 가져온것 확인->"+entity);
+        //System.out.println("service-member패키지 MemberService클래스 nameCheck() 진입 - 소셜로그인회원은 닉네임수정시 중복을 먼저확인한다. Member 가져온것 확인->"+entity);
 
         return entity;
     }
@@ -207,32 +207,32 @@ public class MemberService {
 
     @Transactional
     public void deleteMember(String name, Member member){
-        System.out.println("service-member패키지 MemberService클래스 deleteMember() 진입 회원탈퇴 메소드 진입 "+
-                "탈퇴할 회원 name -> "+ name);
+        //System.out.println("service-member패키지 MemberService클래스 deleteMember() 진입 회원탈퇴 메소드 진입 "+
+                //"탈퇴할 회원 name -> "+ name);
         //분양글 삭제처리
         boolean result = dss.removeDeleteMember(name);
-        System.out.println("service-member패키지 MemberService클래스 deleteMember() 진입 회원탈퇴 메소드 진입 "+
-                " 분양글과 이미지 삭제처리 결과 -> "+ result);
+        //System.out.println("service-member패키지 MemberService클래스 deleteMember() 진입 회원탈퇴 메소드 진입 "+
+                //" 분양글과 이미지 삭제처리 결과 -> "+ result);
 
         boolean resultDSR = dsrs.dsReplyRemoveDeleteMember(name);
-        System.out.println("service-member패키지 MemberService클래스 deleteMember() 진입 회원탈퇴 메소드 진입 "+
-                " 분양댓글 삭제처리 결과 -> "+ resultDSR);
+        //System.out.println("service-member패키지 MemberService클래스 deleteMember() 진입 회원탈퇴 메소드 진입 "+
+                //" 분양댓글 삭제처리 결과 -> "+ resultDSR);
 
         boolean resultWN = wms.wishlistremoveAllDeleteMember(member);
-        System.out.println("service-member패키지 MemberService클래스 deleteMember() 진입 회원탈퇴 메소드 진입 "+
-                " 위시번호 삭제처리 결과 -> "+ resultWN);
+        //System.out.println("service-member패키지 MemberService클래스 deleteMember() 진입 회원탈퇴 메소드 진입 "+
+                //" 위시번호 삭제처리 결과 -> "+ resultWN);
         
         boolean resultGB = gbs.removeDeleteMember(name);
-        System.out.println("service-member패키지 MemberService클래스 deleteMember() 진입 회원탈퇴 메소드 진입 "+
-                " 방명록 삭제처리 결과 -> "+ resultGB);
+        //System.out.println("service-member패키지 MemberService클래스 deleteMember() 진입 회원탈퇴 메소드 진입 "+
+                //" 방명록 삭제처리 결과 -> "+ resultGB);
 
         boolean resultPS = ps.deleteMessageDeleteMember(name);
-        System.out.println("service-member패키지 MemberService클래스 deleteMember() 진입 회원탈퇴 메소드 진입 "+
-                " 게시글과 게시글댓글 삭제처리 결과 -> "+ resultPS);
+        //System.out.println("service-member패키지 MemberService클래스 deleteMember() 진입 회원탈퇴 메소드 진입 "+
+               // " 게시글과 게시글댓글 삭제처리 결과 -> "+ resultPS);
 
     }
     public Member toEntity(MemberDTO dto) {
-        System.out.println("dto-member패키지 MemberService클래스 toEntity() 진입");
+        //System.out.println("dto-member패키지 MemberService클래스 toEntity() 진입");
 
         Member m = Member.builder()
                 .password(dto.getPassword())
@@ -244,13 +244,13 @@ public class MemberService {
                 .build();
 
 
-        System.out.println("dto-member패키지 MemberService클래스 toEntity() 진입 엔티티Member -> "+ m.toString());
+        //System.out.println("dto-member패키지 MemberService클래스 toEntity() 진입 엔티티Member -> "+ m.toString());
         return m;
     }
 
     //관리자 페이지 회원전체 DTO로 반환
     public List<MemberDTO> findAll(){
-        System.out.println("dto-member패키지 MemberService클래스 findAll() 진입 ");
+        //System.out.println("dto-member패키지 MemberService클래스 findAll() 진입 ");
         List<Member> list =mr.findAll();
 
         //반환타입
@@ -268,7 +268,7 @@ public class MemberService {
     //관리자 페이지 날짜에 맞는 회원조회+동적검색+페이징처리
     @Transactional
     public PageResponseDTO<MemberDTO> getListAdminModifiedDate(PageRequestDTO requestDTO, LocalDate localDate) {
-        System.out.println("service-member패키지 MemberService클래스 getListAdminModifiedDate() 진입 ");
+        //System.out.println("service-member패키지 MemberService클래스 getListAdminModifiedDate() 진입 ");
 
         String [] types = requestDTO.getTypes();
         String keyword = requestDTO.getKeyword();
@@ -281,7 +281,7 @@ public class MemberService {
         Page<Member> page = mr.searchMemberAllModifiedDate(types, keyword, p,localDate);
         //Page<Member> page = mr.searchMemberAllCreatedDate(types, keyword, p,localDate);
 
-        System.out.println("여기까지오나");
+        //System.out.println("여기까지오나");
 
         //entity->dto
         List<MemberDTO> list = page.getContent().stream()
@@ -302,7 +302,7 @@ public class MemberService {
 
     @Transactional
     public PageResponseDTO<MemberDTO> getListAdminCreatedDate(PageRequestDTO requestDTO, LocalDate localDate) {
-        System.out.println("service-member패키지 MemberService클래스 getListAdminCreatedDate() 진입 ");
+        //System.out.println("service-member패키지 MemberService클래스 getListAdminCreatedDate() 진입 ");
 
         String [] types = requestDTO.getTypes();
         String keyword = requestDTO.getKeyword();
@@ -336,7 +336,7 @@ public class MemberService {
     //관리자 페이지 동적검색+페이징처리
     @Transactional
     public PageResponseDTO<MemberDTO> getListAdmin(PageRequestDTO requestDTO) {
-        System.out.println("service-member패키지 MemberService클래스 getListAdmin() 진입");
+        //System.out.println("service-member패키지 MemberService클래스 getListAdmin() 진입");
 
         String [] types = requestDTO.getTypes();
         String keyword = requestDTO.getKeyword();
@@ -363,10 +363,10 @@ public class MemberService {
 
     //특정날짜회원등록수
     public Long getCountLocalDate(LocalDate localDate){
-        System.out.println("service-member패키지 MemberService클래스 getCountLocalDate() 진입");
+        //System.out.println("service-member패키지 MemberService클래스 getCountLocalDate() 진입");
 
         Long count = mr.getCountLocalDate(localDate.atTime(LocalTime.MIN), localDate.atTime(LocalTime.MAX));
-        System.out.println("service-member패키지 MemberService클래스 getCountLocalDate() 진입 localDate 등록한 회원수 -> "+ count);
+        //System.out.println("service-member패키지 MemberService클래스 getCountLocalDate() 진입 localDate 등록한 회원수 -> "+ count);
         return count;
     }
 

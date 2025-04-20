@@ -68,7 +68,7 @@ public class DogSell extends BaseTimeEntity {
 
     public DogSell change(String title, String gender, String type, String name,String content,
                           String health, Double age, Double weight, int price){
-        System.out.println("domain-dog클래스 DogSell 엔티티 change() 진입");
+        //System.out.println("domain-dog클래스 DogSell 엔티티 change() 진입");
         this.title=title;
         this.gender=gender;
         this.type=type;
@@ -83,7 +83,7 @@ public class DogSell extends BaseTimeEntity {
     }
 
     public void changeComplete(String value){
-        System.out.println("domain-dog패키지 DogSell클래스 changeComplete()진입 분양완료된 분양강아지");
+        //System.out.println("domain-dog패키지 DogSell클래스 changeComplete()진입 분양완료된 분양강아지");
         this.complete=value;
     }
 }

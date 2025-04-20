@@ -11,13 +11,13 @@ public class HelloController {
 
     @GetMapping("/hello")
     public String hello(){
-        System.out.println("REST컨트롤러 hello() 진입");
+        //System.out.println("REST컨트롤러 hello() 진입");
         return "hello";
     }
 
     @GetMapping("/hello/dto")
     public HelloResponseDto helloDto(@RequestParam("name") String name, @RequestParam("amount") int amount){
-        System.out.println("REST컨트롤러 helloDto() 진입");
+        //System.out.println("REST컨트롤러 helloDto() 진입");
 
         return new HelloResponseDto(name, amount);
     }

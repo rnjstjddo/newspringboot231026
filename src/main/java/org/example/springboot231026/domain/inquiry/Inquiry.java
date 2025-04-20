@@ -41,7 +41,7 @@ public class Inquiry extends BaseTimeEntity {
     private String complete = "false";
 
     public String changeComplete(String value){
-        System.out.println("Inquiry엔티티 changeComplete()진입 파라미터 String타입 -> "+ value);
+        //System.out.println("Inquiry엔티티 changeComplete()진입 파라미터 String타입 -> "+ value);
         this.complete=value;
         return this.complete;
     }

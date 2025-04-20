@@ -27,7 +27,7 @@ public class GuestbookApiController {
     @PreAuthorize("isAuthenticated()")
     //@PreAuthorize("#memberDTO != null")
     public GuestbookReplyDTO replysave(@RequestBody GuestbookReplyDTO rDto, @AuthenticationPrincipal MemberDTO memberDTO){
-        System.out.println("REST컨트롤러 GuestbookApiController replysave() 진입 파라미터 -> "+rDto.toString());
+        //System.out.println("REST컨트롤러 GuestbookApiController replysave() 진입 파라미터 -> "+rDto.toString());
         rDto.setMDto(memberDTO);
         return grs.save(rDto);
     }
@@ -38,7 +38,7 @@ public class GuestbookApiController {
     public boolean replydelete(Long gno, Long grno, @AuthenticationPrincipal MemberDTO memberDTO){
 
         if(gno !=null && gno > 0) {
-            System.out.println("REST컨트롤러 GuestbookApiController replydelete() 진입 파라미터 gno -> " + gno);
+            //System.out.println("REST컨트롤러 GuestbookApiController replydelete() 진입 파라미터 gno -> " + gno);
             boolean result =grs.guestbookReplyDeleteGno(gno);
 
             if(result){
@@ -48,7 +48,7 @@ public class GuestbookApiController {
         }
 
         if(grno !=null && grno > 0 ) {
-            System.out.println("REST컨트롤러 GuestbookApiController replydelete() 진입 파라미터 grno -> " + grno);
+            //System.out.println("REST컨트롤러 GuestbookApiController replydelete() 진입 파라미터 grno -> " + grno);
             boolean result =grs.guestbookReplyDelete(grno);
 
             if(result){

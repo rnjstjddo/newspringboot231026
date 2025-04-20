@@ -54,19 +54,19 @@ public class Member extends BaseTimeEntity {
 
     //회원정보수정시
     public Member updateMember(String name, String password){
-        System.out.println("domain-member클래스 Member updateMember() 진입");
+        //System.out.println("domain-member클래스 Member updateMember() 진입");
         this.name=name;
         this.password=password;//암호된 값으로 넣음
 
-        System.out.println("domain-member클래스 Member updateMember() 진입 -> "+ this.toString());
+        //System.out.println("domain-member클래스 Member updateMember() 진입 -> "+ this.toString());
         return this;
     }
 
     public Member updateSocialMember(String name){
-        System.out.println("domain-member클래스 Member updateSocialMember() 진입");
+        //System.out.println("domain-member클래스 Member updateSocialMember() 진입");
         this.name=name;
 
-        System.out.println("domain-member클래스 Member updateSocialMember() 진입 -> "+ this.toString());
+        //System.out.println("domain-member클래스 Member updateSocialMember() 진입 -> "+ this.toString());
         return this;
     }
 }

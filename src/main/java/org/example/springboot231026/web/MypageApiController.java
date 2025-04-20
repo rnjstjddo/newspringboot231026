@@ -37,7 +37,7 @@ public class MypageApiController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/message/send")
     public void sendPost( @RequestBody MessageDTO mDto, @AuthenticationPrincipal MemberDTO memberDTO){
-        System.out.println("API컨트롤러 MessageApiController sendPost() 진입 ");
+        //System.out.println("API컨트롤러 MessageApiController sendPost() 진입 ");
 
         //Message String email; content; number; name; Member sender;recipient; BaseTimeEntity
 
@@ -50,7 +50,7 @@ public class MypageApiController {
 
         mDto.setSender(s);
         mDto.setRecipient(r);
-        System.out.println("API컨트롤러 MessageApiController sendPost() 진입 MessageDTO -> "+mDto.toString());
+        //System.out.println("API컨트롤러 MessageApiController sendPost() 진입 MessageDTO -> "+mDto.toString());
         ms.send(mDto);
 
     }
@@ -58,7 +58,7 @@ public class MypageApiController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/wishlist/remove/{wishnum}")
     public @ResponseBody Boolean wishlistremove( @RequestParam String name, @PathVariable Long wishnum, @AuthenticationPrincipal MemberDTO memberDTO) {
-        System.out.println("API컨트롤러 MessageApiController wishlistremove() 진입 파라미터 -> "+name+", "+ wishnum);
+        //System.out.println("API컨트롤러 MessageApiController wishlistremove() 진입 파라미터 -> "+name+", "+ wishnum);
         // {"name":"rnjstjddo88@naver.com"}, 2 @RequestBody
         boolean result = wns.wishlistremove(wishnum, name);//rnjstjddo88@naver.com, 2
         if(!result){
@@ -70,8 +70,8 @@ public class MypageApiController {
     @PostMapping("/message/removeRecipient")
     public String removeRecipientPost(@AuthenticationPrincipal MemberDTO memberDTO
             , @RequestBody Map<String, String> map){
-        System.out.println("API컨트롤러 MessageApiController removeRecipientPost() 진입 "+
-                    "삭제할 받은쪽지의 Map<String, String> -> "+ map);
+        //System.out.println("API컨트롤러 MessageApiController removeRecipientPost() 진입 "+
+                    //"삭제할 받은쪽지의 Map<String, String> -> "+ map);
         String name = map.get("name");
         String number = map.get("number");
 
@@ -85,8 +85,8 @@ public class MypageApiController {
     @PostMapping("/message/removeSender")
     public String removeSenderPost(@AuthenticationPrincipal MemberDTO memberDTO,
                                    @RequestBody Map<String, String> map){
-        System.out.println("API컨트롤러 MessageApiController removeSenderPost() 진입 " +
-                "삭제할 보낸쪽지의 Map<String,String> -> "+map);
+        //System.out.println("API컨트롤러 MessageApiController removeSenderPost() 진입 " +
+                //"삭제할 보낸쪽지의 Map<String,String> -> "+map);
         String name = map.get("name");
         String number = map.get("number");
         Long messageid = Long.valueOf(map.get("messageid"));

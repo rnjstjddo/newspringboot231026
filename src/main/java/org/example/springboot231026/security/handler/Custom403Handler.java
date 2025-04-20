@@ -13,17 +13,17 @@ public class Custom403Handler implements AccessDeniedHandler {
 
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
-        System.out.println("security-handler클래스 Custom403Handler 오버라이딩 handle() 진입");
+        //System.out.println("security-handler클래스 Custom403Handler 오버라이딩 handle() 진입");
 
         response.setStatus(HttpStatus.FORBIDDEN.value());
 
         String contentType = request.getHeader("Content-Type");
-        System.out.println("security-handler클래스 Custom403Handler 오버라이딩 handle() 진입 Content-Type확인 -> "+ contentType);
+        //System.out.println("security-handler클래스 Custom403Handler 오버라이딩 handle() 진입 Content-Type확인 -> "+ contentType);
 
         boolean jsonRequest = contentType.startsWith("application/json");
 
         if(!jsonRequest){
-            System.out.println("security-handler클래스 Custom403Handler 오버라이딩 handle() 진입 - Content-Type json이 아닌 경우 진입");
+            //System.out.println("security-handler클래스 Custom403Handler 오버라이딩 handle() 진입 - Content-Type json이 아닌 경우 진입");
             response.sendRedirect("/member/login?error=ACCESS_DENIED");
         }
 

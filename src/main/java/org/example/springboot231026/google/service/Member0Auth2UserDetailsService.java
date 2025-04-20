@@ -40,9 +40,9 @@ public class Member0Auth2UserDetailsService extends DefaultOAuth2UserService {
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2User ou = super.loadUser(userRequest);
-        System.out.println("google-service클래스 MemberOAuth2UserDetailsService 오버라이딩 loadUser() 진입 파라미터 OAuth2UserRequest ");
+        //System.out.println("google-service클래스 MemberOAuth2UserDetailsService 오버라이딩 loadUser() 진입 파라미터 OAuth2UserRequest ");
 
-        System.out.println("google-service클래스 MemberOAuth2UserDetailsService 오버라이딩 loadUser() 진입 -가져온 사용자정보 OAuth2User -> "+ ou);
+        //System.out.println("google-service클래스 MemberOAuth2UserDetailsService 오버라이딩 loadUser() 진입 -가져온 사용자정보 OAuth2User -> "+ ou);
 // Name: [114017297734871077662],
 // Granted Authorities: [ROLE_USER],
 // User Attributes: [
@@ -57,10 +57,10 @@ public class Member0Auth2UserDetailsService extends DefaultOAuth2UserService {
 
         //책에는 없다. 개정판 부트 p545
         String clientId = userRequest.getClientRegistration().getClientName();
-        System.out.println("google-service클래스 MemberOAuth2UserDetailsService 오버라이딩 loadUser() 진입" +
-                " -가져온 사용자정보 소셜로그인 인증서버이름 -> "+ clientId);
+        //System.out.println("google-service클래스 MemberOAuth2UserDetailsService 오버라이딩 loadUser() 진입" +
+                //" -가져온 사용자정보 소셜로그인 인증서버이름 -> "+ clientId);
 
-        System.out.println(userRequest.getAdditionalParameters());
+        //System.out.println(userRequest.getAdditionalParameters());
 
         String email =null;
 
@@ -75,10 +75,10 @@ public class Member0Auth2UserDetailsService extends DefaultOAuth2UserService {
             email = (String) map.get("email");
 
             navermap.forEach( (k,v) ->{
-                System.out.println("네이버로그인 키명 -> "+k+",  값-> "+v);
+                //System.out.println("네이버로그인 키명 -> "+k+",  값-> "+v);
             });
         }
-        System.out.println("google-service클래스 MemberOAuth2UserDetailsService 오버라이딩 loadUser() 진입 -가져온 사용자정보 소셜로그인 회원의 email -> "+ email);
+        //System.out.println("google-service클래스 MemberOAuth2UserDetailsService 오버라이딩 loadUser() 진입 -가져온 사용자정보 소셜로그인 회원의 email -> "+ email);
 
 
         //회원가입된 사용자인지 확인하자.
@@ -95,7 +95,7 @@ public class Member0Auth2UserDetailsService extends DefaultOAuth2UserService {
 
         if(o.getEmail() == null){
 
-            System.out.println("google-service클래스 MemberOAuth2UserDetailsService 오버라이딩 loadUser() 진입 -가져온 사용자정보 소셜로그인 회원 DB확인 email, fromSocial ==true 아닌경우 엔티티생성후 DB저장");
+            //System.out.println("google-service클래스 MemberOAuth2UserDetailsService 오버라이딩 loadUser() 진입 -가져온 사용자정보 소셜로그인 회원 DB확인 email, fromSocial ==true 아닌경우 엔티티생성후 DB저장");
 
             Member entity = Member.builder()
                     .name(email)
@@ -122,13 +122,13 @@ public class Member0Auth2UserDetailsService extends DefaultOAuth2UserService {
             dto.setCreatedDate(omember.get().getCreatedDate());
             dto.setModifiedDate(omember.get().getModifiedDate());
             //dto.setWishNum(null);
-            System.out.println("google-service클래스 MemberOAuth2UserDetailsService 오버라이딩 loadUser() 진입 -가져온 사용자정보 소셜로그인 회원 DB확인 email, fromSocial ==true 아닌경우 엔티티생성후 DB저장 -생성한 반환타입 MemberDTO -> "+this.toString());
+            //System.out.println("google-service클래스 MemberOAuth2UserDetailsService 오버라이딩 loadUser() 진입 -가져온 사용자정보 소셜로그인 회원 DB확인 email, fromSocial ==true 아닌경우 엔티티생성후 DB저장 -생성한 반환타입 MemberDTO -> "+this.toString());
 
             return dto;
         }
 
         if(o.getEmail() !=null) {
-            System.out.println("google-service클래스 MemberOAuth2UserDetailsService 오버라이딩 loadUser() 진입 - 존재하는 email 있다면 화면에 보여줄 DTO바로 생성");
+            //System.out.println("google-service클래스 MemberOAuth2UserDetailsService 오버라이딩 loadUser() 진입 - 존재하는 email 있다면 화면에 보여줄 DTO바로 생성");
             //존재하는 email 있다면 화면에 보여줄 DTO바로 생성
            /* dto = new MemberDTO(
                     o.get().getName(), o.get().getPassword(), MemberDTO.setAuthorities("USER"), o.get().isFromSocial(),
@@ -154,7 +154,7 @@ public class Member0Auth2UserDetailsService extends DefaultOAuth2UserService {
             //dto.setDogSellCartDTO(dogSellCartDTO);
 
 
-            System.out.println("google-service클래스 MemberOAuth2UserDetailsService 오버라이딩 loadUser() 진입 - 반환타입 자식 MemberDTO -> " + dto.toString());
+            //System.out.println("google-service클래스 MemberOAuth2UserDetailsService 오버라이딩 loadUser() 진입 - 반환타입 자식 MemberDTO -> " + dto.toString());
 // MemberDTO(name=kwonsungae88@gmail.com, password=$2a$10$rUbJjUffrBXk1ckWMZECtu3k7bjUPD1mxdOws43zW5NN8Oq0qpAtW, email=kwonsungae88@gmail.com, role=USER, fromSocial=true, createdDate=2023-11-05T19:15:16, modifiedDate=2023-11-05T19:15:16, attrs={sub=114017297734871077662, name=권성애, given_name=성애, family_name=권, picture=https://lh3.googleusercontent.com/a/ACg8ocIMFI7TTPU3Y9_cmEjBZmtZVrhordqBqxmH-Ttu3f6Z=s96-c, email=kwonsungae88@gmail.com, email_verified=true, locale=ko})
             return dto;
         }
